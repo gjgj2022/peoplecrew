@@ -14,5 +14,5 @@ public interface ApprovalDAO {
 	List<ApprovalDTO> selectAllByApprogress(String apvP);
 	int getAllCount(String apvP);
 	int getMyCount(String apvP, String mno);
-	// dd
+	// GJ
 }
