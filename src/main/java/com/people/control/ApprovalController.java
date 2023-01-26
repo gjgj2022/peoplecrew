@@ -25,11 +25,13 @@ public class ApprovalController {
 	@RequestMapping("/apvHome")
 	public String apvHome(Model model) {
 		
+		// 개인문서함
 		model.addAttribute("wait", aservice.getMyCount("결재대기",String.valueOf(2)));
 		model.addAttribute("ing", aservice.getMyCount("진행중",String.valueOf(2)));
 		model.addAttribute("success", aservice.getMyCount("결재완료",String.valueOf(2)));
 		model.addAttribute("reject", aservice.getMyCount("반려",String.valueOf(2)));
 		
+		// 결재진행함
 		model.addAttribute("AllWait", aservice.getAllCount("결재대기"));
 		model.addAttribute("AllIng", aservice.getAllCount("진행중"));
 		model.addAttribute("AllSuccess", aservice.getAllCount("결재완료"));
@@ -46,6 +48,8 @@ public class ApprovalController {
 	@RequestMapping("/personalFile")
 	public String personalFile(@RequestParam("apvP")String apvP,
 								Model model) {
+		
+		// 분류별 불러오기
 		List<ApprovalDTO> list = aservice.readAllByProgress(apvP);
 		
 		ArrayList<DocumentDTO> list2 = new ArrayList<DocumentDTO>();
@@ -59,8 +63,8 @@ public class ApprovalController {
 
 		model.addAttribute("list1", list2);
 		model.addAttribute("list2", list);
-//		-------------------------------------- 전체문서 불러오기 -----------------------------
 		
+		// 전체 불러오기
 		List<ApprovalDTO> list3 = aservice.readAll();
 		
 		ArrayList<DocumentDTO> list4 = new ArrayList<DocumentDTO>();
