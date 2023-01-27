@@ -8,5 +8,29 @@
 </head>
 <body>
 	<h1>apvWrite.jsp</h1>
+	
+	
+	
+	
+	
+	<%
+	
+	int i = 1;
+	
+	if(i == 1){
+	
+	%>
+	<jsp:include page="form/vacation.jsp" />
+	
+	<%
+	}
+	%>
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

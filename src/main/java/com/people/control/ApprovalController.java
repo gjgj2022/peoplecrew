@@ -85,4 +85,9 @@ public class ApprovalController {
 	public String formBox() {
 		return "/approval/formBox";
 	}
+	
+	@RequestMapping("vacation")
+	public String vacation() {
+		return "/approval/form/vacation";
+	}
 }
