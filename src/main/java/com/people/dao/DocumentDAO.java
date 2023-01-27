@@ -11,5 +11,11 @@ import com.people.dto.DocumentDTO;
 @Mapper
 public interface DocumentDAO {
 	List<DocumentDTO> selectAll();
+	List<DocumentDTO> selectAllByMno(int mno);
 	DocumentDTO selectBydono(int dono);
+	List<DocumentDTO> selectIng(int dono);
+	List<DocumentDTO> selectEnd(int dono);
+	List<DocumentDTO> selectByDoprogress(String apvP, String mno);
+	int getAllCount(String apvP);
+	int getMyCount(String apvP, String mno);
 }

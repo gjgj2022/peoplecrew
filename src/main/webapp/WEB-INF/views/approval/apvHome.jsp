@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -235,7 +236,7 @@
 										</td>
 										<td class="align-middle text-sm">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0">${wait }</h6>
+												<h6 class="text-sm mb-0"><a href="/personalFile?apvP=결재대기">${wait }</a></h6>
 											</div>
 										</td>
 									</tr>
@@ -246,13 +247,13 @@
 													<img src="">
 												</div>
 												<div class="ms-4">
-													<h6 class="text-sm mb-0">결재중</h6>
+													<h6 class="text-sm mb-0">진행중</h6>
 												</div>
 											</div>
 										</td>
 										<td class="align-middle text-sm">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0">${ing }</h6>
+												<h6 class="text-sm mb-0"><a href="/personalFile?apvP=진행중">${ing }</a></h6>
 											</div>
 										</td>
 									</tr>
@@ -269,7 +270,7 @@
 										</td>
 										<td class="align-middle text-sm">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0">${success }</h6>
+												<h6 class="text-sm mb-0"><a href="/personalFile?apvP=결재완료">${success }</a></h6>
 											</div>
 										</td>
 									</tr>
@@ -286,7 +287,7 @@
 										</td>
 										<td class="align-middle text-sm">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0">${reject }</h6>
+												<h6 class="text-sm mb-0"><a href="/personalFile?apvP=반려">${reject }</a></h6>
 											</div>
 										</td>
 									</tr>
@@ -400,14 +401,16 @@
 										<th>기안일</th>
 										<th>진행상태</th>
 									</tr>
+									<c:forEach var="list" items="${ingList }">
 									<tr class="text-sm mb-0">
-										<td>111111</td>
-										<td>연차신청서</td>
-										<td>연차신청합니다</td>
+										<td>${list.dono }</td>
+										<td>${list.dotype }</td>
+										<td><a href="#">${list.doname }</a></td>
 										<td>이대리</td>
-										<td>2023.01.23</td>
-										<td>진행중</td>
+										<td>${list.dodate }</td>
+										<td>${list.doprogress }</td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -419,7 +422,7 @@
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
 							<div class="d-flex justify-content-between">
-								<h6 class="mb-2">내가 최근 올린 결재</h6>
+								<h6 class="mb-2">내가 최근 받은 결재</h6>
 							</div>
 						</div>
 						<div class="table-responsive">
@@ -433,14 +436,16 @@
 										<th>기안일</th>
 										<th>진행상태</th>
 									</tr>
+									<c:forEach var="list2" items="${endList }">
 									<tr class="text-sm mb-0">
-										<td>111111</td>
-										<td>연차신청서</td>
-										<td>연차신청합니다</td>
+										<td>${list2.dono }</td>
+										<td>${list2.dotype }</td>
+										<td><a href="#">${list2.doname }</a></td>
 										<td>이대리</td>
-										<td>2023.01.23</td>
-										<td>진행중</td>
+										<td>${list2.dodate }</td>
+										<td>${list2.doprogress }</td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

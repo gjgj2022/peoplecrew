@@ -17,7 +17,31 @@ public class DocumentService {
 		return dao.selectAll();
 	}
 	
+	public List<DocumentDTO> readAllByMno(int mno){
+		return dao.selectAllByMno(mno);
+	}
+	
 	public DocumentDTO readOne(int dono){
 		return dao.selectBydono(dono);
+	}
+	
+	public List<DocumentDTO> readIng(int dono) {
+		return dao.selectIng(dono);
+	}
+	
+	public List<DocumentDTO> readEnd(int dono) {
+		return dao.selectEnd(dono);
+	}
+	
+	public List<DocumentDTO> readByDoprogress(String apvP, String mno){
+		return dao.selectByDoprogress(apvP, mno);
+	}
+	
+	public int getAllCount(String apvP) {
+		return dao.getAllCount(apvP);
+	}
+	
+	public int getMyCount(String apvP, String mno) {
+		return dao.getMyCount(apvP, mno);
 	}
 }

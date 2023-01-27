@@ -25,17 +25,28 @@ public class ApprovalController {
 	@RequestMapping("/apvHome")
 	public String apvHome(Model model) {
 		
+		// 임시회원번호 : 2
+		int mno = 2;
+		
 		// 개인문서함
-		model.addAttribute("wait", aservice.getMyCount("결재대기",String.valueOf(2)));
-		model.addAttribute("ing", aservice.getMyCount("진행중",String.valueOf(2)));
-		model.addAttribute("success", aservice.getMyCount("결재완료",String.valueOf(2)));
-		model.addAttribute("reject", aservice.getMyCount("반려",String.valueOf(2)));
+		model.addAttribute("wait", dservice.getMyCount("결재대기",String.valueOf(mno)));
+		model.addAttribute("ing", dservice.getMyCount("진행중",String.valueOf(mno)));
+		model.addAttribute("success", dservice.getMyCount("결재완료",String.valueOf(mno)));
+		model.addAttribute("reject", dservice.getMyCount("반려",String.valueOf(mno)));
 		
 		// 결재진행함
-		model.addAttribute("AllWait", aservice.getAllCount("결재대기"));
-		model.addAttribute("AllIng", aservice.getAllCount("진행중"));
-		model.addAttribute("AllSuccess", aservice.getAllCount("결재완료"));
-		model.addAttribute("AllReject", aservice.getAllCount("반려"));
+		model.addAttribute("AllWait", dservice.getAllCount("결재대기"));
+		model.addAttribute("AllIng", dservice.getAllCount("진행중"));
+		model.addAttribute("AllSuccess", dservice.getAllCount("결재완료"));
+		model.addAttribute("AllReject", dservice.getAllCount("반려"));
+		
+		// 내가 최근 올린 결재
+		List<DocumentDTO> list = dservice.readIng(mno);
+		model.addAttribute("ingList", list);
+		
+		// 내가 최근 받은 결재
+		List<DocumentDTO> list2 = dservice.readEnd(mno);
+		model.addAttribute("endList", list2);		
 		
 		return "/approval/apvHome";
 	}
@@ -49,35 +60,18 @@ public class ApprovalController {
 	public String personalFile(@RequestParam("apvP")String apvP,
 								Model model) {
 		
+		// 임시회원번호 2
+		int mno = 2;		
+		
 		// 분류별 불러오기
-		List<ApprovalDTO> list = aservice.readAllByProgress(apvP);
-		
-		ArrayList<DocumentDTO> list2 = new ArrayList<DocumentDTO>();
-		
-		for(int i=0; i<list.size(); i++) {
-			ApprovalDTO adto = list.get(i);
-			int dono = adto.getDono();
-			DocumentDTO ddto = dservice.readOne(dono);
-			list2.add(ddto);
-		}		
+		List<DocumentDTO> list = dservice.readByDoprogress(apvP, String.valueOf(2));
 
-		model.addAttribute("list1", list2);
-		model.addAttribute("list2", list);
+		model.addAttribute("list1", list);
 		
 		// 전체 불러오기
-		List<ApprovalDTO> list3 = aservice.readAll();
+		List<DocumentDTO> list2 = dservice.readAllByMno(mno);
 		
-		ArrayList<DocumentDTO> list4 = new ArrayList<DocumentDTO>();
-		
-		for(int i=0; i<list3.size(); i++) {
-			ApprovalDTO adto2 = list3.get(i);
-			int dono = adto2.getDono();
-			DocumentDTO ddto2 = dservice.readOne(dono);
-			list4.add(ddto2);
-		}
-		
-		model.addAttribute("dto1", list4);
-		model.addAttribute("dto2", list3);
+		model.addAttribute("list2", list2);
 		
 		return "/approval/personalFile";
 	}

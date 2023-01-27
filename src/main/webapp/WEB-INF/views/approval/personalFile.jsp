@@ -266,14 +266,14 @@
 										if(apvP.equals("전체문서")){
 									
 									%>
-									<c:forEach var="dto1" items="${dto1 }" varStatus="status">
+									<c:forEach var="list2" items="${list2 }" varStatus="status">
 										<tr class="text-sm mb-0">
-											<td>${dto1.dono }</td>
-											<td>${dto1.dotype }</td>
-											<td><a href="#">${dto1.doname }</a></td>
-											<td>${dto1.fno }</td>
-											<td>${dto1.dodate }</td>
-											<td>${dto2[status.index].approgress }</td>
+											<td>${list2.dono }</td>
+											<td>${list2.dotype }</td>
+											<td><a href="#">${list2.doname }</a></td>
+											<td>${list2.mno }</td>
+											<td>${list2.dodate }</td>
+											<td>${list2.doprogress }</td>
 										</tr>
 									</c:forEach>
 									<%
@@ -284,9 +284,9 @@
 											<td>${list1.dono }</td>
 											<td>${list1.dotype }</td>
 											<td><a href="#">${list1.doname }</a></td>
-											<td>${list1.fno }</td>
+											<td>${list1.mno }</td>
 											<td>${list1.dodate }</td>
-											<td>${list2[status.index].approgress }</td>
+											<td>${list1.doprogress }</td>
 										</tr>
 									</c:forEach>
 									<%

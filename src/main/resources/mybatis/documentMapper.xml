@@ -5,12 +5,44 @@
   
 <mapper namespace="com.people.dao.DocumentDAO">
 	<select id="selectAll" resultType="DocumentDTO">
-		SELECT dono,mno,doname,docontents,dodate,dotype,fno FROM document
+		SELECT dono,mno,doname,docontents,dodate,dotype,doprogress,fno FROM document
+	</select>
+	
+	<select id="selectAllByMno" resultType="DocumentDTO">
+		SELECT dono,mno,doname,docontents,dodate,dotype,doprogress,fno FROM document
+		WHERE mno = #{mno}
 	</select>
 	
 	<select id="selectBydono" resultType="DocumentDTO" parameterType="int">
-		SELECT dono,mno,doname,docontents,dodate,dotype,fno FROM document
+		SELECT dono,mno,doname,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE dono = #{dono}
 	</select>
-
+	
+	<select id="selectIng" resultType="DocumentDTO" parameterType="int">
+		SELECT dono,mno,doname,docontents,dodate,dotype,doprogress,fno FROM document
+		WHERE doprogress in ('결재대기','진행중','반려')
+		AND mno = #{mno}
+	</select>
+	
+	<select id="selectEnd" resultType="DocumentDTO" parameterType="int">
+		SELECT dono,mno,doname,docontents,dodate,dotype,doprogress,fno FROM document
+		WHERE doprogress in ('결재완료')
+		AND mno = #{mno}
+	</select>
+	
+	<select id="selectByDoprogress" resultType="DocumentDTO" parameterType="String">
+		SELECT dono,mno,doname,docontents,dodate,dotype,doprogress,fno FROM document
+		WHERE doprogress = #{apvP}
+		AND mno = #{mno}
+	</select>
+	
+	<select id="getAllCount" parameterType="String" resultType="int">
+		SELECT COUNT(doprogress) FROM document
+		WHERE doprogress = #{apvP}
+	</select>
+	<select id="getMyCount" parameterType="String" resultType="int">
+		SELECT COUNT(doprogress) FROM document
+		WHERE doprogress = #{apvP}
+		AND mno = #{mno}
+	</select>
 </mapper>

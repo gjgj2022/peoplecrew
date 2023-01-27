@@ -16,5 +16,6 @@ public class DocumentDTO {
 	String docontents;
 	String dodate;
 	String dotype;
+	String doprogress;
 	int fno;
 }
