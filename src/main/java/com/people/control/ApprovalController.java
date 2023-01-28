@@ -52,7 +52,10 @@ public class ApprovalController {
 	}
 	
 	@RequestMapping("/apvWrite")
-	public String apvWrite() {
+	public String apvWrite(@RequestParam("form")String form, Model model) {
+		
+		model.addAttribute("form", form);
+		
 		return "/approval/apvWrite";
 	}
 	

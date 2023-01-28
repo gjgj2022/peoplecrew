@@ -66,7 +66,7 @@
 						data-bs-parent="#sidebar-nav">
 						<li><a href="/apvHome"> <i class="bi bi-circle"></i> <span>전자결재홈</span>
 						</a></li>
-						<li><a href="/apvWrite"> <i class="bi bi-circle"></i> <span>기안작성</span>
+						<li><a href="/apvWrite?form=연차신청서"> <i class="bi bi-circle"></i> <span>기안작성</span>
 						</a></li>
 						<li><a href="/personalFile?apvP=전체문서"> <i class="bi bi-circle"></i>
 								<span>개인문서함</span>

@@ -27,7 +27,7 @@ textarea {
 
 	<div style="width:700px;margin-left:auto;margin-right:auto;">
 
-			<div class="" style="font-size:30px;text-align:center;padding-top:150px;">연차신청서</div>
+			<div class="" style="font-size:30px;text-align:center;padding-top:150px;">업무보고서</div>
 			<br />
 	<table class="table table-bordered align-middle">
 		<tr>
