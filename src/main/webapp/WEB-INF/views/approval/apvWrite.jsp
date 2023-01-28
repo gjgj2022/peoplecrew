@@ -217,8 +217,8 @@
 			<tr style="height:50px;">
 				<td style="width:200px;">
 					<select name="form" id="" class="form-select" style="width:200px;">
-						<option value="연차신청서">연차신청서</option>
-						<option value="업무보고서">업무보고서</option>
+						<option value="연차신청서" <c:if test="${form eq '연차신청서' }">selected="selected"</c:if>>연차신청서</option>
+						<option value="업무보고서" <c:if test="${form eq '업무보고서' }">selected="selected"</c:if>>업무보고서</option>
 					</select>
 				</td>
 				<td>

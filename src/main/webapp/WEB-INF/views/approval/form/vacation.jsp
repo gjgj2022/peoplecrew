@@ -25,7 +25,7 @@ textarea {
 </head>
 <body>
 
-	<div style="width:700px;margin-left:auto;margin-right:auto;">
+	<div style="width:750px;margin-left:auto;margin-right:auto;">
 
 			<div class="" style="font-size:30px;text-align:center;padding-top:150px;">연차신청서</div>
 			<br />
@@ -36,7 +36,7 @@ textarea {
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">내용</td>
-			<td colspan="3"><textarea name="" id="" cols="30" rows="10" style="width:500px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
+			<td colspan="3"><textarea name="" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">휴가지</td>
@@ -46,7 +46,7 @@ textarea {
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" rowspan="2" style="text-align:center;">대행해야 할<br>주요업무</td>
-			<td colspan="4"><textarea name="" id="" cols="30" rows="10" style="width:500px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
+			<td colspan="4"><textarea name="" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">직무 대행자</td>

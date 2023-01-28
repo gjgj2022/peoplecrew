@@ -16,8 +16,18 @@
 	}
 </script>
 <style>
-textarea {
+#ta1 {
     min-height: 259px;
+    overflow-y: hidden;
+    resize: none;
+}
+#ta2 {
+    min-height: 100px;
+    overflow-y: hidden;
+    resize: none;
+}
+#ta3 {
+    min-height: 100px;
     overflow-y: hidden;
     resize: none;
 }
@@ -25,7 +35,7 @@ textarea {
 </head>
 <body>
 
-	<div style="width:700px;margin-left:auto;margin-right:auto;">
+	<div style="width:750px;margin-left:auto;margin-right:auto;">
 
 			<div class="" style="font-size:30px;text-align:center;padding-top:150px;">업무보고서</div>
 			<br />
@@ -35,22 +45,16 @@ textarea {
 			<td colspan="3"><input type="text" name="" id="" style="width:500px; border:none;"/></td>
 		</tr>
 		<tr>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">내용</td>
-			<td colspan="3"><textarea name="" id="" cols="30" rows="10" style="width:500px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
+			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">업무내용</td>
+			<td colspan="3"><textarea name="" id="ta1" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
 		</tr>
 		<tr>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">휴가지</td>
-			<td><input type="text" name="" id="" style="border:none;"/></td>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">연락처</td>
-			<td><input type="text" name="" id="" style="border:none;"/></td>
+			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">건의사항</td>
+			<td colspan="3"><textarea name="" id="ta2" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
 		</tr>
 		<tr>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" rowspan="2" style="text-align:center;">대행해야 할<br>주요업무</td>
-			<td colspan="4"><textarea name="" id="" cols="30" rows="10" style="width:500px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
-		</tr>
-		<tr>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">직무 대행자</td>
-			<td class="border" colspan="3"><input type="text" name="" id="" style="border:none;" /></td>
+			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" rowspan="2" style="text-align:center;">특이사항</td>
+			<td class="border" colspan="4"><textarea name="" id="ta3" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
 		</tr>
 	</table>
 	</div>
