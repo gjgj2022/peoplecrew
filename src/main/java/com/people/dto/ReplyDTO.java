@@ -6,13 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApprovalDTO {
-	int apno;
-	int dono;
-	String approgress;
-	String apdate;
-	int mno;
+@Builder
+public class ReplyDTO {
+
+	private int reno;
+	private int bono;
+	private int mno;
+	private String mname;
+	private String recontents;
+	private String redate;
 }
