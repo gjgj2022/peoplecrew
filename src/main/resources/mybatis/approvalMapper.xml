@@ -20,5 +20,13 @@
 		WHERE approgress = #{apvP}
 		AND mno = #{mno}
 	</select>
-
+	<select id="getAllByApmno" parameterType="int" resultType="ApprovalDTO">
+		SELECT * FROM approval
+		WHERE apmno = #{apmno}
+	</select>
+	
+	<insert id="addOne" parameterType="ApprovalDTO">
+		INSERT INTO approval(apno,dono,mno,apmno)
+		VALUES (#{apno},#{dono},#{mno},#{apmno})
+	</insert>
 </mapper>

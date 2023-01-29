@@ -405,7 +405,7 @@
 									<tr class="text-sm mb-0">
 										<td>${list.dono }</td>
 										<td>${list.dotype }</td>
-										<td><a href="#">${list.doname }</a></td>
+										<td><a href="#">${list.dotitle }</a></td>
 										<td>이대리</td>
 										<td>${list.dodate }</td>
 										<td>${list.doprogress }</td>
@@ -440,7 +440,7 @@
 									<tr class="text-sm mb-0">
 										<td>${list2.dono }</td>
 										<td>${list2.dotype }</td>
-										<td><a href="#">${list2.doname }</a></td>
+										<td><a href="#">${list2.dotitle }</a></td>
 										<td>이대리</td>
 										<td>${list2.dodate }</td>
 										<td>${list2.doprogress }</td>

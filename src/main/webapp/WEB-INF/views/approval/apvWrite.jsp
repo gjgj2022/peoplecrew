@@ -207,13 +207,11 @@
 	<div class="container bg-white" style="min-width:1500px;">
 	<div style="margin-top:100px;width:1100px;align:center;min-height:1200px;margin-left:auto;margin-right:auto;">
 	<div style="height:200px;">
-				<form action="/apvWrite">
 		<table class="table table-borderless">
 			<tr class="align-bottom" style="height:100px;">
 				<th style="width:900px;font-size:25px;" colspan="6">문서종류</th>
-				<td><input class="btn btn-success" type="button" style="margin:auto;" value="기안하기" /></td>
-				<td style="width:50px;"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" /></td>
 			</tr>
+				<form action="/apvWrite">
 			<tr style="height:50px;">
 				<td style="width:200px;">
 					<select name="form" id="" class="form-select" style="width:200px;">
@@ -222,11 +220,14 @@
 					</select>
 				</td>
 				<td>
-					<a href="#"><input class="btn btn-primary" type="submit" value="선택" /></a>
+					<input class="btn btn-primary" type="submit" value="선택" />
 				</td>
+				</form>
+				<form action="/apvWriteOk" method="post">
+				<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="기안하기" /></td>
+				<td style="width:50px;"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" /></td>
 			</tr>
 		</table>
-				</form>
 	</div>
 	<div style="width:1000px;">
 		<table class="table table-bordered align-middle" style="margin-left:6%;width:61%;float:left;">
@@ -241,8 +242,9 @@
 				<td class="border">이대리</td>
 				<td class="border">대리</td>
 				<td class="border">개발부</td>
-				<td class="border">10</td>
+				<td class="border">111</td>
 				<td class="border">230128</td>
+				<input type="hidden" name="mno" value="111" />
 			</tr>
 		</table>
 		<table class="table table-bordered align-middle" style="width:31%;float:right;text-align:center;">
@@ -267,6 +269,7 @@
 	</c:choose>
 	</div>
 	</div>
+	</form>
 <!-- ===================================================================================  -->
 	
 	

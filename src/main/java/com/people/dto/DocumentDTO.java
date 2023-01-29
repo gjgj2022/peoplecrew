@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class DocumentDTO {
-	int dono;
+	String dono;
 	int mno;
-	String doname;
+	String dotitle;
 	String docontents;
+	String docontents2;
+	String docontents3;
 	String dodate;
 	String dotype;
 	String doprogress;

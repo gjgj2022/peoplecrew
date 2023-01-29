@@ -56,7 +56,7 @@
             </a>
           </li>
           <li>
-            <a href="/apvWrite">
+            <a href="/apvWrite?form=연차신청서">
               <i class="bi bi-circle"></i>
               <span>기안작성</span>
             </a>

@@ -233,7 +233,7 @@
 										String btn4 = "light";
 										String btn5 = "light";
 									
-										if(apvP.equals("전체문서")){
+										if(apvP == null||apvP.equals("전체문서")){
 											btn1 = "primary";
 										}else if(apvP.equals("결재대기")){
 											btn2 = "primary";
@@ -263,14 +263,14 @@
 										<th>진행상태</th>
 									</tr>
 									<%
-										if(apvP.equals("전체문서")){
+										if(apvP == null||apvP.equals("전체문서")){
 									
 									%>
 									<c:forEach var="list2" items="${list2 }" varStatus="status">
 										<tr class="text-sm mb-0">
 											<td>${list2.dono }</td>
 											<td>${list2.dotype }</td>
-											<td><a href="#">${list2.doname }</a></td>
+											<td><a href="#">${list2.dotitle }</a></td>
 											<td>${list2.mno }</td>
 											<td>${list2.dodate }</td>
 											<td>${list2.doprogress }</td>
@@ -283,7 +283,7 @@
 										<tr class="text-sm mb-0">
 											<td>${list1.dono }</td>
 											<td>${list1.dotype }</td>
-											<td><a href="#">${list1.doname }</a></td>
+											<td><a href="#">${list1.dotitle }</a></td>
 											<td>${list1.mno }</td>
 											<td>${list1.dodate }</td>
 											<td>${list1.doprogress }</td>

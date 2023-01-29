@@ -36,25 +36,25 @@
 <body>
 
 	<div style="width:750px;margin-left:auto;margin-right:auto;">
-
+			<input type="hidden" name="dotype" value="업무보고서" />
 			<div class="" style="font-size:30px;text-align:center;padding-top:150px;">업무보고서</div>
 			<br />
 	<table class="table table-bordered align-middle">
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">제목</td>
-			<td colspan="3"><input type="text" name="" id="" style="width:500px; border:none;"/></td>
+			<td colspan="3"><input type="text" name="dotitle" id="" style="width:500px; border:none;"/></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">업무내용</td>
-			<td colspan="3"><textarea name="" id="ta1" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
+			<td colspan="3"><textarea name="docontents" id="ta1" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">건의사항</td>
-			<td colspan="3"><textarea name="" id="ta2" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
+			<td colspan="3"><textarea name="docontents2" id="ta2" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
 		</tr>
 		<tr>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" rowspan="2" style="text-align:center;">특이사항</td>
-			<td class="border" colspan="4"><textarea name="" id="ta3" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
+			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border" rowspan="2" style="text-align:center;">특이사항</td>
+			<td class="border" colspan="4"><textarea name="docontents3" id="ta3" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea></td>
 		</tr>
 	</table>
 	</div>

@@ -12,10 +12,12 @@ import com.people.dto.DocumentDTO;
 public interface DocumentDAO {
 	List<DocumentDTO> selectAll();
 	List<DocumentDTO> selectAllByMno(int mno);
-	DocumentDTO selectBydono(int dono);
-	List<DocumentDTO> selectIng(int dono);
-	List<DocumentDTO> selectEnd(int dono);
+	DocumentDTO selectBydono(String dono);
+	DocumentDTO selectC(String dono, String doprogress);
+	List<DocumentDTO> selectIng(int mno);
+	List<DocumentDTO> selectEnd(int mno);
 	List<DocumentDTO> selectByDoprogress(String apvP, String mno);
 	int getAllCount(String apvP);
 	int getMyCount(String apvP, String mno);
+	void addOne(DocumentDTO dto);
 }

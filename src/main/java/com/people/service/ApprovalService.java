@@ -28,4 +28,12 @@ public class ApprovalService {
 	public int getMyCount(String apvP, String mno) {
 		return dao.getMyCount(apvP, mno);
 	}
+	
+	public List<ApprovalDTO> getAllByApmno(int apmno){
+		return dao.getAllByApmno(apmno);
+	}
+	
+	public void addOne(ApprovalDTO dto) {
+		dao.addOne(dto);
+	}
 }
