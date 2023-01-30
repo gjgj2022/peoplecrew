@@ -4,14 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.people.dao.ReplyDAO">
-	<select id="getAll" resultType="ReplyDTO" parameterType="int">
-		select r.reno reno, r.bono bono, r.mno mno, m.mname mname, r.recontents recontents, r.redate redate
-		from reply as r inner join member as m on r.mno = m.mno
-		where r.bono=#{bono} order by reno asc
+	<select id="getAll" resultType="ReplyDTO"
+		parameterType="int">
+		select r.*, m.mname mname
+		from reply as r inner join member as m 
+		on r.mno = m.mno
+		where r.bono=#{bono} 
+		order by reno asc
 	</select>
-	
+
 	<select id="getCount" resultType="int" parameterType="int">
-		select count(*) from reply where bono=#{bono}
+		select count(*) 
+		from reply 
+		where bono=#{bono}
 	</select>
 
 	<insert id="insertOne" parameterType="ReplyDTO">
@@ -20,7 +25,8 @@
 	</insert>
 
 	<update id="updateOne" parameterType="ReplyDTO">
-		update reply set recontents = #{recontents}
+		update reply 
+		set recontents = #{recontents}
 		where reno = #{reno}
 	</update>
 
@@ -28,7 +34,7 @@
 		delete from reply
 		where reno = #{reno}
 	</delete>
-	
+
 	<delete id="deleteAll" parameterType="int">
 		delete from reply
 		where bono = #{bono}

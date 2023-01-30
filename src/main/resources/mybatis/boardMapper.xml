@@ -7,25 +7,26 @@
 
 	<select id="readAll" parameterType="StartEnd"
 		resultType="BoardDTO">
-		select ROWNUM, bono, mno, mname, bocontents, botitle, bohits, recnt,
-		IF(DATE_FORMAT(bodate, '%Y%m%d') &lt; DATE_FORMAT(now(),'%Y%m%d'),
-		DATE_FORMAT(bodate, '%Y.%m.%d'),
-		DATE_FORMAT(bodate, '%H:%i')
-		) as bodate, bostatus  
+		select ROWNUM, bono, mno, mname, bocontents, botitle,
+		bohits, recnt,
+		IF(DATE_FORMAT(bodate, '%Y%m%d') &lt;
+			DATE_FORMAT(now(),'%Y%m%d'),
+			DATE_FORMAT(bodate, '%Y.%m.%d'),
+			DATE_FORMAT(bodate, '%H:%i')
+		) as bodate, bostatus
 		from (select @ROWNUM := @ROWNUM +1 AS ROWNUM, B.*
-		FROM (select b.bono bono, b.mno mno, m.mname mname, b.bocontents
-		bocontents,
-		b.botitle botitle, b.bohits bohits,
-		(select count(*) from reply where bono = b.bono) as recnt, b.bodate bodate, 
-		b.bostatus bostatus, b.botype botype 
-		from board as b inner join member as m on b.mno = m.mno where botype=0 
-		order by bono desc) B, (SELECT @ROWNUM :=0 ) TMP) C
-		where ROWNUM &lt;= #{endNo} and ROWNUM &gt;= #{startNo}
+		FROM (select b.*, m.mname mname,
+		(select count(*) from reply where bono = b.bono) as recnt
+		from board as b inner join member as m on b.mno = m.mno 
+		where botype=0 order by bono desc) B, 
+		(SELECT @ROWNUM :=0 ) TMP) C
+		where ROWNUM &lt;=
+		#{endNo} and ROWNUM &gt;= #{startNo}
 
 	</select>
 
 	<insert id="fileInsert" parameterType="FileDTO"
-	useGeneratedKeys="true" keyProperty="fno">
+		useGeneratedKeys="true" keyProperty="fno">
 		insert into file
 		values(null,#{fname},#{fpath},#{mno},#{oriname})
 	</insert>
@@ -37,14 +38,9 @@
 
 	<select id="getOne" parameterType="int"
 		resultType="BoardDTO">
-
-		select b.bono bono, b.mno mno, m.mname mname, b.bocontents
-		bocontents, b.botitle botitle, b.bodate bodate, b.bohits bohits, b.fno fno, b.bostatus bostatus  
-		from
-		board as b inner join member as m on b.mno = m.mno
-		where b.bono =
-		#{bono}
-
+		select b.*, m.mname mname 
+		from board as b inner join member as m on b.mno = m.mno
+		where b.bono = #{bono}
 	</select>
 
 	<update id="updateOne" parameterType="BoardDTO">
@@ -52,27 +48,28 @@
 		botitle=#{botitle},
 		bocontents=#{bocontents},
 		fno = #{fno},
-		bostatus = #{bostatus} 
+		bostatus = #{bostatus}
 		where bono = #{bono}
 	</update>
-	
-		<update id="updateNoFile" parameterType="BoardDTO">
+
+	<update id="updateNoFile"
+		parameterType="BoardDTO">
 		update board set
 		botitle=#{botitle},
 		bocontents=#{bocontents},
-		bostatus = #{bostatus} 
+		bostatus = #{bostatus}
 		where bono = #{bono}
 	</update>
 
 	<delete id="removeOne" parameterType="int">
 		delete from board
-		where bono
-		= #{bono}
+		where bono = #{bono}
 	</delete>
 
 	<update id="raiseBohits" parameterType="int">
 		update board set
-		bohits=bohits+1 where bono = #{bono}
+		bohits=bohits+1 
+		where bono = #{bono}
 	</update>
 
 	<delete id="removeReplyAll" parameterType="int">
@@ -81,21 +78,26 @@
 	</delete>
 
 	<select id="getCount" parameterType="int" resultType="int">
-		select
-		count(*) from reply where bono=#{bono}
+		select count(*) 
+		from reply 
+		where bono=#{bono}
 	</select>
 
 	<select id="getBoardTotal" resultType="int">
-		select count(*) from board where botype=0
+		select count(*) 
+		from board
+		where botype=0
 	</select>
 
 	<select id="fileDetail" parameterType="int"
 		resultType="FileDTO">
-		select * from file where fno = #{fno}
+		select * from file 
+		where fno = #{fno}
 	</select>
 
 	<delete id="removeFileByFno" parameterType="int">
-		delete from file where fno=#{fno}
+		delete from file
+		where fno=#{fno}
 	</delete>
 
 </mapper>
