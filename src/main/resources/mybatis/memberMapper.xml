@@ -5,7 +5,7 @@
   
   <mapper namespace="com.people.dao.MemberDAO">
   
-  <select id="getIdOne" parameterType="String" resultType="com.people.dto.MemberDTO">
+  <select id="getIdOne" parameterType="String" resultType="MemberDTO">
   
   select (select uno from organization where ono = m.ono) uno, m.* from member m where mid = #{username}
   </select>

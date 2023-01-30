@@ -5,8 +5,8 @@
 
 <mapper namespace="com.people.dao.BoardDAO">
 
-	<select id="readAll" parameterType="com.people.dto.StartEnd"
-		resultType="com.people.dto.BoardDTO">
+	<select id="readAll" parameterType="StartEnd"
+		resultType="BoardDTO">
 		select ROWNUM, bono, mno, mname, bocontents, botitle, bohits, recnt,
 		IF(DATE_FORMAT(bodate, '%Y%m%d') &lt; DATE_FORMAT(now(),'%Y%m%d'),
 		DATE_FORMAT(bodate, '%Y.%m.%d'),
@@ -24,19 +24,19 @@
 
 	</select>
 
-	<insert id="fileInsert" parameterType="com.people.dto.FileDTO"
+	<insert id="fileInsert" parameterType="FileDTO"
 	useGeneratedKeys="true" keyProperty="fno">
 		insert into file
 		values(null,#{fname},#{fpath},#{mno},#{oriname})
 	</insert>
 
-	<insert id="insertOne" parameterType="com.people.dto.BoardDTO">
+	<insert id="insertOne" parameterType="BoardDTO">
 		insert into board
 		values(null,#{mno},#{botitle},#{bocontents},sysdate(),0,#{fno},0,#{bostatus})
 	</insert>
 
 	<select id="getOne" parameterType="int"
-		resultType="com.people.dto.BoardDTO">
+		resultType="BoardDTO">
 
 		select b.bono bono, b.mno mno, m.mname mname, b.bocontents
 		bocontents, b.botitle botitle, b.bodate bodate, b.bohits bohits, b.fno fno, b.bostatus bostatus  
@@ -47,7 +47,7 @@
 
 	</select>
 
-	<update id="updateOne" parameterType="com.people.dto.BoardDTO">
+	<update id="updateOne" parameterType="BoardDTO">
 		update board set
 		botitle=#{botitle},
 		bocontents=#{bocontents},
@@ -56,7 +56,7 @@
 		where bono = #{bono}
 	</update>
 	
-		<update id="updateNoFile" parameterType="com.people.dto.BoardDTO">
+		<update id="updateNoFile" parameterType="BoardDTO">
 		update board set
 		botitle=#{botitle},
 		bocontents=#{bocontents},
@@ -90,7 +90,7 @@
 	</select>
 
 	<select id="fileDetail" parameterType="int"
-		resultType="com.people.dto.FileDTO">
+		resultType="FileDTO">
 		select * from file where fno = #{fno}
 	</select>
 

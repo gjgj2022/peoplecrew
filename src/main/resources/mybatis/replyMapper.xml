@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.people.dao.ReplyDAO">
-	<select id="getAll" resultType="com.people.dto.ReplyDTO" parameterType="int">
+	<select id="getAll" resultType="ReplyDTO" parameterType="int">
 		select r.reno reno, r.bono bono, r.mno mno, m.mname mname, r.recontents recontents, r.redate redate
 		from reply as r inner join member as m on r.mno = m.mno
 		where r.bono=#{bono} order by reno asc
@@ -14,12 +14,12 @@
 		select count(*) from reply where bono=#{bono}
 	</select>
 
-	<insert id="insertOne" parameterType="com.people.dto.ReplyDTO">
+	<insert id="insertOne" parameterType="ReplyDTO">
 		insert into reply
 		values (null, #{bono}, #{mno}, #{recontents}, now())
 	</insert>
 
-	<update id="updateOne" parameterType="com.people.dto.ReplyDTO">
+	<update id="updateOne" parameterType="ReplyDTO">
 		update reply set recontents = #{recontents}
 		where reno = #{reno}
 	</update>
