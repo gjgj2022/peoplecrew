@@ -27,6 +27,7 @@ public class MemberDTO {
 	private String mmessage;
 	private int enabled;
 	private int ono;
+	private int uno;
 	private String maddress2;
 	private String zipcode;
 }

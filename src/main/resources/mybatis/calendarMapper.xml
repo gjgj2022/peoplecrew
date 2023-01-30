@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.people.dao.CalendarDAO">
+  
+  <select id="getAll" resultType="com.people.dto.CalendarDTO">
+select c.calno calno, c.ucalno ucalno, c.caltitle caltitle, c.calstart calstart, 
+c.calend calend, c.calloc calloc, c.calcontents calcontents, 
+(select mno from upper_calendar where ucalno=c.ucalno) mno, u.uno uno, 
+u.updatemno updatemno, u.updatedate updatedate, (select mname from member where mno=u.mno) mname, 
+(select uname from upper_organization where uno =u.uno) uname,  
+(select mname from member where u.updatemno=mno) updatemname 
+from calendar c inner join upper_calendar u where u.ucalno = c.ucalno and u.uno in (0,10,20,30,40,50)
+  </select>
+  
+    <select id="getOne" parameterType="int" resultType="com.people.dto.CalendarDTO">
+select c.calno calno, c.ucalno ucalno, c.caltitle caltitle, c.calstart calstart, 
+c.calend calend, c.calloc calloc, c.calcontents calcontents, 
+(select mno from upper_calendar where ucalno=c.ucalno) mno, u.uno uno, 
+u.updatemno updatemno, u.updatedate updatedate, (select mname from member where mno=u.mno) mname, 
+(select uname from upper_organization where uno =u.uno) uname,  
+(select mname from member where u.updatemno=mno) updatemname 
+from calendar c inner join upper_calendar u where u.ucalno = c.ucalno
+ and calno = #{calno}
+  </select>
+  
+    <select id="getByUno" parameterType="int" resultType="com.people.dto.CalendarDTO">
+select c.calno calno, c.ucalno ucalno, c.caltitle caltitle, c.calstart calstart, 
+c.calend calend, c.calloc calloc, c.calcontents calcontents, 
+(select mno from upper_calendar where ucalno=c.ucalno) mno, u.uno uno, 
+u.updatemno updatemno, u.updatedate updatedate, (select mname from member where mno=u.mno) mname, 
+(select uname from upper_organization where uno =u.uno) uname,  
+(select mname from member where u.updatemno=mno) updatemname 
+from calendar c inner join upper_calendar u where u.ucalno = c.ucalno
+and uno=#{uno} and u.uno in (0,10,20,30,40,50)
+  </select>
+  
+  <select id="getByMno" parameterType="int" resultType="com.people.dto.CalendarDTO">
+ select c.calno calno, c.ucalno ucalno, c.caltitle caltitle, c.calstart calstart, 
+c.calend calend, c.calloc calloc, c.calcontents calcontents, 
+(select mno from upper_calendar where ucalno=c.ucalno) mno, u.uno uno, 
+u.updatemno updatemno, u.updatedate updatedate, (select mname from member where mno=u.mno) mname, 
+(select uname from upper_organization where uno =u.uno) uname,  
+(select mname from member where u.updatemno=mno) updatemname 
+from calendar c inner join upper_calendar u where u.ucalno = c.ucalno
+and mno =#{mno} and uno=1
+  </select>
+  
+  <insert id="insertOne" parameterType="com.people.dto.CalendarDTO">
+  insert calendar values (null, #{ucalno}, #{caltitle}, #{calstart}, #{calend}, #{calloc}, #{calcontents})
+  </insert>
+  <update id="upperCalUpdate" parameterType="com.people.dto.CalendarDTO">
+  update upper_calendar set updatemno = #{updatemno}, updatedate=now() where uno=#{uno}
+  </update>
+  
+  <update id="updateOne" parameterType="com.people.dto.CalendarDTO">
+  	update calendar set calstart = #{calstart}, calend = #{calend}, calcontents = #{calcontents}, caltitle = #{caltitle}, calloc=#{calloc}
+  	where calno = #{calno}
+  </update>
+  
+  <delete id="deleteOne" parameterType="int">
+  delete from calendar where calno = #{calno}
+  </delete>
+  <select id="getUcalno" parameterType="int" resultType="Integer">
+  select IFNULL(ucalno,0) as ucalno from upper_calendar where mno = #{updatemno} and uno=1
+  </select>
+  <insert id="makeTable" parameterType="int" useGeneratedKeys="true" keyProperty="ucalno">
+  insert into upper_calendar values (null, #{updatemno}, 1, now(), #{updatemno}, now())
+  </insert>
+  </mapper>
