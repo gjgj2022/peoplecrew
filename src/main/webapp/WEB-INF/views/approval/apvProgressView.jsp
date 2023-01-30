@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="76x76"
 	href="./assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-<title>결재진행함</title>
+<title>개인문서함</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -30,7 +30,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-	<div class="min-height-300 bg-primary position-absolute w-100"></div>
+	<div class="min-height-300 position-absolute w-100" style="background-color:#5e72e4;"></div>
 	<aside
 		class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
 		id="sidenav-main">
@@ -98,7 +98,7 @@
 			id="navbarBlur" data-scroll="false">
 			<div class="container-fluid py-1 px-3">
 				<nav aria-label="breadcrumb">
-					<h6 class="font-weight-bolder text-white mb-0">결재진행함</h6>
+					<h6 class="font-weight-bolder text-white mb-0"></h6>
 				</nav>
 
 				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -203,128 +203,53 @@
 
 
 
+<!-- ==========================================================내작업======================  -->
+	<div class="container bg-white" style="min-width:1500px;">
+	<div style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:140px;margin-right:auto;">
+	<div style="height:200px;">
+		<table class="table table-borderless">
+			<tr class="align-bottom" style="height:100px;">
+				<th style="width:900px;font-size:25px;" colspan="6"></th>
+			</tr>
+			<tr style="height:50px;">
+				<td>
+					<input class="btn btn-primary" type="hidden" value="선택" />
+				</td>
+				<form action="/persoanlFileModify" method="post">
+				<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
+				<td style="width:50px;"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></td>
+			</tr>
+		</table>
+	</div>
+	<div style="width:1000px;">
 
 
-
-
-
-
-		<!-- ===============================================================내작업=========================================================== -->
-		<div class="container-fluid py-4">
-			<div class="row">
-				
-				
-				<div class="col-lg-7 mb-lg-0 mb-4" id="table5">
-					<div class="card ">
-						<div class="card-header pb-0 p-3">
-							<div class="d-flex justify-content-between">
-								<h5 class="mb-2">결재진행함</h5>
-							</div>
-						</div>
-						<div class="table-responsive">
-							<table class="table align-items-center ">
-								<tbody>
-									<%
-										String apvP = request.getParameter("apvP");
-									
-										String btn1 = "light";
-										String btn2 = "light";
-										String btn3 = "light";
-										String btn4 = "light";
-										String btn5 = "light";
-									
-										if(apvP == null||apvP.equals("전체문서")){
-											btn1 = "primary";
-										}else if(apvP.equals("결재대기")){
-											btn2 = "primary";
-										}else if(apvP.equals("진행중")){
-											btn3 = "primary";
-										}else if(apvP.equals("결재완료")){
-											btn4 = "primary";
-										}else if(apvP.equals("반려")){
-											btn5 = "primary";
-										}
-									%>
-									<tr>
-										<td colspan="6">
-											<a href="/apvProgress?apvP=전체문서"><input type="button" class="btn btn-<%=btn1 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="전체문서"/></a>
-											<a href="/apvProgress?apvP=결재대기"><input type="button" class="btn btn-<%=btn2 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="결재대기" /></a>
-											<a href="/apvProgress?apvP=진행중"><input type="button" class="btn btn-<%=btn3 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="진행중" /></a>
-											<a href="/apvProgress?apvP=결재완료"><input type="button" class="btn btn-<%=btn4 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="결재완료" /></a>
-											<a href="/apvProgress?apvP=반려"><input type="button" class="btn btn-<%=btn5 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="반려" /></a>
-										</td>
-									</tr>
-									<tr class="text-sm mb-0">
-										<th>문서번호</th>
-										<th>분류</th>
-										<th>제목</th>
-										<th>기안자</th>
-										<th>기안일</th>
-										<th>진행상태</th>
-									</tr>
-									<%
-										if(apvP == null||apvP.equals("전체문서")){
-									
-									%>
-									<c:forEach var="list2" items="${list2 }" varStatus="status">
-										<tr class="text-sm mb-0">
-											<td>${list2.dono }</td>
-											<td>${list2.dotype }</td>
-											<td><a href="/apvProgressView?dono=${list2.dono }&dotype=${list2.dotype }">${list2.dotitle }</a></td>
-											<td>${list2.mno }</td>
-											<td>${list2.dodate }</td>
-											<td>${list2.doprogress }</td>
-										</tr>
-									</c:forEach>
-									<%
-										}else if(!apvP.equals("전체문서")){
-									%>
-									<c:forEach var="list1" items="${list1 }" varStatus="status">
-										<tr class="text-sm mb-0">
-											<td>${list1.dono }</td>
-											<td>${list1.dotype }</td>
-											<td><a href="/apvProgressView?dono=${list1.dono }&dotype=${list1.dotype }">${list1.dotitle }</a></td>
-											<td>${list1.mno }</td>
-											<td>${list1.dodate }</td>
-											<td>${list1.doprogress }</td>
-										</tr>
-									</c:forEach>
-									<%
-										}
-									%>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				
-				
-
-			</div>
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-		<!-- ===============================================================내작업=========================================================== -->
-
-
-
-
-
-
-
-
-
-
-
+	</div>
+	
+	<c:choose>
+		<c:when test="${form eq '연차신청서' }">
+			<jsp:include page="form/vacationView.jsp" />
+		</c:when>
+		<c:when test="${form eq '업무보고서' }">
+			<jsp:include page="form/businessReportView.jsp" />
+		</c:when>
+	</c:choose>
+	</div>
+	</div>
+	</form>
+<!-- ===================================================================================  -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</main>
 
 	<!--   Core JS Files   -->

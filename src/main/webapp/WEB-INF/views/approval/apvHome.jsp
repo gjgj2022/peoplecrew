@@ -26,6 +26,23 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.4"
 	rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<style>
+#chart-container {
+  position: relative;
+  height: 200px;
+  margin: 0px;
+  overflow: hidden;
+}
+#chart-container2 {
+  position: relative;
+  height: 200px;
+  margin: 0px;
+  overflow: hidden;
+}
+
+</style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -209,7 +226,7 @@
 
 
 		<!-- ===============================================================내작업=========================================================== -->
-		<div class="container-fluid py-4">
+		<div class="container-fluid py-4" style="width:1300px;">
 			<div class="row">
 				
 				
@@ -234,11 +251,12 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-sm">
+										<td class="align-middle text-sm" style="width:50px;">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0"><a href="/personalFile?apvP=결재대기">${wait }</a></h6>
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/personalFile?apvP=결재대기">${wait }</a></h6>
 											</div>
 										</td>
+										<td class="border border-white" rowspan="4"><div id="chart-container"></div></td>
 									</tr>
 									<tr>
 										<td class="w-30">
@@ -251,11 +269,12 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-sm">
+										<td class="align-middle text-sm" style="width:50px;">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0"><a href="/personalFile?apvP=진행중">${ing }</a></h6>
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/personalFile?apvP=진행중">${ing }</a></h6>
 											</div>
 										</td>
+
 									</tr>
 									<tr>
 										<td class="w-30">
@@ -268,11 +287,12 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-sm">
+										<td class="align-middle text-sm" style="width:50px;">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0"><a href="/personalFile?apvP=결재완료">${success }</a></h6>
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/personalFile?apvP=결재완료">${success }</a></h6>
 											</div>
 										</td>
+
 									</tr>
 									<tr>
 										<td class="w-30">
@@ -285,11 +305,13 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-sm">
+										<td class="align-middle text-sm" style="width:50px;">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0"><a href="/personalFile?apvP=반려">${reject }</a></h6>
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/personalFile?apvP=반려">${reject }</a></h6>
 											</div>
 										</td>
+										
+
 									</tr>
 								</tbody>
 							</table>
@@ -319,11 +341,12 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-sm">
+										<td class="align-middle text-sm" style="width:50px;">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0">${AllWait }</h6>
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/apvProgress?apvP=결재대기">${AllWait }</a></h6>
 											</div>
 										</td>
+										<td class="border border-white" rowspan="4"><div id="chart-container2"></div></td>
 									</tr>
 									<tr>
 										<td class="w-30">
@@ -336,11 +359,12 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-sm">
+										<td class="align-middle text-sm" style="width:50px;">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0">${AllIng }</h6>
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/apvProgress?apvP=진행중">${AllIng }</a></h6>
 											</div>
 										</td>
+
 									</tr>
 									<tr>
 										<td class="w-30">
@@ -353,11 +377,12 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-sm">
+										<td class="align-middle text-sm" style="width:50px;">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0">${AllSuccess }</h6>
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/apvProgress?apvP=결재완료">${AllSuccess }</a></h6>
 											</div>
 										</td>
+
 									</tr>
 									<tr>
 										<td class="w-30">
@@ -370,11 +395,13 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-sm">
+										<td class="align-middle text-sm" style="width:50px;">
 											<div class="col text-center">
-												<h6 class="text-sm mb-0">${AllReject }</h6>
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/apvProgress?apvP=반려">${AllReject }</a></h6>
 											</div>
 										</td>
+										
+
 									</tr>
 								</tbody>
 							</table>
@@ -390,9 +417,9 @@
 								<h6 class="mb-2">내가 최근 올린 결재</h6>
 							</div>
 						</div>
-						<div class="table-responsive">
+						<div class="table-responsive" style="min-height:200px;">
 							<table class="table align-items-center ">
-								<tbody>
+								<tbody style="text-align:center;">
 									<tr class="text-sm mb-0">
 										<th>문서번호</th>
 										<th>분류</th>
@@ -418,16 +445,16 @@
 				</div>
 				
 				
-				<div class="col-lg-7 mb-lg-0 mb-4" id="table3">
+				<div class="col-lg-7 mb-lg-0 mb-4" id="table3" >
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
 							<div class="d-flex justify-content-between">
 								<h6 class="mb-2">내가 최근 받은 결재</h6>
 							</div>
 						</div>
-						<div class="table-responsive">
-							<table class="table align-items-center ">
-								<tbody>
+						<div class="table-responsive" style="min-height:200px;">
+							<table class="table align-items-center " >
+								<tbody style="text-align:center;">
 									<tr class="text-sm mb-0">
 										<th>문서번호</th>
 										<th>분류</th>
@@ -487,90 +514,6 @@
 	<script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script src="./assets/js/plugins/chartjs.min.js"></script>
 	<script>
-		var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-		var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-		gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-		gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-		gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-		new Chart(ctx1, {
-			type : "line",
-			data : {
-				labels : [ "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
-						"Nov", "Dec" ],
-				datasets : [ {
-					label : "Mobile apps",
-					tension : 0.4,
-					borderWidth : 0,
-					pointRadius : 0,
-					borderColor : "#5e72e4",
-					backgroundColor : gradientStroke1,
-					borderWidth : 3,
-					fill : true,
-					data : [ 50, 40, 300, 220, 500, 250, 400, 230, 500 ],
-					maxBarThickness : 6
-
-				} ],
-			},
-			options : {
-				responsive : true,
-				maintainAspectRatio : false,
-				plugins : {
-					legend : {
-						display : false,
-					}
-				},
-				interaction : {
-					intersect : false,
-					mode : 'index',
-				},
-				scales : {
-					y : {
-						grid : {
-							drawBorder : false,
-							display : true,
-							drawOnChartArea : true,
-							drawTicks : false,
-							borderDash : [ 5, 5 ]
-						},
-						ticks : {
-							display : true,
-							padding : 10,
-							color : '#fbfbfb',
-							font : {
-								size : 11,
-								family : "Open Sans",
-								style : 'normal',
-								lineHeight : 2
-							},
-						}
-					},
-					x : {
-						grid : {
-							drawBorder : false,
-							display : false,
-							drawOnChartArea : false,
-							drawTicks : false,
-							borderDash : [ 5, 5 ]
-						},
-						ticks : {
-							display : true,
-							color : '#ccc',
-							padding : 20,
-							font : {
-								size : 11,
-								family : "Open Sans",
-								style : 'normal',
-								lineHeight : 2
-							},
-						}
-					},
-				},
-			},
-		});
-	</script>
-	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {
 			var options = {
@@ -580,6 +523,109 @@
 					options);
 		}
 	</script>
+	  <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <script type="text/javascript">
+    var dom = document.getElementById('chart-container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+      tooltip: {
+        trigger: 'item'
+      },
+
+      series: [
+        {
+          name: '개인문서함',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: true,
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: false,
+              fontSize: 40,
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: ${ing}},
+            { value: ${success}, name: '결재완료' },
+            { value: ${wait}, name: '결재대기' },
+            { value: ${reject}, name: '반려' }
+          ]
+        }
+      ]
+    };
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+    </script>
+    <script type="text/javascript">
+    var dom = document.getElementById('chart-container2');
+    var myChart2 = echarts.init(dom, null, {
+      renderer: 'canvas2',
+      useDirtyRect: false
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+      tooltip: {
+        trigger: 'item'
+      },
+
+      series: [
+        {
+          name: '결재진행함',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: true,
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: false,
+              fontSize: 40,
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: ${AllIng}, name: '진행중'},
+            { value: ${AllSuccess}, name: '결재완료' },
+            { value: ${AllWait}, name: '결재대기' },
+            { value: ${AllReject}, name: '반려' }
+          ]
+        }
+      ]
+    };
+
+    if (option && typeof option === 'object') {
+      myChart2.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart2.resize);
+    </script>
 	<!-- Github buttons -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

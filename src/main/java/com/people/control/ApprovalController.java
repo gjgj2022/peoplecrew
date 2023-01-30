@@ -124,6 +124,32 @@ public class ApprovalController {
 
 		return "/approval/personalFile";
 	}
+	
+	@RequestMapping("/personalFileView")
+	public String personalFileView(@RequestParam("dotype")String dotype,Model model,
+									@ModelAttribute DocumentDTO dto) {
+		
+		DocumentDTO dto2 = dservice.readOne(dto.getDono());
+		
+		model.addAttribute("form", dotype);
+		
+		model.addAttribute("dto", dto2);
+		
+		return "/approval/personalFileView";
+	}
+	
+	@RequestMapping("/apvProgressView")
+	public String apProgressView(@RequestParam("dotype")String dotype,Model model,
+									@ModelAttribute DocumentDTO dto) {
+		
+		DocumentDTO dto2 = dservice.readOne(dto.getDono());
+		
+		model.addAttribute("form", dotype);
+		
+		model.addAttribute("dto", dto2);
+		
+		return "/approval/apvProgressView";
+	}
 
 	@RequestMapping("apvProgress")
 	public String apvProgress(HttpServletRequest req, Model model,
@@ -140,8 +166,7 @@ public class ApprovalController {
 		// 임시결재회원번호 113
 		int apmno = 113;
 		
-		List<ApprovalDTO> list10 = aservice.getAllByApmno(apmno);			
-		System.out.println(list10);
+		List<ApprovalDTO> list10 = aservice.getAllByApmno(apmno);
 		
 		// 분류별 불러오기
 		ArrayList<DocumentDTO> list11 = new ArrayList<DocumentDTO>();

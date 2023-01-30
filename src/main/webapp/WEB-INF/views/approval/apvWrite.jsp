@@ -205,7 +205,7 @@
 
 <!-- ==========================================================내작업======================  -->
 	<div class="container bg-white" style="min-width:1500px;">
-	<div style="margin-top:100px;width:1100px;align:center;min-height:1200px;margin-left:auto;margin-right:auto;">
+	<div style="margin-top:100px;width:1100px;align:center;min-height:1200px;margin-left:100px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
 			<tr class="align-bottom" style="height:100px;">
@@ -225,7 +225,7 @@
 				</form>
 				<form action="/apvWriteOk" method="post">
 				<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="기안하기" /></td>
-				<td style="width:50px;"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" /></td>
+				<td style="width:50px;"><a href="/apvHome"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" /></a></td>
 			</tr>
 		</table>
 	</div>
