@@ -20,4 +20,5 @@ public interface DocumentDAO {
 	int getAllCount(String apvP);
 	int getMyCount(String apvP, String mno);
 	void addOne(DocumentDTO dto);
+	void updateOne(String doprogress, String dono);
 }

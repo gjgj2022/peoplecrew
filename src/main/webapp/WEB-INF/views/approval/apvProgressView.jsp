@@ -215,14 +215,25 @@
 				<td>
 					<input class="btn btn-primary" type="hidden" value="선택" />
 				</td>
-				<form action="/persoanlFileModify" method="post">
-				<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
-				<td style="width:50px;"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></td>
+				<c:choose>
+					<c:when test="${dto.doprogress eq '결재대기' }">
+						<form action="/apvProgressOk1" method="post">
+						<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
+						<td style="width:50px;"><a href="/apvProgressNo?dono=${dto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+					</c:when>
+					<c:when test="${dto.doprogress eq '진행중' }">
+						<form action="/apvProgressOk2" method="post">
+						<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
+						<td style="width:50px;"><a href="/apvProgressNo2?dono=${dto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+					</c:when>
+				</c:choose>
 			</tr>
 		</table>
 	</div>
 	<div style="width:1000px;">
 
+					<input type="hidden" name="mno" value="${dto.mno }" />
+					<input type="hidden" name="dono" value="${dto.dono }" />
 
 	</div>
 	

@@ -270,7 +270,7 @@
 										<tr class="text-sm mb-0">
 											<td>${list2.dono }</td>
 											<td>${list2.dotype }</td>
-											<td><a href="/apvProgressView?dono=${list2.dono }&dotype=${list2.dotype }">${list2.dotitle }</a></td>
+											<td><a href="/apvProgressView?dono=${list2.dono }&dotype=${list2.dotype }&mno=${list2.mno}">${list2.dotitle }</a></td>
 											<td>${list2.mno }</td>
 											<td>${list2.dodate }</td>
 											<td>${list2.doprogress }</td>
@@ -283,7 +283,7 @@
 										<tr class="text-sm mb-0">
 											<td>${list1.dono }</td>
 											<td>${list1.dotype }</td>
-											<td><a href="/apvProgressView?dono=${list1.dono }&dotype=${list1.dotype }">${list1.dotitle }</a></td>
+											<td><a href="/apvProgressView?dono=${list1.dono }&dotype=${list1.dotype }&mno=${list1.mno}">${list1.dotitle }</a></td>
 											<td>${list1.mno }</td>
 											<td>${list1.dodate }</td>
 											<td>${list1.doprogress }</td>

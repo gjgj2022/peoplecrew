@@ -29,4 +29,11 @@
 		INSERT INTO approval(apno,dono,mno,apmno)
 		VALUES (#{apno},#{dono},#{mno},#{apmno})
 	</insert>
+	
+	<update id="updateOne" parameterType="String">
+		UPDATE approval SET
+		approgress = #{approgress},
+		apdate = curDate()
+		WHERE apno = #{apno}
+	</update>
 </mapper>

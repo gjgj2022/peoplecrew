@@ -16,4 +16,5 @@ public interface ApprovalDAO {
 	int getMyCount(String apvP, String mno);
 	List<ApprovalDTO> getAllByApmno(int apmno);
 	void addOne(ApprovalDTO dto);
+	void updateOne(String approgress, String apno);
 }

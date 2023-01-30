@@ -56,4 +56,10 @@
 		INSERT INTO document(dono,mno,dotype,dotitle,docontents,docontents2,docontents3)
 		VALUES (#{dono},#{mno},#{dotype},#{dotitle},#{docontents},#{docontents2},#{docontents3})
 	</insert>
+	
+	<update id="updateOne" parameterType="String">
+		UPDATE document SET
+		doprogress = #{doprogress}
+		WHERE dono = #{dono}
+	</update>
 </mapper>

@@ -226,7 +226,7 @@
 
 
 		<!-- ===============================================================내작업=========================================================== -->
-		<div class="container-fluid py-4" style="width:1300px;">
+		<div class="container-fluid py-4" style="width:1300px;padding-left:0px;">
 			<div class="row">
 				
 				
@@ -560,7 +560,7 @@
             show: false
           },
           data: [
-            { value: ${ing}},
+            { value: ${ing}, name: '진행중'},
             { value: ${success}, name: '결재완료' },
             { value: ${wait}, name: '결재대기' },
             { value: ${reject}, name: '반려' }

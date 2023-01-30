@@ -36,4 +36,8 @@ public class ApprovalService {
 	public void addOne(ApprovalDTO dto) {
 		dao.addOne(dto);
 	}
+	
+	public void updateOne(String approgress, String apno) {
+		dao.updateOne(approgress, apno);
+	}
 }

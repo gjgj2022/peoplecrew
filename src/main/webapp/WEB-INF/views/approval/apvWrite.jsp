@@ -242,9 +242,9 @@
 				<td class="border">이대리</td>
 				<td class="border">대리</td>
 				<td class="border">개발부</td>
-				<td class="border">111</td>
+				<td class="border">${mno }</td>
 				<td class="border">230128</td>
-				<input type="hidden" name="mno" value="111" />
+				<input type="hidden" name="mno" value="${mno }" />
 			</tr>
 		</table>
 		<table class="table table-bordered align-middle" style="width:31%;float:right;text-align:center;">

@@ -52,4 +52,8 @@ public class DocumentService {
 	public void addOne(DocumentDTO dto) {
 		dao.addOne(dto);
 	}
+	
+	public void updateOne(String doprogress, String dono) {
+		dao.updateOne(doprogress, dono);
+	}
 }
