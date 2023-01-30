@@ -100,7 +100,7 @@
 
 		<div class="modal-footer justify-content-center detailfooter">
 			<button class="btn" onclick="window.close()">확인</button>
-			<c:if test="${dto.uno eq user.uno || dto.updatemno eq user.mno || user.role eq 'ROLE_ADMIN'}">
+			<c:if test="${dto.uno eq user.uno || dto.updatemno eq user.mno ||dto.mno eq user.mno|| user.role eq 'ROLE_ADMIN'}">
 				<a href="/calendar/modify?calno=${dto.calno}"><input type="button" class="btn" value="수정" /></a>
 				<input type="button" class="btn" value="삭제" onclick="deleteCal()" />
 			</c:if>

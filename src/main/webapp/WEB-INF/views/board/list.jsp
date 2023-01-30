@@ -56,7 +56,6 @@
 						<li><a href="#"> <i class="bi bi-circle"></i> <span>오늘의 일정</span>
 						</a></li>
 					</ul></li>
-
 			</ul>
 
 		</div>

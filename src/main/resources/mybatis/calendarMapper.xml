@@ -15,7 +15,7 @@
 		(select uname from upper_organization where uno =u.uno) uname,  
 		(select mname from member where u.updatemno=mno) updatemname 
 		from calendar c inner join upper_calendar u
-		where u.ucalno = c.ucalno and u.uno != 1
+		where u.ucalno = c.ucalno
 		and calno = #{calno}
 	</select>
 

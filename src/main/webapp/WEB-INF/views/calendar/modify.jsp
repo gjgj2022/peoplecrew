@@ -54,8 +54,8 @@
 
 			<script>
 			$(function(){   //수정시 기존값 
-				var ucalno = ${dto.ucalno};
-				if(ucalno==2){  //개인일정
+				var uno = ${dto.uno};
+				if(uno==1){  //개인일정
 					$("#ucalno2").prop("checked", true);
 					$("#uno").attr('disabled', true);
 					$("#uno").val(1);
