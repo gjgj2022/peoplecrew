@@ -74,7 +74,7 @@
           <li>
             <a href="#">
               <i class="bi bi-circle"></i>
-              <span>Green Tables</span>
+              <span>G12</span>
             </a>
           </li>
           <li>
