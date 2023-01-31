@@ -367,7 +367,6 @@
 												<option value="대리">대리</option>
 												<option value="과장">과장</option>
 												<option value="부장">부장</option>
-												<option value="관리자">관리자</option>
 											</select>
 										</div>
 									</div>
@@ -595,18 +594,20 @@
 		$("#mrank").change(function() {
 			if ($(this).val() == "사원") {
 				$("#msal").val("2200000");
+				$("#role").val("ROLE_USER");
 
 			} else if ($(this).val() == "대리") {
 				$("#msal").val("2800000");
+				$("#role").val("ROLE_USER");
 
 			} else if ($(this).val() == "과장") {
 				$("#msal").val("3900000");
+				$("#role").val("ROLE_USER");
 
 			} else if ($(this).val() == "부장") {
 				$("#msal").val("5500000");
+				$("#role").val("ROLE_USER");
 				
-			} else if ($(this).val() == "관리자") {
-				$("#msal").val("3500000");
 			} 
 		});
 	</script>

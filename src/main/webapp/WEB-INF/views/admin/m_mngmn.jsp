@@ -185,8 +185,17 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>사원정보</h6>
+              <span style="font-size: 18px; font-weight: bolder;">사원정보</span>
+              <div class="input-group " style="width: 20%; float: right;">
+	              <span class="input-group-text text-body">
+	              	<a href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+              	  </span>
+	              <input type="text" class="form-control" placeholder="검색">
+           	  </div>
             </div>
+            
+			<br>
+			
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">

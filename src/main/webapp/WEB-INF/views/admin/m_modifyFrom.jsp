@@ -343,7 +343,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">급여</label>
-                    <input class="form-control" name="msal" type="text" value="${dto2.msal }">
+                    <input class="form-control" name="msal" id="msal" type="text" value="${dto2.msal }">
                   </div>
                 </div>
                 <div class="col-md-4">
