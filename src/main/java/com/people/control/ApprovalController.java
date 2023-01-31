@@ -45,18 +45,49 @@ public class ApprovalController {
 		model.addAttribute("reject", dservice.getMyCount("반려", String.valueOf(mno)));
 
 		// 결재진행함
-		model.addAttribute("AllWait", dservice.getAllCount("결재대기"));
-		model.addAttribute("AllIng", dservice.getAllCount("진행중"));
-		model.addAttribute("AllSuccess", dservice.getAllCount("결재완료"));
-		model.addAttribute("AllReject", dservice.getAllCount("반려"));
-
+		
+		List<ApprovalDTO> list = aservice.readOne(mno);
+		
+		ArrayList<DocumentDTO> listWait = new ArrayList<DocumentDTO>();
+		ArrayList<DocumentDTO> listIng = new ArrayList<DocumentDTO>();
+		ArrayList<DocumentDTO> listSuccess = new ArrayList<DocumentDTO>();
+		ArrayList<DocumentDTO> listNo = new ArrayList<DocumentDTO>();
+		
+		for(int i=0; i<list.size(); i++) {
+			ApprovalDTO adto = list.get(i);
+			
+			DocumentDTO ddtoWait = dservice.getWait(adto.getDono());
+			if(ddtoWait != null) {
+				listWait.add(ddtoWait);
+			}
+			DocumentDTO ddtoIng = dservice.getIng(adto.getDono());
+			if(ddtoIng != null) {
+				listIng.add(ddtoIng);
+			}
+			DocumentDTO ddtoSuccess = dservice.getSuccess(adto.getDono());
+			if(ddtoSuccess != null) {
+				listSuccess.add(ddtoSuccess);
+			}
+			DocumentDTO ddtoNo = dservice.getNo(adto.getDono());
+			if(ddtoNo != null) {
+				listNo.add(ddtoNo);
+			}
+		}
+		
+		model.addAttribute("AllWait", listWait.size());
+		model.addAttribute("AllIng", listIng.size());
+		model.addAttribute("AllSuccess", listSuccess.size());
+		model.addAttribute("AllReject", listNo.size());
+		
+		model.addAttribute("sum", listWait.size()+listIng.size()+listSuccess.size()+listNo.size());
+		
 		// 내가 최근 올린 결재
-		List<DocumentDTO> list = dservice.readIng(mno);
-		model.addAttribute("ingList", list);
+		List<DocumentDTO> list3 = dservice.readIng(mno);
+		model.addAttribute("ingList", list3);
 
 		// 내가 최근 받은 결재
-		List<DocumentDTO> list2 = dservice.readEnd(mno);
-		model.addAttribute("endList", list2);
+		List<DocumentDTO> list4 = dservice.readEnd(mno);
+		model.addAttribute("endList", list4);
 
 		return "/approval/apvHome";
 	}
@@ -93,10 +124,23 @@ public class ApprovalController {
 
 		// approval 테이블데이터 생성
 		String apno = dono + "-0";
-
+		
 		adto.setApno(apno);
 		// 임시결재사원 = 113; << 수정해야됨
-		adto.setApmno(113);
+		
+		int apmno = 0;
+		
+		String mno2 = String.valueOf(mno);
+		
+		System.out.println(mno2);
+		
+		if(mno2.charAt(0) == '1') {
+			apmno = 113;
+		}else if(mno2.charAt(0) == '2') {
+			apmno = 216;
+		}
+		
+		adto.setApmno(apmno);
 		adto.setDono(dono);
 
 		aservice.addOne(adto);
@@ -114,18 +158,14 @@ public class ApprovalController {
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
 		int mno = (int) session.getAttribute("mno");
-		
-		System.out.println(mno);
 		// 분류별 불러오기
 		List<DocumentDTO> list = dservice.readByDoprogress(apvP, String.valueOf(mno));
 
 		model.addAttribute("list1", list);
-		System.out.println("list : "+list);
 		// 전체 불러오기
 		List<DocumentDTO> list2 = dservice.readAllByMno(mno);
 
 		model.addAttribute("list2", list2);
-		System.out.println("list2 "+list2);
 
 		return "/approval/personalFile";
 	}
@@ -152,8 +192,6 @@ public class ApprovalController {
 		model.addAttribute("form", dotype);
 		
 		model.addAttribute("dto", dto2);
-		System.out.println(dto2.getMno());
-		System.out.println(dto2.getDono());
 		
 		return "/approval/apvProgressView";
 	}
@@ -162,22 +200,42 @@ public class ApprovalController {
 	public String apvProgressOk1(@ModelAttribute ApprovalDTO adto,
 								 @ModelAttribute DocumentDTO ddto) {
 		
-		System.out.println(ddto.getDono());
-		System.out.println(ddto.getMno());
-		
 		dservice.updateOne("진행중", ddto.getDono());
 		
 		String apno = ddto.getDono()+"-0";
 		
 		aservice.updateOne("1", apno);		
 
+		int ampno = 0;
+		
+		String mno = String.valueOf(ddto.getMno());
+		
+		if(mno.charAt(0)=='1') {
+			ampno = 113;
+		}else if(mno.charAt(0)=='2') {
+			ampno = 214;
+		}
 		
 		adto.setApno(apno+"0");
-		adto.setApmno(108);		
-		
-		System.out.println(adto);
+		adto.setApmno(ampno);		
 		
 		aservice.addOne(adto);
+		
+		return "redirect:/apvProgress";
+	}
+	
+	@PostMapping("/apvProgressOk2")
+	public String apvProgressOk2(@ModelAttribute ApprovalDTO adto,
+			 					 @ModelAttribute DocumentDTO ddto) {
+		
+		System.out.println(ddto.getDono());
+		System.out.println(ddto.getMno());
+		
+		dservice.updateOne("결재완료", ddto.getDono());
+		
+		String apno = ddto.getDono()+"-00";
+		
+		aservice.updateOne("1", apno);
 		
 		return "redirect:/apvProgress";
 	}
@@ -185,11 +243,21 @@ public class ApprovalController {
 	@RequestMapping("/apvProgressNo")
 	public String apvProgressNo(@RequestParam("dono")String dono) {
 		
-		System.out.println(dono);
-		
 		dservice.updateOne("반려", dono);
 		
 		String apno = dono+"-0";
+		
+		aservice.updateOne("2", apno);
+		
+		return "redirect:/apvProgress";
+	}
+	
+	@RequestMapping("/apvProgressNo2")
+	public String apvProgressNo2(@RequestParam("dono")String dono) {
+		
+		dservice.updateOne("반려", dono);
+		
+		String apno = dono+"-00";
 		
 		aservice.updateOne("2", apno);
 		

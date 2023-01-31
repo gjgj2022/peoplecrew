@@ -41,6 +41,19 @@ public class DocumentService {
 		return dao.selectByDoprogress(apvP, mno);
 	}
 	
+	public DocumentDTO getWait(String dono) {
+		return dao.getWait(dono);
+	}
+	public DocumentDTO getIng(String dono) {
+		return dao.getIng(dono);
+	}
+	public DocumentDTO getSuccess(String dono) {
+		return dao.getSuccess(dono);
+	}
+	public DocumentDTO getNo(String dono) {
+		return dao.getNo(dono);
+	}
+	
 	public int getAllCount(String apvP) {
 		return dao.getAllCount(apvP);
 	}

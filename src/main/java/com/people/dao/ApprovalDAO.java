@@ -11,6 +11,7 @@ import com.people.dto.ApprovalDTO;
 @Mapper
 public interface ApprovalDAO {
 	List<ApprovalDTO> selectAll();
+	List<ApprovalDTO> selectOne(int apmno);
 	List<ApprovalDTO> selectAllByApprogress(String apvP);
 	int getAllCount(String apvP);
 	int getMyCount(String apvP, String mno);

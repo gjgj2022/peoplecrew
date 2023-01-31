@@ -17,6 +17,10 @@ public class ApprovalService {
 		return dao.selectAll();
 	}
 	
+	public List<ApprovalDTO> readOne(int apmno){
+		return dao.selectOne(apmno);
+	}
+	
 	public List<ApprovalDTO> readAllByProgress(String apvP){
 		return dao.selectAllByApprogress(apvP);
 	}

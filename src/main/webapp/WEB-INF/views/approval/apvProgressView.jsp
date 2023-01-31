@@ -233,7 +233,6 @@
 	<div style="width:1000px;">
 
 					<input type="hidden" name="mno" value="${dto.mno }" />
-					<input type="hidden" name="dono" value="${dto.dono }" />
 
 	</div>
 	

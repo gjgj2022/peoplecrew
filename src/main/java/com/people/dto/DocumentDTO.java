@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class DocumentDTO {
-	String dono;
-	int mno;
-	String dotitle;
-	String docontents;
-	String docontents2;
-	String docontents3;
-	String dodate;
-	String dotype;
-	String doprogress;
-	int fno;
+	private String dono;
+	private int mno;
+	private String dotitle;
+	private String docontents;
+	private String docontents2;
+	private String docontents3;
+	private String dodate;
+	private String dotype;
+	private String doprogress;
+	private int fno;
 }

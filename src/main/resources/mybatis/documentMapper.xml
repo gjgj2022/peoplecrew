@@ -52,6 +52,27 @@
 		AND mno = #{mno}
 	</select>
 	
+	<select id="getWait" parameterType="String" resultType="DocumentDTO">
+		SELECT * FROM document
+		WHERE doprogress = "결재대기"
+		AND dono = #{dono}
+	</select>
+	<select id="getIng" parameterType="String" resultType="DocumentDTO">
+		SELECT * FROM document
+		WHERE doprogress = "진행중"
+		AND dono = #{dono}
+	</select>
+	<select id="getSuccess" parameterType="String" resultType="DocumentDTO">
+		SELECT * FROM document
+		WHERE doprogress = "결재완료"
+		AND dono = #{dono}
+	</select>
+	<select id="getNo" parameterType="String" resultType="DocumentDTO">
+		SELECT * FROM document
+		WHERE doprogress = "반려"
+		AND dono = #{dono}
+	</select>
+	
 	<insert id="addOne" parameterType="DocumentDTO">
 		INSERT INTO document(dono,mno,dotype,dotitle,docontents,docontents2,docontents3)
 		VALUES (#{dono},#{mno},#{dotype},#{dotitle},#{docontents},#{docontents2},#{docontents3})

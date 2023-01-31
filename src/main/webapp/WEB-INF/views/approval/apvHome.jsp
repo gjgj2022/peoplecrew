@@ -234,7 +234,7 @@
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
 							<div class="d-flex justify-content-between">
-								<h6 class="mb-2">개인문서함</h6>
+								<h6 class="mb-2"><a href="/personalFile">개인문서함</a></h6>
 							</div>
 						</div>
 						<div class="table-responsive">
@@ -319,12 +319,12 @@
 					</div>
 				</div>
 
-
+			<c:if test="${sum != 0 }">
 				<div class="col-lg-7 mb-lg-0 mb-4" id="table2">
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
 							<div class="d-flex justify-content-between">
-								<h6 class="mb-2">결재진행함</h6>
+								<h6 class="mb-2"><a href="/apvProgress">결재진행함</a></h6>
 							</div>
 						</div>
 						<div class="table-responsive">
@@ -408,7 +408,7 @@
 						</div>
 					</div>
 				</div>
-				
+			</c:if>
 				
 				<div class="col-lg-7 mb-lg-0 mb-4" id="table3">
 					<div class="card ">

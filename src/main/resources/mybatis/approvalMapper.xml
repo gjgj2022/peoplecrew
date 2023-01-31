@@ -7,16 +7,22 @@
 	<select id="selectAll" resultType="ApprovalDTO">
 		SELECT apno,dono,approgress,apdate,mno FROM approval
 	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="ApprovalDTO">
+		SELECT * FROM approval
+		WHERE apmno = #{apmno}
+	</select>
+	
 	<select id="selectAllByApprogress" resultType="ApprovalDTO" parameterType="String">
 		SELECT apno,dono,approgress,apdate,mno FROM approval
 		WHERE approgress = #{approgress}
 	</select>
 	<select id="getAllCount" parameterType="String" resultType="int">
-		SELECT COUNT(approgress) FROM approval
+		SELECT COUNT(*) FROM approval
 		WHERE approgress = #{apvP}
 	</select>
 	<select id="getMyCount" parameterType="String" resultType="int">
-		SELECT COUNT(approgress) FROM approval
+		SELECT COUNT(*) FROM approval
 		WHERE approgress = #{apvP}
 		AND mno = #{mno}
 	</select>
