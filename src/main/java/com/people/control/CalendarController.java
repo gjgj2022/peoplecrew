@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.people.dto.CalendarDTO;
+import com.people.dto.MemberDTO;
 import com.people.service.CalendarService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -179,20 +180,17 @@ public class CalendarController {
 	@RequestMapping("/mycalendar")
 	public String mycalendar(Model model,HttpSession session) {
 		log.info("===========================> mycalendar 페이지로");
-		String no = (String) session.getAttribute("mno");
-		String no2 = (String) session.getAttribute("ono");
-		int mno=0;
-		int uno=0;
+		MemberDTO dto = (MemberDTO) session.getAttribute("user");
 		
-		if ((no != null)&&(no2!=null)) {
-			mno = Integer.parseInt(no);
-			uno = Integer.parseInt(no2);
-			List<CalendarDTO> unolist = cService.getByUno(uno);
-			List<CalendarDTO> mylist = cService.getByMno(mno);
+			List<CalendarDTO> unolist = cService.getByUno(dto.getUno()); //내부서일정
+			List<CalendarDTO> mylist = cService.getByMno(dto.getMno());//내 개인일정
+			List<CalendarDTO> alllist = cService.getByUno(0); //회사전체일정 
 			
+			mylist.addAll(unolist);
+			mylist.addAll(alllist);
+			log.info("mylist=========>"+mylist);
 			model.addAttribute("mylist",mylist);
-			model.addAttribute("unolist",unolist);
-		}
+		
 		return "/calendar/mycalendar";
 	}
 	
