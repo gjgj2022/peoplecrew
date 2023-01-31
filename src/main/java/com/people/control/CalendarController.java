@@ -47,28 +47,6 @@ public class CalendarController {
 		list.addAll(list2);}
 		return list;
 	}
-//	@PostMapping("/listjson")
-//	@ResponseBody
-//	public JSONArray calendarj() {
-//		log.info("===========================> calendar 데이터 가져오기");
-//		List<CalendarDTO> list = cService.getList();//회사일정
-//		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		JSONObject jsonObj = new JSONObject();
-//		JSONArray jsonArr = new JSONArray();
-//		
-//		for (CalendarDTO dto : list) {
-//		map.put("title", dto.getCaltitle());
-//		map.put("start", dto.getCalstart());
-//		map.put("end", dto.getCalend());
-//		map.put("groupid", dto.getUname());
-//		
-//		jsonObj = new JSONObject(map); 
-//		jsonArr.add(jsonObj); 
-//		}
-//		
-//		return jsonArr;
-//	}
 	
 	@RequestMapping("/searchbyuno")  //부서번호로 찾기
 	@ResponseBody
@@ -90,10 +68,8 @@ public class CalendarController {
 		//System.out.println(list);
 		joined.addAll(list);
 		}
-		
 		return joined;
 	}
-	
 	
 	@GetMapping("/write")
 	public String write() {
@@ -119,25 +95,22 @@ public class CalendarController {
 		}else if(dto.getUno()==50) {
 			ucalno=7;
 		}else if(dto.getUno()==1) {  //개인일정등록 선택했는데 테이블 없으면 개인일정테이블 추가
-			Integer no = cService.getUcalno(dto.getUpdatemno());
-			if(no == null) {  //Integer 라서 null 비교가능 
-				cService.addTable(dto.getUpdatemno()); //개인 캘린더 테이블 추가하고 ucalno 번호받아오기
-				ucalno = cService.getUcalno(dto.getUpdatemno());
-			}else {
+			Integer no = cService.getOneUcalno(dto.getUpdatemno());
+			System.out.println("no : "+no);
+			if(no!=null) {  //Integer 라서 null 비교가능 
 				ucalno = (int)no; //Integer 라서 int 로 형변환
+			}else {
+				cService.addTable(dto.getUpdatemno()); //개인 캘린더 테이블 추가하고 ucalno 번호받아오기
+				ucalno = (int)cService.getOneUcalno(dto.getUpdatemno());
 			}
 		}
-		//System.out.println(ucalno);
 		dto.setUcalno(ucalno);
-		//System.out.println(dto);
 		cService.write(dto);
 		cService.upperCalUpdate(dto);
 		log.info("===========================> calendar 일정등록완료");
 		return "/calendar/list";
 	}
 	
-	
-	//@ResponseBody
 	@GetMapping("/detail")
 	public String detail(@RequestParam("calno")int calno, Model model) {
 		model.addAttribute("dto",cService.getOne(calno));
@@ -202,10 +175,8 @@ public class CalendarController {
 		        model.addAttribute("myall",myall);
 			}
 			
-			
 			log.info("mylist=========>"+mylist);
 		}	
-		
 		return "/calendar/mycalendar";
 	}
 	

@@ -67,7 +67,7 @@ function deleteBoard(bono) {
 	if (confirm("게시글을 삭제하시겠습니까?") == true){  
 		
 		$.ajax({
-			url : '/board/delete',
+			url : '/board/delete/'+bono,
 			type : 'post',
 			data : {
 				'bono' : bono

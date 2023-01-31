@@ -59,8 +59,8 @@
 		from upper_calendar 
 		where mno = #{updatemno} and uno=1
 	</select>
-	<insert id="makeTable" parameterType="int"
-		useGeneratedKeys="true" keyProperty="ucalno">
+	
+	<insert id="makeTable" parameterType="int" keyProperty="ucalno">
 		insert into upper_calendar 
 		values (null, #{updatemno}, 1, now(), #{updatemno}, now())
 	</insert>

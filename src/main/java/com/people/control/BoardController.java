@@ -176,13 +176,13 @@ public class BoardController {
 		return "redirect:/board/detail?bono=" + dto.getBono(); // 이전페이지로
 	}
 
-	@PostMapping("/delete") // 삭제
-	public String deleteOk(@RequestParam("bono") int bono) {
+	@PostMapping("/delete/{bono}") // 삭제
+	@ResponseBody
+	public void deleteOk(@PathVariable int bono) {
 		int fno = service.getOne(bono).getFno();
 		service.removeFileByFno(fno); // 파일 삭제
 		service.removeRAll(bono); // 댓글 삭제
 		service.remove(bono); // 글삭제
-		return "redirect:/board/list";
 	}
 
 	@RequestMapping("/filedown/{fno}") // 파일 다운로드

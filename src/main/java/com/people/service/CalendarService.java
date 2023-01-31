@@ -47,7 +47,7 @@ public class CalendarService{
 	public void modify(CalendarDTO dto) {
 		cMapper.updateOne(dto);
 	}
-	public Integer getUcalno(int mno) { //개인테이블 있는지 조회. 있으면 번호 가져오기
+	public Integer getOneUcalno(int mno) { //개인테이블 있는지 조회. 있으면 번호 가져오기
 		Integer ucalno = cMapper.getUcalno(mno);
 		return ucalno;
 	}
