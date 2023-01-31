@@ -53,7 +53,7 @@
 					<ul id="tables-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 						<li><a href="/calendar/list"> <i class="bi bi-circle"></i> <span>calendar</span>
 						</a></li>
-						<li><a href="#"> <i class="bi bi-circle"></i> <span>오늘의 일정</span>
+						<li><a href="/calendar/mycalendar"> <i class="bi bi-circle"></i> <span>오늘의 일정</span>
 						</a></li>
 					</ul></li>
 			</ul>

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.people.dto.CalendarDTO;
+import com.people.dto.MemberDTO;
 
 @Mapper
 @Repository
@@ -25,5 +26,6 @@ public interface CalendarDAO {
 	
 	Integer getUcalno(int mno); //개인테이블 있나 조회
 	void makeTable(int mno); //개인테이블 없으면 만들기
+	List<CalendarDTO> endList(MemberDTO dto); //완료 일정 뽑기용
 	
 }

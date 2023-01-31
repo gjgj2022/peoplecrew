@@ -9,6 +9,7 @@
 <script>
 	var bono = '${boarddto.bono}'; //게시글 번호
 	var usermno = '${user.mno}';
+	var userrole = '${user.role}';
 	//댓글 목록 
 	function commentList() {
 		$
@@ -53,7 +54,10 @@
 														+ ',\''
 														+ value.recontents
 														+ '\');">';
-												a += '수정 | </a><a href="#" class="text-secondary font-weight-bold text-xs updatebtns'
+												a += '수정 | </a>';
+											}
+											if (userrole == "ROLE_ADMIN" || usermno == value.mno) {
+												a += '<a class="text-secondary font-weight-bold text-xs updatebtns'
 														+ value.reno
 														+ '" onclick="replyDelete('
 														+ value.reno + ');">';
@@ -112,16 +116,19 @@
 
 	//댓글 삭제 
 	function replyDelete(reno) {
-		$.ajax({
-			url : '/reply/delete/' + reno,
-			type : 'post',
-			success : function(data) {
-				console.log(data + "상태");
-				//alert("댓글이 삭제되었습니다.");
-				console.log(reno + "번 댓글삭제")
-				commentList(); //댓글 삭제후 목록 출력 
-			}
-		});
+		if (confirm("댓글을 삭제하시겠습니까?") == true) {
+			$.ajax({
+				url : '/reply/delete/' + reno,
+				type : 'post',
+				success : function(data) {
+					console.log(data + "상태");
+					console.log(reno + "번 댓글삭제")
+					commentList(); //댓글 삭제후 목록 출력 
+				}
+			})
+		} else { //취소
+			return;
+		}
 	}
 
 	//댓글 수정버튼 누르면 - 댓글 내용 출력을 input 폼으로 변경 

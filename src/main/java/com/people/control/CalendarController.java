@@ -1,15 +1,11 @@
 package com.people.control;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +38,7 @@ public class CalendarController {
 	@ResponseBody
 	public List<CalendarDTO> calendarl(@RequestParam("mno")String mno) {
 		log.info("======> calendar 모든 데이터 가져오기");
-		List<CalendarDTO> list = cService.getList();
+		List<CalendarDTO> list = cService.getList();//회사일정 가져오기
 		List<CalendarDTO> list2 =null;
 		
 		if(mno!="") {
@@ -51,30 +47,30 @@ public class CalendarController {
 		list.addAll(list2);}
 		return list;
 	}
-	@PostMapping("/listjson")
-	@ResponseBody
-	public JSONArray calendarj() {
-		log.info("===========================> calendar 데이터 가져오기");
-		List<CalendarDTO> list = cService.getList();//회사일정
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		JSONObject jsonObj = new JSONObject();
-		JSONArray jsonArr = new JSONArray();
-		
-		for (CalendarDTO dto : list) {
-		map.put("title", dto.getCaltitle());
-		map.put("start", dto.getCalstart());
-		map.put("end", dto.getCalend());
-		map.put("groupid", dto.getUname());
-		
-		jsonObj = new JSONObject(map); 
-		jsonArr.add(jsonObj); 
-		}
-		
-		return jsonArr;
-	}
+//	@PostMapping("/listjson")
+//	@ResponseBody
+//	public JSONArray calendarj() {
+//		log.info("===========================> calendar 데이터 가져오기");
+//		List<CalendarDTO> list = cService.getList();//회사일정
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		JSONObject jsonObj = new JSONObject();
+//		JSONArray jsonArr = new JSONArray();
+//		
+//		for (CalendarDTO dto : list) {
+//		map.put("title", dto.getCaltitle());
+//		map.put("start", dto.getCalstart());
+//		map.put("end", dto.getCalend());
+//		map.put("groupid", dto.getUname());
+//		
+//		jsonObj = new JSONObject(map); 
+//		jsonArr.add(jsonObj); 
+//		}
+//		
+//		return jsonArr;
+//	}
 	
-	@PostMapping("/searchbyuno")
+	@RequestMapping("/searchbyuno")  //부서번호로 찾기
 	@ResponseBody
 	public List<CalendarDTO> schbyono(@RequestParam(value="arr") int[] unoarr, @RequestParam("mno")String mno) {
 		List<CalendarDTO> list = new ArrayList<CalendarDTO>();
@@ -124,11 +120,11 @@ public class CalendarController {
 			ucalno=7;
 		}else if(dto.getUno()==1) {  //개인일정등록 선택했는데 테이블 없으면 개인일정테이블 추가
 			Integer no = cService.getUcalno(dto.getUpdatemno());
-			if(no == null) {
-				cService.addTable(dto.getUpdatemno());
+			if(no == null) {  //Integer 라서 null 비교가능 
+				cService.addTable(dto.getUpdatemno()); //개인 캘린더 테이블 추가하고 ucalno 번호받아오기
 				ucalno = cService.getUcalno(dto.getUpdatemno());
 			}else {
-				ucalno = (int)no;
+				ucalno = (int)no; //Integer 라서 int 로 형변환
 			}
 		}
 		//System.out.println(ucalno);
@@ -170,26 +166,45 @@ public class CalendarController {
 		cService.upperCalUpdate(dto);
 	}
 	
-//	@RequestMapping("/search")
-//	@ResponseBody
-//	public List<CalendarDTO> onos(@RequestParam("ono")int ono) {
-//		List<CalendarDTO> list = cService.getOno(ono);
-//		log.info("===========================> 부서별 데이터 가져오기");
-//		return list;
-//	}
 	@RequestMapping("/mycalendar")
 	public String mycalendar(Model model,HttpSession session) {
 		log.info("===========================> mycalendar 페이지로");
 		MemberDTO dto = (MemberDTO) session.getAttribute("user");
+		String enddate = "";
 		
+		if(dto!=null) {
 			List<CalendarDTO> unolist = cService.getByUno(dto.getUno()); //내부서일정
+			List<CalendarDTO> olist = cService.getByUno(0); //회사 일반 일정 
 			List<CalendarDTO> mylist = cService.getByMno(dto.getMno());//내 개인일정
-			List<CalendarDTO> alllist = cService.getByUno(0); //회사전체일정 
+			unolist.addAll(olist); //회사일정
+			List<CalendarDTO> myall = cService.getEndList(dto);  //완료일정
 			
-			mylist.addAll(unolist);
-			mylist.addAll(alllist);
+			for (CalendarDTO date : mylist) {
+				String calend = date.getCalend();
+				String match = "[^0-9]";
+		        enddate = calend.replaceAll(match, "");
+		        date.setCalend(enddate);
+		        model.addAttribute("mylist",mylist);
+			}
+			
+			for (CalendarDTO date : unolist) {
+				String calend = date.getCalend();
+				String match = "[^0-9]";
+		        enddate = calend.replaceAll(match, "");
+		        date.setCalend(enddate);
+		        model.addAttribute("unolist",unolist);
+			}
+			for (CalendarDTO date : myall) {
+				String calend = date.getCalend();
+				String match = "[^0-9]";
+		        enddate = calend.replaceAll(match, "");
+		        date.setCalend(enddate);
+		        model.addAttribute("myall",myall);
+			}
+			
+			
 			log.info("mylist=========>"+mylist);
-			model.addAttribute("mylist",mylist);
+		}	
 		
 		return "/calendar/mycalendar";
 	}

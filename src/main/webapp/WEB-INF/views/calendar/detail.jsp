@@ -37,27 +37,31 @@
 </style>
 <div class="container outline">
 	<div class="detailbody">
-	
+
 		<div class="card-header text-center pt-4 pb-3">
-		<c:if test="${not empty dto.uname }">
-			<span class="badge rounded-pill bg-light text-dark">부서 : ${dto.uname}</span></c:if>
+			<c:if test="${not empty dto.uname }">
+				<span class="badge rounded-pill bg-light text-dark">부서 : ${dto.uname}</span>
+			</c:if>
 			<h1 class="font-weight-bold mt-2">
 				<small>${dto.caltitle }</small>
 			</h1>
 		</div>
-		
+
 
 		<div class="container">
 			<div class="card-body text-lg-left pt-0">
-				<div class="d-flex justify-content-lg-start  p-2">
-					<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
-						<i class="fas fa-check opacity-10" aria-hidden="true"></i>
-					</div>
-					<div>
-						<span class="ps-3">담당자 : ${dto.mname }</span>
-					</div>
-				</div>
+				<c:if test="${dto.uno ne 1 }">
+					<div class="d-flex justify-content-lg-start  p-2">
+						<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
+							<i class="fas fa-check opacity-10" aria-hidden="true"></i>
+						</div>
 
+						<div>
+							<span class="ps-3">담당자 : ${dto.mname }</span>
+						</div>
+
+					</div>
+				</c:if>
 				<div class="d-flex justify-content-lg-start p-2">
 					<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
 						<i class="fas fa-check opacity-10" aria-hidden="true"></i>
@@ -116,9 +120,10 @@
 
 <script>
 	//삭제 
+	
 	var calno = '${dto.calno}';
 	function deleteCal() {
-		console.log("삭제");
+		if (confirm("일정을 삭제하시겠습니까?") == true){  
 		$.ajax({
 			url : '/calendar/delete',
 			type : 'post',
@@ -134,5 +139,8 @@
 				alert("일정 삭제 실패");
 			},
 		});
+		}else{   //취소
+		      return;
+		  }
 	}
 </script>

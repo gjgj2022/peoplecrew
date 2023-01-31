@@ -23,7 +23,7 @@
 		select c.*, u.*
 		from calendar c inner join upper_calendar u
 		where u.ucalno = c.ucalno and u.uno !=1
-		and uno=#{uno}
+		and uno=#{uno} order by calstart asc
 	</select>
 
 	<select id="getByMno" parameterType="int" resultType="CalendarDTO">
@@ -64,4 +64,12 @@
 		insert into upper_calendar 
 		values (null, #{updatemno}, 1, now(), #{updatemno}, now())
 	</insert>
+	
+	<select id="endList" parameterType="MemberDTO" resultType="CalendarDTO">
+		select c.*, u.*
+		from calendar c inner join upper_calendar u
+		where u.ucalno = c.ucalno
+        and c.ucalno in (select ucalno from upper_calendar where mno=#{mno} or uno in (#{uno},0))
+        order by c.calend asc
+	</select>
 </mapper>

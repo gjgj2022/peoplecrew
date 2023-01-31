@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.people.dao.CalendarDAO;
 import com.people.dto.CalendarDTO;
+import com.people.dto.MemberDTO;
 
 @Service
 public class CalendarService{
@@ -52,6 +53,9 @@ public class CalendarService{
 	}
 	public void addTable(int mno) { //개인테이블 없으면 추가
 		cMapper.makeTable(mno);
+	}
+	public List<CalendarDTO> getEndList(MemberDTO dto) {
+		return cMapper.endList(dto);
 	}
 
 }

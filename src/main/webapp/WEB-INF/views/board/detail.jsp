@@ -53,7 +53,7 @@
 					<ul id="tables-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 						<li><a href="/calendar/list"> <i class="bi bi-circle"></i> <span>calendar</span>
 						</a></li>
-						<li><a href="#"> <i class="bi bi-circle"></i> <span>오늘의 일정</span>
+						<li><a href="/calendar/mycalendar"> <i class="bi bi-circle"></i> <span>오늘의 일정</span>
 						</a></li>
 					</ul></li>
 			</ul>
@@ -62,7 +62,28 @@
 	</aside>
 	<main class="main-content position-relative border-radius-lg ">
 		<jsp:include page="../navbar.jsp"></jsp:include>
-
+<script>
+function deleteBoard(bono) {
+	if (confirm("게시글을 삭제하시겠습니까?") == true){  
+		
+		$.ajax({
+			url : '/board/delete',
+			type : 'post',
+			data : {
+				'bono' : bono
+			},
+			success : function() {
+				window.location.href ="/board/list";
+			},
+			error : function() {
+				alert("일정 삭제 실패");
+			},
+		});
+	}else{   //취소
+	      return;
+	  }
+}
+</script>
 		<!-- detail page CSS 수정 -->
 		<style>
 		
@@ -116,7 +137,7 @@
 								<c:if test="${boarddto.mno eq user.mno || user.role eq 'ROLE_ADMIN'}">
 																	
 								<a href="/board/modify?bono=${boarddto.bono }"> <button type="button" class="btn">수정</button>
-								</a> <a href="/board/delete?bono=${boarddto.bono }"><button type="button" class="btn">삭제</button>
+								</a> <input type="button" class="btn" value="삭제" onclick="deleteBoard(${boarddto.bono})"/>
 								</a></c:if></td>
 							</tr>
 						</table>

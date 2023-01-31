@@ -28,17 +28,18 @@
 
 <script>
 		
-		var selectValue="0"; //처음값
-		var calendarEl="";
+		var calendarEl="";//처음값
 		var calendar="";
 		var chk_arr = [];
-        console.dir(chk_arr); //선택한 체크박스값들 
         const mapfn = (arg) => Number(arg);
         const arr = Array.from(chk_arr, mapfn);
         var mno = '${user.mno}';
         
 		document.addEventListener('DOMContentLoaded', function() {
-		calendarShow();
+			var chk_arr = [0,1,10,20,30,40,50];
+	        const mapfn = (arg) => Number(arg);
+	        const arr = Array.from(chk_arr, mapfn);
+			calendarShow(arr);
 		});
 		
 		function checkBox(checked){ //체크박스 선택시 변화 
@@ -66,11 +67,11 @@
 				}
 			}
 		
-        console.dir(chk_arr); //선택한 체크박스값들 
-        var mapfn = (arg) => Number(arg);
-        var arr = Array.from(chk_arr, mapfn);
-
-		calendarShow(arr);
+	        //console.dir(chk_arr); //선택한 체크박스값들 
+	        var mapfn = (arg) => Number(arg);
+	        var arr = Array.from(chk_arr, mapfn);
+			calendar.destroy(); //기존내용 지우기 
+			calendarShow(arr);
 		} //부서별 조회 함수 end 
 		
 		function calendarShow(arr){

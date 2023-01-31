@@ -176,7 +176,7 @@ public class BoardController {
 		return "redirect:/board/detail?bono=" + dto.getBono(); // 이전페이지로
 	}
 
-	@GetMapping("/delete") // 삭제
+	@PostMapping("/delete") // 삭제
 	public String deleteOk(@RequestParam("bono") int bono) {
 		int fno = service.getOne(bono).getFno();
 		service.removeFileByFno(fno); // 파일 삭제
