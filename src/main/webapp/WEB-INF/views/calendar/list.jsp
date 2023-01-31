@@ -130,7 +130,7 @@
 									<!-- 체크박스 -->
 									<label>부서별 조회</label>
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="onocheck" value="2" id="checkAll" onchange="checkBox(this)" checked> <label class="form-check-label" for="flexCheckDefault"> 모두보기</label>
+										<input class="form-check-input" type="checkbox" name="onocheck" value="2" id="checkAll" onchange="checkBox(this)"> <label class="form-check-label" for="flexCheckDefault"> 모두보기</label>
 									</div>
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" name="onocheck" value="0" id="flexCheckDefault" onchange="checkBox(this)"> <label class="form-check-label" for="flexCheckDefault">일반 <span class="color0">●</span></label>
