@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="76x76"
 	href="./assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-<title>결재진행함</title>
+<title>결재처리함</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -72,7 +72,7 @@
 								<span>개인문서함</span>
 						</a></li>
 						<li><a href="/apvProgress"> <i class="bi bi-circle"></i>
-								<span>결재진행함</span>
+								<span>결재처리함</span>
 						</a></li>
 						<li><a href="/formBox"> <i class="bi bi-circle"></i> <span>서식보관함</span>
 						</a></li>
@@ -98,7 +98,7 @@
 			id="navbarBlur" data-scroll="false">
 			<div class="container-fluid py-1 px-3">
 				<nav aria-label="breadcrumb">
-					<h6 class="font-weight-bolder text-white mb-0">결재진행함</h6>
+					<h6 class="font-weight-bolder text-white mb-0">결재처리함</h6>
 				</nav>
 
 				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -218,7 +218,7 @@
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
 							<div class="d-flex justify-content-between">
-								<h5 class="mb-2">결재진행함</h5>
+								<h5 class="mb-2">결재처리함</h5>
 							</div>
 						</div>
 						<div class="table-responsive">

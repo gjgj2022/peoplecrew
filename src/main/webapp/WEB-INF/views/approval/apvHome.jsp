@@ -88,7 +88,7 @@
 								<span>개인문서함</span>
 						</a></li>
 						<li><a href="/apvProgress"> <i class="bi bi-circle"></i>
-								<span>결재진행함</span>
+								<span>결재처리함</span>
 						</a></li>
 						<li><a href="/formBox"> <i class="bi bi-circle"></i> <span>서식보관함</span>
 						</a></li>
@@ -324,7 +324,7 @@
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
 							<div class="d-flex justify-content-between">
-								<h6 class="mb-2"><a href="/apvProgress">결재진행함</a></h6>
+								<h6 class="mb-2"><a href="/apvProgress">결재처리함</a></h6>
 							</div>
 						</div>
 						<div class="table-responsive">
@@ -592,7 +592,7 @@
 
       series: [
         {
-          name: '결재진행함',
+          name: '결재처리함',
           type: 'pie',
           radius: ['40%', '70%'],
           avoidLabelOverlap: true,

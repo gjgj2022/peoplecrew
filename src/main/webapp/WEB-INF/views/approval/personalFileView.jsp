@@ -72,7 +72,7 @@
 								<span>개인문서함</span>
 						</a></li>
 						<li><a href="/apvProgress"> <i class="bi bi-circle"></i>
-								<span>결재진행함</span>
+								<span>결재처리함</span>
 						</a></li>
 						<li><a href="/formBox"> <i class="bi bi-circle"></i> <span>서식보관함</span>
 						</a></li>

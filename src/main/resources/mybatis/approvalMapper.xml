@@ -13,6 +13,12 @@
 		WHERE apmno = #{apmno}
 	</select>
 	
+	<select id="selectOneByDono" parameterType="String" resultType="ApprovalDTO">
+		SELECT * FROM approval
+		WHERE dono = #{dono}
+		AND apmno = #{apmno}
+	</select>
+	
 	<select id="selectAllByApprogress" resultType="ApprovalDTO" parameterType="String">
 		SELECT apno,dono,approgress,apdate,mno FROM approval
 		WHERE approgress = #{approgress}

@@ -44,4 +44,8 @@ public class ApprovalService {
 	public void updateOne(String approgress, String apno) {
 		dao.updateOne(approgress, apno);
 	}
+	
+	public ApprovalDTO selectOneByDono(String dono, String apmno) {
+		return dao.selectOneByDono(dono, apmno);
+	}
 }

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.people.dto.ApprovalDTO;
 import com.people.dto.DocumentDTO;
+import com.people.dto.FileDTO;
 import com.people.service.ApprovalService;
 import com.people.service.DocumentService;
+import com.people.service.FileService;
 
 @Controller
 public class ApprovalController {
@@ -28,6 +30,8 @@ public class ApprovalController {
 	DocumentService dservice;
 	@Autowired
 	ApprovalService aservice;
+	@Autowired
+	FileService fservice;
 
 	@RequestMapping("/apvHome")
 	public String apvHome(Model model, HttpServletRequest req) {
@@ -44,7 +48,7 @@ public class ApprovalController {
 		model.addAttribute("success", dservice.getMyCount("결재완료", String.valueOf(mno)));
 		model.addAttribute("reject", dservice.getMyCount("반려", String.valueOf(mno)));
 
-		// 결재진행함
+		// 결재처리함
 		
 		List<ApprovalDTO> list = aservice.readOne(mno);
 		
@@ -185,13 +189,43 @@ public class ApprovalController {
 	
 	@RequestMapping("/apvProgressView")
 	public String apvProgressView(@RequestParam("dotype")String dotype,Model model,
-									@ModelAttribute DocumentDTO dto) {
+									@ModelAttribute DocumentDTO ddto,
+									HttpServletRequest req) {
 		
-		DocumentDTO dto2 = dservice.readOne(dto.getDono());
+		// 회원번호 불러오기
+		HttpSession session = req.getSession();
+		int mno = (int) session.getAttribute("mno");
+		
+		System.out.println(mno);
+		
+		System.out.println(ddto.getDono());
+		
+		DocumentDTO dto2 = dservice.readOne(ddto.getDono());
 		
 		model.addAttribute("form", dotype);
 		
 		model.addAttribute("dto", dto2);
+		
+		String apmno = String.valueOf(mno);
+		
+		ApprovalDTO adto = aservice.selectOneByDono(ddto.getDono(), apmno);
+		
+		System.out.println(adto);
+		
+		System.out.println(adto.getApprogress());
+		
+		model.addAttribute("adto", adto);
+		
+		// 도장이미지 불러오기
+		FileDTO dto11 = fservice.selectOne(1001);
+		FileDTO dto12 = fservice.selectOne(1002);
+		
+		System.out.println("dto11 : "+dto11);
+		System.out.println("dto12 : "+dto12);
+		
+		model.addAttribute("dto11", dto11);
+		model.addAttribute("dto12", dto12);
+		
 		
 		return "/approval/apvProgressView";
 	}
@@ -211,7 +245,7 @@ public class ApprovalController {
 		String mno = String.valueOf(ddto.getMno());
 		
 		if(mno.charAt(0)=='1') {
-			ampno = 113;
+			ampno = 108;
 		}else if(mno.charAt(0)=='2') {
 			ampno = 214;
 		}

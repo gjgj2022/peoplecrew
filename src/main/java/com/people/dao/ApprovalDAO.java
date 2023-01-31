@@ -18,4 +18,5 @@ public interface ApprovalDAO {
 	List<ApprovalDTO> getAllByApmno(int apmno);
 	void addOne(ApprovalDTO dto);
 	void updateOne(String approgress, String apno);
+	ApprovalDTO selectOneByDono(String dono,String apmno);
 }

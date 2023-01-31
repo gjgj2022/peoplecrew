@@ -72,7 +72,7 @@
 								<span>개인문서함</span>
 						</a></li>
 						<li><a href="/apvProgress"> <i class="bi bi-circle"></i>
-								<span>결재진행함</span>
+								<span>결재처리함</span>
 						</a></li>
 						<li><a href="/formBox"> <i class="bi bi-circle"></i> <span>서식보관함</span>
 						</a></li>
@@ -208,34 +208,65 @@
 	<div style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:140px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
+		<div>
+			
+		</div>
 			<tr class="align-bottom" style="height:100px;">
-				<th style="width:900px;font-size:25px;" colspan="6"></th>
+				<th style="width:900px;font-size:25px;text-align:center;" colspan="6">
+					<h3>${dto.dotype }</h3>
+				</th>
 			</tr>
 			<tr style="height:50px;">
 				<td>
 					<input class="btn btn-primary" type="hidden" value="선택" />
 				</td>
 				<c:choose>
-					<c:when test="${dto.doprogress eq '결재대기' }">
-						<form action="/apvProgressOk1" method="post">
-						<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
-						<td style="width:50px;"><a href="/apvProgressNo?dono=${dto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
-					</c:when>
-					<c:when test="${dto.doprogress eq '진행중' }">
-						<form action="/apvProgressOk2" method="post">
-						<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
-						<td style="width:50px;"><a href="/apvProgressNo2?dono=${dto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+					<c:when test="${adto.approgress == 0 }">
+						<c:if test="${dto.doprogress eq '결재대기' }">
+							<form action="/apvProgressOk1" method="post">
+							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
+							<td style="width:50px;"><a href="/apvProgressNo?dono=${dto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+						</c:if>
+						<c:if test="${dto.doprogress eq '진행중' }">
+							<form action="/apvProgressOk2" method="post">
+							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
+							<td style="width:50px;"><a href="/apvProgressNo2?dono=${dto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+						</c:if>
 					</c:when>
 				</c:choose>
 			</tr>
 		</table>
 	</div>
 	<div style="width:1000px;">
-
-					<input type="hidden" name="mno" value="${dto.mno }" />
-
+		<table class="table table-bordered align-middle" style="margin-left:4%;width:61%;float:left;">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">
+				<th>이름</th>
+				<th>직책</th>
+				<th>부서</th>
+				<th>사번</th>
+				<th>작성일자</th>
+			</tr>
+			<tr style="text-align:center;">
+				<td class="border" style="height:70px;">이대리</td>
+				<td class="border" style="height:70px;">대리</td>
+				<td class="border" style="height:70px;">개발부</td>
+				<td class="border" style="height:70px;">${dto.mno }</td>
+				<td class="border" style="height:70px;">230128</td>
+				<input type="hidden" name="mno" value="${dto.mno }" />
+			</tr>
+		</table>
+		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
+				<th style="width:100px;">결재자</th>
+				<th style="width:100px;">팀장</th>
+			</tr>
+			<tr>
+				<td class="border" style="height:70px;"><c:if test="${dto.doprogress eq '진행중' ||dto.doprogress eq '결재완료' }"><img src="${dto11.fpath }" alt="" style="height:50px;"/></c:if></td>
+				<td class="border" style="height:70px;"><c:if test="${dto.doprogress eq '결재완료' }"><img src="${dto12.fpath }" alt="" style="height:50px;"/></c:if></td>
+			</tr>
+		</table>
 	</div>
-	
+
 	<c:choose>
 		<c:when test="${form eq '연차신청서' }">
 			<jsp:include page="form/vacationView.jsp" />

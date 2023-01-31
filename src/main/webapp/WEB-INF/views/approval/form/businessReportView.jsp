@@ -35,10 +35,10 @@
 </head>
 <body>
 
-	<div style="width:750px;margin-left:auto;margin-right:auto;">
+	<div style="width:750px;margin-top:200px;margin-left:auto;margin-right:auto;">
 			<input type="hidden" name="dono" value="${dto.dono }" />
 			<input type="hidden" name="dotype" value="업무보고서" />
-			<div class="" style="font-size:30px;text-align:center;">업무보고서</div>
+			
 			<br />
 	<table class="table table-bordered align-middle">
 		<tr>

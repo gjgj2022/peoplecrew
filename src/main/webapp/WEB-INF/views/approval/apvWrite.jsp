@@ -209,7 +209,8 @@
 	<div style="height:200px;">
 		<table class="table table-borderless">
 			<tr class="align-bottom" style="height:100px;">
-				<th style="width:900px;font-size:25px;" colspan="6">문서종류</th>
+				<th style="width:200px;font-size:25px;" colspan="">문서종류</th>
+				<th style="text-align:center;"><h3>${form }</h3></th>
 			</tr>
 				<form action="/apvWrite">
 			<tr style="height:50px;">
