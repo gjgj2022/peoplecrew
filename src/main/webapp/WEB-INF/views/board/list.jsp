@@ -123,11 +123,11 @@
 								<table id="dataTable" class="table">
 									<thead class="thead-light">
 										<tr>
-											<th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">번호</th>
+											<th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" style="width:10%">번호</th>
 											<th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">제목</th>
 											<th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">작성자</th>
 											<th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">작성일</th>
-											<th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">조회수</th>
+											<th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" style="width:10%">조회수</th>
 										</tr>
 									</thead>
 
@@ -190,11 +190,11 @@
 												<!-- 페이징처리  -->
 
 												<div class="justify-content-center mb-3 pagenationdiv">
-													<nav aria-label="Page navigation example">
+													<nav aria-label="Page navigation example ">
 														<ul class="pagination">
 															<c:if test="${map.isPre }">
 																<!-- 값이 있으면 보여주기 -->
-																<li class="page-item"><a class="page-link" href="list?cp=${map.startPage-10 }">Previous</a></li>
+																<li class="page-item"><a class="page-link" href="list?cp=${map.startPage-10 }"><b>&laquo;</b></a></li>
 															</c:if>
 
 															<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
@@ -209,7 +209,7 @@
 															</c:forEach>
 
 															<c:if test="${map.isNext }">
-																<li class="page-item"><a class="page-link" href="list?cp=${map.endPage+1 }">Next</a></li>
+																<li class="page-item"><a class="page-link" href="list?cp=${map.endPage+1 }"><b>&raquo;</b></a></li>
 															</c:if>
 														</ul>
 													</nav>
