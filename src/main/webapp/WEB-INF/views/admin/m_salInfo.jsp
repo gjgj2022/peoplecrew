@@ -259,12 +259,14 @@
           <div class="card mb-4">
             <div class="card-header pb-0">
               <span style="font-size: 18px; font-weight: bolder;">급여정보</span>
+              <form action="/admin/search2" method="get" name="search-form" id="sform">
               <div class="input-group " style="width: 20%; float: right;">
 	              <span class="input-group-text text-body">
-	              	<a href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
-	              </span>
-	              <input type="text" class="form-control" placeholder="검색">
+              	  <a href="#" onclick="document.getElementById('sform').submit();"><i class="fas fa-search" aria-hidden="true"></i></a>
+              	  </span>
+	              <input type="text" class="form-control" name="keyword" id="keyword" value="" placeholder="검색어를 입력해주세요.">
            	  </div>
+              </form>
             </div>
             
 			<br>

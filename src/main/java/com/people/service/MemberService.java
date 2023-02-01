@@ -15,14 +15,19 @@ public class MemberService {
 	@Autowired
 	private MemberDAO dao;
 	
-	public List<MemberDTO> getAll(int startno, int endno){
-		StartEnd se = new StartEnd(startno, endno);
+	public List<MemberDTO> getAll(int startno, int endno, String keyword){
+		StartEnd se = new StartEnd(startno, endno,keyword);
 		return dao.getAll(se);
 	}
 	
 	public int getTotal() {
 		return dao.getTotal();
 	}
+	
+	public int getTotal(String key) {
+		return dao.getTotal(key);
+	}
+	
 	public List<MemberDTO> getAvg() {
 		return dao.getAvg();
 	}

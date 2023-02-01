@@ -7,20 +7,51 @@
 	
 	<!-- 전체조회 및 페이징 처리 -->
 	<select id="getAll" resultType="MemberDTO" parameterType="StartEnd">
-		SELECT mno, mname, mdate, mphone, mrank, oname, msal
+		SELECT distinct mno, mname, mdate, mphone, mrank, oname, msal
 			FROM(SELECT (@R := @R+1) AS RN, mno, mname, mdate, mphone, mrank, oname, msal
 				FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal
-						FROM member m, organization o
-						WHERE m.ono = o.ono
+						FROM member m LEFT OUTER JOIN organization o
+						ON m.ono = o.ono
+						<if test="keyword != null">
+						WHERE m.mno LIKE CONCAT('%',#{keyword},'%') 
+						OR m.mname LIKE CONCAT('%',#{keyword},'%')
+						OR m.mrank LIKE CONCAT('%',#{keyword},'%')
+						OR o.oname LIKE CONCAT('%',#{keyword},'%')
+						GROUP BY m.mno, m.mname, m.mrank
+						</if>
+						
 						ORDER BY m.mno asc) A, 
 				(SELECT @R:=0) AS X LIMIT #{endNo})B
 		WHERE RN &gt;=#{startNo}
 	</select>
 	
-	<select id="getTotal" resultType="int">
+	<select id="getTotal" resultType="int" parameterType="String">
 		SELECT COUNT(*)
-		FROM member
+		FROM(SELECT o.ono as o_ono
+    		FROM member m LEFT OUTER JOIN organization o
+   			 ON m.ono = o.ono
+			<if test="keyword != null">
+			WHERE mno LIKE CONCAT('%',#{keyword},'%') 
+			OR mname LIKE CONCAT('%',#{keyword},'%')
+			OR mrank LIKE CONCAT('%',#{keyword},'%')
+			OR o.oname LIKE CONCAT('%',#{keyword},'%')
+			GROUP BY m.mno, m.mname, m.mrank
+			</if>
+			)A
 	</select>
+	
+	<!-- 검색처리 (사원번호,이름,직급,부서,전화번호  -->
+	<!-- <select id="getSearch" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT mno, mname, mdate, mphone, mrank, oname, msal
+			FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal
+			    FROM member m INNER JOIN organization o
+			    WHERE m.ono = o.ono)A
+			WHERE mno LIKE CONCAT('%',#{keyword},'%') 
+			OR mname LIKE CONCAT('%',#{keyword},'%')
+			OR mphone LIKE CONCAT('%',#{keyword}','%')
+			OR mrank LIKE CONCAT('%',#{keyword},'%')
+			OR oname LIKE CONCAT('%',#{keyword},'%');
+	</select> -->
 	
 	<!-- 부서별 평균임금 / 최고임금  -->
 	<select id="getAvg" resultType="MemberDTO">

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.people.dto.MemberDTO;
 import com.people.service.MemberService;
@@ -57,7 +58,7 @@ public class MemberAdminController {
 	// 조회 (수정,삭제) 관련
 	@GetMapping("/admin2/**")
 	public String admin2(Model model,
-			@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
+						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
 		
 		// 총페이지수
 		int totalNumber = service.getTotal();
@@ -70,7 +71,7 @@ public class MemberAdminController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		List<MemberDTO> list = service.getAll(startNo, endNo);
+		List<MemberDTO> list = service.getAll(startNo, endNo, null);
 		model.addAttribute("list", list);
 		model.addAttribute("map", map);
 		
@@ -79,6 +80,42 @@ public class MemberAdminController {
 		
 		return "admin/m_mngmn";
 	}
+	
+	// 조회 (검색 페이징 사원)
+	@GetMapping("/search")
+	public String search(Model model,
+						@RequestParam("keyword")String keyword,
+						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
+		
+		MemberDTO dto = new MemberDTO();
+		dto.setKeyword(keyword);
+		
+		log.info("keyword : " + keyword);
+		log.info("keyword2 : " + service.getTotal(keyword));
+		
+		// 총페이지수
+		int totalNumber = service.getTotal(keyword);
+		//페이지당 게시물수
+		int recordPerPage = 10;
+		
+		// 총페이지수,한페이지당수, 현재페이지
+		Map<String, Object> map = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
+		
+		int startNo = (int)map.get("startNo");
+		int endNo = (int)map.get("endNo");
+		
+		List<MemberDTO> list = service.getAll(startNo, endNo, keyword);
+		model.addAttribute("list", list);
+		model.addAttribute("map", map);
+		
+		log.info("map 2 : " + map);
+		log.info("list 2 : " + list);
+		log.info(" search2 : 관리자 admin");
+		
+		return "admin/m_mngmn";
+	}
+	
+	
 	
 	@GetMapping("/modify")
 	public String modifyForm(@RequestParam("mno")int mno, Model model) {
@@ -126,7 +163,7 @@ public class MemberAdminController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		List<MemberDTO> list = service.getAll(startNo, endNo);
+		List<MemberDTO> list = service.getAll(startNo, endNo,null);
 		model.addAttribute("list", list);
 		model.addAttribute("map", map);
 		
@@ -141,6 +178,40 @@ public class MemberAdminController {
 		log.info("관리자 admin");
 		
 		return "/admin/m_salInfo";
+	}
+	
+	// 조회 (검색 페이징 급여)
+	@GetMapping("/search2")
+	public String search2(Model model,
+						@RequestParam("keyword")String keyword,
+						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
+		
+		MemberDTO dto = new MemberDTO();
+		dto.setKeyword(keyword);
+		
+		log.info("keyword : " + keyword);
+		log.info("keyword2 : " + service.getTotal(keyword));
+		
+		// 총페이지수
+		int totalNumber = service.getTotal(keyword);
+		//페이지당 게시물수
+		int recordPerPage = 10;
+		
+		// 총페이지수,한페이지당수, 현재페이지
+		Map<String, Object> map = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
+		
+		int startNo = (int)map.get("startNo");
+		int endNo = (int)map.get("endNo");
+		
+		List<MemberDTO> list = service.getAll(startNo, endNo, keyword);
+		model.addAttribute("list", list);
+		model.addAttribute("map", map);
+		
+		log.info("map 2 : " + map);
+		log.info("list 2 : " + list);
+		log.info(" search2 : 관리자 admin");
+		
+		return "admin/m_salInfo";
 	}
 	
 	@GetMapping("/msal")

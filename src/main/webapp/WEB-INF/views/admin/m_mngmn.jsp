@@ -8,7 +8,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <title>
     PeopleCrew
   </title>
@@ -22,6 +21,49 @@
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  
+ <!--  <script type="text/javascript">
+  	function getSearchList(){
+  		$.ajax({
+  			type:'GET',
+  			url : "/getSearchList",
+  			data : '관리자',
+  			success : function(result){
+  				
+  				$('#membertable > tobody').empty();
+  			/* 	if(result.length>=1){
+  					result.forEach(function(item){
+  							str='<tr>'
+  							str += "<td>"+item.mno+"</td>";
+  							str+="<td>"+item.mname+"</td>";
+  							str+="<td>"+time.mdate+"</td>";
+  							str+="<td>"+item.mphone+"</td>";
+  							str+="<td>"+item.mrank+"</td>";
+  							str+="<td>"+item.oname+"</td>";
+  							str+="<td class='ps-2'>"+item.mm+"</td>";
+  							str+="</tr>"
+  							$('#membertable').append(str);
+  					})
+  				} */
+  				
+  			}
+  			
+  		})
+  	} -->
+  
+  </script>
+  
+ <!--  <script type="text/javascript">
+  	function goPost(){
+ 		let f = document.createElement('form');
+  	    f.setAttribute('method', 'post');
+  	    f.setAttribute('action', '/admin/admin2/ser');
+  	    document.body.appendChild(f);
+  	    f.submit();
+  	}
+  </script> -->
+  
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -48,7 +90,7 @@
           </a>
           
           <ul id="tables-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                              <li>
+           <li>
             <a href="#">
               <i class="bi bi-circle"></i>
               <span>Green Tables</span>
@@ -186,19 +228,22 @@
           <div class="card mb-4">
             <div class="card-header pb-0">
               <span style="font-size: 18px; font-weight: bolder;">사원정보</span>
+              <form action="/admin/search" method="get" name="search-form" id="sform">
               <div class="input-group " style="width: 20%; float: right;">
 	              <span class="input-group-text text-body">
-	              	<a href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+              	  <a href="#" onclick="document.getElementById('sform').submit();"><i class="fas fa-search" aria-hidden="true"></i></a>
               	  </span>
-	              <input type="text" class="form-control" placeholder="검색">
+	              <input type="text" class="form-control" name="keyword" id="keyword" value="" placeholder="검색어를 입력해주세요.">
            	  </div>
+              </form>
+              
             </div>
-            
+           
 			<br>
 			
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0" id="membertable">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-6">사원번호</th>
@@ -360,89 +405,7 @@
   <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
-  <script>
-    var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-    new Chart(ctx1, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0.4,
-          borderWidth: 0,
-          pointRadius: 0,
-          borderColor: "#5e72e4",
-          backgroundColor: gradientStroke1,
-          borderWidth: 3,
-          fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-          maxBarThickness: 6
-
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#fbfbfb',
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#ccc',
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
-  </script>
+  
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

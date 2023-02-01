@@ -8,7 +8,7 @@ public class PageUtil {
    public static Map<String, Object> getPageData(int totalCount, int recordPerPage, int currentPage) {
 	     
 	   Map<String, Object> map = new HashMap<String, Object>();
-
+	   		
 	      int totalPage = (totalCount % recordPerPage == 0) ? totalCount / recordPerPage : totalCount / recordPerPage + 1;
 
 	      int startNo = (currentPage - 1) * recordPerPage + 1;

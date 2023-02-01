@@ -14,6 +14,7 @@ public interface MemberDAO {
 	
 	List<MemberDTO> getAll(StartEnd se);  // 전체조회 및 페이징처리
 	int getTotal();
+	int getTotal(String key);
 	List<MemberDTO> getAvg();
 	List<MemberDTO> getAvg2();
 	MemberDTO getOne(int mno); // 한명조회

@@ -17,7 +17,7 @@ public class MemberDTO {
 	private String mname;  	 // 이름
 	private String mphone;   // 휴대폰
 	private String memail; 	 // 이메일
-	private String mbirth;  // 생년월일
+	private String mbirth;   // 생년월일
 	private String maddress; // 주소
 	private String maddress2;// 상세주소
 	private String zipcode;  // 우편번호
@@ -31,5 +31,9 @@ public class MemberDTO {
 	private String ophone; 	 // 부서번호
 	private int mmsal; 	 	 // 월급 부서별 최대값
 	private int amsal; 	 	 // 월급 부서별 평균값
+	
+	private String keyword;	 // 검색 키워드
+	
+	
 	
 }
