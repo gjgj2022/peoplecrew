@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.people.dao.AttendanceDAO">
+
+	<select id="getAll" resultType="AttendanceDTO">
+		SELECT work_day, date_format(now(),'%Y.%m.%d.') as date, A.*, B.*, C.*
+			FROM attendance A JOIN member B
+			ON A.mno = B.mno
+			JOIN organization C
+			ON C.ono = A.ono
+			ORDER BY date desc;
+	</select>
+	
+	<select id="readAll" parameterType="StartEnd" resultType="AttendanceDTO">
+		SELECT work_day, date, mno, mname, oname, memail, start_time, end_time, state
+		FROM(SELECT (@R := @R+1) AS RN, work_day, date, mno, mname, oname, memail, start_time, end_time, state
+		   FROM(SELECT A.work_day, date_format(now(),"%Y.%m.%d.") as date, B.mno,B.mname,C.oname, B.memail, A.start_time, A.end_time, A.state  
+		      FROM attendance A JOIN member B
+		      ON A.mno  = B.mno
+		      JOIN organization C
+		      ON C.ono = A.ono
+		      ORDER BY B.mno desc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
+		WHERE RN &gt;= #{startNo};
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM attendance
+	</select>
+	
+	<select id="getOne" resultType="int" parameterType="AttendanceDTO">
+		SELECT date_format(now(),'%Y.%m.%d.') as date, A.*, B.*, C.*
+			FROM attendance A JOIN member B
+			ON A.mno = B.mno
+			JOIN organization C
+			ON C.ono = B.ono
+			WHERE B.mno = #{mno}
+			ORDER BY date desc;
+	</select>
+	
+<!-- 	<select id="work" parameterType="String" resultType="String">
+		<![CDATA[   
+		select work_day from attendace where work_day = curdate() and aid=#{aid}
+		]]>
+	</select> -->
+	
+<!-- 	<insert id="">
+
+	</insert> -->
+</mapper>
