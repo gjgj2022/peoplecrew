@@ -67,6 +67,11 @@
           height:100%;
           background:rgba(0, 0, 0, 0.5);
           z-index:-1;
+        }
+        hr.line1 {
+        	height : 50px;
+        	width : 0px;
+        	border-right: 0px;
         }   
 </style>
 <body>
@@ -320,7 +325,7 @@ $(function(){
 						 data.getMinutes() + "분 " +
 						 data.getSeconds() + "초"; */
 						 
-    document.getElementById("in").onclick = function() {
+/*     document.getElementById("in").onclick = function() {
     document.getElementById("modal").style.display="block";
     }
     document.getElementById("modal_close_btn").onclick = function() {
@@ -331,7 +336,7 @@ $(function(){
     }
     document.getElementById("modal_close_btn").onclick = function() {
     document.getElementById("modal").style.display="none";
-    }
+    } */
 	$("#in").on("click", function(){
 		console.log("출근버튼클릭");
 		if(hours >= 5 & hours <= 9) {
@@ -350,38 +355,392 @@ $(function(){
 	
 });
 </script>
-        
 	<div class="container-fluid py-4">
-		<div class="col-sm-4">
-		    <div class="card align-items-center">
-		        <div class="card-body" style="text-align: center;">
-		            <div class="card-mon" style="text-align: center;">
-		                <h5>근 태</h5>
-		            </div>
-		            현재시간 : <span id="clock"></span><br />
-		           <button type="button" class="btn btn-light waves-effect" id="in" name="in">출근하기</button>
-		           <button type="button" class="btn btn-light waves-effect" id="out" name="out">퇴근하기</button>
-		           <br>
-		        </div>
-		    </div>
-		</div>
-		<div id="modal">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-md-12 mb-lg-0 mb-4">
+              <div class="card mt-4">
+                <div class="card-header pb-0 p-3"  style="float: left;">
+                  <div class="row">
+                    <div class="col-6 d-flex">
+                      <h6 class="mb-0">출/퇴근</h6>
+                    </div>
+                  </div>
+                  	<br />
+                  	<div class="nowclock" >
+                    	<p style="align-items: center">현재시간 : <span id="clock"></span></p>
+                  	</div>
+                </div>
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-md-6 mb-md-0 mb-4">
+                    	<div class="work-btn" style="text-align: center">
+	                   		<button type="button" class="btn btn-light waves-effect" id="in" name="in">출근하기</button>
+			           		<button type="button" class="btn btn-light waves-effect" id="out" name="out">퇴근하기</button>
+                    	</div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
+                      		<p>1</p>
+                      		<p>1</p>
+                      		<p>1</p>
+                      		<p>1</p>
+                      		<p>1</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 모달 -->
+<!-- 		<div id="modal">
    			<div class="modal_content">
        		 <h2>모달 창</h2>
        		 <p>모달 창 입니다.</p>
        		 <button type="button" id="modal_close_btn">모달 창 닫기</button>
     		 </div>
     		<div class="modal_layer"></div>
-		</div>
-		<c:forEach var="dto" items="${dto }"></c:forEach>
+		</div> -->
 		
-		<div class="col-sm-4">
-		    <div class="card align-items-center">
-		        <div class="card-body" style="text-align: center;">
-		        		<p>${dto.start_time }</p>
-		        </div>
-		    </div>
-		</div>
+        <div class="col-lg-4">
+          <div class="card h-100">
+            <div class="card-header pb-0 p-2">
+              <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                  <h6 class="mb-0">공지사항</h6>
+                </div>
+                <div class="col-6 text-end">
+                  <button class="btn btn-outline-primary btn-sm mb-0" onclick="location.href='board.jsp'">+</button>
+                </div>
+              </div>
+            </div>
+            <table class="table align-items-center justify-content-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">#</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">내용</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">작성자</th>
+                    </tr>
+                  </thead>
+            	<tbody>
+                    <tr>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">1</p> <!-- 날짜 -->
+                      </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">[공지]배고프다</p> <!-- 사원번호 -->
+                      </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">작성자</p> <!-- 이름 -->
+                      </td>
+                    </tr>
+                  </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+		<div class="row mt-4">
+        <div class="col-lg-7-1 mb-lg-0 mb-4" style="margin-left: 25px;">
+          <div class="card ">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">개인문서함</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center ">
+                <tbody>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">기안문서</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">결재 진행중</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">반려문서</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div>
+                        </div>
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">결재완료</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7-1 mb-lg-0 mb-4">
+          <div class="card ">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">결재문서함</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center ">
+                <tbody>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">결재대기</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">결재 진행중</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">반려문서</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div>
+                        </div>
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">결재완료</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7-1 mb-lg-0 mb-4">
+          <div class="card ">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">근태현황</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center ">
+                <tbody>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">정상</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">지각</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">조퇴</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div>
+                        </div>
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">결근</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7-1 mb-lg-0 mb-4">
+          <div class="card ">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">연차현황</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center ">
+                <tbody>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">총 연차</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">사용연차</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">남은연차</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">0</h6>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div>
+                        </div>
+                        <div class="ms-4">
+                          <h6 class="text-sm mb-0">/</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <h6 class="text-sm mb-0">/</h6>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
