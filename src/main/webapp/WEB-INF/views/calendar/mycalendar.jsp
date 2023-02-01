@@ -87,6 +87,19 @@
 				document.getElementById('ingmywork').innerText = number;
 				document.getElementById('ingcompanywork').innerText = number2;
 				document.getElementById('finishedwork').innerText = finished;
+				
+				if(number==0){
+					var message = '<span class="text-secondary text-sm "><span class="alert-icon"><i class="ni ni-like-2"></i></span> 진행중인 나의 업무가 없습니다.</span>';
+					document.getElementById('ingmessage').innerHTML = message;
+				}
+				if(number2==0){
+					var ingcompanymessage = '<span class="text-secondary text-sm "><span class="alert-icon"><i class="ni ni-like-2"></i></span> 진행중인 회사 업무가 없습니다.</span>';
+					document.getElementById('ingcompanymessage').innerHTML = ingcompanymessage;
+				}
+				if(finished==0){
+					var finishedmessage = '<span class="text-secondary text-sm "><span class="alert-icon"><i class="ni ni-like-2"></i></span> 지난 일주일간 완료된 업무가 없습니다.</span>';
+					document.getElementById('finishedmessage').innerHTML = finishedmessage;
+				}
 			})
 			
 			function showDetail(calno){  //완료일정 클릭시 상세내용 보기
@@ -188,15 +201,16 @@
 		<div class="container-fluid py-4">
 			<div class="row">
 
-				<div class="col-md-6 mt-3">
+				<div class="col-md-6 mt-4">
 					<div class="card">
 						<div class="card-header pb-0 px-3">
 							<h6 class="mb-0">
-								진행중인 개인업무(<span id="ingmywork"></span>건)<span class="float-end"> <input type="button" class="btn" value="(+)일정추가하기" onclick="insertOpen()"></span>
+								진행중인 나의 업무(<span id="ingmywork"></span>건)<span class="float-end"> <input type="button" class="btn" value="(+)일정추가하기" onclick="insertOpen()"></span>
 							</h6>
 						</div>
 
 						<div class="card-body pt-4 p-3 ingmyworkbody">
+							<div id="ingmessage"></div>
 							<ul class="list-group">
 								<c:forEach var="dto" items="${mylist}">
 									<c:if test="${dto.calend >= nowDate }">
@@ -227,16 +241,16 @@
 					</div>
 				</div>
 
-				<div class="col-md-6 mt-3">
+				<div class="col-md-6 mt-4">
 					<div class="card">
 						<div class="card-header pb-0 px-3">
 							<h6 class="mb-0">
-								진행중인 회사업무(<span id="ingcompanywork"></span>건)
+								진행중인 회사 업무(<span id="ingcompanywork"></span>건)
 							</h6>
 						</div>
 						<div class="card-body pt-4 p-3">
+								<div id="ingcompanymessage"></div>
 							<ul class="list-group">
-
 								<c:forEach var="dto" items="${unolist}">
 									<c:if test="${dto.calend >= nowDate }">
 
@@ -266,7 +280,7 @@
 
 
 
-				<div class="col-md-5 mt-3">
+				<div class="col-md-5 mt-4">
 					<div class="card">
 						<div class="card-header pb-0 p-3">
 							<i class="far fa-calendar-alt me-2"></i> <small><span id="weekday"></span></small>
@@ -277,6 +291,7 @@
 						</div>
 
 						<div class="card-body p-3">
+						<div id="finishedmessage"></div>
 							<ul class="list-group">
 
 								<c:forEach var="dto" items="${myall}">
