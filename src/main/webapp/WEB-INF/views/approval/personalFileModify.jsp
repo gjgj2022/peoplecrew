@@ -208,71 +208,36 @@
 	<div style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:140px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
-		<div>
-			
-		</div>
 			<tr class="align-bottom" style="height:100px;">
-				<th style="width:900px;font-size:25px;text-align:center;" colspan="6">
-					<h3>${dto.dotype }</h3>
-				</th>
+				<th style="width:900px;font-size:25px;" colspan="6"></th>
 			</tr>
 			<tr style="height:50px;">
 				<td>
-					<input class="btn btn-primary" type="hidden" value="선택" />
 				</td>
-				<c:choose>
-					<c:when test="${adto.approgress == 0 }">
-						<c:if test="${dto.doprogress eq '결재대기' }">
-							<form action="/apvProgressOk1" method="post">
-							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
-							<td style="width:50px;"><a href="/apvProgressNo?dono=${dto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
-						</c:if>
-						<c:if test="${dto.doprogress eq '진행중' }">
-							<form action="/apvProgressOk2" method="post">
-							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
-							<td style="width:50px;"><a href="/apvProgressNo2?dono=${dto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
-						</c:if>
-					</c:when>
-				</c:choose>
+				<c:if test="${dto.doprogress eq '결재대기' ||dto.doprogress eq '반려' }">
+				<form action="/personalFileModifyOk" method="post">
+					<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="확인" /></td>
+					<td style="width:50px;"><a href="/personalFile"><input class="btn btn-light" type="button" value="취소" /></a></td>
+				</c:if>
+					<input type="hidden" name="dono" value="${dto.dono }" />
+				
+			</tr>
+			<tr>
+			<td colspan="4" style="text-align:center;"><h2>${dto.dotype }</h2></td>
 			</tr>
 		</table>
 	</div>
 	<div style="width:1000px;">
-		<table class="table table-bordered align-middle" style="margin-left:4%;width:61%;float:left;">
-			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">
-				<th>이름</th>
-				<th>직책</th>
-				<th>부서</th>
-				<th>사번</th>
-				<th>작성일자</th>
-			</tr>
-			<tr style="text-align:center;">
-				<td class="border" style="height:70px;">이대리</td>
-				<td class="border" style="height:70px;">대리</td>
-				<td class="border" style="height:70px;">개발부</td>
-				<td class="border" style="height:70px;">${dto.mno }</td>
-				<td class="border" style="height:70px;">230128</td>
-				<input type="hidden" name="mno" value="${dto.mno }" />
-			</tr>
-		</table>
-		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;margin-bottom:100px;">
-			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
-				<th style="width:100px;">결재자</th>
-				<th style="width:100px;">팀장</th>
-			</tr>
-			<tr>
-				<td class="border" style="height:70px;"><c:if test="${dto.doprogress eq '진행중' ||dto.doprogress eq '결재완료' }"><img src="${dto11.fpath }" alt="" style="height:50px;"/></c:if></td>
-				<td class="border" style="height:70px;"><c:if test="${dto.doprogress eq '결재완료' }"><img src="${dto12.fpath }" alt="" style="height:50px;"/></c:if></td>
-			</tr>
-		</table>
-	</div>
+		
 
+	</div>
+	
 	<c:choose>
 		<c:when test="${form eq '연차신청서' }">
-			<jsp:include page="form/vacationView.jsp" />
+			<jsp:include page="form/vacation.jsp" />
 		</c:when>
 		<c:when test="${form eq '업무보고서' }">
-			<jsp:include page="form/businessReportView.jsp" />
+			<jsp:include page="form/businessReport.jsp" />
 		</c:when>
 	</c:choose>
 	</div>
@@ -299,90 +264,6 @@
 	<script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
 	<script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script src="./assets/js/plugins/chartjs.min.js"></script>
-	<script>
-		var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-		var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-		gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-		gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-		gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-		new Chart(ctx1, {
-			type : "line",
-			data : {
-				labels : [ "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
-						"Nov", "Dec" ],
-				datasets : [ {
-					label : "Mobile apps",
-					tension : 0.4,
-					borderWidth : 0,
-					pointRadius : 0,
-					borderColor : "#5e72e4",
-					backgroundColor : gradientStroke1,
-					borderWidth : 3,
-					fill : true,
-					data : [ 50, 40, 300, 220, 500, 250, 400, 230, 500 ],
-					maxBarThickness : 6
-
-				} ],
-			},
-			options : {
-				responsive : true,
-				maintainAspectRatio : false,
-				plugins : {
-					legend : {
-						display : false,
-					}
-				},
-				interaction : {
-					intersect : false,
-					mode : 'index',
-				},
-				scales : {
-					y : {
-						grid : {
-							drawBorder : false,
-							display : true,
-							drawOnChartArea : true,
-							drawTicks : false,
-							borderDash : [ 5, 5 ]
-						},
-						ticks : {
-							display : true,
-							padding : 10,
-							color : '#fbfbfb',
-							font : {
-								size : 11,
-								family : "Open Sans",
-								style : 'normal',
-								lineHeight : 2
-							},
-						}
-					},
-					x : {
-						grid : {
-							drawBorder : false,
-							display : false,
-							drawOnChartArea : false,
-							drawTicks : false,
-							borderDash : [ 5, 5 ]
-						},
-						ticks : {
-							display : true,
-							color : '#ccc',
-							padding : 20,
-							font : {
-								size : 11,
-								family : "Open Sans",
-								style : 'normal',
-								lineHeight : 2
-							},
-						}
-					},
-				},
-			},
-		});
-	</script>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {

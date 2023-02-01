@@ -83,4 +83,19 @@
 		doprogress = #{doprogress}
 		WHERE dono = #{dono}
 	</update>
+	<update id="updateFile" parameterType="String">
+		UPDATE document SET
+		doprogress = #{doprogress},
+		dotitle = #{dotitle},
+		docontents = #{docontents},
+		docontents2 = #{docontents2},
+		docontents3 = #{docontents3}
+		WHERE dono = #{dono}
+	</update>
+	
+	
+	<delete id="deleteOne" parameterType="String">
+		DELETE FROM document
+		WHERE dono = #{dono}
+	</delete>
 </mapper>

@@ -25,7 +25,7 @@ textarea {
 </head>
 <body>
 
-	<div style="width:750px;margin-top:200px;margin-left:auto;margin-right:auto;">
+	<div style="width:750px;margin-top:100px;margin-left:auto;margin-right:auto;">
 			<input type="hidden" name="dono" value="${dto.dono }" />
 			<input type="hidden" name="dotype" value="연차신청서" />
 			<div class="" style="font-size:30px;text-align:center;"></div>

@@ -213,16 +213,23 @@
 			</tr>
 			<tr style="height:50px;">
 				<td>
-					<input class="btn btn-primary" type="hidden" value="선택" />
+					<input type="hidden" name="dono" value="${dto.dono }" />
 				</td>
-				<form action="/persoanlFileModify" method="post">
-				<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="수정하기" /></td>
-				<td style="width:50px;"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" /></td>
+				<c:if test="${dto.doprogress eq '결재대기' ||dto.doprogress eq '반려' }">
+				<form action="/personalFileModify" method="post">
+					<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="수정" /></td>
+					<td style="width:50px;"><a href="/personalFileDelete?dono=${dto.dono }"><input class="btn btn-danger" type="button" style="" value="삭제" /></a></td>
+					<td style="width:50px;"><a href="/personalFile"><input class="btn btn-light" type="button" value="취소" /></a></td>
+				</c:if>
+				
+			</tr>
+			<tr>
+			<td colspan="4" style="text-align:center;"><h2>${dto.dotype }</h2></td>
 			</tr>
 		</table>
 	</div>
 	<div style="width:1000px;">
-
+		
 
 	</div>
 	
@@ -258,90 +265,6 @@
 	<script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
 	<script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script src="./assets/js/plugins/chartjs.min.js"></script>
-	<script>
-		var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-		var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-		gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-		gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-		gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-		new Chart(ctx1, {
-			type : "line",
-			data : {
-				labels : [ "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
-						"Nov", "Dec" ],
-				datasets : [ {
-					label : "Mobile apps",
-					tension : 0.4,
-					borderWidth : 0,
-					pointRadius : 0,
-					borderColor : "#5e72e4",
-					backgroundColor : gradientStroke1,
-					borderWidth : 3,
-					fill : true,
-					data : [ 50, 40, 300, 220, 500, 250, 400, 230, 500 ],
-					maxBarThickness : 6
-
-				} ],
-			},
-			options : {
-				responsive : true,
-				maintainAspectRatio : false,
-				plugins : {
-					legend : {
-						display : false,
-					}
-				},
-				interaction : {
-					intersect : false,
-					mode : 'index',
-				},
-				scales : {
-					y : {
-						grid : {
-							drawBorder : false,
-							display : true,
-							drawOnChartArea : true,
-							drawTicks : false,
-							borderDash : [ 5, 5 ]
-						},
-						ticks : {
-							display : true,
-							padding : 10,
-							color : '#fbfbfb',
-							font : {
-								size : 11,
-								family : "Open Sans",
-								style : 'normal',
-								lineHeight : 2
-							},
-						}
-					},
-					x : {
-						grid : {
-							drawBorder : false,
-							display : false,
-							drawOnChartArea : false,
-							drawTicks : false,
-							borderDash : [ 5, 5 ]
-						},
-						ticks : {
-							display : true,
-							color : '#ccc',
-							padding : 20,
-							font : {
-								size : 11,
-								family : "Open Sans",
-								style : 'normal',
-								lineHeight : 2
-							},
-						}
-					},
-				},
-			},
-		});
-	</script>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {

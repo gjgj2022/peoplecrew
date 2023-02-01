@@ -35,7 +35,7 @@
 </head>
 <body>
 
-	<div style="width:750px;margin-top:200px;margin-left:auto;margin-right:auto;">
+	<div style="width:750px;margin-top:100px;margin-left:auto;margin-right:auto;">
 			<input type="hidden" name="dono" value="${dto.dono }" />
 			<input type="hidden" name="dotype" value="업무보고서" />
 			

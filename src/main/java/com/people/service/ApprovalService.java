@@ -48,4 +48,8 @@ public class ApprovalService {
 	public ApprovalDTO selectOneByDono(String dono, String apmno) {
 		return dao.selectOneByDono(dono, apmno);
 	}
+	
+	public void deleteOne(String dono) {
+		dao.deleteOne(dono);
+	}
 }

@@ -19,4 +19,5 @@ public interface ApprovalDAO {
 	void addOne(ApprovalDTO dto);
 	void updateOne(String approgress, String apno);
 	ApprovalDTO selectOneByDono(String dono,String apmno);
+	void deleteOne(String dono);
 }

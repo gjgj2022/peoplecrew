@@ -38,7 +38,7 @@ public class ApprovalController {
 		
 		HttpSession session = req.getSession();
 		// 임시회원번호 : 
-		int mno = 113;
+		int mno = 111;
 
 		session.setAttribute("mno", mno);
 
@@ -185,6 +185,75 @@ public class ApprovalController {
 		model.addAttribute("dto", dto2);
 		
 		return "/approval/personalFileView";
+	}
+	
+	@PostMapping("personalFileModify")
+	public String personalFileModify(@RequestParam("dotype")String dotype,Model model,
+									@ModelAttribute DocumentDTO dto) {
+		DocumentDTO dto2 = dservice.readOne(dto.getDono());
+		
+		model.addAttribute("form", dotype);
+		
+		model.addAttribute("dto", dto2);		
+		
+		return "/approval/personalFileModify";
+	}
+	
+	@PostMapping("/personalFileModifyOk")
+	public String personalFileModifyOk(@ModelAttribute DocumentDTO ddto,
+									 @ModelAttribute ApprovalDTO adto,
+									 @RequestParam("dono")String dono,
+									 HttpServletRequest req) {
+		
+		// 회원번호 불러오기
+		HttpSession session = req.getSession();
+		int mno = (int) session.getAttribute("mno");
+		
+		System.out.println(mno);
+		System.out.println(ddto);
+		
+		dservice.updateFile("결재대기", ddto.getDotitle(), ddto.getDocontents(), ddto.getDocontents2(), ddto.getDocontents3(), ddto.getDono());
+		
+		aservice.deleteOne(ddto.getDono());
+		
+		// approval 테이블데이터 생성
+		String apno = ddto.getDono() + "-0";
+		
+		adto.setApno(apno);
+		// 임시결재사원 = 113; << 수정해야됨
+		
+		int apmno = 0;
+		
+		String mno2 = String.valueOf(mno);
+		
+		System.out.println(mno2);
+		
+		if(mno2.charAt(0) == '1') {
+			apmno = 113;
+		}else if(mno2.charAt(0) == '2') {
+			apmno = 216;
+		}
+		
+		adto.setMno(mno);
+		adto.setApmno(apmno);
+		adto.setDono(ddto.getDono());
+
+		aservice.addOne(adto);
+		
+
+		
+		return "redirect:/personalFile";
+	}
+	
+	@RequestMapping("/personalFileDelete")
+	public String personalFileDelete(@RequestParam("dono")String dono) {
+		
+		System.out.println(dono);
+		
+		aservice.deleteOne(dono);
+		dservice.deleteOne(dono);
+		
+		return "redirect:/personalFile";
 	}
 	
 	@RequestMapping("/apvProgressView")

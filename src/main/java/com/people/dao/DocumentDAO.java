@@ -27,4 +27,8 @@ public interface DocumentDAO {
 	int getMyCount(String apvP, String mno);
 	void addOne(DocumentDTO dto);
 	void updateOne(String doprogress, String dono);
+	
+	void deleteOne(String dono);
+	
+	void updateFile(String doprogress, String dotitle, String docontents, String docontents2, String docontents3, String dono);
 }

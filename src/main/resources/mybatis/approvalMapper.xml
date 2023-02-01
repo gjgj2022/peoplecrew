@@ -48,4 +48,9 @@
 		apdate = curDate()
 		WHERE apno = #{apno}
 	</update>
+	
+	<delete id="deleteOne" parameterType="String">
+		DELETE FROM approval
+		WHERE dono = #{dono}
+	</delete>
 </mapper>

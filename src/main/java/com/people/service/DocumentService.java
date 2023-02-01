@@ -69,4 +69,12 @@ public class DocumentService {
 	public void updateOne(String doprogress, String dono) {
 		dao.updateOne(doprogress, dono);
 	}
+	
+	public void deleteOne(String dono) {
+		dao.deleteOne(dono);
+	}
+	
+	public void updateFile(String doprogress ,String dotitle, String docontents, String docontents2, String docontents3, String dono) {
+		dao.updateFile(doprogress ,dotitle, docontents, docontents2, docontents3, dono);
+	}
 }
