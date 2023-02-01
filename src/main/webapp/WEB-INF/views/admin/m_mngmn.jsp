@@ -246,6 +246,7 @@
                       </td>
                     </tr>
                   </c:forEach>
+                  
                   	<tr>
 						<td colspan="8">
 							<nav aria-label="Page navigation example">
