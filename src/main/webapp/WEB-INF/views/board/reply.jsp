@@ -186,7 +186,7 @@
 			<c:if test="${dto!=null}">
 				<div class="input-group mb-3">
 					<input type="text" name="recontents" id="recontents" class="form-control" width="70%" placeholder="댓글을 남겨보세요.">
-					<button class="btn bg-gradient-primary mb-0" type="button" id="insertBtn" onclick="writeReply(this);">등록</button>
+					<button class="btn bg-gradient-info mb-0" type="button" id="insertBtn" onclick="writeReply(this);">등록</button>
 				</div>
 			</c:if>
 		</form>
