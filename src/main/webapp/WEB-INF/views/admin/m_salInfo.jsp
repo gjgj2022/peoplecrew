@@ -348,27 +348,54 @@
                     </tr>
                     
                   </c:forEach>
-                  
-                  	<tr>
+
+                	<tr>
 						<td colspan="8">
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination justify-content-center" style="margin-bottom: 0; margin-top: 10px;" >
 							 
-							  	<c:if test="${map.isPre }">
-								    <li class="page-item"><a class="page-link" href="admin3?cp=${map.currentPage-5 }">이전</a></li>
-							  	</c:if>
-							  	
-							  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
-								    <li class="page-item"><a class="page-link" href="admin3?cp=${i}">${i }</a></li>
-							  	</c:forEach>
-		
-							    <c:if test="${map.isNext }">
-								    <li class="page-item"><a class="page-link" href="admin3?cp=${map.currentPage+5 }">다음</a></li>
-							    </c:if>
+							  	<c:choose>
+								  	<c:when test="${map.isPre }">
+								  		<c:choose>
+								  			<c:when test="${empty keyword}">
+								  			 	<li class="page-item"><a class="page-link" href="admin3?cp=${map.currentPage-5 }">이전</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search2?keyword=${keyword}&cp=${map.currentPage-5 }">이전</a></li>
+								  			</c:otherwise>
+								  		</c:choose>
+								  	</c:when>
+							 	</c:choose>
+								  	
+								  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
+								  		<c:choose>
+								  			<c:when test="${empty keyword}">
+											    <li class="page-item"><a class="page-link" href="admin3?cp=${i}">${i }</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search2?keyword=${keyword}&cp=${i}">${i }</a></li>
+								  			</c:otherwise>
+								  		</c:choose> 
+								  	</c:forEach>
+								  	
+								<c:choose>
+								    <c:when test="${map.isNext }">
+								    	<c:choose>
+								  			<c:when test="${empty keyword}">
+											    <li class="page-item"><a class="page-link" href="admin3?cp=${map.currentPage+5 }">다음</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search2?keyword=${keyword}&cp=${map.currentPage+5 }">다음</a></li>
+								  			</c:otherwise>
+								  		</c:choose>
+								    </c:when>
+							    </c:choose>
+							    
 							  </ul>
 							</nav>
 						</td>
 					</tr>
+					
                   </tbody>
                 </table>
               </div>
@@ -738,20 +765,20 @@
 	  var salesChart = new Chart($salesChart, {
 	    type: 'bar',
 	    data: {
-	      labels: ['사원','대리','팀장','부장'],
+	      labels: ['사원','주임','대리','팀장','부장'],
 	      
 	      datasets: [
 	        {
 	          backgroundColor: '#5E72E4',
 	          borderColor: '#5E72E4',
 	          label:'직급 최고 급여',
-	          data: [${avg2[1].mmsal},${avg2[0].mmsal},${avg2[3].mmsal},${avg2[2].mmsal}]
+	          data: [${avg2[0].mmsal},${avg2[1].mmsal},${avg2[2].mmsal},${avg2[3].mmsal},${avg2[4].mmsal}]
 	        },
 	        {
 	          backgroundColor: '#2DCE89',
 	          borderColor: '#2DCE89',
 	          label:'직급 평균 급여',
-	          data: [${avg2[1].amsal},${avg2[0].amsal},${avg2[3].amsal},${avg2[2].amsal}]
+	          data: [${avg2[0].amsal},${avg2[1].amsal},${avg2[2].amsal},${avg2[3].amsal},${avg2[4].mmsal}]
 	        }
 	      ]
 	  

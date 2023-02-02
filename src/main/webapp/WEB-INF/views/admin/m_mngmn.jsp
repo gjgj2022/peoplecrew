@@ -252,26 +252,53 @@
                     </tr>
                   </c:forEach>
                   
-                  	<tr>
-						<td colspan="8">
-							<nav aria-label="Page navigation example">
-							  <ul class="pagination justify-content-center" style="margin-bottom: 0; margin-top: 10px;" >
-							 
-							  	<c:if test="${map.isPre }">
-								    <li class="page-item"><a class="page-link" href="admin2?cp=${map.currentPage-5 }">이전</a></li>
-							  	</c:if>
-							  	
-							  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
-								    <li class="page-item"><a class="page-link" href="admin2?cp=${i}">${i }</a></li>
-							  	</c:forEach>
-		
-							    <c:if test="${map.isNext }">
-								    <li class="page-item"><a class="page-link" href="admin2?cp=${map.currentPage+5 }">다음</a></li>
-							    </c:if>
-							  </ul>
-							</nav>
-						</td>
-					</tr>
+	                  	<tr>
+							<td colspan="8">
+								<nav aria-label="Page navigation example">
+								  <ul class="pagination justify-content-center" style="margin-bottom: 0; margin-top: 10px;" >
+								 	
+							 	<c:choose>
+								  	<c:when test="${map.isPre }">
+								  		<c:choose>
+								  			<c:when test="${empty keyword}">
+											    <li class="page-item"><a class="page-link" href="admin2?cp=${map.currentPage-5 }">이전</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${map.currentPage-5 }">이전</a></li>
+								  			</c:otherwise>
+								  		</c:choose>
+								  	</c:when>
+							 	</c:choose>
+								  	
+								  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
+								  		<c:choose>
+								  			<c:when test="${empty keyword}">
+											    <li class="page-item"><a class="page-link" href="admin2?cp=${i}">${i }</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${i}">${i }</a></li>
+								  			</c:otherwise>
+								  		</c:choose> 
+								  	</c:forEach>
+								  	
+								<c:choose>
+								    <c:when test="${map.isNext }">
+								    	<c:choose>
+								  			<c:when test="${empty keyword}">
+											    <li class="page-item"><a class="page-link" href="admin2?cp=${map.currentPage+5 }">다음</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${map.currentPage+5 }">다음</a></li>
+								  			</c:otherwise>
+								  		</c:choose>
+								    </c:when>
+							    </c:choose>
+								    
+								  </ul>
+								</nav>
+							</td>
+						</tr>
+					
                   </tbody>
                 </table>
               </div>

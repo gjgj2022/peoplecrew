@@ -12,7 +12,7 @@
 				FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal
 						FROM member m LEFT OUTER JOIN organization o
 						ON m.ono = o.ono
-						<if test="keyword != null">
+						<if test="keyword != null ">
 						WHERE m.mno LIKE CONCAT('%',#{keyword},'%') 
 						OR m.mname LIKE CONCAT('%',#{keyword},'%')
 						OR m.mrank LIKE CONCAT('%',#{keyword},'%')
@@ -57,13 +57,16 @@
 	<select id="getAvg" resultType="MemberDTO">
 		SELECT ono, FLOOR(AVG(msal))AS amsal, MAX(msal)AS mmsal  
 		FROM member
-		GROUP BY ono;
+		GROUP BY ono
+		ORDER BY ono asc;
 	</select>
+	
 	<!-- 직급별 평균임금 / 최고임금  -->
 	<select id="getAvg2" resultType="MemberDTO">
 		SELECT mrank, FLOOR(AVG(msal))AS amsal, MAX(msal)AS mmsal  
 		FROM member
-		GROUP BY mrank;
+		GROUP BY mrank
+		ORDER BY amsal asc;
 	</select>
 
 	<!--사원번호로 부서 + 유저 한명조회 -->

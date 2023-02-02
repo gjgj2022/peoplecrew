@@ -364,6 +364,7 @@
 											<select class="form-select" id="mrank" name="mrank" size="1">
 												<option value="">직급</option>
 												<option value="사원">사원</option>
+												<option value="주임">주임</option>
 												<option value="대리">대리</option>
 												<option value="과장">과장</option>
 												<option value="부장">부장</option>
@@ -596,6 +597,10 @@
 				$("#msal").val("2200000");
 				$("#role").val("ROLE_USER");
 
+			} else if ($(this).val() == "주임") {
+				$("#msal").val("2500000");
+				$("#role").val("ROLE_USER");
+				
 			} else if ($(this).val() == "대리") {
 				$("#msal").val("2800000");
 				$("#role").val("ROLE_USER");

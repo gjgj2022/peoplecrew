@@ -93,6 +93,8 @@ public class MemberAdminController {
 		log.info("keyword : " + keyword);
 		log.info("keyword2 : " + service.getTotal(keyword));
 		
+		model.addAttribute("keyword", keyword);
+		
 		// 총페이지수
 		int totalNumber = service.getTotal(keyword);
 		//페이지당 게시물수
@@ -110,7 +112,7 @@ public class MemberAdminController {
 		
 		log.info("map 2 : " + map);
 		log.info("list 2 : " + list);
-		log.info(" search2 : 관리자 admin");
+		log.info("search2 : " + keyword);
 		
 		return "admin/m_mngmn";
 	}
@@ -173,9 +175,8 @@ public class MemberAdminController {
 		model.addAttribute("avg", avg);
 		model.addAttribute("avg2", avg2);
 		
-		
 		log.info("list : " + list);
-		log.info("관리자 admin");
+		log.info("avg2 : " + avg2);
 		
 		return "/admin/m_salInfo";
 	}
@@ -212,10 +213,11 @@ public class MemberAdminController {
 		
 		model.addAttribute("avg", avg);
 		model.addAttribute("avg2", avg2);
+		model.addAttribute("keyword", keyword);
 		
 		log.info("map 2 : " + map);
 		log.info("list 2 : " + list);
-		log.info(" search2 : 관리자 admin");
+		log.info(" keyword2 : " + keyword);
 		
 		return "admin/m_salInfo";
 	}
