@@ -34,6 +34,6 @@ public class MemberDTO {
 	
 	private String keyword;	 // 검색 키워드
 	
-	
+	private int uno;
 	
 }

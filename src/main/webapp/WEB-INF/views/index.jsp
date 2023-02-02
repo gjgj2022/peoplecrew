@@ -71,15 +71,15 @@
           
           <ul id="tables-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="/calendar/list">
               <i class="bi bi-circle"></i>
-              <span>G12</span>
+              <span>캘린더</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/calendar/mycalendar">
               <i class="bi bi-circle"></i>
-              <span>Data Tables</span>
+              <span>나의 업무</span>
             </a>
           </li>
         </ul>
@@ -118,9 +118,9 @@
           </a>
           <ul id="tables-nav6" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/board/tables">
+            <a href="/board/list">
               <i class="bi bi-circle"></i>
-              <span>General Tables</span>
+              <span>공지사항</span>
             </a>
           </li>
           <li>
