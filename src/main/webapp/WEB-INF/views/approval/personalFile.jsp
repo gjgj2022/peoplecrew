@@ -271,7 +271,7 @@
 											<td>${list2.dono }</td>
 											<td>${list2.dotype }</td>
 											<td><a href="/personalFileView?dono=${list2.dono }&dotype=${list2.dotype }">${list2.dotitle }</a></td>
-											<td>${list2.mno }</td>
+											<td>${mlist2[status.index].mname }</td>
 											<td>${list2.dodate }</td>
 											<td>${list2.doprogress }</td>
 										</tr>
@@ -284,7 +284,7 @@
 											<td>${list1.dono }</td>
 											<td>${list1.dotype }</td>
 											<td><a href="/personalFileView?dono=${list1.dono }&dotype=${list1.dotype }">${list1.dotitle }</a></td>
-											<td>${list1.mno }</td>
+											<td>${mlist1[status.index].mname}</td>
 											<td>${list1.dodate }</td>
 											<td>${list1.doprogress }</td>
 										</tr>

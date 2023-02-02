@@ -25,7 +25,7 @@ textarea {
 </head>
 <body>
 
-	<div style="width:750px;margin-left:auto;margin-right:auto;">
+	<div style="width:850px;margin-left:auto;margin-right:auto;">
 			<input type="hidden" name="dotype" value="연차신청서" />
 			<div class="" style="font-size:30px;text-align:center;padding-top:100px;"></div>
 			<br />
@@ -39,7 +39,7 @@ textarea {
 			<td colspan="3"><textarea name="docontents" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)">${dto.docontents }</textarea></td>
 		</tr>
 		<tr>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">휴가지</td>
+			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">휴가기간</td>
 			<td><input type="text" name="docontents2" id="" style="border:none;width:500px;" value="${dto.docontents2 }"/></td>
 		</tr>
 		<tr>

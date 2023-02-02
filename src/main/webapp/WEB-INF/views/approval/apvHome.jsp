@@ -228,8 +228,7 @@
 		<!-- ===============================================================내작업=========================================================== -->
 		<div class="container-fluid py-4" style="width:1300px;padding-left:0px;">
 			<div class="row">
-				
-				
+
 				<div class="col-lg-7 mb-lg-0 mb-4" id="table1">
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
@@ -428,12 +427,12 @@
 										<th>기안일</th>
 										<th>진행상태</th>
 									</tr>
-									<c:forEach var="list" items="${ingList }">
+									<c:forEach var="list" items="${ingList }" varStatus="status">
 									<tr class="text-sm mb-0">
 										<td>${list.dono }</td>
 										<td>${list.dotype }</td>
 										<td><a href="#">${list.dotitle }</a></td>
-										<td>이대리</td>
+										<td>${mlist1[status.index].mname }</td>
 										<td>${list.dodate }</td>
 										<td>${list.doprogress }</td>
 									</tr>
@@ -463,12 +462,12 @@
 										<th>기안일</th>
 										<th>진행상태</th>
 									</tr>
-									<c:forEach var="list2" items="${endList }">
+									<c:forEach var="list2" items="${endList }" varStatus="status">
 									<tr class="text-sm mb-0">
 										<td>${list2.dono }</td>
 										<td>${list2.dotype }</td>
 										<td><a href="#">${list2.dotitle }</a></td>
-										<td>이대리</td>
+										<td>${mlist2[status.index].mname }</td>
 										<td>${list2.dodate }</td>
 										<td>${list2.doprogress }</td>
 									</tr>
@@ -481,6 +480,7 @@
 			
 			
 			</div>
+
 		</div>
 
 

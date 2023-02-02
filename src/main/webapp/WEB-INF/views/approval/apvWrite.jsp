@@ -98,7 +98,7 @@
 			id="navbarBlur" data-scroll="false">
 			<div class="container-fluid py-1 px-3">
 				<nav aria-label="breadcrumb">
-					<h6 class="font-weight-bolder text-white mb-0">개인문서함</h6>
+					<h2 class="font-weight-bolder text-white mb-0"></h2>
 				</nav>
 
 				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -204,17 +204,17 @@
 
 
 <!-- ==========================================================내작업======================  -->
-	<div class="container bg-white" style="min-width:1500px;">
-	<div style="margin-top:100px;width:1100px;align:center;min-height:1200px;margin-left:100px;margin-right:auto;">
+	<div class="container bg-white p-2 rounded" style="min-width:1400px;min-height:1130px;">
+	<div style="margin-top:100px;width:1100px;align:center;min-height:1000px;margin-left:100px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
 			<tr class="align-bottom" style="height:100px;">
-				<th style="width:200px;font-size:25px;" colspan="">문서종류</th>
+				<th style="width:250px;font-size:25px;padding-left:58px;" colspan="">문서종류</th>
 				<th style="text-align:center;"><h3>${form }</h3></th>
 			</tr>
 				<form action="/apvWrite">
 			<tr style="height:50px;">
-				<td style="width:200px;">
+				<td style="width:250px;padding-left:58px;">
 					<select name="form" id="" class="form-select" style="width:200px;">
 						<option value="연차신청서" <c:if test="${form eq '연차신청서' }">selected="selected"</c:if>>연차신청서</option>
 						<option value="업무보고서" <c:if test="${form eq '업무보고서' }">selected="selected"</c:if>>업무보고서</option>
@@ -240,12 +240,12 @@
 				<th>작성일자</th>
 			</tr>
 			<tr style="text-align:center;">
-				<td class="border">이대리</td>
-				<td class="border">대리</td>
-				<td class="border">개발부</td>
-				<td class="border">${mno }</td>
-				<td class="border">230128</td>
-				<input type="hidden" name="mno" value="${mno }" />
+				<td class="border">${mdto.mname }</td>
+				<td class="border">${mdto.mrank }</td>
+				<td class="border">${mdto.oname }</td>
+				<td class="border">${mdto.mno }</td>
+				<td class="border">${now }</td>
+				<input type="hidden" name="mno" value="${mdto.mno }" />
 			</tr>
 		</table>
 		<table class="table table-bordered align-middle" style="width:31%;float:right;text-align:center;">

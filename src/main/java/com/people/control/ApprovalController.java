@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.people.dto.ApprovalDTO;
 import com.people.dto.DocumentDTO;
 import com.people.dto.FileDTO;
+import com.people.dto.MemberDTO;
 import com.people.service.ApprovalService;
 import com.people.service.DocumentService;
 import com.people.service.FileService;
+import com.people.service.MemberService;
 
 @Controller
 public class ApprovalController {
@@ -32,13 +34,15 @@ public class ApprovalController {
 	ApprovalService aservice;
 	@Autowired
 	FileService fservice;
+	@Autowired
+	MemberService mservice;
 
 	@RequestMapping("/apvHome")
 	public String apvHome(Model model, HttpServletRequest req) {
 		
 		HttpSession session = req.getSession();
 		// 임시회원번호 : 
-		int mno = 111;
+		int mno = 113;
 
 		session.setAttribute("mno", mno);
 
@@ -87,20 +91,57 @@ public class ApprovalController {
 		
 		// 내가 최근 올린 결재
 		List<DocumentDTO> list3 = dservice.readIng(mno);
+		ArrayList<MemberDTO> mlist1 = new ArrayList<MemberDTO>();
+		
+		for(int i=0; i<list3.size(); i++) {
+			DocumentDTO ddto = list3.get(i);
+			MemberDTO mdto = mservice.getOne(ddto.getMno());
+			mlist1.add(mdto);
+		}
 		model.addAttribute("ingList", list3);
-
+		model.addAttribute("mlist1", mlist1);
+		
 		// 내가 최근 받은 결재
 		List<DocumentDTO> list4 = dservice.readEnd(mno);
+		ArrayList<MemberDTO> mlist2 = new ArrayList<MemberDTO>();
+		
+		for(int i=0; i<list4.size(); i++) {
+			DocumentDTO ddto = list4.get(i);
+			MemberDTO mdto = mservice.getOne(ddto.getMno());
+			mlist2.add(mdto);
+		}
 		model.addAttribute("endList", list4);
+		model.addAttribute("mlist2",mlist2);
 
 		return "/approval/apvHome";
 	}
 
 	@RequestMapping("/apvWrite")
-	public String apvWrite(@RequestParam("form") String form, Model model) {
+	public String apvWrite(@RequestParam("form") String form, Model model,
+							HttpServletRequest req) {
 
 		model.addAttribute("form", form);
+		
+		// 회원번호 불러오기
+		HttpSession session = req.getSession();
+		int mno = (int) session.getAttribute("mno");
 
+		MemberDTO mdto = mservice.getOne(mno);
+		
+		System.out.println(mdto);
+		
+		model.addAttribute("mdto", mdto);
+		
+		// sysdate
+		
+		Date d = new Date();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String now = sdf.format(d);
+		
+		model.addAttribute("now", now);
+		
 		return "/approval/apvWrite";
 	}
 
@@ -164,12 +205,25 @@ public class ApprovalController {
 		int mno = (int) session.getAttribute("mno");
 		// 분류별 불러오기
 		List<DocumentDTO> list = dservice.readByDoprogress(apvP, String.valueOf(mno));
-
+		ArrayList<MemberDTO> mlist = new ArrayList<MemberDTO>();
+		for(int i=0; i<list.size(); i++) {
+			DocumentDTO ddto = list.get(i);
+			MemberDTO mdto = mservice.getOne(ddto.getMno());
+			mlist.add(mdto);
+		}
 		model.addAttribute("list1", list);
+		model.addAttribute("mlist1", mlist);
+
 		// 전체 불러오기
 		List<DocumentDTO> list2 = dservice.readAllByMno(mno);
-
+		ArrayList<MemberDTO> mlist2 = new ArrayList<MemberDTO>();
+		for(int i=0; i<list2.size(); i++) {
+			DocumentDTO ddto = list2.get(i);
+			MemberDTO mdto = mservice.getOne(ddto.getMno());
+			mlist2.add(mdto);
+		}
 		model.addAttribute("list2", list2);
+		model.addAttribute("mlist2", mlist2);
 
 		return "/approval/personalFile";
 	}
@@ -183,6 +237,13 @@ public class ApprovalController {
 		model.addAttribute("form", dotype);
 		
 		model.addAttribute("dto", dto2);
+		
+		// 도장이미지 불러오기
+		FileDTO dto11 = fservice.selectOne(1001);
+		FileDTO dto12 = fservice.selectOne(1002);
+		
+		model.addAttribute("dto11", dto11);
+		model.addAttribute("dto12", dto12);
 		
 		return "/approval/personalFileView";
 	}
@@ -285,12 +346,15 @@ public class ApprovalController {
 		
 		model.addAttribute("adto", adto);
 		
+		// 멤버불러오기
+		MemberDTO mdto = mservice.getOne(dto2.getMno());
+		
+		model.addAttribute("mdto", mdto);
+		
+		
 		// 도장이미지 불러오기
 		FileDTO dto11 = fservice.selectOne(1001);
 		FileDTO dto12 = fservice.selectOne(1002);
-		
-		System.out.println("dto11 : "+dto11);
-		System.out.println("dto12 : "+dto12);
 		
 		model.addAttribute("dto11", dto11);
 		model.addAttribute("dto12", dto12);
@@ -388,28 +452,40 @@ public class ApprovalController {
 		
 		// 분류별 불러오기
 		ArrayList<DocumentDTO> list11 = new ArrayList<DocumentDTO>();
+		ArrayList<MemberDTO> mlist1 = new ArrayList<MemberDTO>();
 		
 		for(int i=0; i<list10.size(); i++) {
 			ApprovalDTO dto10 = list10.get(i);
 			DocumentDTO dto11 = dservice.readC(dto10.getDono(),apvP);
 			if(dto11 != null) {
 				list11.add(dto11);
+				MemberDTO mdto = mservice.getOne(dto11.getMno());
+				mlist1.add(mdto);
 			}
-		}		
-
+		}
+		
+		System.out.println("mlist1 : "+mlist1);
+		
 		model.addAttribute("list1", list11);
-
+		model.addAttribute("mlist1", mlist1);
+		
 		// 전체 불러오기
 		ArrayList<DocumentDTO> list12 = new ArrayList<DocumentDTO>();
+		ArrayList<MemberDTO> mlist2 = new ArrayList<MemberDTO>();
 		
 		for(int i=0; i<list10.size(); i++) {
 			ApprovalDTO dto10 = list10.get(i);
 			DocumentDTO dto11 = dservice.readOne(dto10.getDono());
 			list12.add(dto11);
+			MemberDTO mdto = mservice.getOne(dto11.getMno());
+			mlist2.add(mdto);
 		}
+		
+		System.out.println(mlist2);
 
 		model.addAttribute("list2", list12);
-
+		model.addAttribute("mlist2", mlist2);
+		
 		return "/approval/apvProgress";
 	}
 

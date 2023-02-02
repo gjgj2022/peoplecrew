@@ -204,13 +204,10 @@
 
 
 <!-- ==========================================================내작업======================  -->
-	<div class="container bg-white" style="min-width:1500px;">
-	<div style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:140px;margin-right:auto;">
+	<div class="container bg-white p-2 rounded" style="min-width:1400px;">
+	<div style="margin-top:100px;width:1000px;align:center;min-height:1000px;margin-left:auto;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
-			<tr class="align-bottom" style="height:100px;">
-				<th style="width:900px;font-size:25px;" colspan="6"></th>
-			</tr>
 			<tr style="height:50px;">
 				<td>
 					<input type="hidden" name="dono" value="${dto.dono }" />
@@ -225,6 +222,16 @@
 			</tr>
 			<tr>
 			<td colspan="4" style="text-align:center;"><h2>${dto.dotype }</h2></td>
+			</tr>
+		</table>
+		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
+				<th style="width:100px;">결재자</th>
+				<th style="width:100px;">팀장</th>
+			</tr>
+			<tr>
+				<td class="border" style="height:70px;"><c:if test="${dto.doprogress eq '진행중' ||dto.doprogress eq '결재완료' }"><img src="${dto11.fpath }" alt="" style="height:50px;"/></c:if></td>
+				<td class="border" style="height:70px;"><c:if test="${dto.doprogress eq '결재완료' }"><img src="${dto12.fpath }" alt="" style="height:50px;"/></c:if></td>
 			</tr>
 		</table>
 	</div>

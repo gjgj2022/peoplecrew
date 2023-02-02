@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="76x76"
 	href="./assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-<title>개인문서함</title>
+<title>결재처리함</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -204,13 +204,10 @@
 
 
 <!-- ==========================================================내작업======================  -->
-	<div class="container bg-white" style="min-width:1500px;">
-	<div style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:140px;margin-right:auto;">
+	<div class="container bg-white p-1 rounded" style="min-width:1400px;">
+	<div class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:180px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
-		<div>
-			
-		</div>
 			<tr class="align-bottom" style="height:100px;">
 				<th style="width:900px;font-size:25px;text-align:center;" colspan="6">
 					<h3>${dto.dotype }</h3>
@@ -247,22 +244,22 @@
 				<th>작성일자</th>
 			</tr>
 			<tr style="text-align:center;">
-				<td class="border" style="height:70px;">이대리</td>
-				<td class="border" style="height:70px;">대리</td>
-				<td class="border" style="height:70px;">개발부</td>
-				<td class="border" style="height:70px;">${dto.mno }</td>
-				<td class="border" style="height:70px;">230128</td>
-				<input type="hidden" name="mno" value="${dto.mno }" />
+				<td class="border border-1" style="height:70px;">${mdto.mname }</td>
+				<td class="border border-1" style="height:70px;">${mdto.mrank }</td>
+				<td class="border border-1" style="height:70px;">${mdto.oname }</td>
+				<td class="border border-1" style="height:70px;">${mdto.mno }</td>
+				<td class="border border-1" style="height:70px;">${dto.dodate }</td>
+				<input type="hidden" name="mno" value="${mdto.mno }" />
 			</tr>
 		</table>
-		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;margin-bottom:100px;">
+		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;margin-bottom:50px;">
 			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
 				<th style="width:100px;">결재자</th>
 				<th style="width:100px;">팀장</th>
 			</tr>
 			<tr>
-				<td class="border" style="height:70px;"><c:if test="${dto.doprogress eq '진행중' ||dto.doprogress eq '결재완료' }"><img src="${dto11.fpath }" alt="" style="height:50px;"/></c:if></td>
-				<td class="border" style="height:70px;"><c:if test="${dto.doprogress eq '결재완료' }"><img src="${dto12.fpath }" alt="" style="height:50px;"/></c:if></td>
+				<td class="border border-1" style="height:70px;"><c:if test="${dto.doprogress eq '진행중' ||dto.doprogress eq '결재완료' }"><img src="${dto11.fpath }" alt="" style="height:50px;"/></c:if></td>
+				<td class="border border-1" style="height:70px;"><c:if test="${dto.doprogress eq '결재완료' }"><img src="${dto12.fpath }" alt="" style="height:50px;"/></c:if></td>
 			</tr>
 		</table>
 	</div>
@@ -275,7 +272,21 @@
 			<jsp:include page="form/businessReportView.jsp" />
 		</c:when>
 	</c:choose>
+	
+	<div style="width:1000px;">
+	<table class="table table-borderless align-middle" style="width:25%;text-align:center;margin-left:auto;margin-right:auto;margin-bottom:50px;">
+		<tr>
+			<td style="padding-top:50px;">상기 명 본인은 위와같은 사유로 제출합니다.</td>
+		</tr>
+		<tr>
+			<td style="padding-top:50px;">PeopleCrew</td>
+		</tr>
+	</table>
 	</div>
+	
+	</div>
+	
+	
 	</div>
 	</form>
 <!-- ===================================================================================  -->

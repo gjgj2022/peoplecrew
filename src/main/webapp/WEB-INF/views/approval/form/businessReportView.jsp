@@ -35,7 +35,7 @@
 </head>
 <body>
 
-	<div style="width:750px;margin-top:100px;margin-left:auto;margin-right:auto;">
+	<div style="width:850px;margin-left:auto;margin-right:auto;">
 			<input type="hidden" name="dono" value="${dto.dono }" />
 			<input type="hidden" name="dotype" value="업무보고서" />
 			
@@ -54,8 +54,8 @@
 			<td colspan="3"><textarea class="bg-white" name="docontents2" id="ta2" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)" disabled>${dto.docontents2 }</textarea></td>
 		</tr>
 		<tr>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border" rowspan="2" style="text-align:center;">특이사항</td>
-			<td class="border" colspan="4"><textarea class="bg-white" name="docontents3" id="ta3" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)" disabled>${dto.docontents3 }</textarea></td>
+			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1" rowspan="2" style="text-align:center;">특이사항</td>
+			<td class="border border-1" colspan="4"><textarea class="bg-white" name="docontents3" id="ta3" cols="30" rows="6" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)" disabled>${dto.docontents3 }</textarea></td>
 		</tr>
 	</table>
 	</div>
