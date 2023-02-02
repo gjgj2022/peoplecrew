@@ -43,8 +43,8 @@ textarea {
 			<td><input type="text" name="docontents2" id="" style="border:none;width:500px;" value="${dto.docontents2 }"/></td>
 		</tr>
 		<tr>
-			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border" rowspan="2" style="text-align:center;">대행해야 할<br>주요업무</td>
-			<td class="border" colspan="4"><textarea name="docontents3" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)">${dto.docontents3 }</textarea></td>
+			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1" rowspan="2" style="text-align:center;">대행해야 할<br>주요업무</td>
+			<td class="border border-1" colspan="4"><textarea name="docontents3" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)">${dto.docontents3 }</textarea></td>
 		</tr>
 	</table>
 	</div>

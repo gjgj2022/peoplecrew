@@ -205,6 +205,7 @@
 
 <!-- ==========================================================내작업======================  -->
 	<div class="container bg-white p-1 rounded" style="min-width:1400px;">
+	<div style="position:relative;left:180px;top:100px;"><a href="/apvProgress"><input class="btn btn-primary" type="button" value="목록으로" /></a></div>
 	<div class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:180px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">

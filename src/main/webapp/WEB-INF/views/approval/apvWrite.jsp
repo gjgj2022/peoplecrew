@@ -205,16 +205,16 @@
 
 <!-- ==========================================================내작업======================  -->
 	<div class="container bg-white p-2 rounded" style="min-width:1400px;min-height:1130px;">
-	<div style="margin-top:100px;width:1100px;align:center;min-height:1000px;margin-left:100px;margin-right:auto;">
+	<div class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1100px;align:center;min-height:1000px;margin-left:100px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
 			<tr class="align-bottom" style="height:100px;">
-				<th style="width:250px;font-size:25px;padding-left:58px;" colspan="">문서종류</th>
+				<th style="width:250px;font-size:25px;padding-left:58px;" colspan=""></th>
 				<th style="text-align:center;"><h3>${form }</h3></th>
 			</tr>
 				<form action="/apvWrite">
 			<tr style="height:50px;">
-				<td style="width:250px;padding-left:58px;">
+				<td style="width:250px;padding-left:80px;">
 					<select name="form" id="" class="form-select" style="width:200px;">
 						<option value="연차신청서" <c:if test="${form eq '연차신청서' }">selected="selected"</c:if>>연차신청서</option>
 						<option value="업무보고서" <c:if test="${form eq '업무보고서' }">selected="selected"</c:if>>업무보고서</option>
@@ -226,12 +226,12 @@
 				</form>
 				<form action="/apvWriteOk" method="post">
 				<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="기안하기" /></td>
-				<td style="width:50px;"><a href="/apvHome"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" /></a></td>
+				<td style="width:50px;padding-right:50px;"><a href="/apvHome"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" /></a></td>
 			</tr>
 		</table>
 	</div>
 	<div style="width:1000px;">
-		<table class="table table-bordered align-middle" style="margin-left:6%;width:61%;float:left;">
+		<table class="table table-bordered align-middle" style="margin-left:10%;width:61%;float:left;">
 			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">
 				<th>이름</th>
 				<th>직책</th>
@@ -240,22 +240,22 @@
 				<th>작성일자</th>
 			</tr>
 			<tr style="text-align:center;">
-				<td class="border">${mdto.mname }</td>
-				<td class="border">${mdto.mrank }</td>
-				<td class="border">${mdto.oname }</td>
-				<td class="border">${mdto.mno }</td>
-				<td class="border">${now }</td>
+				<td class="border border-1">${mdto.mname }</td>
+				<td class="border border-1">${mdto.mrank }</td>
+				<td class="border border-1">${mdto.oname }</td>
+				<td class="border border-1">${mdto.mno }</td>
+				<td class="border border-1">${now }</td>
 				<input type="hidden" name="mno" value="${mdto.mno }" />
 			</tr>
 		</table>
-		<table class="table table-bordered align-middle" style="width:31%;float:right;text-align:center;">
+		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;">
 			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
 				<th>결재자1</th>
 				<th>결재자2</th>
 			</tr>
 			<tr>
-				<td class="border">아무개</td>
-				<td class="border">아무개</td>
+				<td class="border border-1">아무개</td>
+				<td class="border border-1">아무개</td>
 			</tr>
 		</table>
 	</div>
@@ -265,9 +265,21 @@
 			<jsp:include page="form/vacation.jsp" />
 		</c:when>
 		<c:when test="${form eq '업무보고서' }">
-			<jsp:include page="form/businessReport.jsp"></jsp:include>
+			<jsp:include page="form/businessReport.jsp" />
 		</c:when>
 	</c:choose>
+	
+	<div>
+	<table class="table table-borderless align-middle" style="width:25%;text-align:center;margin-left:auto;margin-right:auto;margin-bottom:50px;">
+		<tr>
+			<td style="padding-top:50px;">상기 명 본인은 위와같은 사유로 제출합니다.</td>
+		</tr>
+		<tr>
+			<td style="padding-top:50px;">PeopleCrew</td>
+		</tr>
+	</table>
+	</div>
+	
 	</div>
 	</div>
 	</form>

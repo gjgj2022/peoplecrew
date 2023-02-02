@@ -205,7 +205,8 @@
 
 <!-- ==========================================================내작업======================  -->
 	<div class="container bg-white p-2 rounded" style="min-width:1400px;">
-	<div style="margin-top:100px;width:1000px;align:center;min-height:1000px;margin-left:auto;margin-right:auto;">
+	<div style="position:relative;left:192px;top:100px;"><a href="/personalFile"><input class="btn btn-primary" type="button" value="목록으로" /></a></div>
+	<div class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1000px;margin-left:auto;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
 			<tr style="height:50px;">
@@ -248,6 +249,18 @@
 			<jsp:include page="form/businessReportView.jsp" />
 		</c:when>
 	</c:choose>
+	
+	<div style="width:1000px;">
+	<table class="table table-borderless align-middle" style="width:25%;text-align:center;margin-left:auto;margin-right:auto;margin-bottom:50px;">
+		<tr>
+			<td style="padding-top:50px;">상기 명 본인은 위와같은 사유로 제출합니다.</td>
+		</tr>
+		<tr>
+			<td style="padding-top:50px;">PeopleCrew</td>
+		</tr>
+	</table>
+	</div>
+	
 	</div>
 	</div>
 	</form>

@@ -254,7 +254,7 @@
 											<a href="/personalFile?apvP=반려"><input type="button" class="btn btn-<%=btn5 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="반려" /></a>
 										</td>
 									</tr>
-									<tr class="text-sm mb-0">
+									<tr class="text-sm mb-0" style="text-align:center;">
 										<th>문서번호</th>
 										<th>분류</th>
 										<th>제목</th>
@@ -267,7 +267,7 @@
 									
 									%>
 									<c:forEach var="list2" items="${list2 }" varStatus="status">
-										<tr class="text-sm mb-0">
+										<tr class="text-sm mb-0" style="text-align:center;">
 											<td>${list2.dono }</td>
 											<td>${list2.dotype }</td>
 											<td><a href="/personalFileView?dono=${list2.dono }&dotype=${list2.dotype }">${list2.dotitle }</a></td>
@@ -280,7 +280,7 @@
 										}else if(!apvP.equals("전체문서")){
 									%>
 									<c:forEach var="list1" items="${list1 }" varStatus="status">
-										<tr class="text-sm mb-0">
+										<tr class="text-sm mb-0" style="text-align:center;">
 											<td>${list1.dono }</td>
 											<td>${list1.dotype }</td>
 											<td><a href="/personalFileView?dono=${list1.dono }&dotype=${list1.dotype }">${list1.dotitle }</a></td>
