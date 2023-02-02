@@ -23,47 +23,6 @@
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   
- <!--  <script type="text/javascript">
-  	function getSearchList(){
-  		$.ajax({
-  			type:'GET',
-  			url : "/getSearchList",
-  			data : '관리자',
-  			success : function(result){
-  				
-  				$('#membertable > tobody').empty();
-  			/* 	if(result.length>=1){
-  					result.forEach(function(item){
-  							str='<tr>'
-  							str += "<td>"+item.mno+"</td>";
-  							str+="<td>"+item.mname+"</td>";
-  							str+="<td>"+time.mdate+"</td>";
-  							str+="<td>"+item.mphone+"</td>";
-  							str+="<td>"+item.mrank+"</td>";
-  							str+="<td>"+item.oname+"</td>";
-  							str+="<td class='ps-2'>"+item.mm+"</td>";
-  							str+="</tr>"
-  							$('#membertable').append(str);
-  					})
-  				} */
-  				
-  			}
-  			
-  		})
-  	} -->
-  
-  </script>
-  
- <!--  <script type="text/javascript">
-  	function goPost(){
- 		let f = document.createElement('form');
-  	    f.setAttribute('method', 'post');
-  	    f.setAttribute('action', '/admin/admin2/ser');
-  	    document.body.appendChild(f);
-  	    f.submit();
-  	}
-  </script> -->
-  
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -71,9 +30,8 @@
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="/">
-        <img src="../resources/assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">PeopleCrew</span>
+      <a class="navbar-brand " href="/" style="margin-right: 0; text-align: center;">
+        <img src="https://i.ibb.co/1dzdtP6/logo.png" alt="main_logo">
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -280,12 +238,14 @@
                       </td>
                       
                       <td class="ps-2">
-                        <a href="modify?mno=${dto.mno }" class="btn btn-info m-2" data-toggle="tooltip" data-original-title="Edit user" style="margin-bottom: 0;">
+                        <a href="modify?mno=${dto.mno }" class="btn btn-info m-2" 
+                        		onclick="return confirm('수정 하시겠습니까?');" data-toggle="tooltip" data-original-title="Edit user" style="margin-bottom: 0;">
                           수정
                         </a>
                       </td>
                       <td class="ps-2">
-                        <a href="delete?mno=${dto.mno }" class="btn btn-danger m-2" data-toggle="tooltip" data-original-title="delete user" style="margin-bottom: 0; ">
+                        <a href="delete?mno=${dto.mno }" class="btn btn-danger m-2" data-toggle="tooltip" 
+                        		onclick="return confirm('삭제 하시겠습니까?');" data-original-title="delete user" style="margin-bottom: 0; ">
                           삭제
                         </a>
                       </td>

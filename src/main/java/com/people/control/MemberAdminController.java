@@ -207,23 +207,17 @@ public class MemberAdminController {
 		model.addAttribute("list", list);
 		model.addAttribute("map", map);
 		
+		List<MemberDTO> avg = service.getAvg();
+		List<MemberDTO> avg2 = service.getAvg2();
+		
+		model.addAttribute("avg", avg);
+		model.addAttribute("avg2", avg2);
+		
 		log.info("map 2 : " + map);
 		log.info("list 2 : " + list);
 		log.info(" search2 : 관리자 admin");
 		
 		return "admin/m_salInfo";
-	}
-	
-	@GetMapping("/msal")
-	public String sal(@RequestParam("mno")int mno, Model model) {
-		
-		MemberDTO dto2 = service.getOne(mno);
-		System.out.println("dto2 : " + dto2);
-		log.info("tt : ",dto2 );
-		
-		model.addAttribute("dto2", dto2);
-		
-		return "/include/modalTest";
 	}
 	
 	

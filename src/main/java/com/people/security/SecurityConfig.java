@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.people.dto.MemberDTO;
 import com.people.service.MemberService;
@@ -43,6 +45,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	// invalidateHttpSession 정상작동 안함(로그아웃시 세션삭제가 제대로안됨), 해결하기위해 httpSessionEventPublisher 메소드 추가후 빈등록
+    @Bean
+    ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
+    	return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
+    }
 	
 	// 로그인 실패 핸들러 의존성 주입	
 	private final AuthenticationFailureHandler customFailureHandler;
@@ -89,17 +97,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll()
 		.and()
 		.logout()
-			.logoutSuccessUrl("/login")
-			.invalidateHttpSession(true)
-			.deleteCookies("JSESSIONID")
+			.logoutSuccessUrl("/login")  // 로그아웃 성공시 이동할 url
+			.invalidateHttpSession(true) // 로그아웃 성공시 세션제거 (정상작동 안함 httpSessionEventPublisher 메소드추가)
+			.deleteCookies("JSESSIONID") // 쿠키제거
 		.and()
 		.exceptionHandling()
 			.accessDeniedPage("/WEB-INF/views/error/403.jsp") // 권한없는페이지 403에러 커스텀
 		.and()
 		.sessionManagement()
-			.maximumSessions(1)	// 한 유저가 갖을수 있는 세션 갯수 (1)개 
-			.maxSessionsPreventsLogin(false)
-			.expiredUrl("/login");
+			.maximumSessions(1)				// 세션 허용 갯수 (1)개 
+			.maxSessionsPreventsLogin(true) // true: 동시 로그인 차단 ,  false: 기존 세션 만료(default)
+			.expiredUrl("/login");			// 세션 만료시 이동페이지
 		
 	}
 }
