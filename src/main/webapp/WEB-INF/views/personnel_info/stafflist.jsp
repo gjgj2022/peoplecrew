@@ -151,14 +151,20 @@ function clearFilter2()
 	}
 
 .stafflist_table{
+	width: 95%;
+	text-align: center;
+	
+}
+
+.stafflist_table th{
 	text-align: center;
 	
 }
 .stafflist_name{
 	text-align: left;
 }
-.dataTable_filter{
-	margin-right: 100px;
+#dataTable_filter{
+	margin-right: 20px;
 }
   
   </style>
@@ -408,7 +414,7 @@ function clearFilter2()
                 <table class="table align-items-center mb-0 stafflist_table" id="dataTable" >
                   <thead>
                     <tr >
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">이름</th>
+                      <th class="text-uppercase text-center text-secondary text-xs font-weight-bolder opacity-7">이름</th>
                       
                       
                       

@@ -17,6 +17,10 @@ public class ApprovalService {
 		return dao.selectAll();
 	}
 	
+	public List<ApprovalDTO> readOne(int apmno){
+		return dao.selectOne(apmno);
+	}
+	
 	public List<ApprovalDTO> readAllByProgress(String apvP){
 		return dao.selectAllByApprogress(apvP);
 	}
@@ -27,5 +31,25 @@ public class ApprovalService {
 	
 	public int getMyCount(String apvP, String mno) {
 		return dao.getMyCount(apvP, mno);
+	}
+	
+	public List<ApprovalDTO> getAllByApmno(int apmno){
+		return dao.getAllByApmno(apmno);
+	}
+	
+	public void addOne(ApprovalDTO dto) {
+		dao.addOne(dto);
+	}
+	
+	public void updateOne(String approgress, String apno) {
+		dao.updateOne(approgress, apno);
+	}
+	
+	public ApprovalDTO selectOneByDono(String dono, String apmno) {
+		return dao.selectOneByDono(dono, apmno);
+	}
+	
+	public void deleteOne(String dono) {
+		dao.deleteOne(dono);
 	}
 }

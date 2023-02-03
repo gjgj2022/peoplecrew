@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.people.dao.CalendarDAO">
+
+	<select id="getAll" resultType="CalendarDTO">
+		select c.*, u.*
+		from calendar c inner join upper_calendar u
+		where u.ucalno = c.ucalno and u.uno != 1
+	</select>
+
+	<select id="getOne" parameterType="int" resultType="CalendarDTO">
+		select c.*, u.*, (select mname from member where mno=u.mno) mname ,
+		(select uname from upper_organization where uno =u.uno) uname,  
+		(select oname from organization where ono =c.ono) oname,  
+		(select mname from member where u.updatemno=mno) updatemname 
+		from calendar c inner join upper_calendar u
+		where u.ucalno = c.ucalno
+		and calno = #{calno}
+	</select>
+
+	<select id="getByUno" parameterType="int" resultType="CalendarDTO">
+		select c.*, u.*
+		from calendar c inner join upper_calendar u
+		where u.ucalno = c.ucalno and u.uno !=1
+		and uno=#{uno} order by calstart asc
+	</select>
+
+	<select id="getByMno" parameterType="int" resultType="CalendarDTO">
+		select c.*, u.*
+		from calendar c inner join upper_calendar u
+		where u.ucalno = c.ucalno and uno=1
+		and mno =#{mno} 
+	</select>
+
+	<insert id="insertOne" parameterType="CalendarDTO">
+		insert calendar values 
+		(null, #{ucalno}, #{caltitle}, #{calstart},
+		#{calend}, #{calloc}, #{calcontents},#{ono})
+	</insert>
+	<update id="upperCalUpdate" parameterType="CalendarDTO">
+		update upper_calendar 
+		set updatemno = #{updatemno}, updatedate=now() 
+		where uno=#{uno}
+	</update>
+
+	<update id="updateOne" parameterType="CalendarDTO">
+		update calendar 
+		set calstart = #{calstart}, calend = #{calend}, 
+		calcontents = #{calcontents}, caltitle = #{caltitle}, calloc=#{calloc},ucalno=#{ucalno},ono=#{ono}
+		where calno = #{calno}
+	</update>
+
+	<delete id="deleteOne" parameterType="int">
+		delete from calendar where calno = #{calno}
+	</delete>
+	<select id="getUcalno" parameterType="int" resultType="Integer">
+		select IFNULL(ucalno,0) as ucalno 
+		from upper_calendar 
+		where mno = #{updatemno} and uno=1
+	</select>
+	
+	<insert id="makeTable" parameterType="int" keyProperty="ucalno">
+		insert into upper_calendar 
+		values (null, #{updatemno}, 1, now(), #{updatemno}, now())
+	</insert>
+	
+	<select id="endList" parameterType="MemberDTO" resultType="CalendarDTO">
+		select c.*, u.*
+		from calendar c inner join upper_calendar u
+		using (ucalno)
+        where c.ucalno = (select ucalno from upper_calendar where mno=#{mno} and uno=1) 
+        or c.ucalno = (select ucalno from upper_calendar where uno in (#{uno},0))
+        order by c.calend asc
+	</select>
+	
+		<select id="getByOno" parameterType="int" resultType="CalendarDTO">
+		select c.*, u.*
+		from calendar c inner join upper_calendar u
+		where u.ucalno = c.ucalno and u.uno !=1
+		and c.ono=#{ono} order by calstart asc
+	</select>
+</mapper>

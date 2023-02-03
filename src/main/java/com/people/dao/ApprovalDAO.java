@@ -11,7 +11,13 @@ import com.people.dto.ApprovalDTO;
 @Mapper
 public interface ApprovalDAO {
 	List<ApprovalDTO> selectAll();
+	List<ApprovalDTO> selectOne(int apmno);
 	List<ApprovalDTO> selectAllByApprogress(String apvP);
 	int getAllCount(String apvP);
 	int getMyCount(String apvP, String mno);
+	List<ApprovalDTO> getAllByApmno(int apmno);
+	void addOne(ApprovalDTO dto);
+	void updateOne(String approgress, String apno);
+	ApprovalDTO selectOneByDono(String dono,String apmno);
+	void deleteOne(String dono);
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.people.dao.MemberDAO;
 import com.people.dto.MemberDTO;
-import com.people.dto.AttdStartEnd;
+import com.people.dto.StartEnd;
 
 @Service
 public class MemberService {
@@ -16,7 +16,7 @@ public class MemberService {
 	private MemberDAO dao;
 	
 	public List<MemberDTO> getAll(int startno, int endno, String keyword){
-		AttdStartEnd se = new AttdStartEnd();
+		StartEnd se = new StartEnd(startno, endno,keyword);
 		return dao.getAll(se);
 	}
 	

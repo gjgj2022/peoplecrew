@@ -230,4 +230,6 @@ public class MemberAdminController {
 		return "/admin/test4";
 	}
 	
+
 }
+

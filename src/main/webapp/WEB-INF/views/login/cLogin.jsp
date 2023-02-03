@@ -175,6 +175,149 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+<<<<<<< HEAD
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body {
+        background: #ecf0f3;
+    }
+    .wrapper {
+        max-width: 380px;
+        min-height: 400px;
+        margin: 350px auto;
+        padding: 40px 30px 30px 30px;
+        background-color: #ecf0f3;
+        border-radius: 15px;
+        box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+    }
+    .logo {
+        width: 80px;
+        margin: auto;
+    }
+    .logo img {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0px 0px 3px #5f5f5f,
+            0px 0px 0px 5px #ecf0f3,
+            8px 8px 15px #a7aaa7,
+            -8px -8px 15px #fff;
+    }
+
+    .wrapper .name {
+        font-weight: 600;
+        font-size: 1.4rem;
+        letter-spacing: 1.3px;
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    .wrapper .form-field input {
+        width: 100%;
+        display: block;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 1.2rem;
+        color: #666;
+        padding: 10px 15px 5px 10px;
+        /* border: 1px solid red; */
+    }
+
+    .wrapper .form-field {
+        padding-left: 10px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+    }
+
+    .wrapper .form-field .fas {
+        color: #555;
+    }
+    
+    .wrapper .btn {
+        box-shadow: none;
+        width: 100%;
+        height: 40px;
+        /* background-color: #03A9F4; */
+        color: #fff;
+        border-radius: 25px;
+        box-shadow: 3px 3px 3px #b1b1b1,
+            -3px -3px 3px #fff;
+        letter-spacing: 1.3px;
+        border: none;
+        font-size: large;
+    }
+
+    .wrapper .btn:hover {
+        background-color: #039BE5;
+    }
+    
+    #btnlogin {
+    	background-color: #03A9F4;
+    }
+    #btnlogin:hover {
+        background-color: #039BE5;
+    }
+ 	
+    
+    /* .btn {
+	  background: rgb(255,151,0);
+	  border: none;
+	  z-index: 1;
+	}
+	.btn:after {
+	  position: absolute;
+	  content: "";
+	  width: 100%;
+	  height: 0;
+	  top: 0;
+	  left: 0;
+	  z-index: -1;
+	  border-radius: 5px;
+	  background-color: #eaf818;
+	  background-image: linear-gradient(315deg, #eaf818 0%, #f6fc9c 74%);
+	   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+	   7px 7px 20px 0px rgba(0,0,0,.1),
+	   4px 4px 5px 0px rgba(0,0,0,.1);
+	  transition: all 0.3s ease;
+	}
+	.btn:hover {
+	  color: #000;
+	}
+	.btn:hover:after {
+	  top: auto;
+	  bottom: 0;
+	  height: 100%;
+	}
+	.btn:active {
+	  top: 2px;
+	} */
+
+    .wrapper a {
+        text-decoration: none;
+        font-size: 0.8rem;
+        color: #03A9F4;
+    }
+
+    .wrapper a:hover {
+        color: #039BE5;
+    }
+
+    @media(max-width: 380px) {
+        .wrapper {
+            margin: 30px 20px;
+            padding: 40px 15px 15px 15px;
+        }
+    }
+
+=======
     * {
         margin: 0;
         padding: 0;
@@ -306,6 +449,7 @@
             padding: 40px 15px 15px 15px;
         }
     }
+>>>>>>> refs/remotes/origin/master
 </style>
 
 </html>

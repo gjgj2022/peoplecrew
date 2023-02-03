@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApprovalDTO {
-	int apno;
-	int dono;
-	String approgress;
-	String apdate;
-	int mno;
+	private String apno;
+	private String dono;
+	private int approgress;
+	private String apdate;
+	private int mno;
+	private int apmno;
 }
