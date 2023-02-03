@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 
+  <mapper namespace="com.people.dao.PinfoCsDAO">
+
+	<select id="readAll" parameterType="com.people.dto.StartEnd"
+		resultType="PinfoCsDTO">
+		select ROWNUM, bono, mno, mname, bocontents, botitle, bohits, recnt,
+		IF(DATE_FORMAT(bodate, '%Y%m%d') &lt; DATE_FORMAT(now(),'%Y%m%d'),
+		DATE_FORMAT(bodate, '%Y.%m.%d'),
+		DATE_FORMAT(bodate, '%H:%i')
+		) as bodate, bostatus  
+		from (select @ROWNUM := @ROWNUM +1 AS ROWNUM, B.*
+		FROM (select b.bono bono, b.mno mno, m.mname mname, b.bocontents
+		bocontents,
+		b.botitle botitle, b.bohits bohits,
+		(select count(*) from reply where bono = b.bono) as recnt, b.bodate bodate, 
+		b.bostatus bostatus, b.botype botype 
+		from board as b inner join member as m on b.mno = m.mno where botype= 1
+		order by bodate desc) B, (SELECT @ROWNUM :=0 ) TMP) C
+		where ROWNUM &lt;= #{endNo} and ROWNUM &gt;= #{startNo}
+
+	</select>
+
+	<insert id="fileInsert" parameterType="com.people.dto.PinfoFileDTO"
+	useGeneratedKeys="true" keyProperty="fno">
+		insert into file
+		values(null,#{fname},#{fpath},#{mno},#{oriname})
+	</insert>
+
+	<insert id="insertOne" parameterType="PinfoCsDTO">
+		insert into board
+		values(null,#{mno},#{botitle},#{bocontents},sysdate(),0,#{fno},1,1)
+	</insert>
+
+	<select id="getOne" parameterType="int"
+		resultType="PinfoCsDTO">
+
+		select b.bono bono, b.mno mno, m.mname mname, b.bocontents
+		bocontents, b.botitle botitle, b.bodate bodate, b.bohits bohits, b.fno fno, b.bostatus bostatus  
+		from
+		board as b inner join member as m on b.mno = m.mno
+		where b.bono =
+		#{bono}
+
+	</select>
+
+	<update id="updateOne" parameterType="PinfoCsDTO">
+		update board set
+		botitle=#{botitle},
+		bocontents=#{bocontents},
+		fno = #{fno},
+		bostatus = #{bostatus} 
+		where bono = #{bono}
+	</update>
+	
+		<update id="updateNoFile" parameterType="PinfoCsDTO">
+		update board set
+		botitle=#{botitle},
+		bocontents=#{bocontents},
+		bostatus = #{bostatus} 
+		where bono = #{bono}
+	</update>
+
+	<delete id="removeOne" parameterType="int">
+		delete from board
+		where bono
+		= #{bono}
+	</delete>
+
+	<update id="raiseBohits" parameterType="int">
+		update board set
+		bohits=bohits+1 where bono = #{bono}
+	</update>
+
+	<delete id="removeReplyAll" parameterType="int">
+		delete from reply
+		where bono=#{bono}
+	</delete>
+
+	<select id="getCount" parameterType="int" resultType="int">
+		select
+		count(*) from reply where bono=#{bono}
+	</select>
+
+	<select id="getBoardTotal" resultType="int">
+		select count(*) from board where botype=1 and botype=2
+	</select>
+
+	<select id="fileDetail" parameterType="int"
+		resultType="com.people.dto.PinfoFileDTO">
+		select * from file where fno = #{fno}
+	</select>
+
+	<delete id="removeFileByFno" parameterType="int">
+		delete from file where fno=#{fno}
+	</delete>
+
+</mapper>

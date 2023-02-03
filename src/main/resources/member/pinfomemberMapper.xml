@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.people.dao.PinfoMemberDAO">
+  
+  
+   
+ 
+  <select id="getIdOne" parameterType="String" resultType="PinfoMemberDTO">
+		select (select uno from organization where ono = m.ono) uno, m.* 
+		from member m where mid = #{username}
+	</select>
+  
+
+ <select id="getMno" parameterType="int" resultType="PinfoMemOriDTO">
+  
+  SELECT  m.mno , m.mname , m.mrank , m.memail , m.mphone , m.mmessage , o.oname ,o.ono
+  FROM member as m inner join organization as o on m.ono = o.ono
+  WHERE m.mno = #{mno}
+  </select>
+  
+  <update id="modify_mypage" parameterType="PinfoMemberDTO" >
+		update member set
+		memail=#{memail},
+		mphone=#{mphone},
+		mmessage = #{mmessage} 
+		where mno = #{mno}
+	</update>
+ 
+
+ 
+ <select id="getAll" resultType="PinfoMemOriDTO" >
+  SELECT m.mno , m.mname ,m.mphone, m.memail , m.mrank , o.oname 
+ FROM member as m inner join organization as o on m.ono = o.ono
+  
+  </select>
+  
+ 
+   
+  <select id="getName" parameterType="String" resultType="PinfoMemOriDTO">
+    SELECT m.mno , m.mname ,m.mphone , m.memail , m.mrank , o.oname 
+ FROM member as m inner join organization as o on m.ono = o.ono
+  WHERE m.mname = #{mname}
+  </select>
+ 
+   
+  <select id="getRank" parameterType="String" resultType="PinfoMemOriDTO">
+   SELECT m.mno , m.mname ,m.mphone , m.memail , m.mrank , o.oname 
+ FROM member as m inner join organization as o on m.ono = o.ono
+  WHERE m.mrank = #{mrank}
+  </select>
+  
+    <select id="getOrg" parameterType="int" resultType="PinfoMemOriDTO">
+   SELECT m.mno, m.mname ,m.mphone , m.memail , m.mrank , o.oname 
+ FROM member as m inner join organization as o m.ono = o.ono
+   WHERE m.ono = #{ono}
+  </select>
+  
+   <select id="getAll2" resultType="PinfoMemOriAttDTO" >
+  SELECT m.mno , m.mmessage, m.mname ,m.mphone, m.memail , m.mrank , o.oname 
+ FROM member as m inner join organization as o on m.ono = o.ono 
+  
+  </select>
+  
+   
+ <!--  <select id="getAll2" resultType="MemOriAttDTO" >
+  SELECT m.mno , m.mmessage, m.mname ,m.mphone, m.memail , m.mrank , o.oname ,a.state
+ FROM member as m inner join organization as o on m.ono = o.ono inner join attendance as a on m.ono = a.ono
+  
+  </select>
+ --> 
+   
+  </mapper>
