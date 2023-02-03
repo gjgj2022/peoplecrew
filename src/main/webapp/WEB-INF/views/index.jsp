@@ -47,11 +47,9 @@
           
           <ul id="tables-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                               <li>
-<<<<<<< HEAD
+
             <a href="personnel_info/mypage?mno=${dto.mno }">
-=======
-            <a href="#">
->>>>>>> branch 'master' of https://github.com/gjgj2022/peoplecrew.git
+
               <i class="bi bi-circle"></i>
               <span>마이페이지</span>
             </a>
