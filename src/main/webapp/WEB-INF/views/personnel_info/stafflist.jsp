@@ -133,7 +133,35 @@ function clearFilter2()
 	$('.content2').show();
 }
    -->
+  <style>
+  /* stafflist
+*/
+.search_person {
+	margin-left:75%;
+	margin-right:20px;
+	width : 50%;
+	height: 100px;
+	
+
+}
+
+.search_person 	.btn{
+	margin-bottom:0px;
+	padding: 10px 20px;
+	}
+
+.stafflist_table{
+	text-align: center;
+	
+}
+.stafflist_name{
+	text-align: left;
+}
+.dataTable_filter{
+	margin-right: 100px;
+}
   
+  </style>
   
 </head>
 

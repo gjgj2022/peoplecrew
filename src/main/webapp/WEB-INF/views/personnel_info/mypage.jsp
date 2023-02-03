@@ -35,6 +35,99 @@
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  
+  <style>
+ /* mypage
+*/
+.mypage_profile_table{
+	vertical-align: middle;
+	margin-left:15%;
+	width: 80%;
+	height: 250px;
+	border: 1px solid white;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 100px;
+	
+}
+table td h6{
+	font-size: 15px;
+	vertical-align: middle;
+}
+
+.btn{
+	margin-bottom: 0rem;
+	}
+.mypage_profile_table th{
+	text-align: right;
+	padding-right: 20px;
+		width: 250px;
+}
+.mypage_profile_table td{
+	text-align: left;
+	padding-right:5%;
+
+}
+
+.profile_img{
+	width: 300px;
+}
+
+.profile_modify {
+	vertical-align:bottom;
+	text-align:right;
+	
+	 padding: 0 0.3rem;
+	 
+	}
+
+.card-header h6{
+	float:left;
+	margin-left:50px;
+	
+	
+}
+.profile_table_name{
+	font-size: 25px;
+
+	
+}
+.profile_table_team{
+	
+	
+}
+
+/*
+modi*/
+
+.mypage_modify{
+	height: 100px;
+}
+
+.card-header{
+	margin-bottom: 10px;
+	
+}
+.table_img_modi{
+	margin-left: 20%;
+}
+
+.phone_size{
+	font-size: 25px;
+	padding: 0 10px;
+}
+
+.mypage_profile_table_modi{
+		vertical-align: middle;
+	margin-left:10%;
+	width:70%;
+	height: 250px;
+	border: 1px solid white;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 100px;
+}
+  </style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
