@@ -56,8 +56,13 @@
 		on A.mno = B.mno
 		WHERE A.mno = #{mno}
 		GROUP BY A.mno;
-		
 	</select>
+	
+	
+	
+	
+	
+	
 	<!-- 근태관리(관리자) 수정 -->
 <!--  	<update id="updateOne" parameterType="AttendanceDTO">
 		UPDATE attendance A INNER JOIN member B
