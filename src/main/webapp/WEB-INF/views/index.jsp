@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -223,12 +225,89 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-3">
       <div class="row">
-        <div class="col-lg-8">
+      	
+      	<!-- 공지사항  -->
+        <div class="col-lg-7">
+          <div class="card h-100">
+            <div class="card-header pb-0 p-2">
+              <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                  <h6 class="mb-0">공지사항</h6>
+                </div>
+                <div class="col-6 text-end">
+                  <a href="/board/list"><button class="btn btn-outline-primary btn-xs mb-0">목록보기</button></a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="table-responsive p-0">
+            <table class="table align-items-center justify-content-center mb-0" >
+	            <thead>
+		            <tr>
+		                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4" >번호</th>
+		                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4" >제목</th>
+		                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4" >작성자</th>
+		                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4" >작성일</th>
+		                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4" >조회수</th>
+		            </tr>
+	            </thead>
+            	<tbody>
+	            	<c:forEach var="bdto" items="${blist }">
+	                    <tr>
+	                      <td class="ps-4">
+	                        <span class="text-secondary text-s font-weight-bolder" ">${bdto.bono }</span> <!-- 번호 -->
+	                      </td>
+	                      <td class="ps-4" id='replyCount'>
+		            		<c:if test="${bdto.bostatus eq 10}">
+		            			<c:choose>
+		            				<c:when test="${bdto.mno eq dto.mno || dto.role eq 'ROLE_ADMIN'}">
+				                        <span class="text-secondary text-s font-weight-bolder"  >${bdto.botitle }</span> <!-- 제목 -->
+				                    <script>
+									if(${bdto.recnt}==0){
+										$('.replyCount'+${bdto.bono}).hide();
+									}
+									</script>
+				                    </c:when>
+										<c:otherwise>
+											<img width="13px" src="https://cdn-icons-png.flaticon.com/512/891/891399.png" />
+												비밀글은 작성자와 관리자만 볼 수 있습니다.
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+				
+							<c:if test="${bdto.bostatus eq 0}">
+			                        <span class="text-secondary text-s font-weight-bolder" >${bdto.botitle }</span> <!-- 제목 -->
+								<script>
+								if(${bdto.recnt}==0){
+									$('.replyCount'+${bdto.bono}).hide();
+								}
+								</script>
+							</c:if>
+					      </td>
+	                      <td class="ps-4">
+	                        <span class="text-secondary text-s font-weight-bolder">${bdto.mname }</span> <!-- 작성자 -->
+	                      </td>
+	                      <td class="ps-4">
+	                        <span class="text-secondary text-s font-weight-bolder">${fn:substring(bdto.bodate,0,10) }</span> <!-- 작성일 -->
+	                      </td>
+	                      <td class="ps-4">
+	                        <span class="text-secondary text-s font-weight-bolder">${bdto.bohits }</span> <!-- 조회수 -->
+	                      </td>
+	                    </tr>
+	           		 </c:forEach>
+                 </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 출퇴근  -->
+      	<div class="col-lg-5">
           <div class="row">
             <div class="col-md-12 mb-lg-0 mb-4">
-              <div class="card mt-4">
+              <div class="card h-100">
                 <div class="card-header pb-0 p-3"  style="float: left;">
                   <div class="row">
                     <div class="col-6 d-flex">
@@ -268,84 +347,11 @@
           </div>
         </div>
         
-        <!-- 모달 -->
-<!-- 		<div id="modal">
-   			<div class="modal_content">
-       		 <h2>모달 창</h2>
-       		 <p>모달 창 입니다.</p>
-       		 <button type="button" id="modal_close_btn">모달 창 닫기</button>
-    		 </div>
-    		<div class="modal_layer"></div>ㅇ
-		</div> -->
-		
-        <div class="col-lg-4">
-          <div class="card h-100">
-            <div class="card-header pb-0 p-2">
-              <div class="row">
-                <div class="col-6 d-flex align-items-center">
-                  <h6 class="mb-0">공지사항</h6>
-                </div>
-                <div class="col-6 text-end">
-                  <button class="btn btn-outline-primary btn-sm mb-0" onclick="location.href='board.jsp'">+</button>
-                </div>
-              </div>
-            </div>
-            <table class="table align-items-center justify-content-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">번호</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">제목</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">작성자</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">조회수</th>
-                    </tr>
-                  </thead>
-            	<tbody>
-	            	<c:forEach var="bdto" items="${blist }">
-			                    <tr>
-			                      <td>
-			                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.bono }</p> <!-- 번호 -->
-			                      </td>
-			                      <td id='replyCount'>
-				            		<c:if test="${bdto.bostatus eq 10}">
-				            			<c:choose>
-				            				<c:when test="${bdto.mno eq dto.mno || dto.role eq 'ROLE_ADMIN'}">
-						                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;"  >${bdto.botitle }</p> <!-- 제목 -->
-						                    <script>
-											if(${bdto.recnt}==0){
-												$('.replyCount'+${bdto.bono}).hide();
-											}
-											</script>
-						                    </c:when>
-												<c:otherwise>
-													<img width="13px" src="https://cdn-icons-png.flaticon.com/512/891/891399.png" />
-														비밀글은 작성자와 관리자만 볼 수 있습니다.
-												</c:otherwise>
-											</c:choose>
-										</c:if>
-						
-									<c:if test="${bdto.bostatus eq 0}">
-					                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;" >${bdto.botitle }</p> <!-- 제목 -->
-										<script>
-										if(${bdto.recnt}==0){
-											$('.replyCount'+${bdto.bono}).hide();
-										}
-										</script>
-									</c:if>
-							      </td>
-			                      <td>
-			                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.mname }</p> <!-- 작성자 -->
-			                      </td>
-			                      <td>
-			                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.bohits }</p> <!-- 조회수 -->
-			                      </td>
-			                    </tr>
-	            	</c:forEach>
-                  </tbody>
-            </table>
-          </div>
-        </div>
       </div>
       </div>
+      	
+      	
+
 		<div class="row mt-4">
         <div class="col-lg-7-1 mb-lg-0 mb-4" style="margin-left: 25px;">
           <div class="card ">
