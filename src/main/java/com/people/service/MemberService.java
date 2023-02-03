@@ -15,7 +15,7 @@ public class MemberService {
 	@Autowired
 	private MemberDAO dao;
 	
-	public List<MemberDTO> getAll(int startno, int endno){
+	public List<MemberDTO> getAll(int startno, int endno, String keyword){
 		AttdStartEnd se = new AttdStartEnd();
 		return dao.getAll(se);
 	}

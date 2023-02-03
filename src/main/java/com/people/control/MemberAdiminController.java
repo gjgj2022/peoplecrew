@@ -71,7 +71,7 @@ public class MemberAdiminController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		List<MemberDTO> list = service.getAll(startNo, endNo);
+		List<MemberDTO> list = service.getAll(startNo, endNo,null);
 		model.addAttribute("list", list);
 		model.addAttribute("map", map);
 		
@@ -106,7 +106,7 @@ public class MemberAdiminController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		List<MemberDTO> list = service.getAll(startNo, endNo);
+		List<MemberDTO> list = service.getAll(startNo, endNo, keyword);
 		model.addAttribute("list", list);
 		model.addAttribute("map", map);
 		
@@ -165,7 +165,7 @@ public class MemberAdiminController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		List<MemberDTO> list = service.getAll(startNo, endNo);
+		List<MemberDTO> list = service.getAll(startNo, endNo, null);
 		model.addAttribute("list", list);
 		model.addAttribute("map", map);
 		
@@ -204,7 +204,7 @@ public class MemberAdiminController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		List<MemberDTO> list = service.getAll(startNo, endNo);
+		List<MemberDTO> list = service.getAll(startNo, endNo, keyword);
 		model.addAttribute("list", list);
 		model.addAttribute("map", map);
 		
