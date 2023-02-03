@@ -74,10 +74,10 @@
 	<!--사원번호로 부서 + 유저 한명조회 -->
 	<select id="getOne" resultType="MemberDTO" parameterType="int">
 		SELECT * FROM 
-		member as A
-		LEFT JOIN organization as O
-		on O.ono = A.ono
-		WHERE A.mno = #{mno};
+		member  m
+		LEFT OUTER JOIN organization  o on o.ono = m.ono
+		LEFT OUTER JOIN upper_organization up ON o.uno = up.uno
+		WHERE m.mno = #{mno};
 	</select>
 	
 	<!-- 아이디 찾기 (이름 이메일)  -->
