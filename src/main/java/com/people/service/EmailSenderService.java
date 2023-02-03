@@ -26,5 +26,6 @@ public class EmailSenderService {
 		System.out.println("mail Sent successfully");
 		
 	}
-	
+
 }
+

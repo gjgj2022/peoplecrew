@@ -34,4 +34,5 @@ public class MemberDTO {
 	private int uno;	 // 상위 부서번호
 
 	private String keyword;	 // 검색 키워드
+
 }

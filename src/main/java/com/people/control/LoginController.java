@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.people.dto.MemberDTO;
+
 import com.people.service.EmailSenderService;
+
 import com.people.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -73,6 +75,7 @@ public class LoginController {
 		
 		return "/include/modalID";
 	}
+
 	
 	//임시비밀번호
 	@PostMapping("/pwSearch")

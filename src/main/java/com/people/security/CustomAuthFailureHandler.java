@@ -45,5 +45,6 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
 		 
 		super.onAuthenticationFailure(request, response, exception);
 	}
-	
+
 }
+

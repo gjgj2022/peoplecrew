@@ -5,6 +5,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<<<<<<< HEAD
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <title>
+    PeopleCrew
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+=======
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
@@ -24,6 +43,7 @@
 <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
 <!-- CSS Files -->
 <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+>>>>>>> refs/remotes/origin/master
 </head>
 <style>
       #attendance_table{
@@ -81,8 +101,13 @@
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+<<<<<<< HEAD
+      <a class="navbar-brand " href="/" style="margin-right: 0; text-align: center;">
+        <img src="https://i.ibb.co/1dzdtP6/logo.png" alt="main_logo">
+=======
       <a class="navbar-brand m-0" href="/" >
         <span class="ms-1 font-weight-bold">PeopleCrew</span>
+>>>>>>> refs/remotes/origin/master
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -90,6 +115,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
     
       <ul class="navbar-nav" data-widget="treeview" role="menu" data-accordion="false">
+<<<<<<< HEAD
         <li class="nav-item dropdown">
           <a class="nav-link active collapsed" data-bs-target="#tables-nav1" data-bs-toggle="collapse" href="#">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -100,9 +126,49 @@
           
           <ul id="tables-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                               <li>
-            <a href="/test">
+            <a href="#">
               <i class="bi bi-circle"></i>
               <span>Green Tables</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i>
+              <span>Data Tables</span>
+            </a>
+          </li>
+        </ul>
+        </li>
+        
+=======
+>>>>>>> refs/remotes/origin/master
+        <li class="nav-item dropdown">
+          <a class="nav-link active collapsed" data-bs-target="#tables-nav1" data-bs-toggle="collapse" href="#">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+<<<<<<< HEAD
+            <span class="nav-link-text ms-1">업무관리</span>
+=======
+            <span class="nav-link-text ms-1">인사정보</span>
+>>>>>>> refs/remotes/origin/master
+          </a>
+          
+<<<<<<< HEAD
+          <ul id="tables-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#">
+=======
+          <ul id="tables-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                              <li>
+            <a href="/test">
+>>>>>>> refs/remotes/origin/master
+              <i class="bi bi-circle"></i>
+<<<<<<< HEAD
+              <span>G12</span>
+=======
+              <span>Green Tables</span>
+>>>>>>> refs/remotes/origin/master
             </a>
           </li>
           <li>
@@ -121,6 +187,20 @@
             </div>
             <span class="nav-link-text ms-1">근태관리</span>
           </a>
+<<<<<<< HEAD
+          
+          <ul id="tables-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i>
+              <span>General Tables</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i>
+              <span>Data Tables</span>
+=======
           <ul id="tables-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/attendance?mno=${dto.mno }">
@@ -138,11 +218,68 @@
             <a href="/vacation">
               <i class="bi bi-circle"></i>
               <span>휴가관리</span>
+>>>>>>> refs/remotes/origin/master
             </a>
           </li>
         </ul>
         </li>
         
+<<<<<<< HEAD
+        <li class="nav-item dropdown">
+          <a class="nav-link active collapsed" data-bs-target="#tables-nav6" data-bs-toggle="collapse" href="#">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">게시판</span>
+          </a>
+          <ul id="tables-nav6" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/board/tables">
+              <i class="bi bi-circle"></i>
+              <span>General Tables</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i>
+              <span>Data Tables</span>
+            </a>
+          </li>
+        </ul>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link active collapsed" data-bs-target="#tables-nav4" data-bs-toggle="collapse" href="#">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">인사관리 (관리자)</span>
+          </a>
+          
+          <ul id="tables-nav4" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/admin/sign">
+              <i class="bi bi-circle"></i>
+              <span>사원정보등록</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/admin2">
+              <i class="bi bi-circle"></i>
+              <span>사원조회</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/admin3">
+              <i class="bi bi-circle"></i>
+              <span>급여관리</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/admin4">
+              <i class="bi bi-circle"></i>
+              <span>근태관리</span>
+=======
         
         <li class="nav-item dropdown">
           <a class="nav-link active collapsed" data-bs-target="#tables-nav5" data-bs-toggle="collapse" href="#">
@@ -187,6 +324,7 @@
             <a href="#">
               <i class="bi bi-circle"></i>
               <span>Data Tables</span>
+>>>>>>> refs/remotes/origin/master
             </a>
           </li>
         </ul>
@@ -203,15 +341,30 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+<<<<<<< HEAD
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">PeopleCrew</li>
+=======
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">attendance</li>
+>>>>>>> refs/remotes/origin/master
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">attendance</h6>
         </nav>
+<<<<<<< HEAD
+       
+       <!-- 로그인헤더  -->
+		<%@ include file="include/header.jsp" %>
+		       
+=======
          <!-- 로그인헤더  -->
 		<%@ include file="include/header.jsp" %>
+>>>>>>> refs/remotes/origin/master
       </div>
     </nav>
     <!-- End Navbar -->
+<<<<<<< HEAD
+    
+    
+=======
 <script type="text/javascript">
 
 function times() {
@@ -698,7 +851,13 @@ $(function(){
           </div>
         </div>
       </footer>
+>>>>>>> refs/remotes/origin/master
   </main>
+  
+  
+  
+  
+  
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="fa fa-cog py-2"> </i>
@@ -856,6 +1015,10 @@ $(function(){
   <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
+<<<<<<< HEAD
+  
+=======
+>>>>>>> refs/remotes/origin/master
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

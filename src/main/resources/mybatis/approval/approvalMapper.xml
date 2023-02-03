@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.people.dao.ApprovalDAO">
+	<select id="selectAll" resultType="ApprovalDTO">
+		SELECT apno,dono,approgress,apdate,mno FROM approval
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="ApprovalDTO">
+		SELECT * FROM approval
+		WHERE apmno = #{apmno}
+	</select>
+	
+	<select id="selectOneByDono" parameterType="String" resultType="ApprovalDTO">
+		SELECT * FROM approval
+		WHERE dono = #{dono}
+		AND apmno = #{apmno}
+	</select>
+	
+	<select id="selectAllByApprogress" resultType="ApprovalDTO" parameterType="String">
+		SELECT apno,dono,approgress,apdate,mno FROM approval
+		WHERE approgress = #{approgress}
+	</select>
+	<select id="getAllCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM approval
+		WHERE approgress = #{apvP}
+	</select>
+	<select id="getMyCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM approval
+		WHERE approgress = #{apvP}
+		AND mno = #{mno}
+	</select>
+	<select id="getAllByApmno" parameterType="int" resultType="ApprovalDTO">
+		SELECT * FROM approval
+		WHERE apmno = #{apmno}
+		ORDER BY apno DESC;
+	</select>
+	
+	<insert id="addOne" parameterType="ApprovalDTO">
+		INSERT INTO approval(apno,dono,mno,apmno)
+		VALUES (#{apno},#{dono},#{mno},#{apmno})
+	</insert>
+	
+	<update id="updateOne" parameterType="String">
+		UPDATE approval SET
+		approgress = #{approgress},
+		apdate = curDate()
+		WHERE apno = #{apno}
+	</update>
+	
+	<delete id="deleteOne" parameterType="String">
+		DELETE FROM approval
+		WHERE dono = #{dono}
+	</delete>
+</mapper>

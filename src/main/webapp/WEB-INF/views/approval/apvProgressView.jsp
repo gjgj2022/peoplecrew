@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="76x76"
 	href="./assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-<title>개인문서함</title>
+<title>결재처리함</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -30,7 +30,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-	<div class="min-height-300 bg-primary position-absolute w-100"></div>
+	<div class="min-height-300 position-absolute w-100" style="background-color:#5e72e4;"></div>
 
 	<!-- 사이드바  -->
 	<%@ include file="../include/sidebar.jsp" %>
@@ -42,7 +42,7 @@
 			id="navbarBlur" data-scroll="false">
 			<div class="container-fluid py-1 px-3">
 				<nav aria-label="breadcrumb">
-					<h6 class="font-weight-bolder text-white mb-0">개인문서함</h6>
+					<h6 class="font-weight-bolder text-white mb-0"></h6>
 				</nav>
 
        <!-- 로그인헤더  -->
@@ -59,128 +59,106 @@
 
 
 
+<!-- ==========================================================내작업======================  -->
+	<div class="container bg-white p-1 rounded" style="min-width:1400px;">
+	<div style="position:relative;left:180px;top:100px;"><a href="/apvProgress"><input class="btn btn-primary" type="button" value="목록으로" /></a></div>
+	<div class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:180px;margin-right:auto;">
+	<div style="height:200px;">
+		<table class="table table-borderless">
+			<tr class="align-bottom" style="height:100px;">
+				<th style="width:900px;font-size:25px;text-align:center;" colspan="6">
+					<h3>${ddto.dotype }</h3>
+				</th>
+			</tr>
+			<tr style="height:50px;">
+				<td>
+					<input class="btn btn-primary" type="hidden" value="선택" />
+				</td>
+				<c:choose>
+					<c:when test="${adto.approgress == 0 }">
+						<c:if test="${ddto.doprogress eq '결재대기' }">
+							<form action="/apvProgressOk1" method="post">
+							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
+							<td style="width:50px;"><a href="/apvProgressNo?dono=${ddto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+						</c:if>
+						<c:if test="${ddto.doprogress eq '진행중' }">
+							<form action="/apvProgressOk2" method="post">
+							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
+							<td style="width:50px;"><a href="/apvProgressNo2?dono=${ddto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+						</c:if>
+					</c:when>
+				</c:choose>
+			</tr>
+		</table>
+	</div>
+	<div style="width:1000px;">
+		<table class="table table-bordered align-middle" style="margin-left:4%;width:61%;float:left;">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">
+				<th>이름</th>
+				<th>직책</th>
+				<th>부서</th>
+				<th>사번</th>
+				<th>작성일자</th>
+			</tr>
+			<tr style="text-align:center;">
+				<td class="border border-1" style="height:70px;">${mdto.mname }</td>
+				<td class="border border-1" style="height:70px;">${mdto.mrank }</td>
+				<td class="border border-1" style="height:70px;">${mdto.oname }</td>
+				<td class="border border-1" style="height:70px;">${mdto.mno }</td>
+				<td class="border border-1" style="height:70px;">${ddto.dodate }</td>
+				<input type="hidden" name="mno" value="${mdto.mno }" />
+			</tr>
+		</table>
+		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;margin-bottom:50px;">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
+				<th style="width:100px;">결재자</th>
+				<th style="width:100px;">팀장</th>
+			</tr>
+			<tr>
+				<td class="border border-1" style="height:70px;"><c:if test="${ddto.doprogress eq '진행중' ||ddto.doprogress eq '결재완료' }"><img src="${dto11.fpath }" alt="" style="height:50px;"/></c:if></td>
+				<td class="border border-1" style="height:70px;"><c:if test="${ddto.doprogress eq '결재완료' }"><img src="${dto12.fpath }" alt="" style="height:50px;"/></c:if></td>
+			</tr>
+		</table>
+	</div>
 
-
-
-
-
-
-		<!-- ===============================================================내작업=========================================================== -->
-		<div class="container-fluid py-4">
-			<div class="row">
-				
-				
-				<div class="col-lg-7 mb-lg-0 mb-4" id="table5">
-					<div class="card ">
-						<div class="card-header pb-0 p-3">
-							<div class="d-flex justify-content-between">
-								<h5 class="mb-2">개인문서함</h5>
-							</div>
-						</div>
-						<div class="table-responsive">
-							<table class="table align-items-center ">
-								<tbody>
-									<%
-										String apvP = request.getParameter("apvP");
-									
-										String btn1 = "light";
-										String btn2 = "light";
-										String btn3 = "light";
-										String btn4 = "light";
-										String btn5 = "light";
-									
-										if(apvP == null||apvP.equals("전체문서")){
-											btn1 = "primary";
-										}else if(apvP.equals("결재대기")){
-											btn2 = "primary";
-										}else if(apvP.equals("진행중")){
-											btn3 = "primary";
-										}else if(apvP.equals("결재완료")){
-											btn4 = "primary";
-										}else if(apvP.equals("반려")){
-											btn5 = "primary";
-										}
-									%>
-									<tr>
-										<td colspan="6">
-											<a href="/personalFile?apvP=전체문서"><input type="button" class="btn btn-<%=btn1 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="전체문서"/></a>
-											<a href="/personalFile?apvP=결재대기"><input type="button" class="btn btn-<%=btn2 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="결재대기" /></a>
-											<a href="/personalFile?apvP=진행중"><input type="button" class="btn btn-<%=btn3 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="진행중" /></a>
-											<a href="/personalFile?apvP=결재완료"><input type="button" class="btn btn-<%=btn4 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="결재완료" /></a>
-											<a href="/personalFile?apvP=반려"><input type="button" class="btn btn-<%=btn5 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="반려" /></a>
-										</td>
-									</tr>
-									<tr class="text-sm mb-0" style="text-align:center;">
-										<th style="width:20%;">문서번호</th>
-										<th style="width:10%;">분류</th>
-										<th style="width:35%;">제목</th>
-										<th style="width:12%;">기안자</th>
-										<th style="width:11%;">기안일</th>
-										<th style="width:12%;">진행상태</th>
-									</tr>
-									<%
-										if(apvP == null||apvP.equals("전체문서")){
-									
-									%>
-									<c:forEach var="list2" items="${list2 }" varStatus="status">
-										<tr class="text-sm mb-0" style="text-align:center;">
-											<td>${list2.dono }</td>
-											<td>${list2.dotype }</td>
-											<td><a href="/personalFileView?dono=${list2.dono }&dotype=${list2.dotype }">${list2.dotitle }</a></td>
-											<td>${mlist2[status.index].mname }</td>
-											<td>${list2.dodate }</td>
-											<td>${list2.doprogress }</td>
-										</tr>
-									</c:forEach>
-									<%
-										}else if(!apvP.equals("전체문서")){
-									%>
-									<c:forEach var="list1" items="${list1 }" varStatus="status">
-										<tr class="text-sm mb-0" style="text-align:center;">
-											<td>${list1.dono }</td>
-											<td>${list1.dotype }</td>
-											<td><a href="/personalFileView?dono=${list1.dono }&dotype=${list1.dotype }">${list1.dotitle }</a></td>
-											<td>${mlist1[status.index].mname}</td>
-											<td>${list1.dodate }</td>
-											<td>${list1.doprogress }</td>
-										</tr>
-									</c:forEach>
-									<%
-										}
-									%>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				
-				
-
-			</div>
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-		<!-- ===============================================================내작업=========================================================== -->
-
-
-
-
-
-
-
-
-
-
-
+	<c:choose>
+		<c:when test="${form eq '연차신청서' }">
+			<jsp:include page="form/vacationView.jsp" />
+		</c:when>
+		<c:when test="${form eq '업무보고서' }">
+			<jsp:include page="form/businessReportView.jsp" />
+		</c:when>
+	</c:choose>
+	
+	<div style="width:1000px;">
+	<table class="table table-borderless align-middle" style="width:25%;text-align:center;margin-left:auto;margin-right:auto;margin-bottom:50px;">
+		<tr>
+			<td style="padding-top:50px;">상기 명 본인은 위와같은 사유로 제출합니다.</td>
+		</tr>
+		<tr>
+			<td style="padding-top:50px;">PeopleCrew <img src="./assets/img/logo-ct-dark.png" alt="" style="width:30px;"/></td>
+		</tr>
+	</table>
+	</div>
+	
+	</div>
+	
+	
+	</div>
+	</form>
+<!-- ===================================================================================  -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</main>
 
 	<!--   Core JS Files   -->

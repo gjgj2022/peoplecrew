@@ -1,5 +1,6 @@
 package com.people.dto;
 
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -17,4 +18,5 @@ public class FileDTO {
 	    private String oriname;  //실제 파일
 	    private String fpath;
 	    private int mno;
+
 }

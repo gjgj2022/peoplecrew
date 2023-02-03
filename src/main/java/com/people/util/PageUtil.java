@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class PageUtil {
 	
+
 	public static Map<String, Object> getPageData(int totalCount, int recordPerPage, int currentPage) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -66,3 +67,4 @@ public class PageUtil {
 		return map;
 	}
 }
+

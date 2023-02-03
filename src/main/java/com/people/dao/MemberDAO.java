@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.people.dto.MemberDTO;
+
 import com.people.dto.AttdStartEnd;
 
 @Repository
@@ -13,6 +14,7 @@ import com.people.dto.AttdStartEnd;
 public interface MemberDAO {
 	
 	List<MemberDTO> getAll(AttdStartEnd se);  // 전체조회 및 페이징처리
+
 	int getTotal();
 	int getTotal(String key);
 	List<MemberDTO> getAvg();
