@@ -386,6 +386,8 @@
         </div>
       </div>
     </div>
+    
+    <%@ include file="include/footer.jsp" %>
   </div>
   <!--   Core JS Files   -->
   <script src="../resources/assets/js/core/popper.min.js"></script>

@@ -197,7 +197,7 @@
   </div>
   <!-- 캘린더end -->
     
-    
+    <%@ include file="include/footer.jsp" %>
   </main>
   <!--   Core JS Files   -->
   <script src="../resources/assets/js/core/popper.min.js"></script>
