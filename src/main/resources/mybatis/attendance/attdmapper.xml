@@ -58,9 +58,12 @@
 		GROUP BY A.mno;
 		
 	</select>
-	
-<!-- 	<update id="updateOne" parameterType="AttendanceDTO">
-	
+	<!-- 근태관리(관리자) 수정 -->
+<!--  	<update id="updateOne" parameterType="AttendanceDTO">
+		UPDATE attendance A INNER JOIN member B
+		ON A.mno = B.mno
+		SET A.start_time = #{start_time}, A.end_time = #{end_time}, A.state = #{state}
+		WHERE A.mno = #{mno}
 	</update> -->
 	
 <!--   	<insert id="insertOne" parameterType="AttendanceDTO">

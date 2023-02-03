@@ -100,16 +100,6 @@ public class AttendanceController {
 		
 	}
 	
-//	@GetMapping("/attmodify_admin")
-//	public String attmodify() {
-//		
-////		AttendanceDTO attdto2 = attdservice.userOne(mno);
-////		
-////		model.addAttribute("attdto2", attdto2);
-////		log.info("attdto2{}", attdto2);
-//		return "admin/attmodify_admin";
-//	}
-	
 //	@PostMapping("/attmodify_admin")
 //	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO dto) {
 //		attdservice.updateOne(dto);
