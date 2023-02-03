@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.people.dao.PinfoCsDAO;
 import com.people.dto.PinfoCsDTO;
 import com.people.dto.PinfoFileDTO;
-import com.people.dto.StartEnd;
+import com.people.dto.PinfoStartEnd;
 
 @Service
 public class PinfoCsService {
@@ -23,7 +23,7 @@ public class PinfoCsService {
 	}
 	
 	public List<PinfoCsDTO> selectAll(int startNo, int endNo) {
-		StartEnd se = new StartEnd(startNo,endNo); //페이징처리
+		PinfoStartEnd se = new PinfoStartEnd(startNo,endNo); //페이징처리
 		return dao.readAll(se);
 	}
 	

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.people.dto.PinfoCsDTO;
 import com.people.dto.PinfoFileDTO;
 import com.people.dto.PinfoMemberDTO;
-import com.people.dto.StartEnd;
+import com.people.dto.PinfoStartEnd;
 
 
 
@@ -16,7 +16,7 @@ import com.people.dto.StartEnd;
 @Repository
 public interface PinfoCsDAO {
 	int getBoardTotal(); 
-	List<PinfoCsDTO> readAll(StartEnd se);  
+	List<PinfoCsDTO> readAll(PinfoStartEnd se);  
 	PinfoCsDTO getOne(int bono);
 	void raiseBohits(int bono);
 	int getCount(int bono);  

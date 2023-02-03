@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StartEnd {
+public class PinfoStartEnd {
 	private int startNo;
 	private int endNo;
 }
