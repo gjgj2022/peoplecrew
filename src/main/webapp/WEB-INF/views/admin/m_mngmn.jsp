@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <title>
     PeopleCrew
   </title>
@@ -21,6 +21,8 @@
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -46,7 +48,7 @@
           </a>
           
           <ul id="tables-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                              <li>
+           <li>
             <a href="#">
               <i class="bi bi-circle"></i>
               <span>Green Tables</span>
@@ -73,7 +75,7 @@
           <li>
             <a href="#">
               <i class="bi bi-circle"></i>
-              <span>G12</span>
+              <span>Green Tables</span>
             </a>
           </li>
           <li>
@@ -116,23 +118,9 @@
             </div>
             <span class="nav-link-text ms-1">게시판</span>
           </a>
-          <ul id="tables-nav6" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/board/tables">
-              <i class="bi bi-circle"></i>
-              <span>General Tables</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i>
-              <span>Data Tables</span>
-            </a>
-          </li>
-        </ul>
         </li>
         
-        <li class="nav-item dropdown">
+         <li class="nav-item dropdown">
           <a class="nav-link active collapsed" data-bs-target="#tables-nav4" data-bs-toggle="collapse" href="#">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -172,6 +160,7 @@
     </div>
     
   </aside>
+  
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
@@ -181,22 +170,149 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">PeopleCrew</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+          <h6 class="font-weight-bolder text-white mb-0">사원조회</h6>
         </nav>
        
-       <!-- 로그인헤더  -->
-		<%@ include file="include/header.jsp" %>
+       <!-- 로그인 헤더  -->
+		<%@ include file="../include/header.jsp" %>
 		       
       </div>
     </nav>
     <!-- End Navbar -->
     
-    
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <span style="font-size: 18px; font-weight: bolder;">사원정보</span>
+              <form action="/admin/search" method="get" name="search-form" id="sform">
+              <div class="input-group " style="width: 20%; float: right;">
+	              <span class="input-group-text text-body">
+              	  <a href="#" onclick="document.getElementById('sform').submit();"><i class="fas fa-search" aria-hidden="true"></i></a>
+              	  </span>
+	              <input type="text" class="form-control" name="keyword" id="keyword" value="" placeholder="검색어를 입력해주세요.">
+           	  </div>
+              </form>
+              
+            </div>
+           
+			<br>
+			
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0" id="membertable">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-6">사원번호</th>
+                      <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">이름</th>
+                      <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-4">입사일</th>
+                      <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-4">전화번호</th>
+                      <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-4">직급</th>
+                      <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-4">부서</th>
+                	  <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-3">수정</th>
+                      <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-3">삭제</th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                  <c:forEach var="dto" items="${list }">
+                    <tr>
+                      <td class="ps-6">
+                        <span class="text-secondary text-s font-weight-bolder">${dto.mno }</span> <!--사번-->
+                      </td>
+                      <td class="ps-2">
+                        <span class="text-secondary text-s font-weight-bolder">${dto.mname }</span> <!--이름-->
+                      </td>
+                      <td class="ps-4">
+                        <span class="text-secondary text-s font-weight-bolder">${dto.mdate }</span> <!--입사일-->
+                      </td>
+                      <td class="ps-4">
+                        <span class="text-secondary text-s font-weight-bolder">${dto.mphone }</span> <!--전화번호-->
+                      </td>
+                      <td class="ps-4">
+                        <span class="text-secondary text-s font-weight-bolder">${dto.mrank }</span> <!--직급-->
+                      </td>
+                      <td class="ps-4">
+                        <span class="text-secondary text-s font-weight-bolder">${dto.oname }</span> <!--부서-->
+                      </td>
+                      
+                      <td class="ps-2">
+                        <a href="modify?mno=${dto.mno }" class="btn btn-info m-2" 
+                        		onclick="return confirm('수정 하시겠습니까?');" data-toggle="tooltip" data-original-title="Edit user" style="margin-bottom: 0;">
+                          수정
+                        </a>
+                      </td>
+                      <td class="ps-2">
+                        <a href="delete?mno=${dto.mno }" class="btn btn-danger m-2" data-toggle="tooltip" 
+                        		onclick="return confirm('삭제 하시겠습니까?');" data-original-title="delete user" style="margin-bottom: 0; ">
+                          삭제
+                        </a>
+                      </td>
+                    </tr>
+                  </c:forEach>
+                  
+	                  	<tr>
+							<td colspan="8">
+								<nav aria-label="Page navigation example">
+								  <ul class="pagination justify-content-center" style="margin-bottom: 0; margin-top: 10px;" >
+								 	
+							 	<c:choose>
+								  	<c:when test="${map.isPre }">
+								  		<c:choose>
+								  			<c:when test="${empty keyword}">
+											    <li class="page-item"><a class="page-link" href="admin2?cp=${map.currentPage-5 }">이전</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${map.currentPage-5 }">이전</a></li>
+								  			</c:otherwise>
+								  		</c:choose>
+								  	</c:when>
+							 	</c:choose>
+								  	
+								  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
+								  		<c:choose>
+								  			<c:when test="${empty keyword}">
+											    <li class="page-item"><a class="page-link" href="admin2?cp=${i}">${i }</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${i}">${i }</a></li>
+								  			</c:otherwise>
+								  		</c:choose> 
+								  	</c:forEach>
+								  	
+								<c:choose>
+								    <c:when test="${map.isNext }">
+								    	<c:choose>
+								  			<c:when test="${empty keyword}">
+											    <li class="page-item"><a class="page-link" href="admin2?cp=${map.currentPage+5 }">다음</a></li>
+								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${map.currentPage+5 }">다음</a></li>
+								  			</c:otherwise>
+								  		</c:choose>
+								    </c:when>
+							    </c:choose>
+								    
+								  </ul>
+								</nav>
+							</td>
+						</tr>
+					
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    <!-- 푸터  -->
+    <%@ include file="../include/footer.jsp" %>
+     
+     </div>
   </main>
-  
-  
-  
-  
+   <!-- End main  -->  
   
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">

@@ -28,8 +28,9 @@
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand " href="/" style="margin-right: 0; text-align: center;">
-        <img src="https://i.ibb.co/1dzdtP6/logo.png" alt="main_logo">
+      <a class="navbar-brand m-0" href="/">
+        <img src="../resources/assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold">PeopleCrew</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -73,7 +74,7 @@
           <li>
             <a href="#">
               <i class="bi bi-circle"></i>
-              <span>G12</span>
+              <span>Green Tables</span>
             </a>
           </li>
           <li>
@@ -110,39 +111,16 @@
         </li>
         
         <li class="nav-item dropdown">
-          <a class="nav-link active collapsed" data-bs-target="#tables-nav6" data-bs-toggle="collapse" href="#">
+          <a class="nav-link active collapsed" data-bs-target="#tables-nav4" data-bs-toggle="collapse""href="#">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">게시판</span>
-          </a>
-          <ul id="tables-nav6" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/board/tables">
-              <i class="bi bi-circle"></i>
-              <span>General Tables</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i>
-              <span>Data Tables</span>
-            </a>
-          </li>
-        </ul>
-        </li>
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link active collapsed" data-bs-target="#tables-nav4" data-bs-toggle="collapse" href="#">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">인사관리 (관리자)</span>
+            <span class="nav-link-text ms-1">인사관리</span>
           </a>
           
           <ul id="tables-nav4" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/admin/sign">
+            <a href="#" class="nav-link active">
               <i class="bi bi-circle"></i>
               <span>사원정보등록</span>
             </a>
@@ -168,6 +146,15 @@
         </ul>
         </li>
         
+        <li class="nav-item dropdown">
+          <a class="nav-link active collapsed" data-bs-target="#tables-nav6" data-bs-toggle="collapse" href="#">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">게시판</span>
+          </a>
+        
+        </li>
       </ul>
     </div>
     
@@ -181,23 +168,16 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">PeopleCrew</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+          <h6 class="font-weight-bolder text-white mb-0">근태관리</h6>
         </nav>
        
        <!-- 로그인헤더  -->
-		<%@ include file="include/header.jsp" %>
+		<%@ include file="../include/header.jsp" %>
 		       
       </div>
     </nav>
     <!-- End Navbar -->
-    
-    
   </main>
-  
-  
-  
-  
-  
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="fa fa-cog py-2"> </i>
@@ -276,7 +256,89 @@
   <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
-  
+  <script>
+    var ctx1 = document.getElementById("chart-line").getContext("2d");
+
+    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+    new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#5e72e4",
+          backgroundColor: gradientStroke1,
+          borderWidth: 3,
+          fill: true,
+          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          maxBarThickness: 6
+
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#fbfbfb',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#ccc',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+  </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

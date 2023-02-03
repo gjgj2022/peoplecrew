@@ -32,19 +32,19 @@ textarea {
 	<table class="table table-bordered align-middle">
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">제목</td>
-			<td colspan="3"><input type="text" name="dotitle" id="" style="width:500px; border:none;" value="${dto.dotitle }"/></td>
+			<td colspan="3"><input type="text" name="dotitle" id="" style="width:100%; border:none;" value="${ddto.dotitle }"/></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">내용</td>
-			<td colspan="3"><textarea name="docontents" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)">${dto.docontents }</textarea></td>
+			<td colspan="3"><textarea name="docontents" id="" cols="30" rows="10" style="width:100%; border:none;" onkeydown="resize(this)" onkeyup="resize(this)">${ddto.docontents }</textarea></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">휴가기간</td>
-			<td><input type="text" name="docontents2" id="" style="border:none;width:500px;" value="${dto.docontents2 }"/></td>
+			<td><input type="text" name="docontents2" id="" style="border:none;width:100%;" value="${ddto.docontents2 }"/></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1" rowspan="2" style="text-align:center;">대행해야 할<br>주요업무</td>
-			<td class="border border-1" colspan="4"><textarea name="docontents3" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)">${dto.docontents3 }</textarea></td>
+			<td class="border border-1" colspan="4"><textarea name="docontents3" id="" cols="30" rows="10" style="width:100%; border:none;" onkeydown="resize(this)" onkeyup="resize(this)">${ddto.docontents3 }</textarea></td>
 		</tr>
 	</table>
 	</div>

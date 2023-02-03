@@ -41,8 +41,13 @@ public class ApprovalController {
 	public String apvHome(Model model, HttpServletRequest req) {
 		
 		HttpSession session = req.getSession();
-		// 임시회원번호 : 
-		int mno = 113;
+		
+		MemberDTO dto = (MemberDTO)session.getAttribute("dto");
+		
+		System.out.println(dto.getMno());
+		
+		// 세션 회원번호 : 
+		int mno = dto.getMno();
 
 		session.setAttribute("mno", mno);
 
@@ -124,13 +129,14 @@ public class ApprovalController {
 		
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
-		int mno = (int) session.getAttribute("mno");
+		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
 
-		MemberDTO mdto = mservice.getOne(mno);
+		MemberDTO mdto = mservice.getOne(dto.getMno());
 		
 		System.out.println(mdto);
 		
 		model.addAttribute("mdto", mdto);
+
 		
 		// sysdate
 		
@@ -151,9 +157,9 @@ public class ApprovalController {
 		
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
-		int mno = (int) session.getAttribute("mno");
+		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
 		
-		model.addAttribute("mno",mno);
+		model.addAttribute("mno",dto.getMno());
 
 		Date d = new Date();
 
@@ -175,7 +181,7 @@ public class ApprovalController {
 		
 		int apmno = 0;
 		
-		String mno2 = String.valueOf(mno);
+		String mno2 = String.valueOf(dto.getMno());
 		
 		System.out.println(mno2);
 		
@@ -230,13 +236,13 @@ public class ApprovalController {
 	
 	@RequestMapping("/personalFileView")
 	public String personalFileView(@RequestParam("dotype")String dotype,Model model,
-									@ModelAttribute DocumentDTO dto) {
+									@ModelAttribute DocumentDTO ddto) {
 		
-		DocumentDTO dto2 = dservice.readOne(dto.getDono());
+		DocumentDTO dto2 = dservice.readOne(ddto.getDono());
 		
 		model.addAttribute("form", dotype);
 		
-		model.addAttribute("dto", dto2);
+		model.addAttribute("ddto", dto2);
 		
 		// 도장이미지 불러오기
 		FileDTO dto11 = fservice.selectOne(1001);
@@ -255,7 +261,7 @@ public class ApprovalController {
 		
 		model.addAttribute("form", dotype);
 		
-		model.addAttribute("dto", dto2);		
+		model.addAttribute("ddto", dto2);		
 		
 		return "/approval/personalFileModify";
 	}
@@ -268,10 +274,7 @@ public class ApprovalController {
 		
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
-		int mno = (int) session.getAttribute("mno");
-		
-		System.out.println(mno);
-		System.out.println(ddto);
+		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
 		
 		dservice.updateFile("결재대기", ddto.getDotitle(), ddto.getDocontents(), ddto.getDocontents2(), ddto.getDocontents3(), ddto.getDono());
 		
@@ -285,7 +288,7 @@ public class ApprovalController {
 		
 		int apmno = 0;
 		
-		String mno2 = String.valueOf(mno);
+		String mno2 = String.valueOf(dto.getMno());
 		
 		System.out.println(mno2);
 		
@@ -295,7 +298,7 @@ public class ApprovalController {
 			apmno = 216;
 		}
 		
-		adto.setMno(mno);
+		adto.setMno(dto.getMno());
 		adto.setApmno(apmno);
 		adto.setDono(ddto.getDono());
 
@@ -324,9 +327,9 @@ public class ApprovalController {
 		
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
-		int mno = (int) session.getAttribute("mno");
+		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
 		
-		System.out.println(mno);
+		System.out.println(dto.getMno());
 		
 		System.out.println(ddto.getDono());
 		
@@ -334,9 +337,9 @@ public class ApprovalController {
 		
 		model.addAttribute("form", dotype);
 		
-		model.addAttribute("dto", dto2);
+		model.addAttribute("ddto", dto2);
 		
-		String apmno = String.valueOf(mno);
+		String apmno = String.valueOf(dto.getMno());
 		
 		ApprovalDTO adto = aservice.selectOneByDono(ddto.getDono(), apmno);
 		
@@ -445,8 +448,8 @@ public class ApprovalController {
 		
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
-		int mno = (int) session.getAttribute("mno");
-		int apmno = mno;
+		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
+		int apmno = dto.getMno();
 		
 		List<ApprovalDTO> list10 = aservice.getAllByApmno(apmno);
 		
@@ -464,8 +467,6 @@ public class ApprovalController {
 			}
 		}
 		
-		System.out.println("mlist1 : "+mlist1);
-		
 		model.addAttribute("list1", list11);
 		model.addAttribute("mlist1", mlist1);
 		
@@ -480,8 +481,6 @@ public class ApprovalController {
 			MemberDTO mdto = mservice.getOne(dto11.getMno());
 			mlist2.add(mdto);
 		}
-		
-		System.out.println(mlist2);
 
 		model.addAttribute("list2", list12);
 		model.addAttribute("mlist2", mlist2);

@@ -11,6 +11,7 @@
 	<select id="selectAllByMno" resultType="DocumentDTO">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE mno = #{mno}
+		ORDER BY dodate DESC;
 	</select>
 	
 	<select id="selectBydono" resultType="DocumentDTO" parameterType="String">
@@ -40,6 +41,7 @@
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE doprogress = #{apvP}
 		AND mno = #{mno}
+		ORDER BY dodate DESC;
 	</select>
 	
 	<select id="getAllCount" parameterType="String" resultType="int">

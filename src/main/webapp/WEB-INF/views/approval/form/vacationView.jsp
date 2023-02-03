@@ -26,26 +26,26 @@ textarea {
 <body>
 
 	<div style="width:850px;margin-left:auto;margin-right:auto;">
-			<input type="hidden" name="dono" value="${dto.dono }" />
+			<input type="hidden" name="dono" value="${ddto.dono }" />
 			<input type="hidden" name="dotype" value="연차신청서" />
 			<div class="" style="font-size:30px;text-align:center;"></div>
 			<br />
 	<table class="table table-bordered align-middle">
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">제목</td>
-			<td colspan="3"><input type="text" class="bg-white" name="dotitle" id="" style="width:500px; border:none;" value="${dto.dotitle }" disabled/></td>
+			<td colspan="3"><input type="text" class="bg-white" name="dotitle" id="" style="width:500px; border:none;" value="${ddto.dotitle }" disabled/></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">내용</td>
-			<td colspan="3"><textarea class="bg-white" name="docontents" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)" disabled>${dto.docontents }</textarea></td>
+			<td colspan="3"><textarea class="bg-white" name="docontents" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)" disabled>${ddto.docontents }</textarea></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">휴가기간</td>
-			<td><input type="text" class="bg-white" name="docontents2" id="" style="border:none;width:500px;" value="${dto.docontents2 }" disabled/></td>
+			<td><input type="text" class="bg-white" name="docontents2" id="" style="border:none;width:500px;" value="${ddto.docontents2 }" disabled/></td>
 		</tr>
 		<tr>
 			<td class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1" rowspan="2" style="text-align:center;">대행해야 할<br>주요업무</td>
-			<td class="border border-1" colspan="4"><textarea class="bg-white" name="docontents3" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)" disabled>${dto.docontents3 }</textarea></td>
+			<td class="border border-1" colspan="4"><textarea class="bg-white" name="docontents3" id="" cols="30" rows="10" style="width:550px; border:none;" onkeydown="resize(this)" onkeyup="resize(this)" disabled>${ddto.docontents3 }</textarea></td>
 		</tr>
 	</table>
 	</div>
