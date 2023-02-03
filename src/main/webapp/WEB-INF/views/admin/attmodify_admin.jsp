@@ -289,24 +289,42 @@
               </div>
               <hr class="horizontal dark">
               <div class="row">
+              <p class="text-uppercase text-sm">휴가정보</p>
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">우편번호</label>
-                    <input class="form-control" name="zipcode" id="zipcode" type="text" value="${dto.zipcode }" readonly>
+                    <label for="example-text-input" class="form-select-label">남은연차</label>
+                    <select class="form-select" id="mbirth2" name="mbirth2" size="1">
+                    	<option value="0">0</option>
+						<option value=01>1</option>
+						<option value=02>2</option>
+						<option value=03>3</option>
+						<option value=04>4</option>
+						<option value=05>5</option>
+						<option value=06>6</option>
+						<option value=07>7</option>
+						<option value=08>8</option>
+						<option value=09>9</option>
+						<option value=10>10</option>
+						<option value=11>11</option>
+						<option value=12>12</option>
+						<option value=13>13</option>
+						<option value=14>14</option>
+						<option value=15>15</option>
+					</select>
                   </div>
                 </div>
-                <div class="col-md-10">
+<%--                 <div class="col-md-10">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">주소</label>
                     <input class="form-control" name="maddress" id="maddress" type="text" value="${dto.maddress }" readonly>
                   </div>
-                </div>
-                <div class="col-md-12">
+                </div> --%>
+<%--                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">상세주소</label>
                     <input class="form-control" name="maddress2" type="text" value="${dto.maddress2 }" readonly>
                   </div>
-                </div>
+                </div> --%>
               </div>
              <hr class="horizontal dark">
              <div class="row">
@@ -331,13 +349,13 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">출근시간</label>
-                    <input class="form-control" name="start_time" id="start_time" type="text" value="${admindto.start_time }">
+                    <input class="form-control" name="start_time" id="start_time" type="text" value="${admindto.start_time }" readonly>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">퇴근시간</label>
-                    <input class="form-control" name="msal" id="msal" type="text" value="${admindto.end_time }">
+                    <input class="form-control" name="msal" id="msal" type="text" value="${admindto.end_time }" readonly>
                   </div>
                 </div>
                 <div class="col-md-4">

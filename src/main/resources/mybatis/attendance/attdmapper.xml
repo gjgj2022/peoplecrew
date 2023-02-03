@@ -64,10 +64,10 @@
 	
 	
 	<!-- 근태관리(관리자) 수정 -->
-<!--  	<update id="updateOne" parameterType="AttendanceDTO">
+<!-- 	<update id="updateOne" parameterType="AttendanceDTO">
 		UPDATE attendance A INNER JOIN member B
 		ON A.mno = B.mno
-		SET A.start_time = #{start_time}, A.end_time = #{end_time}, A.state = #{state}
+		SET A.end_time = #{end_time}, A.state = #{state}, C.mannual = #{mannul}
 		WHERE A.mno = #{mno}
 	</update> -->
 	
