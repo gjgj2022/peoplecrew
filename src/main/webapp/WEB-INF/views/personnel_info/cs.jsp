@@ -65,28 +65,28 @@
 		</script>
 	
 	<style>
-			#replyCount {
-				color: #EF4239;
-			}
-			.form-select-sm {
-				width: 70px !important;
-			}
-			.pagenationdiv {
-				display: flex !important;
-				justify-content: center !important;
-			}
-			.tfoot {
-				border-bottom: black;
-			}
-			
-			table.dataTable thead th {
-				text-align: center;
-			}
-			ul.pagination{
-			display: flex !important;
-				justify-content: center !important;
-			}
-			}
+			/*
+service*/
+
+
+.search_service td{
+	text-align: right;
+	padding: 3px;
+}
+
+.service_list{
+	margin-left:5%;
+	width: 98%;
+	
+	vertical-align: middle;
+	font-size: 13px;
+	margin-top: 50px;
+}
+
+.table_btn{
+	
+	
+}
 			</style>
 	
 </head>
@@ -333,18 +333,18 @@
 						<div class="card-header pb-0">
 							<h4>문의사항</h4>
 						</div>
-						<div class="col-6">
+						<div class="col-11">
 
 							<div class="mypage_profile">
 								
 								<table id="dataTable" class="table service_list">
 									<thead class="thead-light">
 									<tr>
-										<th>No</th>
-										<th>제목</th>
-										<th>작성자</th>
-										<th>작성일</th>
-										<th>상태</th>
+										<th class="text-center">No</th>
+										<th class="text-center">제목</th>
+										<th class="text-center">작성자</th>
+										<th class="text-center">작성일</th>
+										<th class="text-center">상태</th>
 									</tr>
 									</thead>
 									<tbody>

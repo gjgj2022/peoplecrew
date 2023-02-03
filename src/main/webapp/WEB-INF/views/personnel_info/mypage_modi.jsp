@@ -42,7 +42,7 @@
 .mypage_profile_table{
 	vertical-align: middle;
 	margin-left:15%;
-	width: 80%;
+	width: 90%;
 	height: 250px;
 	border: 1px solid white;
 	text-align: center;
@@ -373,7 +373,7 @@ modi*/
 						<div class="card-header pb-0">
 							<h4>마이페이지</h4>
 						</div>
-						<div class="col-6">
+						<div class="col-11">
 
 							
 							<div class="mypage_profile">
