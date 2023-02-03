@@ -65,4 +65,11 @@ public class MemberService {
 		dao.deleteOne(mno);
 	}
 	
+	public MemberDTO getOneTL(int ono) {
+		return dao.getOneTL(ono);
+	}
+	
+	public MemberDTO getOneTM(int uno) {
+		return dao.getOneTM(uno);
+	}
 }

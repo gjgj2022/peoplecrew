@@ -24,6 +24,15 @@
 		#{endNo} and ROWNUM &gt;= #{startNo}
 
 	</select>
+	
+	<!-- 대시보드 전체조회  -->
+	<select id="readDashAll" resultType="BoardDTO">
+		SELECT b.bono, b.botitle, b.bohits, m.mname
+		FROM board b INNER JOIN member m
+		WHERE b.mno = m.mno
+		ORDER BY b.bono desc
+		LIMIT 5;
+	</select>
 
 	<insert id="fileInsert" parameterType="FileDTO"
 		useGeneratedKeys="true" keyProperty="fno">

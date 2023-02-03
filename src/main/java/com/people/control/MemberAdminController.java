@@ -222,14 +222,6 @@ public class MemberAdminController {
 	}
 	
 	
-	
-	// 근태 임시 
-	@GetMapping("/admin4/**")
-	public String admin4() {
-		log.info("관리자 admin");
-		return "/admin/test4";
-	}
-	
 
 }
 

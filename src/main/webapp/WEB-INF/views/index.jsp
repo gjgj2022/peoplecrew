@@ -7,7 +7,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <title>
     PeopleCrew
   </title>
@@ -54,12 +53,7 @@
               <span>마이페이지</span>
             </a>
           </li>
-          <li>
-            <a href="personnel_info/mypage_modi?mno=${dto.mno }">
-              <i class="bi bi-circle"></i>
-              <span>마이페이지 수정</span>
-            </a>
-          </li>
+          
           <li>
             <a href="personnel_info/cs">
               <i class="bi bi-circle"></i>
@@ -299,23 +293,29 @@
             <table class="table align-items-center justify-content-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">#</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">번호</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">내용</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">작성자</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">조회수</th>
                     </tr>
                   </thead>
             	<tbody>
-                    <tr>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">1</p> <!-- 날짜 -->
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">[공지]배고프다</p> <!-- 사원번호 -->
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">작성자</p> <!-- 이름 -->
-                      </td>
-                    </tr>
+	            	<c:forEach var="bdto" items="${blist }">
+	                    <tr>
+	                      <td>
+	                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.bono }</p> <!-- 번호 -->
+	                      </td>
+	                      <td>
+	                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.botitle }</p> <!-- 제목 -->
+	                      </td>
+	                      <td>
+	                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.mname }</p> <!-- 작성자 -->
+	                      </td>
+	                      <td>
+	                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.bohits }</p> <!-- 조회수 -->
+	                      </td>
+	                    </tr>
+	            	</c:forEach>
                   </tbody>
             </table>
           </div>

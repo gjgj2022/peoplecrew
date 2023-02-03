@@ -83,8 +83,8 @@
 		</table>
 		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;">
 			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
-				<th style="width:100px;">결재자</th>
 				<th style="width:100px;">팀장</th>
+				<th style="width:100px;">부장</th>
 			</tr>
 			<tr>
 				<td class="border border-1" style="height:70px;"><c:if test="${ddto.doprogress eq '진행중' ||ddto.doprogress eq '결재완료' }"><img src="${dto11.fpath }" alt="" style="height:50px;"/></c:if></td>

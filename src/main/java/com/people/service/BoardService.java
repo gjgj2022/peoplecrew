@@ -24,6 +24,10 @@ public class BoardService{
 		return bMapper.readAll(se);
 	}
 	
+	public List<BoardDTO> selectAll() { // 대시보드 전체조회
+		return bMapper.readDashAll();
+	}
+	
 	public BoardDTO getOne(int bono) {  //상세조회. 
 		BoardDTO dto = bMapper.getOne(bono);
 		return dto;
