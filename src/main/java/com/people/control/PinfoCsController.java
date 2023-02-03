@@ -28,21 +28,25 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.people.dto.PinfoCsDTO;
 import com.people.dto.PinfoFileDTO;
+import com.people.dto.PinfoMemOriDTO;
 import com.people.dto.PinfoMemberDTO;
+
 import com.people.service.PinfoCsService;
+import com.people.service.PinfoMemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-@RequestMapping("/board")
+@RequestMapping("/personnel_info")
 public class PinfoCsController {
 	@Autowired
 	PinfoCsService service;
 
+	@Autowired
+	PinfoMemberService mServ;
 	
-	
-	@GetMapping("/list")
+	@GetMapping("/cs")
 	public String list(Model model, @RequestParam(name = "cp", defaultValue = "1") int currentPage) {
 
 		int totalNumber = service.getBoardCount(); 
@@ -55,7 +59,7 @@ public class PinfoCsController {
 		List<PinfoCsDTO> list = service.selectAll(startNo, endNo);
 		model.addAttribute("map", map); 
 		model.addAttribute("list", list);
-		return "/board/list"; 
+		return "/personnel_info/cs"; 
 	}
 
 	@RequestMapping("/detail")
@@ -70,13 +74,16 @@ public class PinfoCsController {
 		int total = service.getTotal(bono);
 		model.addAttribute("total", total); 
 		model.addAttribute("files", service.fileDetailService(fno)); 
-		return "/board/detail";
+		return "/personnel_info/detail";
 	}
 
 	@GetMapping("/write") 
-	public String write() {
+	public String write(@RequestParam("mno")int mno,Model model) {
 		log.info("===========================> 글쓰기페이지");
-		return "/board/write";
+		PinfoMemOriDTO dto = mServ.getMnoOne(mno);
+		
+		model.addAttribute("memori", dto);
+		return "/personnel_info/write";
 	}
 
 	@PostMapping("/write") // 글 등록
@@ -90,7 +97,7 @@ public class PinfoCsController {
 		String no = request.getParameter("mno");
 		int mno = Integer.parseInt(no);
 		dto.setMno(mno);
-
+		
 		if (files.isEmpty()) { // 업로드할 파일이 없을 시
 			System.out.println("파일없음");
 			service.write(dto); // 게시글 insert
@@ -120,16 +127,16 @@ public class PinfoCsController {
 			service.write(dto); // 파일먼저 등록 후 파일번호 받아옴.
 			log.info("===========================> 글과 파일 업로드");
 		}
-		return "redirect:/board/list";
+		return "redirect:/personnel_info/list";
 	}
 
 	@GetMapping("/modify") // 수정
 	public String modify(@RequestParam("bono") int bono, Model model) {
-		log.info("===========================>> 수정하기 ");
+		log.info("===========================> 게시글 수정하기 ");
 		PinfoCsDTO dto = service.getOne(bono);
 		model.addAttribute("files", service.fileDetailService(dto.getFno())); // 첨부파일
 		model.addAttribute("dto", dto);
-		return "/board/modify";
+		return "/personnel_info/modify";
 	}
 
 	@PostMapping("/modify") // 수정완료
@@ -172,7 +179,7 @@ public class PinfoCsController {
 			service.modify(dto); // 파일 번호 받아서 수정
 			log.info("===========================> 글과 파일 업로드 완료");
 		}
-		return "redirect:/board/detail?bono=" + dto.getBono(); // 이전페이지로
+		return "redirect:/personnel_info/detail?bono=" + dto.getBono(); // 이전페이지로
 	}
 
 	@GetMapping("/delete") // 삭제
@@ -181,7 +188,7 @@ public class PinfoCsController {
 		service.removeFileByFno(fno); // 파일 삭제
 		service.removeRAll(bono); // 댓글 삭제
 		service.remove(bono); // 글삭제
-		return "redirect:/board/list";
+		return "redirect:/personnel_info/list";
 	}
 
 	@RequestMapping("/filedown/{fno}") // 파일 다운로드
