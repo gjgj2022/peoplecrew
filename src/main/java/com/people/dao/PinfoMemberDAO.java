@@ -17,6 +17,8 @@ public interface PinfoMemberDAO {
 	PinfoMemberDTO getOne(int mno);
 	void modify_mypage(PinfoMemberDTO dto);
 	
+	
+	PinfoMemberDTO getMno2(int mno);
 	PinfoMemOriDTO getMno(int mno);
 	PinfoMemberDTO getIdOne(String mid);
 	List<PinfoMemOriDTO> getName();
