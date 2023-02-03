@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.people.dto.MemberDTO;
-import com.people.service.EmailSenderService;
-//import com.people.service.EmailSenderService;
+
 import com.people.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +29,6 @@ public class LoginController {
 	@Autowired
 	MemberService service;
 	
-
-	private EmailSenderService senderService;
-
 	BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping("/login")
@@ -74,42 +70,7 @@ public class LoginController {
 		
 		return "/include/modalID";
 	}
-	
-	//임시비밀번호
-	@PostMapping("/pwSearch")
-	public String pwSearch(@RequestParam(value = "mid", required=false)String mid,
-						   @RequestParam(value = "email2", required=false)String memail,
-						   @ModelAttribute("dto")MemberDTO dto,
-						   Model model) {
-		
-		String pwd = "";
-		
-		dto = service.getIEOne(mid, memail);
-		
-		System.out.println("dto"+ dto);
-		
-		if (dto != null) {
-			// 임시 비밀번호 발급후 업데이트
-			UUID uid = UUID.randomUUID();
-			pwd = uid.toString().substring(0,6);
-			
-			passwordEncoder = new BCryptPasswordEncoder();
-			System.out.println("pwd : " +pwd);
-			
-			senderService.sendEmail(memail, 
-									"PeopleCrew "+dto.getMname()+"님의 임시 비밀번호", 
-									dto.getMname()+"님의 임시 비밀번호는 : " +pwd +" 입니다.");
-			
-			dto.setPassword(passwordEncoder.encode(pwd));
-			service.update_pw(dto);
-			
-		}
-		
-		model.addAttribute("dto", dto);
-		
-		return "/include/modalPW";
-	}
-	
+
 	
 	
 	

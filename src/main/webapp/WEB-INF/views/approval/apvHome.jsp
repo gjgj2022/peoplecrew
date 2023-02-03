@@ -24,7 +24,7 @@
 	crossorigin="anonymous"></script>
 <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
 <!-- CSS Files -->
-<link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.4"
+<link id="pagestyle" href="./assets/css/argon-dashboardApv.css?v=2.0.4"
 	rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 

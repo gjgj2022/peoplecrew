@@ -1677,39 +1677,10 @@ progress {
     width: 50%;
   }
 
-  #table1 {
+  .col-lg-7 {
     flex: 0 0 auto;
-    width: 500px;
-    margin-top: 5%;
-    margin-left: 10%;
+    width: 58.333333%;
   }
-  #table2 {
-    flex: 0 0 auto;
-    width: 500px;
-    margin-top: 5%;
-    margin-left: 70px;
-  }
-  #table3 {
-    flex: 0 0 auto;
-    width: 1070px;
-    margin-top: 2%;
-    margin-left: 10%;
-    margin-right: 10%;    
-  }
-  #table4 {
-    flex: 0 0 auto;
-    width: 1070px;
-    margin-top: 2%;
-    margin-left: 10%;    
-  }
-  
-  #table5 {
-    flex: 0 0 auto;
-    width: 1070px;
-    margin-top: 8%;
-    margin-left: 10%;    
-  }
-  
 
   .col-lg-8 {
     flex: 0 0 auto;
@@ -5179,7 +5150,6 @@ fieldset:disabled .btn {
   position: relative;
   display: flex;
   flex-direction: column;
-  left: 300;
   min-width: 0;
   height: var(--bs-card-height);
   word-wrap: break-word;
@@ -9406,7 +9376,6 @@ fieldset:disabled .btn {
 
 .mt-4 {
   margin-top: 1.5rem !important;
-  width: 700px;
 }
 
 .mt-5 {
