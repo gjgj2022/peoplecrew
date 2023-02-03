@@ -3,10 +3,30 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- 
-  <mapper namespace="com.people.dao.PinfoAnswerDAO">
 
 
+<mapper namespace="com.people.dao.PinfoAnswerDAO">
 
+
+	<select id="getOne" parameterType="int">
+
+	</select>
+
+	<insert id="insertOne">
+	</insert>
+
+	<delete id="removeOne" parameterType="int">
+		DELETE FROM answer
+		where ansno = #{ansno}
+	</delete>
+
+	<update id="upRemove" parameterType="int">
+	UPDATE board
+	SET 
+	
+	</update>
+
+	<update id="updateOne" parameterType="int">
+	
+	</update>
 </mapper>

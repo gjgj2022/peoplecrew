@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.people.dao.PinfoAnswerDAO;
 import com.people.dto.PinfoAnswerDTO;
 import com.people.dto.PinfoCsAnsDTO;
+import com.people.dto.PinfoCsDTO;
 
 @Service
 public class PinfoAnswerService {
@@ -16,7 +17,7 @@ public class PinfoAnswerService {
 
 	
 	public PinfoCsAnsDTO getOne(int bono) {
-		return null;
+		return dao.getOne(bono);
 		
 	};
 	void insertOne(PinfoAnswerDTO dto) {
@@ -26,7 +27,7 @@ public class PinfoAnswerService {
 	void removeOne(int ansno) {
 		dao.removeOne(ansno);
 	};
-	void upRemove(PinfoCsAnsDTO dto) {
+	void upRemove(PinfoCsDTO dto) {
 		dao.upRemove(dto);
 	};
 	void updateOne(PinfoAnswerDTO dto) {
