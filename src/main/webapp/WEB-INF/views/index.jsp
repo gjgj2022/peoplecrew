@@ -120,12 +120,6 @@
             </a>
           </li>
           <li>
-             <a href="/adminpage">
-              <i class="bi bi-circle"></i>
-              <span>근태관리(관리자)</span>
-            </a>
-          </li>
-          <li>
             <a href="/vacation">
               <i class="bi bi-circle"></i>
               <span>휴가관리</span>
@@ -205,7 +199,7 @@
             </a>
           </li>
           <li>
-            <a href="/admin/admin4">
+             <a href="/admin/page">
               <i class="bi bi-circle"></i>
               <span>근태관리</span>
             </a>

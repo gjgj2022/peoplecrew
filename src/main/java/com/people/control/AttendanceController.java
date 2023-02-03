@@ -66,7 +66,7 @@ public class AttendanceController {
 		return "/attendance/attendance";
 	}
 	
-	@GetMapping("/adminpage")
+	@GetMapping("/admin/page")
 	public String listAdmin(Model model,
 							@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
 		int totalNumber = attdservice.getTotal();
