@@ -304,7 +304,6 @@
         
       </form>
     
-   
 	<%@ include file="../include/footer.jsp" %>
   </main>
   <!--   Core JS Files   -->
