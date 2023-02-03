@@ -20,16 +20,17 @@ public class PinfoAnswerService {
 		
 	};
 	void insertOne(PinfoAnswerDTO dto) {
+		dao.insertOne(dto);
 		
 	};
 	void removeOne(int ansno) {
-		
+		dao.removeOne(ansno);
 	};
-	void updateOne(PinfoCsAnsDTO dto) {
-		
+	void upRemove(PinfoCsAnsDTO dto) {
+		dao.upRemove(dto);
 	};
 	void updateOne(PinfoAnswerDTO dto) {
-		
+		dao.updateOne(dto);
 	};
 
 }

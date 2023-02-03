@@ -14,8 +14,9 @@ public interface PinfoAnswerDAO {
 	PinfoCsAnsDTO getOne(int bono);
 	void insertOne(PinfoAnswerDTO dto);
 	void removeOne(int ansno);
-	void updateOne(PinfoCsAnsDTO dto);
+	void upRemove(PinfoCsAnsDTO dto);
 	void updateOne(PinfoAnswerDTO dto);
+	
 	
 
 }
