@@ -294,27 +294,51 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">번호</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">내용</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">제목</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">작성자</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">조회수</th>
                     </tr>
                   </thead>
             	<tbody>
 	            	<c:forEach var="bdto" items="${blist }">
-	                    <tr>
-	                      <td>
-	                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.bono }</p> <!-- 번호 -->
-	                      </td>
-	                      <td>
-	                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.botitle }</p> <!-- 제목 -->
-	                      </td>
-	                      <td>
-	                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.mname }</p> <!-- 작성자 -->
-	                      </td>
-	                      <td>
-	                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.bohits }</p> <!-- 조회수 -->
-	                      </td>
-	                    </tr>
+			                    <tr>
+			                      <td>
+			                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.bono }</p> <!-- 번호 -->
+			                      </td>
+			                      <td id='replyCount'>
+				            		<c:if test="${bdto.bostatus eq 10}">
+				            			<c:choose>
+				            				<c:when test="${bdto.mno eq dto.mno || dto.role eq 'ROLE_ADMIN'}">
+						                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;"  >${bdto.botitle }</p> <!-- 제목 -->
+						                    <script>
+											if(${bdto.recnt}==0){
+												$('.replyCount'+${bdto.bono}).hide();
+											}
+											</script>
+						                    </c:when>
+												<c:otherwise>
+													<img width="13px" src="https://cdn-icons-png.flaticon.com/512/891/891399.png" />
+														비밀글은 작성자와 관리자만 볼 수 있습니다.
+												</c:otherwise>
+											</c:choose>
+										</c:if>
+						
+									<c:if test="${bdto.bostatus eq 0}">
+					                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;" >${bdto.botitle }</p> <!-- 제목 -->
+										<script>
+										if(${bdto.recnt}==0){
+											$('.replyCount'+${bdto.bono}).hide();
+										}
+										</script>
+									</c:if>
+							      </td>
+			                      <td>
+			                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.mname }</p> <!-- 작성자 -->
+			                      </td>
+			                      <td>
+			                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${bdto.bohits }</p> <!-- 조회수 -->
+			                      </td>
+			                    </tr>
 	            	</c:forEach>
                   </tbody>
             </table>
