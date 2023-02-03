@@ -23,11 +23,13 @@ public interface PinfoCsDAO {
 	PinfoFileDTO fileDetail(int fno);
 	void insertOne(PinfoCsDTO dto);
 	void removeFileByFno(int fno);
-	void updateNoFile(PinfoCsDTO dot); 
+	void updateNoFile(PinfoCsDTO dto); 
 	int fileInsert(PinfoFileDTO file); 
 	void updateOne(PinfoCsDTO dto);
 	void removeOne(int bono);
 	void removeReplyAll(int bono);
+	
+	
 	
 
 }
