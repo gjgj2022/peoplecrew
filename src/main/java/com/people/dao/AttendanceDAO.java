@@ -14,9 +14,10 @@ public interface AttendanceDAO {
 	List<AttendanceDTO> getAll();
 	List<AttendanceDTO> readAll(AttdStartEnd se);
 	AttendanceDTO admingetOne(int mno);
-	AttendanceDTO getAOne(AttdStartEnd se);
+	List<AttendanceDTO> getAOne(AttdStartEnd se);
 	int getTotal();
-	String work_day(String aid);
 	void insertOne(AttendanceDTO dto);
 	void updateOne(AttendanceDTO dto);
+	
+	
 }

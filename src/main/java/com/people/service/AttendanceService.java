@@ -27,13 +27,9 @@ public class AttendanceService {
 		return dao.getTotal();
 	}
 	
-	public AttendanceDTO attdOne(int startNo, int endNo, int mno) {
+	public List<AttendanceDTO> attdOne(int startNo, int endNo, int mno) {
 		AttdStartEnd se = new AttdStartEnd(startNo, endNo, mno);
 		return dao.getAOne(se);
-	}
-	
-	public String work_day(String aid) {
-		return dao.work_day(aid);
 	}
 	
 	//차트
@@ -52,7 +48,7 @@ public class AttendanceService {
 	public AttendanceDTO userOne(int mno) {
 		return dao.admingetOne(mno);
 	}
-	
+
 	public void updateOne(AttendanceDTO dto) {
 		dao.updateOne(dto);
 	}
