@@ -27,9 +27,10 @@
 	
 	<!-- 대시보드 전체조회  -->
 	<select id="readDashAll" resultType="BoardDTO">
-		SELECT b.bono, b.botitle, b.bohits, m.mname
+		SELECT b.bono, b.botitle, b.bohits, m.mname, bostatus, bodate
 		FROM board b INNER JOIN member m
 		WHERE b.mno = m.mno
+		AND botype = 0
 		ORDER BY b.bono desc
 		LIMIT 5;
 	</select>
