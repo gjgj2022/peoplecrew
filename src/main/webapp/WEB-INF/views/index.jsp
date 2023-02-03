@@ -114,6 +114,32 @@
         </ul>
         </li>
         
+        <!-- ----------------------------- 전자결재 --------------------------------- -->
+        <li class="nav-item dropdown"><a
+					class="nav-link active collapsed" data-bs-target="#tables-nav2"
+					data-bs-toggle="collapse" href="#">
+						<div
+							class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+							<i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+						</div> <span class="nav-link-text ms-1">전자결재</span>
+				</a>
+        
+        <ul id="tables-nav2" class="nav-content collapse "
+						data-bs-parent="#sidebar-nav">
+						<li><a href="/apvHome"> <i class="bi bi-circle"></i> <span>전자결재홈</span>
+						</a></li>
+						<li><a href="/apvWrite?form=연차신청서"> <i class="bi bi-circle"></i> <span>기안작성</span>
+						</a></li>
+						<li><a href="/personalFile?apvP=전체문서"> <i class="bi bi-circle"></i>
+								<span>개인문서함</span>
+						</a></li>
+						<li><a href="/apvProgress"> <i class="bi bi-circle"></i>
+								<span>결재처리함</span>
+						</a></li>
+						<li><a href="/formBox"> <i class="bi bi-circle"></i> <span>서식보관함</span>
+						</a></li>
+		</ul></li>
+        
         <li class="nav-item dropdown">
           <a class="nav-link active collapsed" data-bs-target="#tables-nav6" data-bs-toggle="collapse" href="#">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
