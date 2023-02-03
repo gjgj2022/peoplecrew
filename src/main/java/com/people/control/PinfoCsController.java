@@ -80,9 +80,7 @@ public class PinfoCsController {
 	@GetMapping("/write") 
 	public String write(@RequestParam("mno")int mno,Model model) {
 		log.info("===========================> 글쓰기페이지");
-		PinfoMemOriDTO dto = mServ.getMnoOne(mno);
 		
-		model.addAttribute("memori", dto);
 		return "/personnel_info/write";
 	}
 

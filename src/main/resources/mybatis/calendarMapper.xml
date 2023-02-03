@@ -70,9 +70,9 @@
 		select c.*, u.*
 		from calendar c inner join upper_calendar u
 		using (ucalno)
-        where c.ucalno = (select ucalno from upper_calendar where mno=#{mno} and uno=1) 
-        or c.ucalno = (select ucalno from upper_calendar where uno in (#{uno},0))
-        order by c.calend asc
+		where (u.mno=#{mno} and u.uno=1) 
+		or u.uno in (#{uno},0)
+		order by c.calend asc
 	</select>
 	
 		<select id="getByOno" parameterType="int" resultType="CalendarDTO">

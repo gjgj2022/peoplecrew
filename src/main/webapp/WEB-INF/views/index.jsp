@@ -1,32 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-<link rel="icon" type="image/png" href="./assets/img/favicon.png">
-<title>PEPLECREW</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-<!--Fonts and icons     -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-<!-- Nucleo Icons -->
-<link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
-<link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-<!-- Font Awesome Icons -->
-<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-<link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-<!-- CSS Files -->
-<link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <title>
+    PeopleCrew
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
-<body>
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
@@ -51,15 +47,59 @@
           
           <ul id="tables-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                               <li>
-            <a href="/test">
+
+            <a href="personnel_info/mypage?mno=${dto.mno }">
+
               <i class="bi bi-circle"></i>
-              <span>Green Tables</span>
+              <span>마이페이지</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="personnel_info/mypage_modi?mno=${dto.mno }">
               <i class="bi bi-circle"></i>
-              <span>Data Tables</span>
+              <span>마이페이지 수정</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel_info/cs">
+              <i class="bi bi-circle"></i>
+              <span>문의사항</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel_info/stafflist">
+              <i class="bi bi-circle"></i>
+              <span>직원 현황</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel_info/organization2">
+              <i class="bi bi-circle"></i>
+              <span>조직도</span>
+            </a>
+          </li>
+        </ul>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link active collapsed" data-bs-target="#tables-nav2" data-bs-toggle="collapse" href="#">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">업무관리</span>
+          </a>
+          
+          <ul id="tables-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/calendar/list">
+              <i class="bi bi-circle"></i>
+              <span>캘린더</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar/mycalendar">
+              <i class="bi bi-circle"></i>
+              <span>나의 업무</span>
             </a>
           </li>
         </ul>
@@ -72,15 +112,15 @@
             </div>
             <span class="nav-link-text ms-1">근태관리</span>
           </a>
+          
           <ul id="tables-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/attendance?mno=${dto.mno }">
-              <i class="bi bi-circle"></i>
+             <a href="/attendance?mno=${dto.mno }">
               <span>근태관리</span>
             </a>
           </li>
           <li>
-            <a href="/adminpage">
+             <a href="/adminpage">
               <i class="bi bi-circle"></i>
               <span>근태관리(관리자)</span>
             </a>
@@ -94,30 +134,31 @@
         </ul>
         </li>
         
+        <!-- ----------------------------- 전자결재 --------------------------------- -->
+        <li class="nav-item dropdown"><a
+					class="nav-link active collapsed" data-bs-target="#tables-nav2"
+					data-bs-toggle="collapse" href="#">
+						<div
+							class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+							<i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+						</div> <span class="nav-link-text ms-1">전자결재</span>
+				</a>
         
-        <li class="nav-item dropdown">
-          <a class="nav-link active collapsed" data-bs-target="#tables-nav5" data-bs-toggle="collapse" href="#">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">업무관리</span>
-          </a>
-          
-          <ul id="tables-nav5" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i>
-              <span>General Tables</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i>
-              <span>Data Tables</span>
-            </a>
-          </li>
-        </ul>
-        </li>
+        <ul id="tables-nav2" class="nav-content collapse "
+						data-bs-parent="#sidebar-nav">
+						<li><a href="/apvHome"> <i class="bi bi-circle"></i> <span>전자결재홈</span>
+						</a></li>
+						<li><a href="/apvWrite?form=연차신청서"> <i class="bi bi-circle"></i> <span>기안작성</span>
+						</a></li>
+						<li><a href="/personalFile?apvP=전체문서"> <i class="bi bi-circle"></i>
+								<span>개인문서함</span>
+						</a></li>
+						<li><a href="/apvProgress"> <i class="bi bi-circle"></i>
+								<span>결재처리함</span>
+						</a></li>
+						<li><a href="/formBox"> <i class="bi bi-circle"></i> <span>서식보관함</span>
+						</a></li>
+		</ul></li>
         
         <li class="nav-item dropdown">
           <a class="nav-link active collapsed" data-bs-target="#tables-nav6" data-bs-toggle="collapse" href="#">
@@ -126,18 +167,11 @@
             </div>
             <span class="nav-link-text ms-1">게시판</span>
           </a>
-          
           <ul id="tables-nav6" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/board/tables">
+            <a href="/board/list">
               <i class="bi bi-circle"></i>
-              <span>General Tables</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i>
-              <span>Data Tables</span>
+              <span>공지사항</span>
             </a>
           </li>
         </ul>
@@ -179,13 +213,12 @@
         </ul>
         </li>
         
-        
       </ul>
     </div>
     
   </aside>
   <main class="main-content position-relative border-radius-lg ">
-   <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
@@ -195,16 +228,14 @@
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
         </nav>
-        
-         <!-- 로그인헤더  -->
+       
+       <!-- 로그인헤더  -->
 		<%@ include file="include/header.jsp" %>
-		
+		       
       </div>
     </nav>
     <!-- End Navbar -->
-    
-
-	<div class="container-fluid py-4">
+    <div class="container-fluid py-4">
       <div class="row">
         <div class="col-lg-8">
           <div class="row">
@@ -256,7 +287,7 @@
        		 <p>모달 창 입니다.</p>
        		 <button type="button" id="modal_close_btn">모달 창 닫기</button>
     		 </div>
-    		<div class="modal_layer"></div>
+    		<div class="modal_layer"></div>ㅇ
 		</div> -->
 		
         <div class="col-lg-4">
@@ -595,7 +626,8 @@
       <%@ include file="include/footer.jsp" %>
       
       </div>
-      
+    
+    
   </main>
   
   <script type="text/javascript">
@@ -661,13 +693,17 @@ $(function(){
 	
 });
 </script>
-
+  
+  
+  
+ 
   <!--   Core JS Files   -->
   <script src="../resources/assets/js/core/popper.min.js"></script>
   <script src="../resources/assets/js/core/bootstrap.min.js"></script>
   <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
+  
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
