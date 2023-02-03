@@ -105,7 +105,7 @@
 
 		<div class="modal-footer justify-content-center detailfooter">
 			<button class="btn" onclick="window.close()">확인</button>
-			<c:if test="${caldto.uno eq dto.uno || caldto.updatemno eq dto.mno ||dto.mno eq caldto.mno|| dto.role eq 'ROLE_ADMIN'}">
+			<c:if test="${(caldto.uno eq dto.uno && dto.mrank ne '사원') ||dto.mno eq caldto.mno|| dto.role eq 'ROLE_ADMIN'}">
 				<a href="/calendar/modify?calno=${caldto.calno}"><input type="button" class="btn" value="수정" /></a>
 				<input type="button" class="btn" value="삭제" onclick="deleteCal()" />
 			</c:if>
