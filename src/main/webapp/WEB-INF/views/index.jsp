@@ -54,12 +54,7 @@
               <span>마이페이지</span>
             </a>
           </li>
-          <li>
-            <a href="personnel_info/mypage_modi?mno=${dto.mno }">
-              <i class="bi bi-circle"></i>
-              <span>마이페이지 수정</span>
-            </a>
-          </li>
+          
           <li>
             <a href="personnel_info/cs">
               <i class="bi bi-circle"></i>
