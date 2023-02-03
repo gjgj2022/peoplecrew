@@ -11,13 +11,13 @@
 	</select>
 
 	<select id="getOne" parameterType="int" resultType="CalendarDTO">
-		select c.*, u.*, (select mname from member where mno=u.mno) mname ,
-		(select uname from upper_organization where uno =u.uno) uname,  
-		(select oname from organization where ono =c.ono) oname,  
-		(select mname from member where u.updatemno=mno) updatemname 
-		from calendar c inner join upper_calendar u
-		where u.ucalno = c.ucalno
-		and calno = #{calno}
+		select c.*, u.*, o.oname oname, uo.uname uname,
+		(select mname from member where mno = u.mno) as mname,
+		(select mname from member where mno = u.updatemno) as updatemname
+		from calendar c left join organization o on o.ono = c.ono
+		left join upper_calendar u on c.ucalno = u.ucalno
+		left join upper_organization uo on u.uno = uo.uno
+				where calno = #{calno}
 	</select>
 
 	<select id="getByUno" parameterType="int" resultType="CalendarDTO">
