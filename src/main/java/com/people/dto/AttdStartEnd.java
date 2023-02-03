@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class StartEnd {
+@AllArgsConstructor
+public class AttdStartEnd {
 	private int startNo;
 	private int endNo;
-	private String keyword; // 검색 키워드
+	private int mno;
 }

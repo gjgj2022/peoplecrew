@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.people.dao.AttendanceDAO">
+
+	<select id="getAll" resultType="AttendanceDTO">
+		SELECT work_day, date_format(now(),'%Y.%m.%d.') as date, A.*, B.*, C.*
+			FROM attendance A JOIN member B
+			ON A.mno = B.mno
+			JOIN organization C
+			ON C.ono = A.ono
+			ORDER BY date desc;
+	</select>
+	
+	<select id="readAll" parameterType="AttdStartEnd" resultType="AttendanceDTO">
+	<![CDATA[
+		SELECT work_day, mno, mname, oname, memail, start_time, end_time, state
+		FROM(SELECT (@R := @R+1) AS RN, work_day, mno, mname, oname, memail, start_time, end_time, state
+		   FROM(SELECT A.work_day, B.mno,B.mname,C.oname, B.memail, A.start_time, A.end_time, A.state  
+		      FROM attendance A JOIN member B
+		      ON A.mno  = B.mno
+		      JOIN organization C
+		      ON C.ono = A.ono
+		      GROUP BY mno
+		      ORDER BY B.mno desc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
+		WHERE RN >= #{startNo};
+		]]>
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM attendance
+	</select>
+	
+	<select id="getMOne" resultType="AttendanceDTO" parameterType="AttdStartEnd">
+	<![CDATA[
+		SELECT work_day, mno, mname, oname, memail, start_time, end_time, state
+		FROM(SELECT (@R := @R+1) AS RN, work_day, mno, mname, oname, memail, start_time, end_time, state
+		   FROM(SELECT A.work_day, B.mno,B.mname,C.oname, B.memail, A.start_time, A.end_time, A.state  
+		      FROM attendance A JOIN member B
+		      ON A.mno  = B.mno
+		      JOIN organization C
+		      ON C.ono = A.ono
+		      WHERE A.mno = #{mno}
+		      ORDER BY work_day desc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
+		WHERE RN >= #{startNo};
+		]]>
+	</select>
+	
+	<select id="getOne" resultType="AttendanceDTO" parameterType="int">
+		
+	</select>
+	
+<!--   	<insert id="insertOne" parameterType="AttendanceDTO">
+		INSERT INTO attendance (ono, atno, mno, aid, work_day, start_time, end_time, state)
+			(SELECT C.ono, A.aton, B.mno, A.aid, A.work_day, A.start_time, A.end_time, A.state)
+		VALUES ()
+	</insert> -->
+</mapper>

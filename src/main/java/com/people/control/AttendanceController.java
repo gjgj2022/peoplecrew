@@ -5,14 +5,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.people.dto.AttendanceDTO;
 import com.people.service.AttendanceService;
+import com.people.service.MemberService;
 import com.people.util.PageUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +29,8 @@ public class AttendanceController {
 	@Autowired
 	AttendanceService attdservice;
 	
-//	@Autowired
-//	MemberService memberservice;
+	@Autowired
+	MemberService memberService;
 	
 	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yy-MM-dd");
 	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -33,6 +38,7 @@ public class AttendanceController {
 	
 	@GetMapping("/attendance")
 	public String list(Model model,
+						@RequestParam("mno") int mno,
 					   @RequestParam(name = "cp", defaultValue = "1")int currentPage) {
 		int totalNumber = attdservice.getTotal();
 		//페이지당 게시물 수
@@ -43,16 +49,19 @@ public class AttendanceController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		List<AttendanceDTO> list = attdservice.selectAll(startNo, endNo);
+		AttendanceDTO attdto = attdservice.selectOne(startNo, endNo, mno);
+		model.addAttribute("attdto", attdto);
+		model.addAttribute("map", map);
+		
+
+		
 		List<AttendanceDTO> chdb = attdservice.getChdb();
 		List<AttendanceDTO> chdb2 = attdservice.chdb2();
 		
-		model.addAttribute("list", list);
-		model.addAttribute("map", map);
 		model.addAttribute("chdb", chdb);
 		model.addAttribute("chdb2", chdb2);
 		
-		log.info("list {} :", list);
+		log.info("attdto {} :", attdto);
 		log.info("map {} :", map);
 		return "/attendance/attendance";
 	}
@@ -79,29 +88,31 @@ public class AttendanceController {
 		return "/admin/attendance_admin";
 	}
 	
-//	@GetMapping("/attendance")
-//	public String gowork(@RequestParam(value="startwork", required = false)String startwork,
-//						 @RequestParam(value="endwork", required = false)String endwork,
-//						 Model model) {
-//		log.info(startwork);
-//		log.info(endwork);
-//		model.addAttribute("startwork", startwork);
-//		model.addAttribute("endwork", endwork);
-//		return "attendance/attendace";
-//		
-//	}
+	@GetMapping("/attmodify_admin")
+	public String attmodify(Model model,
+							@RequestParam("mno")int mno) {
+		AttendanceDTO attdto2 = attdservice.userOne(mno);
+		
+		model.addAttribute("attdto2", attdto2);
+		log.info("attdto2{}", attdto2);
+		
+		return "admin/attmodify_admin";
+		
+	}
 	
-	@GetMapping("/attdetail")
-	public String listOne(@RequestParam("mno")int mno, Model model) {
-		AttendanceDTO listOne = attdservice.selectOne(mno);
-		model.addAttribute("listOne", listOne);
-		return "/attendace/attdetail";
+	@PostMapping("/wirte")
+	public String workAddOne(@ModelAttribute("dto")AttendanceDTO dto, HttpServletRequest req) {
+		String aid = req.getRemoteAddr();
+		dto.setAid(aid);
+		attdservice.addOne(dto);
+		return "redirect:/index";
+		
 	}
 	
 //	@GetMapping("/dashboard")
 //	public String work(Principal principal, HttpSession session, Model model) {
 //		
-//		 String mname = principal.getName();
+//		String mname = principal.getName();
 //		
 //		model.addAttribute("work_day", attdservice.work_day(mname));
 //		
@@ -118,6 +129,7 @@ public class AttendanceController {
 	
 	@GetMapping("/attendance_admin")
 	public String adminList(Model model) {
+		
 		return "/admin/attendance_admin";
 	}
 	
