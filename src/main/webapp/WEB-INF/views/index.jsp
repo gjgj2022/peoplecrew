@@ -95,8 +95,7 @@
           
           <ul id="tables-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
-              <a href="/attendance?mno=${dto.mno }">
+             <a href="/attendance?mno=${dto.mno }">
               <span>근태관리</span>
             </a>
           </li>
