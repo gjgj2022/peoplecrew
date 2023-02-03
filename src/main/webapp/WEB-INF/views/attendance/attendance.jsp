@@ -288,43 +288,64 @@
                     </tr>
                   </thead>
                   <tbody>
+                  
+                  <c:forEach var="adto" items="${list3 }">
                     <tr>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${attdto.work_day }</p> <!-- 날짜 -->
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${adto.work_day }</p> <!-- 날짜 -->
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${dto.mno }</p> <!-- 사원번호 -->
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${adto.mno }</p> <!-- 사원번호 -->
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${dto.mname }</p> <!-- 이름 -->
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${adto.mname }</p> <!-- 이름 -->
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${attdto.oname }</p> <!-- 부서 -->
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${adto.oname }</p> <!-- 부서 -->
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${attdto.start_time }</p> <!-- 출근시간 -->
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${adto.start_time }</p> <!-- 출근시간 -->
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${attdto.end_time }</p> <!-- 퇴근시간 -->
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${adto.end_time }</p> <!-- 퇴근시간 -->
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${attdto.state }</p> <!-- 상태정보 -->
+                        <p class="text-sm font-weight-bold mb-0" style="text-align: center;">${adto.state }</p> <!-- 상태정보 -->
                       </td>
                     </tr>
-                    
-                    <tr>
-						<td colspan="4">
+                  </c:forEach>
+                     <tr>
+						<td colspan="8">
 							<nav aria-label="Page navigation example" >
 								<ul class="pagination justify-content-center">
-								<c:if test="${map.isPre }">
-									<li class="page-item"><a class="page-link" href="attendance?cp=${map.currentPage-5 }">Previous</a></li>
-								</c:if>
-								<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
-									<li class="page-item"><a class="page-link" href="attendance?cp=${i }">${i }</a></li>
-								</c:forEach>
-								<c:if test="${map.isNext }">
-									<li class="page-item"><a class="page-link" href="attendance?cp=${map.currentPage+5 }">Next</a></li>
-								</c:if>
+								<!-- 이전버튼 -->
+							  	<c:choose>
+								  	<c:when test="${map.isPre }">
+								  		<c:choose>
+								  			<c:when test="${empty mno}">
+								  			 	<li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${map.currentPage-5 }">이전</a></li>
+								  			</c:when>
+								  		</c:choose>
+								  	</c:when>
+							 	</c:choose>
+								  	
+								  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
+								  		<c:choose>
+								  			<c:when test="${empty mno}">
+											    <li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${i}">${i }</a></li>
+								  			</c:when>
+								  		</c:choose> 
+								  	</c:forEach>
+								  	
+								<c:choose>
+								    <c:when test="${map.isNext }">
+								    	<c:choose>
+								  			<c:when test="${empty mno}">
+											    <li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${map.currentPage+5 }">다음</a></li>
+								  			</c:when>
+								  		</c:choose>
+								    </c:when>
+							    </c:choose>
 							</ul>
 							</nav>
 						</td>
