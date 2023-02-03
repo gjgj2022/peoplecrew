@@ -202,7 +202,7 @@ var _JTP_STOCK_REAL = {"markup":{"stock_up":"<i class=\"jtstock_icon real_stock_
         </div><!-- .barba-container -->
 	</div><!-- #barba-wrapper -->
 
-<footer class="footer">
+<footer class="footer" style="background: #03A9F4">
 
    <script  src='https://www.nasmedia.co.kr/wp-content/themes/nasmedia/js/jt.js?ver=1.0'></script>
 <script  src='https://www.nasmedia.co.kr/wp-content/plugins/jt-report/js/report.js?ver=0.1.0'></script>
