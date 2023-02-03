@@ -220,7 +220,7 @@ if("${files.oriname}"==""){
 			<div class="row" style="margin: 0 5%;">
 				<div class="card mb-4">
 					<div class="card-header pb-0">
-						<h2 id="example">문의사항</h2>
+						<h4 id="example">문의사항</h4>
 					</div>
 					<div class="container">
 
@@ -230,10 +230,12 @@ if("${files.oriname}"==""){
 						</tr>
 							<tr>
 								<th colspan="2">
-									<h4>${boarddto.botitle }</h4>
+									<h5>${boarddto.botitle }</h5>
 								</th>
 								<th colspan="2">
-								<p class="text-end fw-normal">작성자　${boarddto.mname }　|　작성일　${boarddto.bodate }　|　조회　${boarddto.bohits }</p></th>
+								<p class="text-end fw-normal text-sm">
+								<!--  <span class="text-bold"> </span> -->
+								작성자　${boarddto.mname }　|　작성일　${boarddto.bodate }　|　조회　${boarddto.bohits }</p></th>
 
 							<tr  class="borderbottom-file">
 								<td class="borderbottom-file" colspan="4">
@@ -247,11 +249,18 @@ if("${files.oriname}"==""){
 								<td colspan="4">${boarddto.bocontents }</td>
 							</tr>
 							<tr>
-								<td colspan="4"><a href="/personnel_info/cs"> <input type="button" value="목록" class="btn" />
-								</a> <a href="/personnel_info/modify?bono=${boarddto.bono }"> <input type="button" value="수정" class="btn" />
+								<td colspan="4"><a href="/personnel_info/cs"> <input type="button" value="목록" class="btn" /></a> 
+							
+								<a href="/personnel_info/modify?bono=${boarddto.bono }"> <input type="button" value="수정" class="btn" />
 								</a> <a href="/personnel_info/delete?bono=${boarddto.bono }"> <input type="button" value="삭제" class="btn" />
 								</a></td>
 							</tr>
+							
+							<tr>
+							<td>
+							
+							</td>
+								</tr>
 						</table>
 						<!-- detail page end  -->
 
