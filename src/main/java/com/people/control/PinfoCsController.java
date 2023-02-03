@@ -78,7 +78,7 @@ public class PinfoCsController {
 	}
 
 	@GetMapping("/write") 
-	public String write(@RequestParam("mno")int mno,Model model) {
+	public String write() {
 		log.info("===========================> 글쓰기페이지");
 		
 		return "/personnel_info/write";
@@ -125,7 +125,7 @@ public class PinfoCsController {
 			service.write(dto); // 파일먼저 등록 후 파일번호 받아옴.
 			log.info("===========================> 글과 파일 업로드");
 		}
-		return "redirect:/personnel_info/list";
+		return "redirect:/personnel_info/cs";
 	}
 
 	@GetMapping("/modify") // 수정

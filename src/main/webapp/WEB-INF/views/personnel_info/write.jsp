@@ -280,7 +280,7 @@
 			<div class="row" style="margin: 0 5%;">
 				<div class="card mb-4">
 					<div class="card-header pb-0">
-						<h2 id="example">공지사항</h2>
+						<h4 id="example">문의사항</h4>
 					</div>
 					<div class="container">
 						<form action="" method="post" enctype="multipart/form-data">
@@ -295,7 +295,7 @@
 										<input type="hidden" name="mno" value="${dto.mno }" />
 										
 										<td colspan="3">
-											<input type="text" class="form-control" name="botitle" id="exampleFormControlInput1" placeholder="제목을 입력하세요." />
+											<input type="text" class="form-control" name="botitle" id="exampleFormControlInput1" placeholder="문의사항을 입력해주세요." />
 										</td>
 									</tr>
 
@@ -315,7 +315,7 @@
 									</tr>
 									<tr>
 										<td colspan="4">
-											<a href="/board/list">
+											<a href="/personnel_info/cs">
 												<input type="button" value="취소" class="btn" />
 											</a>
 											<input type="button" value="등록" class="btn" onclick="checkForm(this)"/>

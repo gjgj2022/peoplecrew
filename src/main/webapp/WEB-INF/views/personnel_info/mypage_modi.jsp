@@ -336,7 +336,7 @@ modi*/
 								<tbody>
 									<tr>
 										<td rowspan="4" class="profile_img">
-										<img src="../assets/img/team-2.jpg" class="profile_img"/>
+										<img src="../assets/img/team-8.jpg" class="profile_img"/>
 										</td>
 										<th class="profile_table_name" colspan="1">${memori.mname } <span> ${memori.mrank }</span> </th>
 										
