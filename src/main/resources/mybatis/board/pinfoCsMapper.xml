@@ -6,7 +6,7 @@
  
   <mapper namespace="com.people.dao.PinfoCsDAO">
 
-	<select id="readAll" parameterType="com.people.dto.StartEnd"
+	<select id="readAll" parameterType="com.people.dto.PinfoStartEnd"
 		resultType="PinfoCsDTO">
 		select ROWNUM, bono, mno, mname, bocontents, botitle, bohits, recnt,
 		IF(DATE_FORMAT(bodate, '%Y%m%d') &lt; DATE_FORMAT(now(),'%Y%m%d'),
