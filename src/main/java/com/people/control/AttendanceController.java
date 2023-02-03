@@ -49,7 +49,7 @@ public class AttendanceController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		AttendanceDTO attdto = attdservice.selectOne(startNo, endNo, mno);
+		AttendanceDTO attdto = attdservice.attdOne(startNo, endNo, mno);
 		model.addAttribute("attdto", attdto);
 		model.addAttribute("map", map);
 		
@@ -88,28 +88,34 @@ public class AttendanceController {
 		return "/admin/attendance_admin";
 	}
 	
+	// admin 한건조회
+	@GetMapping("/attmodify_admin")
+	public String listAdminOne(Model model,
+							   @RequestParam("mno")int mno) {
+		AttendanceDTO admindto = attdservice.userOne(mno);
+		model.addAttribute("admindto", admindto);
+		
+		log.info("admindto {} ", admindto);
+		return "/admin/attmodify_admin";
+		
+	}
+	
 //	@GetMapping("/attmodify_admin")
-//	public String listAdminOne(Model model
-//							   @RequestParam("mno")) {
+//	public String attmodify() {
 //		
+////		AttendanceDTO attdto2 = attdservice.userOne(mno);
+////		
+////		model.addAttribute("attdto2", attdto2);
+////		log.info("attdto2{}", attdto2);
+//		return "admin/attmodify_admin";
 //	}
 	
-	@GetMapping("/attmodify_admin")
-	public String attmodify() {
-		
-//		AttendanceDTO attdto2 = attdservice.userOne(mno);
+//	@PostMapping("/attmodify_admin")
+//	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO dto) {
+//		attdservice.updateOne(dto);
+//		return "redirect:/admin/attendance_admin";
 //		
-//		model.addAttribute("attdto2", attdto2);
-//		log.info("attdto2{}", attdto2);
-		return "admin/attmodify_admin";
-	}
-	
-	@PostMapping("/attmodify_admin")
-	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO dto) {
-		attdservice.updateOne(dto);
-		return "redirect:/admin/attendance_admin";
-		
-	}
+//	}
 	
 //	@PostMapping("/wirte")
 //	public String workAddOne(@ModelAttribute("dto")AttendanceDTO dto, HttpServletRequest req) {

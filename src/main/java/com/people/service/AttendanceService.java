@@ -27,9 +27,9 @@ public class AttendanceService {
 		return dao.getTotal();
 	}
 	
-	public AttendanceDTO selectOne(int startNo, int endNo, int mno) {
+	public AttendanceDTO attdOne(int startNo, int endNo, int mno) {
 		AttdStartEnd se = new AttdStartEnd(startNo, endNo, mno);
-		return dao.getMOne(se);
+		return dao.getAOne(se);
 	}
 	
 	public String work_day(String aid) {
@@ -40,15 +40,19 @@ public class AttendanceService {
 	public List<AttendanceDTO> getChdb() {
 		return dao.getAll();
 	}
+	
 	public List<AttendanceDTO> chdb2() {
 		return dao.getAll();
 	}
+	
 	public void addOne(AttendanceDTO dto) {
 		dao.insertOne(dto);
 	}
+	
 	public AttendanceDTO userOne(int mno) {
-		return dao.getOne(mno);
+		return dao.admingetOne(mno);
 	}
+	
 	public void updateOne(AttendanceDTO dto) {
 		dao.updateOne(dto);
 	}

@@ -34,7 +34,7 @@
 		FROM attendance
 	</select>
 	
-	<select id="getMOne" resultType="AttendanceDTO" parameterType="AttdStartEnd">
+	<select id="getAOne" resultType="AttendanceDTO" parameterType="AttdStartEnd">
 	<![CDATA[
 		SELECT work_day, mno, mname, oname, memail, start_time, end_time, state
 		FROM(SELECT (@R := @R+1) AS RN, work_day, mno, mname, oname, memail, start_time, end_time, state
@@ -49,13 +49,15 @@
 		]]>
 	</select>
 	
-<!-- 	<select id="getOne" resultType="AttendanceDTO" parameterType="int">
-		SELECT *
+ 	<select id="admingetOne" resultType="AttendanceDTO" parameterType="int">
+		SELECT start_time, end_time, state
 		FROM attendance as A
 		LEFT JOIN member as B
 		on A.mno = B.mno
-		WHERE A.mno = #{mno};
-	</select> -->
+		WHERE A.mno = #{mno}
+		GROUP BY A.mno;
+		
+	</select>
 	
 <!-- 	<update id="updateOne" parameterType="AttendanceDTO">
 	
