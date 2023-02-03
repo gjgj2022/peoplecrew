@@ -262,7 +262,6 @@
 					<div class="card-header pb-0 px-3">
 						<div class="card-body pt-4 p-3">
 							<div class="col-lg-9 mb-lg-0 mb-4">
-			
 							<div class="card">
 								<div class="card mb-4">
 									<div class="card-header pb-0 px-3">

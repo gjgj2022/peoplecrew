@@ -349,11 +349,9 @@
         
       </div>
       </div>
-      	
-      	
-
-		<div class="row mt-4">
-        <div class="col-lg-7-1 mb-lg-0 mb-4" style="margin-left: 25px;">
+		<!-- 결제 진행사항 -->
+		<div class="row mt-1">
+        <div class="col-lg-7-1"  style="margin-left: 25px;">
           <div class="card ">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
