@@ -175,7 +175,6 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-
     * {
         margin: 0;
         padding: 0;
@@ -208,7 +207,6 @@
             8px 8px 15px #a7aaa7,
             -8px -8px 15px #fff;
     }
-
     .wrapper .name {
         font-weight: 600;
         font-size: 1.4rem;
@@ -216,7 +214,6 @@
         margin-bottom: 20px;
         color: #555;
     }
-
     .wrapper .form-field input {
         width: 100%;
         display: block;
@@ -228,14 +225,12 @@
         padding: 10px 15px 5px 10px;
         /* border: 1px solid red; */
     }
-
     .wrapper .form-field {
         padding-left: 10px;
         margin-bottom: 20px;
         border-radius: 20px;
         box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
     }
-
     .wrapper .form-field .fas {
         color: #555;
     }
@@ -253,7 +248,6 @@
         border: none;
         font-size: large;
     }
-
     .wrapper .btn:hover {
         background-color: #039BE5;
     }
@@ -298,24 +292,20 @@
 	.btn:active {
 	  top: 2px;
 	} */
-
     .wrapper a {
         text-decoration: none;
         font-size: 0.8rem;
         color: #03A9F4;
     }
-
     .wrapper a:hover {
         color: #039BE5;
     }
-
     @media(max-width: 380px) {
         .wrapper {
             margin: 30px 20px;
             padding: 40px 15px 15px 15px;
         }
     }
-
 </style>
 
 </html>

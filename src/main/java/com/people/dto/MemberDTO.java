@@ -31,7 +31,6 @@ public class MemberDTO {
 	private String ophone; 	 // 부서번호
 	private int mmsal; 	 	 // 월급 부서별 최대값
 	private int amsal; 	 	 // 월급 부서별 평균값
-	
 	private int uno;	 // 상위 부서번호
 
 	private String keyword;	 // 검색 키워드

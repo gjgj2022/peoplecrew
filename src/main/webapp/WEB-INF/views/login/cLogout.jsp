@@ -11,11 +11,8 @@
 
 <h1>커스텀 로그아웃페이지 : cLogout.jsp</h1>
 
-<c:url value="/common/cLogout" />
 
-
-<form action="<c:url value="/common/cLogout" />" method="post">
-
+<form action="/logout" method="post">
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
 	<input type="submit" value="로그아웃" />
 </form>
