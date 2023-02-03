@@ -257,12 +257,31 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    
-    
-  <!-- 캘린더 -->
-  <div id="calendarBox" class="container-fluid py-4">
-      <div id="calendar" style="background-color: white"></div>
-  </div>
+<!-- 캘린더 -->
+	<div class="container-fluid py-4">
+					<div class="card-header pb-0 px-3">
+						<div class="card-body pt-4 p-3">
+							<div class="col-lg-9 mb-lg-0 mb-4">
+			
+							<div class="card">
+								<div class="card mb-4">
+									<div class="card-header pb-0 px-3">
+										<div class="card-body pt-4 p-3">
+											<div class="card card-calendar">
+												<!-- fullcalendar -->
+												<div class="calendar" data-bs-toggle="calendar" id="calendar"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
   <!-- 캘린더end -->
     
   </main>
