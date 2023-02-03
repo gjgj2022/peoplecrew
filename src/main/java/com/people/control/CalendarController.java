@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.people.dto.CalendarDTO;
 import com.people.dto.MemberDTO;
 import com.people.service.CalendarService;
+import com.people.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +29,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CalendarController {
 	@Autowired
 	private CalendarService cService;
+	@Autowired
+	private MemberService mService;
 	 
 	@RequestMapping("/list")
 	public String calendar() {
@@ -173,9 +176,11 @@ public class CalendarController {
 		log.info("===========================> mycalendar 페이지로");
 		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
 		String enddate = "";
+	
 		
 		if(dto!=null) {
-			List<CalendarDTO> unolist = cService.getByUno(dto.getUno()); //내부서일정
+			int uno = mService.getOne(dto.getMno()).getUno();
+			List<CalendarDTO> unolist = cService.getByUno(uno); //내부서일정
 			//List<CalendarDTO> unolist = cService.getOneByOno(dto.getOno()); //내부서일정
 			List<CalendarDTO> olist = cService.getByUno(0); //회사 일반 일정 
 			List<CalendarDTO> mylist = cService.getByMno(dto.getMno());//내 개인일정

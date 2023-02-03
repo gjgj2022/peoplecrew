@@ -7,11 +7,13 @@
 	
 	<!-- 전체조회 및 페이징 처리 -->
 	<select id="getAll" resultType="MemberDTO" parameterType="StartEnd">
-		SELECT distinct mno, mname, mdate, mphone, mrank, oname, msal
-			FROM(SELECT (@R := @R+1) AS RN, mno, mname, mdate, mphone, mrank, oname, msal
-				FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal
-						FROM member m LEFT OUTER JOIN organization o
-						ON m.ono = o.ono
+		SELECT distinct mno, mname, mdate, mphone, mrank, oname, msal, uno
+			FROM(SELECT (@R := @R+1) AS RN, mno, mname, mdate, mphone, mrank, oname, msal, uno
+				FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal, up.uno
+						FROM member m 
+						LEFT OUTER JOIN organization o ON m.ono = o.ono
+						LEFT OUTER JOIN upper_organization up ON o.uno = up.uno
+						
 						<if test="keyword != null ">
 						WHERE m.mno LIKE CONCAT('%',#{keyword},'%') 
 						OR m.mname LIKE CONCAT('%',#{keyword},'%')
@@ -72,10 +74,10 @@
 	<!--사원번호로 부서 + 유저 한명조회 -->
 	<select id="getOne" resultType="MemberDTO" parameterType="int">
 		SELECT * FROM 
-		member as A
-		LEFT JOIN organization as O
-		on O.ono = A.ono
-		WHERE A.mno = #{mno};
+		member  m
+		LEFT OUTER JOIN organization  o on o.ono = m.ono
+		LEFT OUTER JOIN upper_organization up ON o.uno = up.uno
+		WHERE m.mno = #{mno};
 	</select>
 	
 	<!-- 아이디 찾기 (이름 이메일)  -->

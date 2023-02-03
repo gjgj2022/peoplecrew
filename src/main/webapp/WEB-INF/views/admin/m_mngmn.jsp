@@ -148,7 +148,7 @@
             </a>
           </li>
           <li>
-            <a href="/admin/admin4">
+            <a href="/admin/page">
               <i class="bi bi-circle"></i>
               <span>근태관리</span>
             </a>
