@@ -14,6 +14,7 @@ import com.people.dto.StartEnd;
 public interface BoardDAO {
 	int getBoardTotal(); //총 게시물수 
 	List<BoardDTO> readAll(StartEnd se);  //변수 2개 못받아서 se로 묶음
+	List<BoardDTO> readDashAll(); 
 	BoardDTO getOne(int bono);
 	void raiseBohits(int bono);
 	int getCount(int bono);  //총 댓글수 

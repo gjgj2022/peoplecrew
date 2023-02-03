@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.people.dto.MemberDTO;
-
+import com.people.service.BoardService;
 import com.people.service.EmailSenderService;
 
 import com.people.service.MemberService;
@@ -48,10 +48,11 @@ public class LoginController {
 		return "/login/cLogin";
 	}
 
-	@GetMapping("/")
-	public String main() {
-		return "index";
-	}
+//	@GetMapping("/")
+//	public String main() {
+//		log.info("테스트 : 로그인쪽 "); DashBoardController이동
+//		return "index";
+//	}
 	
 	@GetMapping("/logout")
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
