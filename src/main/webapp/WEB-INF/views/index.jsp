@@ -51,15 +51,33 @@
           
           <ul id="tables-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                               <li>
-            <a href="/test">
+            <a href="personnel_info/mypage?mno=${dto.mno }">
               <i class="bi bi-circle"></i>
-              <span>Green Tables</span>
+              <span>마이페이지</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="personnel_info/mypage_modi?mno=${dto.mno }">
               <i class="bi bi-circle"></i>
-              <span>Data Tables</span>
+              <span>마이페이지 수정</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel_info/cs">
+              <i class="bi bi-circle"></i>
+              <span>문의사항</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel_info/stafflist">
+              <i class="bi bi-circle"></i>
+              <span>직원 현황</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel_info/organization2">
+              <i class="bi bi-circle"></i>
+              <span>조직도</span>
             </a>
           </li>
         </ul>
