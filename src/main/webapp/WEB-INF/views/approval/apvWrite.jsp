@@ -106,12 +106,12 @@
 		</table>
 		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;">
 			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
-				<th>결재자1</th>
-				<th>결재자2</th>
+				<th>팀장</th>
+				<th>부장</th>
 			</tr>
 			<tr>
-				<td class="border border-1">아무개</td>
-				<td class="border border-1">아무개</td>
+				<td class="border border-1">${mdto2.mname }</td>
+				<td class="border border-1">${mdto4.mname }</td>
 			</tr>
 		</table>
 	</div>

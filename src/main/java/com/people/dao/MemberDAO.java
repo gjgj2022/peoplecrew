@@ -25,5 +25,6 @@ public interface MemberDAO {
 	public void updateOne(MemberDTO dto); // 업데이트
 	public void update_pw(MemberDTO dto); // 업데이트
 	public void deleteOne(int mno); 	  // 삭제
-	
+	MemberDTO getOneTL(int ono);
+	MemberDTO getOneTM(int uno);
 }

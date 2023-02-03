@@ -52,10 +52,16 @@ public class ApprovalController {
 		session.setAttribute("mno", mno);
 
 		// 개인문서함
-		model.addAttribute("wait", dservice.getMyCount("결재대기", String.valueOf(mno)));
-		model.addAttribute("ing", dservice.getMyCount("진행중", String.valueOf(mno)));
-		model.addAttribute("success", dservice.getMyCount("결재완료", String.valueOf(mno)));
-		model.addAttribute("reject", dservice.getMyCount("반려", String.valueOf(mno)));
+		
+		String wait = "결재대기";
+		String ing = "진행중";
+		String success = "결재완료";
+		String reject = "반려";
+		
+		model.addAttribute("wait", dservice.getMyCount(wait, String.valueOf(mno)));
+		model.addAttribute("ing", dservice.getMyCount(ing, String.valueOf(mno)));
+		model.addAttribute("success", dservice.getMyCount(success, String.valueOf(mno)));
+		model.addAttribute("reject", dservice.getMyCount(reject, String.valueOf(mno)));
 
 		// 결재처리함
 		
@@ -148,6 +154,18 @@ public class ApprovalController {
 		
 		model.addAttribute("now", now);
 		
+		// 결재사원(팀장)
+		MemberDTO mdto2 = mservice.getOneTL(dto.getOno());
+		
+		model.addAttribute("mdto2", mdto2);
+		
+		// 결재사원(부장)
+		MemberDTO mdto3 = mservice.getOne(dto.getMno());
+		
+		MemberDTO mdto4 = mservice.getOneTM(mdto3.getUno());
+		
+		model.addAttribute("mdto4", mdto4);
+		
 		return "/approval/apvWrite";
 	}
 
@@ -177,21 +195,11 @@ public class ApprovalController {
 		String apno = dono + "-0";
 		
 		adto.setApno(apno);
-		// 임시결재사원 = 113; << 수정해야됨
 		
-		int apmno = 0;
+		// 결재사원(팀장)
+		MemberDTO mdto = mservice.getOneTL(dto.getOno());
 		
-		String mno2 = String.valueOf(dto.getMno());
-		
-		System.out.println(mno2);
-		
-		if(mno2.charAt(0) == '1') {
-			apmno = 113;
-		}else if(mno2.charAt(0) == '2') {
-			apmno = 216;
-		}
-		
-		adto.setApmno(apmno);
+		adto.setApmno(mdto.getMno());
 		adto.setDono(dono);
 
 		aservice.addOne(adto);
@@ -201,16 +209,17 @@ public class ApprovalController {
 
 	@RequestMapping("/personalFile")
 	public String personalFile(HttpServletRequest req, Model model) {
+		// 회원번호 불러오기
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
+		
 		String apvP = req.getParameter("apvP");
 
 		if (apvP == null) {
 			apvP = "전체문서";
 		}
-		// 회원번호 불러오기
-		HttpSession session = req.getSession();
-		int mno = (int) session.getAttribute("mno");
 		// 분류별 불러오기
-		List<DocumentDTO> list = dservice.readByDoprogress(apvP, String.valueOf(mno));
+		List<DocumentDTO> list = dservice.readByDoprogress(apvP, String.valueOf(dto.getMno()));
 		ArrayList<MemberDTO> mlist = new ArrayList<MemberDTO>();
 		for(int i=0; i<list.size(); i++) {
 			DocumentDTO ddto = list.get(i);
@@ -221,7 +230,7 @@ public class ApprovalController {
 		model.addAttribute("mlist1", mlist);
 
 		// 전체 불러오기
-		List<DocumentDTO> list2 = dservice.readAllByMno(mno);
+		List<DocumentDTO> list2 = dservice.readAllByMno(dto.getMno());
 		ArrayList<MemberDTO> mlist2 = new ArrayList<MemberDTO>();
 		for(int i=0; i<list2.size(); i++) {
 			DocumentDTO ddto = list2.get(i);
@@ -284,22 +293,12 @@ public class ApprovalController {
 		String apno = ddto.getDono() + "-0";
 		
 		adto.setApno(apno);
-		// 임시결재사원 = 113; << 수정해야됨
 		
-		int apmno = 0;
-		
-		String mno2 = String.valueOf(dto.getMno());
-		
-		System.out.println(mno2);
-		
-		if(mno2.charAt(0) == '1') {
-			apmno = 113;
-		}else if(mno2.charAt(0) == '2') {
-			apmno = 216;
-		}
+		// 결재사원(팀장)
+		MemberDTO mdto = mservice.getOneTL(dto.getOno());
 		
 		adto.setMno(dto.getMno());
-		adto.setApmno(apmno);
+		adto.setApmno(mdto.getMno());
 		adto.setDono(ddto.getDono());
 
 		aservice.addOne(adto);
@@ -368,26 +367,27 @@ public class ApprovalController {
 	
 	@PostMapping("/apvProgressOk1")
 	public String apvProgressOk1(@ModelAttribute ApprovalDTO adto,
-								 @ModelAttribute DocumentDTO ddto) {
+								 @ModelAttribute DocumentDTO ddto,
+								 HttpServletRequest req, Model model) {
 		
 		dservice.updateOne("진행중", ddto.getDono());
 		
 		String apno = ddto.getDono()+"-0";
 		
 		aservice.updateOne("1", apno);		
+		
+		// 회원번호 불러오기
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
+		
+		// 결재사원(부장)
+		MemberDTO mdto3 = mservice.getOne(dto.getMno());
+		
+		MemberDTO mdto4 = mservice.getOneTM(mdto3.getUno());
 
-		int ampno = 0;
-		
-		String mno = String.valueOf(ddto.getMno());
-		
-		if(mno.charAt(0)=='1') {
-			ampno = 108;
-		}else if(mno.charAt(0)=='2') {
-			ampno = 214;
-		}
 		
 		adto.setApno(apno+"0");
-		adto.setApmno(ampno);		
+		adto.setApmno(mdto4.getMno());		
 		
 		aservice.addOne(adto);
 		
