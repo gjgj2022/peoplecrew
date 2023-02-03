@@ -25,56 +25,7 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
-<style>
-      #attendance_table{
-            width: 100%;
-            background-color: white;
-            padding-top: 50%;
-            padding-left: 5%;
-            padding-right: 5%;
-        }
-         #modal {
-          display: none;
-          position:relative;
-          width:100%;
-          height:100%;
-          z-index:1;
-        }
-        
-        #modal h2 {
-          margin:0;
-        }
-        #modal button {
-          display:inline-block;
-          width:100px;
-          align-items:center;
-          margin-left:calc(100% - 100px - 10px);
-        }
-        
-        #modal .modal_content {
-          width:500px;
-          height:300px;
-          margin:100px auto;
-          padding:20px 10px;
-          background:#fff;
-          border:2px solid #666;
-        }
-        
-        #modal .modal_layer {
-          position:fixed;
-          top:0;
-          left:0;
-          width:100%;
-          height:100%;
-          background:rgba(0, 0, 0, 0.5);
-          z-index:-1;
-        }
-        hr.line1 {
-        	height : 50px;
-        	width : 0px;
-        	border-right: 0px;
-        }   
-</style>
+
 <body>
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
