@@ -14,7 +14,7 @@
 <body>
 <h2><a href="mypage?mno=211">마이페이지</a></h2>
 <h2><a href="mypage_modi?mno=211">마이페이지 수정</a></h2>
-<h2><a href="service">문의</a></h2>
+<h2><a href="cs">문의</a></h2>
 <h2><a href="stafflist">직원현황</a></h2>
 <h2><a href="organization2">조직도dd</a></h2>
 <h2><a href="login">로그인</a></h2>

@@ -34,11 +34,7 @@ public class PinfoMemberService {
 	public void mypagemodify(PinfoMemberDTO dto) {
 		dao.modify_mypage(dto);
 	}
-
-
-	public PinfoMemberDTO getMno2(int mno) {
-		return dao.getMno2(mno);
-	};
+	
 	
 	
 	//===================================================
