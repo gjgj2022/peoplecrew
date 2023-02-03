@@ -129,13 +129,12 @@
 					class="nav-link active collapsed" data-bs-target="#tables-nav2"
 					data-bs-toggle="collapse" href="#">
 						<div
-							class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
 						</div> <span class="nav-link-text ms-1">전자결재</span>
 				</a>
         
-        <ul id="tables-nav2" class="nav-content collapse "
-						data-bs-parent="#sidebar-nav">
+        <ul id="tables-nav2" class="nav-content collapse "data-bs-parent="#sidebar-nav">
 						<li><a href="/apvHome"> <i class="bi bi-circle"></i> <span>전자결재홈</span>
 						</a></li>
 						<li><a href="/apvWrite?form=연차신청서"> <i class="bi bi-circle"></i> <span>기안작성</span>
@@ -225,9 +224,9 @@
       </div>
     </nav>
     <!-- End Navbar -->
+    
     <div class="container-fluid py-3">
       <div class="row">
-      	
       	<!-- 공지사항  -->
         <div class="col-lg-7">
           <div class="card h-100">
@@ -348,10 +347,13 @@
         </div>
         
       </div>
-      </div>
-		<!-- 결제 진행사항 -->
-		<div class="row mt-1">
-        <div class="col-lg-7-1"  style="margin-left: 25px;">
+    </div>
+      
+      
+	<!-- 결제 진행사항 -->
+	<div class="container-fluid py-4">
+	  <div class="row mt-1">
+        <div class="col-3">
           <div class="card ">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
@@ -424,8 +426,8 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-7-1 mb-lg-0 mb-4">
-          <div class="card ">
+        <div class="col-3">
+          <div class="card h-100 ">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
                 <h6 class="mb-2">결재문서함</h6>
@@ -497,8 +499,8 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-7-1 mb-lg-0 mb-4">
-          <div class="card ">
+        <div class="col-3">
+          <div class="card h-100 ">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
                 <h6 class="mb-2">근태현황</h6>
@@ -570,8 +572,8 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-7-1 mb-lg-0 mb-4">
-          <div class="card ">
+        <div class="col-3">
+          <div class="card h-100">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
                 <h6 class="mb-2">연차현황</h6>
@@ -579,7 +581,7 @@
             </div>
             <div class="table-responsive">
               <table class="table align-items-center ">
-                <tbody>
+                <tbody class="table align-items-center">
                   <tr>
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
@@ -622,37 +624,19 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div>
-                        </div>
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">/</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">/</h6>
-                      </div>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-      
+      </div>
 
       <%@ include file="include/footer.jsp" %>
-      
-      </div>
-    
+     </div>
     
   </main>
   
-  <script type="text/javascript">
+ <script type="text/javascript">
 function times() {
 	var clock = document.getElementById("clock");
 	var now = new Date();
@@ -716,9 +700,16 @@ $(function(){
 });
 </script>
   
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
   
-  
- 
   <!--   Core JS Files   -->
   <script src="../resources/assets/js/core/popper.min.js"></script>
   <script src="../resources/assets/js/core/bootstrap.min.js"></script>
