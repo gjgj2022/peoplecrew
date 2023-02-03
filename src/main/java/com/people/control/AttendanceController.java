@@ -88,6 +88,12 @@ public class AttendanceController {
 		return "/admin/attendance_admin";
 	}
 	
+//	@GetMapping("/attmodify_admin")
+//	public String listAdminOne(Model model
+//							   @RequestParam("mno")) {
+//		
+//	}
+	
 	@GetMapping("/attmodify_admin")
 	public String attmodify() {
 		
@@ -114,23 +120,6 @@ public class AttendanceController {
 //		
 //	}
 	
-//	@GetMapping("/dashboard")
-//	public String work(Principal principal, HttpSession session, Model model) {
-//		
-//		String mname = principal.getName();
-//		
-//		model.addAttribute("work_day", attdservice.work_day(mname));
-//		
-//		log.info(mname);
-//		
-//		if (session.getAttribute("mrank") == null || !session.getAttribute("mrank").equals("member")) {
-//			MemberDTO memberdto = memberservice.read(mname);
-//			session.setAttribute("mrank", memberdto.get)
-//		}
-//		
-//		return "dashboard";
-//		
-//	}
 	
 	@GetMapping("/attendance_admin")
 	public String adminList(Model model) {
@@ -143,12 +132,4 @@ public class AttendanceController {
 	public String calendar() {
 		return "/attendance/vacation";
 	}
-	
-	// 대시보드
-	@GetMapping("/dashboard")
-	public String dashboard() {
-		return "/dashboard/dashboard";
-	}
-	
-
 }
