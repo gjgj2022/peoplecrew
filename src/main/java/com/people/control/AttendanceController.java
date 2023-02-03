@@ -39,7 +39,8 @@ public class AttendanceController {
 	@GetMapping("/attendance")
 	public String list(Model model,
 						@RequestParam("mno") int mno,
-					   @RequestParam(name = "cp", defaultValue = "1")int currentPage) {
+						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
+		
 		int totalNumber = attdservice.getTotal();
 		//페이지당 게시물 수
 		int recordPerPage = 10;
@@ -49,11 +50,9 @@ public class AttendanceController {
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
-		AttendanceDTO attdto = attdservice.attdOne(startNo, endNo, mno);
-		model.addAttribute("attdto", attdto);
+		List<AttendanceDTO> list3 = attdservice.attdOne(startNo, endNo, mno);
+		model.addAttribute("list3", list3);
 		model.addAttribute("map", map);
-		
-
 		
 		List<AttendanceDTO> chdb = attdservice.getChdb();
 		List<AttendanceDTO> chdb2 = attdservice.chdb2();
@@ -61,10 +60,14 @@ public class AttendanceController {
 		model.addAttribute("chdb", chdb);
 		model.addAttribute("chdb2", chdb2);
 		
-		log.info("attdto {} :", attdto);
+		log.info("attdto {} :", list3);
 		log.info("map {} :", map);
+		
 		return "/attendance/attendance";
 	}
+	
+	
+	
 	
 	@GetMapping("/admin/page")
 	public String listAdmin(Model model,
