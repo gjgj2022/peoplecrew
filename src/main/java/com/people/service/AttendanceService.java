@@ -49,6 +49,9 @@ public class AttendanceService {
 	public AttendanceDTO userOne(int mno) {
 		return dao.getOne(mno);
 	}
+	public void updateOne(AttendanceDTO dto) {
+		dao.updateOne(dto);
+	}
 
 
 	

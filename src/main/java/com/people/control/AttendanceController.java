@@ -89,25 +89,30 @@ public class AttendanceController {
 	}
 	
 	@GetMapping("/attmodify_admin")
-	public String attmodify(Model model,
-							@RequestParam("mno")int mno) {
-		AttendanceDTO attdto2 = attdservice.userOne(mno);
+	public String attmodify() {
 		
-		model.addAttribute("attdto2", attdto2);
-		log.info("attdto2{}", attdto2);
-		
+//		AttendanceDTO attdto2 = attdservice.userOne(mno);
+//		
+//		model.addAttribute("attdto2", attdto2);
+//		log.info("attdto2{}", attdto2);
 		return "admin/attmodify_admin";
+	}
+	
+	@PostMapping("/attmodify_admin")
+	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO dto) {
+		attdservice.updateOne(dto);
+		return "redirect:/admin/attendance_admin";
 		
 	}
 	
-	@PostMapping("/wirte")
-	public String workAddOne(@ModelAttribute("dto")AttendanceDTO dto, HttpServletRequest req) {
-		String aid = req.getRemoteAddr();
-		dto.setAid(aid);
-		attdservice.addOne(dto);
-		return "redirect:/index";
-		
-	}
+//	@PostMapping("/wirte")
+//	public String workAddOne(@ModelAttribute("dto")AttendanceDTO dto, HttpServletRequest req) {
+//		String aid = req.getRemoteAddr();
+//		dto.setAid(aid);
+//		attdservice.addOne(dto);
+//		return "redirect:/index";
+//		
+//	}
 	
 //	@GetMapping("/dashboard")
 //	public String work(Principal principal, HttpSession session, Model model) {

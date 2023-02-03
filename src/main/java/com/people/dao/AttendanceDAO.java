@@ -18,4 +18,5 @@ public interface AttendanceDAO {
 	int getTotal();
 	String work_day(String aid);
 	void insertOne(AttendanceDTO dto);
+	void updateOne(AttendanceDTO dto);
 }

@@ -49,9 +49,17 @@
 		]]>
 	</select>
 	
-	<select id="getOne" resultType="AttendanceDTO" parameterType="int">
-		
-	</select>
+<!-- 	<select id="getOne" resultType="AttendanceDTO" parameterType="int">
+		SELECT *
+		FROM attendance as A
+		LEFT JOIN member as B
+		on A.mno = B.mno
+		WHERE A.mno = #{mno};
+	</select> -->
+	
+<!-- 	<update id="updateOne" parameterType="AttendanceDTO">
+	
+	</update> -->
 	
 <!--   	<insert id="insertOne" parameterType="AttendanceDTO">
 		INSERT INTO attendance (ono, atno, mno, aid, work_day, start_time, end_time, state)
