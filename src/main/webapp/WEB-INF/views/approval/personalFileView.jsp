@@ -27,6 +27,23 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.4"
 	rel="stylesheet" />
+<style>
+#box {
+  size:210mm 297mm; /*A4*/
+  margin:0mm
+}
+* {
+    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
+    color-adjust: exact !important;                 /*Firefox*/
+}
+@media print {
+   	.noPrint {
+       display: none;
+    }
+}
+
+
+</style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -241,12 +258,13 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 
 
 <!-- ==========================================================내작업======================  -->
-	<div class="container bg-white p-2 rounded" style="min-width:1400px;">
-	<div style="position:relative;left:192px;top:100px;"><a href="/personalFile"><input class="btn btn-primary" type="button" value="목록으로" /></a></div>
-	<div class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1000px;margin-left:auto;margin-right:auto;">
+	<div class="container bg-white p-1 rounded" style="min-width:1400px;">
+	<div style="position:relative;left:74%;top:100px;"><input class="btn text-white" type="button" style="background:#607e19;margin-right:10px" onClick="Print()" value="출력"/><a href="/personalFile"><input class="btn btn-primary" type="button" value="목록으로" /></a></div>
+	
+	<div id="box" class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:180px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
-			<tr style="height:50px;">
+			<tr class="noPrint" style="height:50px;">
 				<td>
 					<input type="hidden" name="dono" value="${ddto.dono }" />
 				</td>
@@ -255,14 +273,33 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 					<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="수정" /></td>
 					<td style="width:50px;"><a href="/personalFileDelete?dono=${ddto.dono }"><input class="btn btn-danger" type="button" style="" value="삭제" /></a></td>
 					<td style="width:50px;"><a href="/personalFile"><input class="btn btn-light" type="button" value="취소" /></a></td>
-				</c:if>
-				
+				</c:if>				
 			</tr>
-			<tr>
-			<td colspan="4" style="text-align:center;"><h2>${ddto.dotype }</h2></td>
+			<tr class="align-bottom" style="height:100px;">
+				<td colspan="4" style="text-align:center;"><h3>${ddto.dotype }</h3></td>
 			</tr>
 		</table>
-		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;">
+	</div>
+	<div style="width:1000px;margin-left:auto;margin-right:auto;">
+		<table class="table table-bordered align-middle" style="margin-left:4%;width:61%;float:left;">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">
+				<th>이름</th>
+				<th>직책</th>
+				<th>부서</th>
+				<th>사번</th>
+				<th>작성일자</th>
+			</tr>
+			<tr style="text-align:center;">
+				<td class="border border-1" style="height:70px;">${mdto.mname }</td>
+				<td class="border border-1" style="height:70px;">${mdto.mrank }</td>
+				<td class="border border-1" style="height:70px;">${mdto.oname }</td>
+				<td class="border border-1" style="height:70px;">${mdto.mno }</td>
+				<td class="border border-1" style="height:70px;">${ddto.dodate }</td>
+				<input type="hidden" name="mno" value="${mdto.mno }" />
+			</tr>
+		</table>
+
+		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;margin-bottom:50px;">
 			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
 				<th style="width:100px;">팀장</th>
 				<th style="width:100px;">부장</th>
@@ -272,10 +309,6 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 				<td class="border border-1" style="height:70px;"><c:if test="${ddto.doprogress eq '결재완료' }"><img src="${dto12.fpath }" alt="" style="height:50px;"/></c:if></td>
 			</tr>
 		</table>
-	</div>
-	<div style="width:1000px;">
-		
-
 	</div>
 	
 	<c:choose>
@@ -287,7 +320,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 		</c:when>
 	</c:choose>
 	
-	<div style="width:1000px;">
+	<div style="width:1000px;text-align:center;margin-left:auto;margin-right:auto;">
 	<table class="table table-borderless align-middle" style="width:25%;text-align:center;margin-left:auto;margin-right:auto;margin-bottom:50px;">
 		<tr>
 			<td style="padding-top:50px;">상기 명 본인은 위와같은 사유로 제출합니다.</td>
@@ -302,7 +335,27 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 	</div>
 	</form>
 <!-- ===================================================================================  -->
-	
+<!-- 프린터 출력 스크립트 -->	
+  <script type="text/javascript">
+
+  var initBody
+  window.onafterprint = afterPrint;
+  
+  function Print(){
+    initBody = document.body.innerHTML;
+    document.body.innerHTML = box.innerHTML;
+
+    setTimeout(function(){
+	    window.print();
+    	
+    },100)
+    
+  }
+
+  function afterPrint(){
+    document.body.innerHTML = initBody;
+  }
+  </script>
 	
 	
 	

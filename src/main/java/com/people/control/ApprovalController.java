@@ -253,6 +253,11 @@ public class ApprovalController {
 		
 		model.addAttribute("ddto", dto2);
 		
+		// 멤버불러오기
+		MemberDTO mdto = mservice.getOne(dto2.getMno());
+		
+		model.addAttribute("mdto", mdto);
+		
 		// 도장이미지 불러오기
 		FileDTO dto11 = fservice.selectOne(1001);
 		FileDTO dto12 = fservice.selectOne(1002);
