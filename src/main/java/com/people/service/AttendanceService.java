@@ -18,6 +18,12 @@ public class AttendanceService {
 	public List<AttendanceDTO> selectAll() {
 		return dao.getAll();
 	}
+	
+	// 대시보드 근태
+	public List<AttendanceDTO> attenMno(int mno) {
+		return dao.getOneAtten(mno);
+	}
+	
 	public List<AttendanceDTO> selectAll(int startNo, int endNo) {
 		AttdStartEnd se = new AttdStartEnd(startNo, endNo, 0);
 		return dao.readAll(se);
