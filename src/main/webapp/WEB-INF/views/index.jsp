@@ -594,7 +594,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${mannual }</h6>
                       </div>
                     </td>
                   </tr>
@@ -608,7 +608,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${usemannual }</h6>
                       </div>
                     </td>
                   </tr>
@@ -622,7 +622,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${mannual-usemannual }</h6>
                       </div>
                     </td>
                   </tr>

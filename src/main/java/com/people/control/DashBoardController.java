@@ -56,6 +56,13 @@ public class DashBoardController {
 		
 		log.info("근태리스트 : " + list2);
 		
+		// 연차현황
+		model.addAttribute("mannual",  dto.getMannual());
+		model.addAttribute("usemannual",  dto.getUsemannual());
+		
+		log.info("총연차 : " + dto.getMannual());
+		log.info("사용연차 : " + dto.getUsemannual());
+		
 		
 		return "index";
 	}
