@@ -70,6 +70,10 @@ public class PinfoCsService {
 	public void removeRAll(int bono) {  
 		dao.removeReplyAll(bono);
 	}
+	
+	public void upRemove(PinfoCsDTO dto) {
+		dao.upRemove(dto);
+	};
 
 }
 

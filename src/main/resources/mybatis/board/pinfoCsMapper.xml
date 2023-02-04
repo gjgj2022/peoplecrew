@@ -98,5 +98,11 @@
 	<delete id="removeFileByFno" parameterType="int">
 		delete from file where fno=#{fno}
 	</delete>
+	
+	<update id="upRemove" parameterType="int">
+	UPDATE board
+	SET bostatus = 1
+	WHERE bono=#{bono}
+	</update>
 
 </mapper>

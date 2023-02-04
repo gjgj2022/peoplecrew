@@ -8,11 +8,15 @@
 <mapper namespace="com.people.dao.PinfoAnswerDAO">
 
 
-	<select id="getOne" parameterType="int">
-
+	<select id="getOne" parameterType="int" resultType="PinfoCsDTO">
+	SELECT ansno, bono, mno, ansdate, anscontents, anstitle
+	FROM answer
+	WHERE bono=#{bono}
 	</select>
 
 	<insert id="insertOne">
+	INSERT answer
+	VALUES(null, #{bono},#{mno},)
 	</insert>
 
 	<delete id="removeOne" parameterType="int">
@@ -20,13 +24,14 @@
 		where ansno = #{ansno}
 	</delete>
 
-	<update id="upRemove" parameterType="int">
-	UPDATE board
-	SET 
 	
-	</update>
 
 	<update id="updateOne" parameterType="int">
+	UPDATE answer
+	SET anstitle = #{anstitle},
+	anscontents=#{anscontents},
+	ansdate= #{ansdate} 
+	WHER ansno = #{ansno}
 	
 	</update>
 </mapper>

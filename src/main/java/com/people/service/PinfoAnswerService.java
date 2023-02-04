@@ -20,17 +20,15 @@ public class PinfoAnswerService {
 		return dao.getOne(bono);
 		
 	};
-	void insertOne(PinfoAnswerDTO dto) {
+	public void insertOne(PinfoAnswerDTO dto) {
 		dao.insertOne(dto);
 		
 	};
-	void removeOne(int ansno) {
+	public void removeOne(int ansno) {
 		dao.removeOne(ansno);
 	};
-	void upRemove(PinfoCsDTO dto) {
-		dao.upRemove(dto);
-	};
-	void updateOne(PinfoAnswerDTO dto) {
+	
+	public void updateOne(PinfoAnswerDTO dto) {
 		dao.updateOne(dto);
 	};
 
