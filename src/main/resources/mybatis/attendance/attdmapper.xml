@@ -103,14 +103,11 @@
 		      ORDER BY work_day desc
 	</select>
 	
-	
-	
-	
 	<!-- 근태관리(관리자) 수정 -->
-<!-- 	<update id="updateOne" parameterType="AttendanceDTO">
+<!--  	<update id="updateOne" parameterType="AttendanceDTO">
 		UPDATE attendance A INNER JOIN member B
 		ON A.mno = B.mno
-		SET A.end_time = #{end_time}, A.state = #{state}, C.mannual = #{mannul}
+		SET A.end_time = #{end_time}, A.state = #{state}, C.mannual = #{mannual}
 		WHERE A.mno = #{mno}
 	</update> -->
 	

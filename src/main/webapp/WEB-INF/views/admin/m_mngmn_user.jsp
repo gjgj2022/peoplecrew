@@ -186,7 +186,7 @@
           <div class="card mb-4">
             <div class="card-header pb-0">
               <span style="font-size: 18px; font-weight: bolder;">사원정보</span>
-              <form action="/admin/search" method="get" name="search-form" id="sform">
+              <form action="/search3" method="get" name="search-form" id="sform">
               <div class="input-group " style="width: 20%; float: right;">
 	              <span class="input-group-text text-body">
               	  <a href="#" onclick="document.getElementById('sform').submit();"><i class="fas fa-search" aria-hidden="true"></i></a>
@@ -210,8 +210,6 @@
                       <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-4">전화번호</th>
                       <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-4">직급</th>
                       <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-4">부서</th>
-                	  <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-3">수정</th>
-                      <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-3">삭제</th>
                     </tr>
                   </thead>
                   
@@ -236,19 +234,6 @@
                       <td class="ps-4">
                         <span class="text-secondary text-s font-weight-bolder">${dto.oname }</span> <!--부서-->
                       </td>
-                      
-                      <td class="ps-2">
-                        <a href="modify?mno=${dto.mno }" class="btn btn-info m-2" 
-                        		onclick="return confirm('수정 하시겠습니까?');" data-toggle="tooltip" data-original-title="Edit user" style="margin-bottom: 0;">
-                          수정
-                        </a>
-                      </td>
-                      <td class="ps-2">
-                        <a href="delete?mno=${dto.mno }" class="btn btn-danger m-2" data-toggle="tooltip" 
-                        		onclick="return confirm('삭제 하시겠습니까?');" data-original-title="delete user" style="margin-bottom: 0; ">
-                          삭제
-                        </a>
-                      </td>
                     </tr>
                   </c:forEach>
                   
@@ -261,10 +246,10 @@
 								  	<c:when test="${map.isPre }">
 								  		<c:choose>
 								  			<c:when test="${empty keyword}">
-											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${map.currentPage-5 }">이전</a></li>
+											    <li class="page-item"><a class="page-link" href="search3?keyword=${keyword}&cp=${map.currentPage-5 }">이전</a></li>
 								  			</c:when>
 								  			<c:otherwise>
-											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${map.currentPage-5 }">이전</a></li>
+											    <li class="page-item"><a class="page-link" href="search3?keyword=${keyword}&cp=${map.currentPage-5 }">이전</a></li>
 								  			</c:otherwise>
 								  		</c:choose>
 								  	</c:when>
@@ -273,10 +258,10 @@
 								  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
 								  		<c:choose>
 								  			<c:when test="${empty keyword}">
-											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${i}">${i }</a></li>
+											    <li class="page-item"><a class="page-link" href="search3?keyword=${keyword}&cp=${i}">${i }</a></li>
 								  			</c:when>
 								  			<c:otherwise>
-											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${i}">${i }</a></li>
+											    <li class="page-item"><a class="page-link" href="search3?keyword=${keyword}&cp=${i}">${i }</a></li>
 								  			</c:otherwise>
 								  		</c:choose> 
 								  	</c:forEach>
@@ -285,10 +270,10 @@
 								    <c:when test="${map.isNext }">
 								    	<c:choose>
 								  			<c:when test="${empty keyword}">
-											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${map.currentPage+5 }">다음</a></li>
+											    <li class="page-item"><a class="page-link" href="search3?keyword=${keyword}&cp=${map.currentPage+5 }">다음</a></li>
 								  			</c:when>
 								  			<c:otherwise>
-											    <li class="page-item"><a class="page-link" href="search?keyword=${keyword}&cp=${map.currentPage+5 }">다음</a></li>
+											    <li class="page-item"><a class="page-link" href="search3?keyword=${keyword}&cp=${map.currentPage+5 }">다음</a></li>
 								  			</c:otherwise>
 								  		</c:choose>
 								    </c:when>

@@ -117,7 +117,6 @@ public class MemberAdminController {
 	}
 	
 	
-	
 	@GetMapping("/modify")
 	public String modifyForm(@RequestParam("mno")int mno, Model model) {
 		MemberDTO dto2 = service.getOne(mno);

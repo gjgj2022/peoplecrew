@@ -36,6 +36,7 @@ public class AttendanceController {
 	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
 	
+	//직원용 조회 & 페이징
 	@GetMapping("/attendance")
 	public String list(Model model,
 						@RequestParam("mno") int mno,
@@ -66,9 +67,7 @@ public class AttendanceController {
 		return "/attendance/attendance";
 	}
 	
-	
-	
-	
+	// 관리자용 조회 & 페이징
 	@GetMapping("/admin/page")
 	public String listAdmin(Model model,
 							@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
@@ -103,12 +102,12 @@ public class AttendanceController {
 		
 	}
 	
-//	@PostMapping("/attmodify_admin")
-//	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO dto) {
-//		attdservice.updateOne(dto);
-//		return "redirect:/admin/attendance_admin";
-//		
-//	}
+	@PostMapping("/attmodify_admin")
+	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO dto) {
+		attdservice.updateOne(dto);
+		return "redirect:/admin/attendance_admin";
+		
+	}
 	
 //	@PostMapping("/wirte")
 //	public String workAddOne(@ModelAttribute("dto")AttendanceDTO dto, HttpServletRequest req) {

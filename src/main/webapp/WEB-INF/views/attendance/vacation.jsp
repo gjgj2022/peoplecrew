@@ -257,30 +257,62 @@
       </div>
     </nav>
     <!-- End Navbar -->
+    
 <!-- 캘린더 -->
-	<div class="container-fluid py-4">
-					<div class="card-header pb-0 px-3">
-						<div class="card-body pt-4 p-3">
-							<div class="col-lg-9 mb-lg-0 mb-4">
-							<div class="card">
-								<div class="card mb-4">
-									<div class="card-header pb-0 px-3">
-										<div class="card-body pt-4 p-3">
-											<div class="card card-calendar">
-												<!-- fullcalendar -->
-												<div class="calendar" data-bs-toggle="calendar" id="calendar"></div>
-											</div>
-										</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		 
+		
+		<jsp:include page="vacationAjax.jsp" />
+
+</script>
+<style>
+.color0 {
+	color: #2142B2
+}
+
+.color10 {
+	color: #039BE5
+}
+
+.color20 {
+	color: #AF6AB0
+}
+
+.color30 {
+	color: #F691B3
+}
+
+.color40 {
+	color: #33B679
+}
+
+.color50 {
+	color: #6937a1
+}
+
+.color1 {
+	color: #D86C77
+}
+</style>
+		<div class="container-fluid py-4">
+			<div class="row">
+				<div class="col-lg-9 mb-lg-0 mb-4">
+					<div class="card">
+						<div class="card mb-4">
+							<div class="card-header pb-0 px-3">
+								<div class="card-body pt-4 p-3">
+									<div class="card card-calendar">
+										<!-- fullcalendar -->
+										<div><input type="button" class="btn bg-gradient-info" value="휴가등록" onclick="location.href='apvWrite?form=연차신청서'"></div>
+										<div class="calendar" data-bs-toggle="calendar" id="calendar"></div>
 									</div>
 								</div>
-							</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
   <!-- 캘린더end -->
     
   </main>
