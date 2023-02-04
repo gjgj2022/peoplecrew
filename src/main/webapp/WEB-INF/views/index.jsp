@@ -499,6 +499,8 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
             </div>
           </div>
         </div>
+        
+        <!-- 근태 현황 -->
         <div class="col-3">
           <div class="card h-100 ">
             <div class="card-header pb-0 p-3">
@@ -519,7 +521,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${fn:length(list2) }</h6>
                       </div>
                     </td>
                   </tr>
@@ -533,7 +535,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${fn:length(list3) }</h6>
                       </div>
                     </td>
                   </tr>
@@ -547,7 +549,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${fn:length(list4) }</h6>
                       </div>
                     </td>
                   </tr>
@@ -563,7 +565,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${fn:length(list5) }</h6>
                       </div>
                     </td>
                   </tr>
@@ -592,7 +594,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${mannual }</h6>
                       </div>
                     </td>
                   </tr>
@@ -606,7 +608,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${usemannual }</h6>
                       </div>
                     </td>
                   </tr>
@@ -620,7 +622,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                     </td>
                     <td>
                       <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
+                        <h6 class="text-sm mb-0">${mannual-usemannual }</h6>
                       </div>
                     </td>
                   </tr>

@@ -19,11 +19,6 @@ public class AttendanceService {
 		return dao.getAll();
 	}
 	
-	// 대시보드 근태
-	public List<AttendanceDTO> attenMno(int mno) {
-		return dao.getOneAtten(mno);
-	}
-	
 	public List<AttendanceDTO> selectAll(int startNo, int endNo) {
 		AttdStartEnd se = new AttdStartEnd(startNo, endNo, 0);
 		return dao.readAll(se);
@@ -58,7 +53,20 @@ public class AttendanceService {
 	public void updateOne(AttendanceDTO dto) {
 		dao.updateOne(dto);
 	}
-
+	
+	// 대시보드 근태 정상
+	public List<AttendanceDTO> attenMno(int mno) {
+		return dao.getOneAtten(mno);
+	}
+	public List<AttendanceDTO> attenMno2(int mno) {
+		return dao.getOneAtten2(mno);
+	}
+	public List<AttendanceDTO> attenMno3(int mno) {
+		return dao.getOneAtten3(mno);
+	}
+	public List<AttendanceDTO> attenMno4(int mno) {
+		return dao.getOneAtten4(mno);
+	}
 
 	
 }
