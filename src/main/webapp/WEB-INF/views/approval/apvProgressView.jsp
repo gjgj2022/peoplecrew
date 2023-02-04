@@ -27,9 +27,26 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.4"
 	rel="stylesheet" />
+<style>
+#box {
+  size:210mm 297mm; /*A4*/
+  margin:0mm
+}
+* {
+    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
+    color-adjust: exact !important;                 /*Firefox*/
+}
+@media print {
+   	.noPrint {
+       display: none;
+    }
+}
+
+</style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
+	
 	<div class="min-height-300 position-absolute w-100" style="background-color:#03A9F4;"></div>
 
 	<!-- 사이드바  -->
@@ -242,8 +259,9 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 
 <!-- ==========================================================내작업======================  -->
 	<div class="container bg-white p-1 rounded" style="min-width:1400px;">
-	<div style="position:relative;left:180px;top:100px;"><a href="/apvProgress"><input class="btn btn-primary" type="button" value="목록으로" /></a></div>
-	<div class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:180px;margin-right:auto;">
+	<div style="position:relative;left:74%;top:100px;"><input class="btn text-white" type="button" style="background:#607e19;margin-right:10px" onClick="Print()" value="출력"/><a href="/apvProgress"><input class="btn btn-primary" type="button" value="목록으로" /></a></div> 
+
+	<div id="box" class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:180px;margin-right:auto;">
 	<div style="height:200px;">
 		<table class="table table-borderless">
 			<tr class="align-bottom" style="height:100px;">
@@ -251,7 +269,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 					<h3>${ddto.dotype }</h3>
 				</th>
 			</tr>
-			<tr style="height:50px;">
+			<tr class="noPrint" style="height:50px;">
 				<td>
 					<input class="btn btn-primary" type="hidden" value="선택" />
 				</td>
@@ -272,7 +290,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 			</tr>
 		</table>
 	</div>
-	<div style="width:1000px;">
+	<div style="width:1000px;margin-left:auto;margin-right:auto;">
 		<table class="table table-bordered align-middle" style="margin-left:4%;width:61%;float:left;">
 			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">
 				<th>이름</th>
@@ -311,7 +329,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 		</c:when>
 	</c:choose>
 	
-	<div style="width:1000px;">
+	<div style="width:1000px;text-align:center;margin-left:auto;margin-right:auto;">
 	<table class="table table-borderless align-middle" style="width:25%;text-align:center;margin-left:auto;margin-right:auto;margin-bottom:50px;">
 		<tr>
 			<td style="padding-top:50px;">상기 명 본인은 위와같은 사유로 제출합니다.</td>
@@ -322,15 +340,36 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 	</table>
 	</div>
 	
+
 	</div>
-	
-	
 	</div>
+
 	</form>
+
+
 <!-- ===================================================================================  -->
-	
-	
-	
+
+<!-- 프린터 출력 스크립트 -->	
+  <script type="text/javascript">
+
+  var initBody
+  window.onafterprint = afterPrint;
+  
+  function Print(){
+    initBody = document.body.innerHTML;
+    document.body.innerHTML = box.innerHTML;
+
+    setTimeout(function(){
+	    window.print();
+    	
+    },100)
+    
+  }
+
+  function afterPrint(){
+    document.body.innerHTML = initBody;
+  }
+  </script>
 	
 	
 	
