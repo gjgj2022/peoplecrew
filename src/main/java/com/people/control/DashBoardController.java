@@ -1,6 +1,7 @@
 package com.people.control;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,7 @@ import com.people.dto.MemberDTO;
 import com.people.service.AttendanceService;
 import com.people.service.BoardService;
 import com.people.service.MemberService;
+import com.people.util.PageUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -66,5 +68,42 @@ public class DashBoardController {
 		
 		return "index";
 	}
+	
+	// 조회 (조직도에서 부서 클릭시 사원리스트)
+		@GetMapping("/search3")
+		public String searchUser(Model model,
+								@RequestParam("keyword")String keyword,
+								@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
+			
+			MemberDTO dto = new MemberDTO();
+			dto.setKeyword(keyword);
+			
+			log.info("keyword : " + keyword);
+			log.info("keyword2 : " + service.getTotal(keyword));
+			
+			model.addAttribute("keyword", keyword);
+			
+			// 총페이지수
+			int totalNumber = service.getTotal(keyword);
+			//페이지당 게시물수
+			int recordPerPage = 10;
+			
+			// 총페이지수,한페이지당수, 현재페이지
+			Map<String, Object> map = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
+			
+			int startNo = (int)map.get("startNo");
+			int endNo = (int)map.get("endNo");
+			
+			List<MemberDTO> list = service.getAll(startNo, endNo, keyword);
+			model.addAttribute("list", list);
+			model.addAttribute("map", map);
+			
+			log.info("map 2 : " + map);
+			log.info("list 2 : " + list);
+			log.info("search2 : " + keyword);
+			
+			return "admin/m_mngmn_user";
+		}
+	
 
 }
