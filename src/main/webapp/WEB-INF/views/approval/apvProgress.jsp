@@ -361,7 +361,8 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 
 
 
-
+		<!-- 푸터  -->
+		<%@ include file="../include/footer.jsp"%>
 
 
 	</main>

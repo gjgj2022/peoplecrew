@@ -247,7 +247,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 
 
 		<!-- ===============================================================내작업=========================================================== -->
-		<div class="container-fluid py-4">
+		<div class="container-fluid py-4" style="height:50%;">
 			<div class="row">
 				
 				
@@ -358,7 +358,8 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 
 
 
-
+		<!-- 푸터  -->
+		<%@ include file="../include/footer.jsp"%>
 
 
 
