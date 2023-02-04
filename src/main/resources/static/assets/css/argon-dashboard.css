@@ -1676,6 +1676,39 @@ progress {
     flex: 0 0 auto;
     width: 50%;
   }
+  
+  #table1 {
+    flex: 0 0 auto;
+    width: 40%;
+    margin-top: 5%;
+    margin-left: 10%;
+  }
+  #table2 {
+    flex: 0 0 auto;
+    width: 40%;
+    margin-top: 5%;
+    margin-left: 2%;
+  }
+  #table3 {
+    flex: 0 0 auto;
+    width: 82%;
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;    
+  }
+  #table4 {
+    flex: 0 0 auto;
+    width: 1070px;
+    margin-top: 2%;
+    margin-left: 10%;    
+  }
+  
+  #table5 {
+    flex: 0 0 auto;
+    width: 1070px;
+    margin-top: 8%;
+    margin-left: 10%;    
+  }
 
   .col-lg-7 {
     flex: 0 0 auto;
@@ -10580,7 +10613,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-  background-color: #5e72e4 !important;
+  background-color: #03A9F4 !important;
 }
 
 .bg-secondary {
