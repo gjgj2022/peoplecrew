@@ -19,5 +19,9 @@ public interface AttendanceDAO {
 	void insertOne(AttendanceDTO dto);
 	void updateOne(AttendanceDTO dto);
 	
+	List<AttendanceDTO> getOneAtten(int mno);
+	List<AttendanceDTO> getOneAtten2(int mno);
+	List<AttendanceDTO> getOneAtten3(int mno);
+	List<AttendanceDTO> getOneAtten4(int mno);	
 	
 }

@@ -249,7 +249,7 @@ public class ApprovalController {
 		
 		DocumentDTO dto2 = dservice.readOne(ddto.getDono());
 		
-		model.addAttribute("form", dotype);
+		model.addAttribute("form", dto2.getDotype());
 		
 		model.addAttribute("ddto", dto2);
 		
