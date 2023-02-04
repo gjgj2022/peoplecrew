@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.people.dto.AttendanceDTO;
@@ -24,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping(value="/", method = {RequestMethod.POST})
 public class AttendanceController {
 	
 	@Autowired
@@ -98,26 +101,16 @@ public class AttendanceController {
 		model.addAttribute("admindto", admindto);
 		
 		log.info("admindto {} ", admindto);
-		return "/admin/attmodify_admin";
+		return "admin/attmodify_admin";
 		
 	}
 	
 	@PostMapping("/attmodify_admin")
-	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO dto) {
-		attdservice.updateOne(dto);
-		return "redirect:/admin/attendance_admin";
+	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO admindto) {
+		attdservice.updateOne(admindto);
+		return "redirect:/attmodify_admin";
 		
 	}
-	
-//	@PostMapping("/wirte")
-//	public String workAddOne(@ModelAttribute("dto")AttendanceDTO dto, HttpServletRequest req) {
-//		String aid = req.getRemoteAddr();
-//		dto.setAid(aid);
-//		attdservice.addOne(dto);
-//		return "redirect:/index";
-//		
-//	}
-	
 	
 	@GetMapping("/attendance_admin")
 	public String adminList(Model model) {

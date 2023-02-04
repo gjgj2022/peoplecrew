@@ -231,7 +231,7 @@
     </nav>
     <!-- End Navbar -->
     
-     <form action="attmodify_admin" method="post">
+     <form action="/admin/page" method="post">
       <div class="container-fluid py-4">
       <div class="row justify-content-center">
       
@@ -339,24 +339,7 @@
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">잔여 연차</label>
-                    <select class="form-select" id="mbirth2" name="mbirth2" size="1">
-                    	<option value="${dto.mannual - dto.usemannual}">${dto.mannual - dto.usemannual}</option>
-						<option value=01>1</option>
-						<option value=02>2</option>
-						<option value=03>3</option>
-						<option value=04>4</option>
-						<option value=05>5</option>
-						<option value=06>6</option>
-						<option value=07>7</option>
-						<option value=08>8</option>
-						<option value=09>9</option>
-						<option value=10>10</option>
-						<option value=11>11</option>
-						<option value=12>12</option>
-						<option value=13>13</option>
-						<option value=14>14</option>
-						<option value=15>15</option>
-					</select>
+      				<input class="form-control" name="memail" type="email" value="${dto.mannual - dto.usemannual }" readonly>
                   </div>
                 </div>
 <%--                 <div class="col-md-10">

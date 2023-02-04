@@ -104,12 +104,12 @@
 	</select>
 	
 	<!-- 근태관리(관리자) 수정 -->
-<!--  	<update id="updateOne" parameterType="AttendanceDTO">
+  	<update id="updateOne" parameterType="AttendanceDTO">
 		UPDATE attendance A INNER JOIN member B
 		ON A.mno = B.mno
-		SET A.end_time = #{end_time}, A.state = #{state}, C.mannual = #{mannual}
+		SET A.state = #{state}, B.mannual = #{mannual}, B.usemannual = #{usemannual}
 		WHERE A.mno = #{mno}
-	</update> -->
+	</update>
 	
 <!--   	<insert id="insertOne" parameterType="AttendanceDTO">
 		INSERT INTO attendance (ono, atno, mno, aid, work_day, start_time, end_time, state)
