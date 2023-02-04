@@ -16,7 +16,7 @@
 
 	<insert id="insertOne">
 	INSERT answer
-	VALUES(null, #{bono},#{mno},)
+	VALUES(null, #{bono},#{mno},sysdate(),#{anscontents},#{anstitle})
 	</insert>
 
 	<delete id="removeOne" parameterType="int">
@@ -29,9 +29,8 @@
 	<update id="updateOne" parameterType="int">
 	UPDATE answer
 	SET anstitle = #{anstitle},
-	anscontents=#{anscontents},
-	ansdate= #{ansdate} 
-	WHER ansno = #{ansno}
+	anscontents=#{anscontents}
+	WHERE ansno = #{ansno}
 	
 	</update>
 </mapper>
