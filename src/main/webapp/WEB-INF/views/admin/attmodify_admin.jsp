@@ -292,8 +292,57 @@
               <p class="text-uppercase text-sm">휴가정보</p>
                 <div class="col-md-2">
                   <div class="form-group">
+                    <label for="example-text-input" class="form-select-label">총 연차</label>
+                    <select class="form-select" id="mbirth2" name="mbirth2" size="1">
+                    	<option value="${dto.mannual }">${dto.mannual }</option>
+                    	<option value="0">0</option>
+						<option value=01>1</option>
+						<option value=02>2</option>
+						<option value=03>3</option>
+						<option value=04>4</option>
+						<option value=05>5</option>
+						<option value=06>6</option>
+						<option value=07>7</option>
+						<option value=08>8</option>
+						<option value=09>9</option>
+						<option value=10>10</option>
+						<option value=11>11</option>
+						<option value=12>12</option>
+						<option value=13>13</option>
+						<option value=14>14</option>
+						<option value=15>15</option>
+					</select>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-select-label">사용연차</label>
+                    <select class="form-select" id="mbirth2" name="mbirth2" size="1">
+                    	<option value="${dto.mannual }">${dto.mannual }</option>
+                    	<option value="0">0</option>
+						<option value=01>1</option>
+						<option value=02>2</option>
+						<option value=03>3</option>
+						<option value=04>4</option>
+						<option value=05>5</option>
+						<option value=06>6</option>
+						<option value=07>7</option>
+						<option value=08>8</option>
+						<option value=09>9</option>
+						<option value=10>10</option>
+						<option value=11>11</option>
+						<option value=12>12</option>
+						<option value=13>13</option>
+						<option value=14>14</option>
+						<option value=15>15</option>
+					</select>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
                     <label for="example-text-input" class="form-select-label">남은연차</label>
                     <select class="form-select" id="mbirth2" name="mbirth2" size="1">
+                    	<option value="${dto.mannual }">${dto.mannual }</option>
                     	<option value="0">0</option>
 						<option value=01>1</option>
 						<option value=02>2</option>
@@ -363,10 +412,10 @@
                     <label for="example-text-input" class="form-select-label">상태</label>
                     <select class="form-select" id="state" name="state" size="1">
 						<option value="${admindto.state }">${admindto.state }</option>
-						<option value="출근">출근</option>
+						<option value="정상">정상</option>
 						<option value="지각">지각</option>
-						<option value="퇴근">퇴근</option>
 						<option value="결근">결근</option>
+						<option value="조퇴">조퇴</option>
 						<option value="휴가">휴가</option>
 					</select>
                     <%--<input class="form-control" name="mrank" type="text" value="${dto2.mrank }"> --%>

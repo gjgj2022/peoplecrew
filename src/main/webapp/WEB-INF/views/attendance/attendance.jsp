@@ -328,7 +328,7 @@
 								  		</c:choose>
 								  	</c:when>
 							 	</c:choose>
-								  	
+								  	<!-- 페이지번호 -->
 								  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
 								  		<c:choose>
 								  			<c:when test="${empty mno}">
@@ -336,7 +336,7 @@
 								  			</c:when>
 								  		</c:choose> 
 								  	</c:forEach>
-								  	
+								  	<!-- 다음버튼 -->
 								<c:choose>
 								    <c:when test="${map.isNext }">
 								    	<c:choose>

@@ -207,7 +207,6 @@
           </li>
         </ul>
         </li>
-        
       </ul>
     </div>
     
@@ -286,18 +285,37 @@
                     </tr>
                     </c:forEach>
                      <tr>
-						<td colspan="4">
+						<td colspan="8">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
-								<c:if test="${map.isPre }">
-									<li class="page-item"><a class="page-link" href="adminpage?cp=${map.currentPage-5 }">Previous</a></li>
-								</c:if>
-								<c:forEach var="i" begin="${map.startPage2 }" end="${map.endPage2 }">
-									<li class="page-item"><a class="page-link" href="adminpage?cp=${i }">${i }</a></li>
-								</c:forEach>
-								<c:if test="${map.isNext }">
-									<li class="page-item"><a class="page-link" href="adminpage?cp=${map.currentPage+5 }">Next</a></li>
-								</c:if>
+								<!-- 이전버튼 -->
+							  	<c:choose>
+								  	<c:when test="${map.isPre }">
+								  		<c:choose>
+								  			<c:when test="${empty mno}">
+								  			 	<li class="page-item"><a class="page-link" href="page?mno=${dto.mno }&cp=${map.currentPage-5 }">이전</a></li>
+								  			</c:when>
+								  		</c:choose>
+								  	</c:when>
+							 	</c:choose>
+								  	<!-- 페이지번호 -->
+								  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
+								  		<c:choose>
+								  			<c:when test="${empty mno}">
+											    <li class="page-item"><a class="page-link" href="page?mno=${dto.mno }&cp=${i }">${i }</a></li>
+								  			</c:when>
+								  		</c:choose> 
+								  	</c:forEach>
+								  	<!-- 다음버튼 -->
+								<c:choose>
+								    <c:when test="${map.isNext }">
+								    	<c:choose>
+								  			<c:when test="${empty mno}">
+											    <li class="page-item"><a class="page-link" href="page?mno=${dto.mno }&cp=${map.currentPage+5 }">다음</a></li>
+								  			</c:when>
+								  		</c:choose>
+								    </c:when>
+							    </c:choose>
 							</ul>
 							</nav>
 						</td>

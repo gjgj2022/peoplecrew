@@ -60,9 +60,6 @@
 	
 	
 	
-	
-	
-	
 	<!-- 근태관리(관리자) 수정 -->
 <!-- 	<update id="updateOne" parameterType="AttendanceDTO">
 		UPDATE attendance A INNER JOIN member B
