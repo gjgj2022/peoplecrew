@@ -295,7 +295,6 @@
                     <label for="example-text-input" class="form-select-label">총 연차</label>
                     <select class="form-select" id="mbirth2" name="mbirth2" size="1">
                     	<option value="${dto.mannual }">${dto.mannual }</option>
-                    	<option value="0">0</option>
 						<option value=01>1</option>
 						<option value=02>2</option>
 						<option value=03>3</option>
@@ -316,10 +315,9 @@
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-select-label">사용연차</label>
+                    <label for="example-text-input" class="form-select-label">사용 연차</label>
                     <select class="form-select" id="mbirth2" name="mbirth2" size="1">
-                    	<option value="${dto.mannual }">${dto.mannual }</option>
-                    	<option value="0">0</option>
+                    	<option value="${dto.usemannual }">${dto.usemannual }</option>
 						<option value=01>1</option>
 						<option value=02>2</option>
 						<option value=03>3</option>
@@ -340,10 +338,9 @@
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-select-label">남은연차</label>
+                    <label for="example-text-input" class="form-select-label">잔여 연차</label>
                     <select class="form-select" id="mbirth2" name="mbirth2" size="1">
-                    	<option value="${dto.mannual }">${dto.mannual }</option>
-                    	<option value="0">0</option>
+                    	<option value="${dto.mannual - dto.usemannual}">${dto.mannual - dto.usemannual}</option>
 						<option value=01>1</option>
 						<option value=02>2</option>
 						<option value=03>3</option>
