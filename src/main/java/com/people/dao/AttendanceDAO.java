@@ -15,13 +15,13 @@ public interface AttendanceDAO {
 	List<AttendanceDTO> readAll(AttdStartEnd se);
 	AttendanceDTO admingetOne(int mno);
 	List<AttendanceDTO> getAOne(AttdStartEnd se);
-	int getTotal();
+	int getattTotal();
 	void insertOne(AttendanceDTO dto);
 	void updateOne(AttendanceDTO dto);
 	
 	List<AttendanceDTO> getOneAtten(int mno);
 	List<AttendanceDTO> getOneAtten2(int mno);
 	List<AttendanceDTO> getOneAtten3(int mno);
-	List<AttendanceDTO> getOneAtten4(int mno);	
+	List<AttendanceDTO> getOneAtten4(int mno);
 	
 }

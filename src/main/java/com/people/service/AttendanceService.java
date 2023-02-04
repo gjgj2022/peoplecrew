@@ -20,12 +20,12 @@ public class AttendanceService {
 	}
 	
 	public List<AttendanceDTO> selectAll(int startNo, int endNo) {
-		AttdStartEnd se = new AttdStartEnd(startNo, endNo, 0);
+		AttdStartEnd se = new AttdStartEnd(startNo, endNo, 1);
 		return dao.readAll(se);
 	}
 
-	public int getTotal() {
-		return dao.getTotal();
+	public int getattTotal() {
+		return dao.getattTotal();
 	}
 	
 	public List<AttendanceDTO> attdOne(int startNo, int endNo, int mno) {

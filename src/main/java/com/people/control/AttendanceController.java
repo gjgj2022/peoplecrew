@@ -45,7 +45,7 @@ public class AttendanceController {
 						@RequestParam("mno") int mno,
 						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
 		
-		int totalNumber = attdservice.getTotal();
+		int totalNumber = attdservice.getattTotal();
 		//페이지당 게시물 수
 		int recordPerPage = 10;
 		//                     총페이지 수,     한페이지당 수,   현재페이지
@@ -74,7 +74,7 @@ public class AttendanceController {
 	@GetMapping("/admin/page")
 	public String listAdmin(Model model,
 							@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
-		int totalNumber = attdservice.getTotal();
+		int totalNumber = attdservice.getattTotal();
 		//페이지당 게시물 수
 		int recordPerPage = 10;
 		//                     총페이지 수,     한페이지당 수,   현재페이지
@@ -98,6 +98,7 @@ public class AttendanceController {
 	public String listAdminOne(Model model,
 							   @RequestParam("mno")int mno) {
 		AttendanceDTO admindto = attdservice.userOne(mno);
+		
 		model.addAttribute("admindto", admindto);
 		
 		log.info("admindto {} ", admindto);
@@ -114,7 +115,6 @@ public class AttendanceController {
 	
 	@GetMapping("/attendance_admin")
 	public String adminList(Model model) {
-		
 		return "/admin/attendance_admin";
 	}
 	

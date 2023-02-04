@@ -230,13 +230,10 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    
      <form action="/admin/page" method="post">
       <div class="container-fluid py-4">
       <div class="row justify-content-center">
-      
       <input type="hidden" name="mno" value="${dto.mno }">
-       
         <div class="col-md-8">
           <div class="card">
             <div class="card-header pb-0">
@@ -342,18 +339,6 @@
       				<input class="form-control" name="memail" type="email" value="${dto.mannual - dto.usemannual }" readonly>
                   </div>
                 </div>
-<%--                 <div class="col-md-10">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">주소</label>
-                    <input class="form-control" name="maddress" id="maddress" type="text" value="${dto.maddress }" readonly>
-                  </div>
-                </div> --%>
-<%--                 <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">상세주소</label>
-                    <input class="form-control" name="maddress2" type="text" value="${dto.maddress2 }" readonly>
-                  </div>
-                </div> --%>
               </div>
              <hr class="horizontal dark">
              <div class="row">

@@ -1,7 +1,12 @@
 package com.people.control;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -9,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.people.dto.AttendanceDTO;
@@ -33,6 +39,10 @@ public class DashBoardController {
 
 	@Autowired
 	AttendanceService atservice;
+	
+	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yy-MM-dd");
+	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
+	LocalDateTime now = LocalDateTime.now();
 	
 	
 	@GetMapping("/")
@@ -104,6 +114,20 @@ public class DashBoardController {
 			
 			return "admin/m_mngmn_user";
 		}
+		
+	// 출근 추가
+	@PostMapping("/attin")
+	public String inwork (Model model,
+						  @ModelAttribute("dto")AttendanceDTO workdto) {
+		
+		atservice.addOne(workdto);
+		
+		model.addAttribute("workdto", workdto);
+		
+		log.info("workdto {}" + workdto);
+		return "index";
+		
+	}
 	
 
 }
