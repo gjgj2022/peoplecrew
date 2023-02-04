@@ -277,13 +277,13 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 					<c:when test="${adto.approgress == 0 }">
 						<c:if test="${ddto.doprogress eq '결재대기' }">
 							<form action="/apvProgressOk1" method="post">
-							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
-							<td style="width:50px;"><a href="/apvProgressNo?dono=${ddto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" onclick="return confirm('승인하시겠습니까?');"/></td>
+							<td style="width:50px;"><a href="/apvProgressNo?dono=${ddto.dono }"><input class="btn btn-danger" type="button" style="margin:auto;" value="반려" onclick="return confirm('반려하시겠습니까?');"/></a></td>
 						</c:if>
 						<c:if test="${ddto.doprogress eq '진행중' }">
 							<form action="/apvProgressOk2" method="post">
-							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" /></td>
-							<td style="width:50px;"><a href="/apvProgressNo2?dono=${ddto.dono }"><input class="btn btn-light" type="button" style="margin:auto;" value="반려" /></a></td>
+							<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="승인" onclick="return confirm('승인하시겠습니까?');"/></td>
+							<td style="width:50px;"><a href="/apvProgressNo2?dono=${ddto.dono }"><input class="btn btn-danger" type="button" style="margin:auto;" value="반려" onclick="return confirm('반려하시겠습니까?');"/></a></td>
 						</c:if>
 					</c:when>
 				</c:choose>

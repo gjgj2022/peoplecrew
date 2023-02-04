@@ -271,8 +271,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 				<c:if test="${ddto.doprogress eq '결재대기' ||ddto.doprogress eq '반려' }">
 				<form action="/personalFileModify" method="post">
 					<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="수정" /></td>
-					<td style="width:50px;"><a href="/personalFileDelete?dono=${ddto.dono }"><input class="btn btn-danger" type="button" style="" value="삭제" /></a></td>
-					<td style="width:50px;"><a href="/personalFile"><input class="btn btn-light" type="button" value="취소" /></a></td>
+					<td style="width:50px;"><a href="/personalFileDelete?dono=${ddto.dono }"><input class="btn btn-danger" type="button" style="" value="삭제" onclick="return confirm('삭제하시겠습니까?');"/></a></td>
 				</c:if>				
 			</tr>
 			<tr class="align-bottom" style="height:100px;">

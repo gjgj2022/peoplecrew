@@ -11,7 +11,7 @@
 	<select id="selectAllByMno" resultType="DocumentDTO">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE mno = #{mno}
-		ORDER BY dodate DESC;
+		ORDER BY dono DESC;
 	</select>
 	
 	<select id="selectBydono" resultType="DocumentDTO" parameterType="String">
@@ -29,19 +29,21 @@
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE doprogress in ('결재대기','진행중','반려')
 		AND mno = #{mno}
+		ORDER BY dono DESC;
 	</select>
 	
 	<select id="selectEnd" resultType="DocumentDTO" parameterType="int">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE doprogress in ('결재완료')
 		AND mno = #{mno}
+		ORDER BY dono DESC;
 	</select>
 	
 	<select id="selectByDoprogress" resultType="DocumentDTO" parameterType="String">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE doprogress = #{apvP}
 		AND mno = #{mno}
-		ORDER BY dodate DESC;
+		ORDER BY dono DESC;
 	</select>
 	
 	<select id="getAllCount" parameterType="String" resultType="int">
