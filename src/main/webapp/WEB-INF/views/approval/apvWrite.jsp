@@ -268,8 +268,8 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 				</td>
 				</form>
 				<form action="/apvWriteOk" method="post">
-				<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="기안하기" /></td>
-				<td style="width:50px;padding-right:50px;"><a href="/apvHome"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" /></a></td>
+				<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="기안하기" onclick="return confirm('기안하시겠습니까?');" /></td>
+				<td style="width:50px;padding-right:50px;"><a href="/apvHome"><input class="btn btn-light" type="button" style="margin:auto;" value="취소" onclick="return confirm('취소하시겠습니까?');" /></a></td>
 			</tr>
 		</table>
 	</div>
