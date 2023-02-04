@@ -12,7 +12,6 @@ import com.people.dto.AttdStartEnd;
 @Mapper
 public interface AttendanceDAO {
 	List<AttendanceDTO> getAll();
-	List<AttendanceDTO> getOneAtten(int mno);
 	List<AttendanceDTO> readAll(AttdStartEnd se);
 	AttendanceDTO admingetOne(int mno);
 	List<AttendanceDTO> getAOne(AttdStartEnd se);
@@ -20,5 +19,9 @@ public interface AttendanceDAO {
 	void insertOne(AttendanceDTO dto);
 	void updateOne(AttendanceDTO dto);
 	
+	List<AttendanceDTO> getOneAtten(int mno);
+	List<AttendanceDTO> getOneAtten2(int mno);
+	List<AttendanceDTO> getOneAtten3(int mno);
+	List<AttendanceDTO> getOneAtten4(int mno);	
 	
 }

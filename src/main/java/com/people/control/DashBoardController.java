@@ -37,17 +37,24 @@ public class DashBoardController {
 	public String test1(Model model,Authentication authentication) {
 
 		MemberDTO dto = service.getIdOne(authentication.getName()); // 세션아이디로 사원번호 가져오기
-		
-		// 근태현황
-		List<AttendanceDTO> list2 = atservice.attenMno(dto.getMno());
-		
-		log.info("근태리스트 : " + list2);
 
 		// 공지사항
 		List<BoardDTO> list = bservice.selectAll();
 		model.addAttribute("blist",list); // 공지사항 리스트
 		
 		log.info("공지사항리스트 : " + list);
+		
+		// 근태현황 정상2 지각3 조퇴4 결근5
+		List<AttendanceDTO> list2 = atservice.attenMno(dto.getMno());
+		List<AttendanceDTO> list3 = atservice.attenMno2(dto.getMno());
+		List<AttendanceDTO> list4 = atservice.attenMno3(dto.getMno());
+		List<AttendanceDTO> list5 = atservice.attenMno4(dto.getMno());
+		model.addAttribute("list2",list2); 
+		model.addAttribute("list3",list3); 
+		model.addAttribute("list4",list4); 
+		model.addAttribute("list5",list5); 
+		
+		log.info("근태리스트 : " + list2);
 		
 		
 		return "index";
