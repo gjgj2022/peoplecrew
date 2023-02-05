@@ -119,7 +119,7 @@
 		SET 
 			M.mname = #{mname}, M.mphone = #{mphone}, M.mbirth = #{mbirth}, M.memail = #{memail},
 			M.zipcode = #{zipcode}, M.maddress = #{maddress}, M.maddress2 = #{maddress2}, 
-			M.mrank = #{mrank}, M.msal = #{msal}, M.mid = #{mid} , M.password= #{password},
+			M.mrank = #{mrank}, M.msal = #{msal}, M.mid = #{mid} ,
 			M.ono = #{ono}, M.role = #{role}
 		WHERE M.mno = #{mno}
 	</update>

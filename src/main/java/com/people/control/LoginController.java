@@ -37,11 +37,13 @@ public class LoginController {
 	BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping("/login")
-	public String login(@RequestParam(value= "error", required = false)String error,
+	public String login(
+						@RequestParam(value= "error", required = false)String error,
 						@RequestParam(value= "exception", required = false)String exception,
 						Model model) {
 		log.info(error);
 		log.info(exception);
+		
 		model.addAttribute("error", error);
 		model.addAttribute("exception", exception);
 		

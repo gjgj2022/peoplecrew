@@ -57,10 +57,12 @@ public class DashBoardController {
 	
 	
 	@GetMapping("/")
-	public String test1(Model model,Authentication authentication) {
+	public String test1(
+						Model model,Authentication authentication) {
 
 		MemberDTO dto = service.getIdOne(authentication.getName()); // 세션아이디로 사원번호 가져오기
-
+		
+		
 		// 공지사항
 		List<BoardDTO> list = bservice.selectAll();
 		model.addAttribute("blist",list); // 공지사항 리스트

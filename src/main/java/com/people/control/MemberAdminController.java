@@ -1,6 +1,9 @@
 package com.people.control;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.ProcessHandle.Info;
+import java.net.URLDecoder;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -124,7 +127,9 @@ public class MemberAdminController {
 	
 	@GetMapping("/modify")
 	public String modifyForm(@RequestParam("mno")int mno, Model model) {
+		
 		MemberDTO dto2 = service.getOne(mno);
+		
 		model.addAttribute("dto2", dto2);
 		return "admin/m_modifyFrom";
 	}
@@ -143,11 +148,18 @@ public class MemberAdminController {
 		dto2.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
 		
 		log.info("dto2 getImg_name : " + dto2.getImg_name());
+		log.info("password : " + password);
 		
 		ProFileDTO pfile2 = new ProFileDTO();
 		if(pfile.isEmpty()) {
 			log.info("파일없음");
-			service.updateOne(dto2);
+			
+			if(password.isEmpty()) {
+				service.updateOne(dto2);
+			}else {
+				service.updateOne(dto2);
+				service.update_pw(dto2);
+			}
 			
 		} else if(dto2.getImg_name() != null) {
 			String fileName = pfile.getOriginalFilename();
@@ -165,8 +177,14 @@ public class MemberAdminController {
 			pfile2.setImg_size(ImgSize);
 			pfile2.setMno(dto2.getMno());
 			
-			service.profileUpdate(pfile2);
-			service.updateOne(dto2);
+			if(password.isEmpty()) {
+				service.profileUpdate(pfile2);
+				service.updateOne(dto2);
+			}else {
+				service.profileUpdate(pfile2);
+				service.updateOne(dto2);
+				service.update_pw(dto2);
+			}
 			
 			log.info("dto2 mno : " + dto2.getImg_name());
 			log.info("dto2 mno : " + dto2.getMno());
@@ -188,8 +206,14 @@ public class MemberAdminController {
 			pfile2.setImg_size(ImgSize);
 			pfile2.setMno(dto2.getMno());
 			
-			service.profileAdd(pfile2);
-			service.updateOne(dto2);
+			if(password.isEmpty()) {
+				service.profileAdd(pfile2);
+				service.updateOne(dto2);
+			}else {
+				service.profileAdd(pfile2);
+				service.updateOne(dto2);
+				service.update_pw(dto2);
+			}
 			
 			log.info("dto2 getImg_name : " + dto2.getImg_name());
 			log.info("dto2 mno : " + dto2.getMno());

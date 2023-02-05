@@ -33,7 +33,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	
 <!--input value 체크 -->
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	function Check(){
 		if(mname.value == ""){
 			mname.focus();
@@ -89,7 +89,7 @@
 			return false
 		}
 	} 
-</script>-->
+</script>
 
 <!-- 폰번호 -하이픈 자동입력 -->
   <script type="text/javascript">

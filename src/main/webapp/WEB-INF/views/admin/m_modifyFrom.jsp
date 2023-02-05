@@ -260,20 +260,20 @@
                 </div>
                 <div class="col-md-4" style="margin-top: 20px">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">ID</label>
-                    <input class="form-control" name="mid" type="text" value="${dto2.mid }">
-                  </div>
-                </div>
-                <div class="col-md-6" style="margin-top: 25px">
-                  <div class="form-group">
                     <label for="example-text-input" class="form-control-label">전화번호</label>
                     <input class="form-control" name="mphone" id="mphone" type="text" oninput="phone(this)" value="${dto2.mphone }">
                   </div>
                 </div>
-                <div class="col-md-6" style="margin-top: 25px">
+                <div class="col-md-4" style="margin-top: 25px">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">ID</label>
+                    <input class="form-control" name="mid" type="text" value="${dto2.mid }">
+                  </div>
+                </div>
+                <div class="col-md-8" style="margin-top: 25px">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">비밀번호</label>
-                    <input class="form-control" name="password" id="password" type="text" value="${dto2.password }">
+                    <input class="form-control" name="password" id="password" type="text" placeholder="${dto2.password }" >
                   </div>
                 </div>
                 <div class="col-md-4" style="margin-top: 20px">

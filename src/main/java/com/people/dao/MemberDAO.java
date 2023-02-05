@@ -24,7 +24,7 @@ public interface MemberDAO {
 	MemberDTO getIEOne(String mid, String memail); // 한명조회
 	public void insertOne(MemberDTO dto); // 추가 
 	public void updateOne(MemberDTO dto); // 업데이트
-	public void update_pw(MemberDTO dto); // 업데이트
+	public void update_pw(MemberDTO dto); // 임시 비밀번호 업데이트
 	public void deleteOne(int mno); 	  // 삭제
 	MemberDTO getOneTL(int ono);
 	MemberDTO getOneTM(int uno);
