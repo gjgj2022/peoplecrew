@@ -49,14 +49,23 @@
 		]]>
 	</select>
 	
+	<!-- modify 수정 조회 -->
  	<select id="admingetOne" resultType="AttendanceDTO" parameterType="int">
 		SELECT A.*, B.*
-		FROM attendance as A
-		LEFT JOIN member as B
+		FROM attendance A
+		LEFT OUTER JOIN member B
 		on A.mno = B.mno
 		WHERE A.mno = #{mno}
 		GROUP BY A.mno;
 	</select>
+	
+	<!-- 근태관리(관리자) 수정 -->
+  	<update id="updateOne" parameterType="AttendanceDTO">
+		UPDATE attendance A INNER JOIN member B
+		ON A.mno = B.mno
+		SET A.state = #{state}, B.mannual = #{mannual}, B.usemannual = #{usemannual}
+		WHERE A.mno = #{mno}
+	</update>
 	
 	<!-- 대시보드 근태 정상 -->
 	<select id="getOneAtten" parameterType="int" resultType="AttendanceDTO">
@@ -103,19 +112,13 @@
 		      ORDER BY work_day desc
 	</select>
 	
-	<!-- 근태관리(관리자) 수정 -->
-  	<update id="updateOne" parameterType="AttendanceDTO">
-		UPDATE attendance A INNER JOIN member B
-		ON A.mno = B.mno
-		SET A.state = #{state}, B.mannual = #{mannual}, B.usemannual = #{usemannual}
-		WHERE A.mno = #{mno}
-	</update>
 	
-<!--    	<insert id="insertOne" parameterType="AttendanceDTO">
-		INSERT INTO attendance (statr_time, state)
-		(
-			
-		)
-		
-	</insert> -->
+<!--     	<insert id="insertOne" parameterType="AttendanceDTO">
+		INSERT INTO attendance (work_day, start_time, state)
+			SELECT A.*, B.*, C.*
+			FROM attendance A INNER JOIN member B
+			ON A.mno = B.mno
+			INNER JOIN organization C
+			ON C.ono = B.ono
+	</insert>  -->
 </mapper>

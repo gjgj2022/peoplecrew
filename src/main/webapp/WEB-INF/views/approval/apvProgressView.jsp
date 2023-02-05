@@ -259,7 +259,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 
 <!-- ==========================================================내작업======================  -->
 	<div class="container bg-white p-1 rounded" style="min-width:1400px;">
-	<div style="position:relative;left:74%;top:100px;"><input class="btn text-white" type="button" style="background:#607e19;margin-right:10px" onClick="Print()" value="출력"/><a href="/apvProgress"><input class="btn btn-primary" type="button" value="목록으로" /></a></div> 
+	<div style="position:relative;left:72%;top:100px;"><input class="btn text-white" type="button" style="background:#607e19;margin-right:10px" onClick="Print()" value="출력"/><a href="/apvProgress"><input class="btn btn-primary" type="button" value="목록으로" /></a></div> 
 
 	<div id="box" class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:180px;margin-right:auto;">
 	<div style="height:200px;">
@@ -292,7 +292,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 	</div>
 	<div style="width:1000px;margin-left:auto;margin-right:auto;">
 		<table class="table table-bordered align-middle" style="margin-left:4%;width:61%;float:left;">
-			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1" style="text-align:center;">
 				<th>이름</th>
 				<th>직책</th>
 				<th>부서</th>
@@ -309,7 +309,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 			</tr>
 		</table>
 		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;margin-bottom:50px;">
-			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1">
 				<th style="width:100px;">팀장</th>
 				<th style="width:100px;">부장</th>
 			</tr>

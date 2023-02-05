@@ -275,7 +275,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 	</div>
 	<div style="width:1000px;">
 		<table class="table table-bordered align-middle" style="margin-left:10%;width:61%;float:left;">
-			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25" style="text-align:center;">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1" style="text-align:center;">
 				<th>이름</th>
 				<th>직책</th>
 				<th>부서</th>
@@ -292,7 +292,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 			</tr>
 		</table>
 		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;">
-			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25">
+			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1">
 				<th>팀장</th>
 				<th>부장</th>
 			</tr>
