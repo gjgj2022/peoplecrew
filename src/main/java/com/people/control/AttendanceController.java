@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping(value="/", method = {RequestMethod.POST})
 public class AttendanceController {
 	
 	@Autowired
@@ -93,29 +93,31 @@ public class AttendanceController {
 		return "/admin/attendance_admin";
 	}
 	
-	// admin 한건조회
+	// admin 수정 한건조회
 	@GetMapping("/attmodify_admin")
 	public String listAdminOne(Model model,
 							   @RequestParam("mno")int mno) {
+		
 		AttendanceDTO admindto = attdservice.userOne(mno);
 		
 		model.addAttribute("admindto", admindto);
 		
 		log.info("admindto {} ", admindto);
-		return "admin/attmodify_admin";
+		return "/admin/attmodify_admin";
 		
 	}
-	
-	@PostMapping("/attmodify_admin")
-	public String attmodifyOk(@ModelAttribute("dto")AttendanceDTO admindto) {
+	@PostMapping()
+	@RequestMapping(value="/attmodify_admin", method = {RequestMethod.POST})
+	public String listAdminOneOk(@ModelAttribute("dto")AttendanceDTO admindto,
+							  @RequestParam("mbirth1")String mbirth1,
+			                  @RequestParam("mbirth2")String mbirth2,
+			                  @RequestParam("mbirth3")String mbirth3) {
+		
+		admindto.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
 		attdservice.updateOne(admindto);
-		return "redirect:/attmodify_admin";
 		
-	}
-	
-	@GetMapping("/attendance_admin")
-	public String adminList(Model model) {
-		return "/admin/attendance_admin";
+		return "redirect:/admin/page";
+		
 	}
 	
 	// 휴가관리

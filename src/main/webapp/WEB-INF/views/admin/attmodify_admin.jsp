@@ -230,10 +230,10 @@
       </div>
     </nav>
     <!-- End Navbar -->
-     <form action="/admin/page" method="post">
+     <form action="attmodify_admin" method="post">
       <div class="container-fluid py-4">
       <div class="row justify-content-center">
-      <input type="hidden" name="mno" value="${dto.mno }">
+      <input type="hidden" name="mno" value="${admindto.mno }">
         <div class="col-md-8">
           <div class="card">
             <div class="card-header pb-0">
@@ -250,37 +250,37 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">이름</label>
-                    <input class="form-control" name="mname" type="text" value="${dto.mname }" readonly>
+                    <input class="form-control" name="mname" type="text" value="${admindto.mname }" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">전화번호</label>
-                    <input class="form-control" name="mphone" id="mphone" type="text" oninput="phone(this)" value="${dto.mphone }" readonly>
+                    <input class="form-control" name="mphone" id="mphone" type="text" oninput="phone(this)" value="${admindto.mphone }" readonly>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">생년(4자)</label>
-                    <input class="form-control" id="mbirth1" name="mbirth1" type="text" value="${fn:substring(dto.mbirth,8,10)}" readonly>
+                    <input class="form-control" id="mbirth1" name="mbirth1" type="text" value="${fn:substring(admindto.mbirth,8,10)}" readonly>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">월</label>
-                    <input class="form-control" id="mbirth1" name="mbirth1" type="text" value="${fn:substring(dto.mbirth,5,7)}" readonly>
+                    <input class="form-control" id="mbirth1" name="mbirth1" type="text" value="${fn:substring(admindto.mbirth,5,7)}" readonly>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">일</label>
-                    <input class="form-control" id="mbirth3" name="mbirth3" type="text" value="${fn:substring(dto.mbirth,8,10)}" readonly>
+                    <input class="form-control" id="mbirth3" name="mbirth3" type="text" value="${fn:substring(admindto.mbirth,8,10)}" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">이메일</label>
-                    <input class="form-control" name="memail" type="email" value="${dto.memail }" readonly>
+                    <input class="form-control" name="memail" type="email" value="${admindto.memail }" readonly>
                   </div>
                 </div>
               </div>
@@ -291,7 +291,8 @@
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">총 연차</label>
                     <select class="form-select" id="mbirth2" name="mbirth2" size="1">
-                    	<option value="${dto.mannual }">${dto.mannual }</option>
+                    	<option value="${admindto.mannual }">${admindto.mannual }</option>
+						<option value=00>0</option>
 						<option value=01>1</option>
 						<option value=02>2</option>
 						<option value=03>3</option>
@@ -314,7 +315,8 @@
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">사용 연차</label>
                     <select class="form-select" id="mbirth2" name="mbirth2" size="1">
-                    	<option value="${dto.usemannual }">${dto.usemannual }</option>
+                    	<option value="${admindto.usemannual }">${admindto.usemannual }</option>
+						<option value=00>0</option>
 						<option value=01>1</option>
 						<option value=02>2</option>
 						<option value=03>3</option>
@@ -336,7 +338,7 @@
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">잔여 연차</label>
-      				<input class="form-control" name="memail" type="email" value="${dto.mannual - dto.usemannual }" readonly>
+      				<input class="form-control" name="memail" type="email" value="${admindto.mannual - admindto.usemannual }" readonly>
                   </div>
                 </div>
               </div>
@@ -345,19 +347,19 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">직급</label>
-                    <input class="form-control" name="mrank" type="text" value="${dto.mrank }" readonly>
+                    <input class="form-control" name="mrank" type="text" value="${admindto.mrank }" readonly>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">ID</label>
-                    <input class="form-control" name="mid" type="text" value="${dto.mid }" readonly>
+                    <input class="form-control" name="mid" type="text" value="${admindto.mid }" readonly>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">비밀번호</label>
-                    <input class="form-control" name="password" id="password" type="text" value="${dto.password }" readonly>
+                    <input class="form-control" name="password" id="password" type="text" value="${admindto.password }" readonly>
                   </div>
                 </div>
                 <div class="col-md-4">
