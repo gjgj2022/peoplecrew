@@ -16,8 +16,9 @@
 
  <select id="getMno" parameterType="int" resultType="PinfoMemOriDTO">
   
-  SELECT  m.mno , m.mname , m.mrank , m.memail , m.mphone , m.mmessage , o.oname ,o.ono
+  SELECT  m.mno , m.mname , m.mrank , m.memail , m.mphone , m.mmessage , o.oname ,o.ono ,mi.img_name, mi.img_path
   FROM member as m inner join organization as o on m.ono = o.ono
+  inner join member_img  mi on mi.mno = m.mno
   WHERE m.mno = #{mno}
   </select>
   

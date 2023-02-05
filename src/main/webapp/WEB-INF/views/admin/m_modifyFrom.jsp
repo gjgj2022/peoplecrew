@@ -35,6 +35,21 @@
 	}
   </script>
   
+  <!-- 파일첨부 이미지 미리보기   -->
+  <script type="text/javascript">
+	function preview(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('m_image').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('m_image').src = "";
+		  }
+		}
+  </script>
+  
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -205,7 +220,7 @@
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
                 <p class="mb-0">사원수정</p>
-                <button type="submit" class="btn btn-info btn-sm ms-auto" onclick="return confirm('수정 하시겠습니까?');">수정</button>
+                <button type="submit" class="btn btn-info btn-sm ms-auto" onclick=" return confirm('수정 하시겠습니까?');">수정</button>
                 &nbsp;
                 <a href="admin2" class="btn btn-danger btn-sm" onclick="return confirm('취소 하시겠습니까?');">취소</a>
               </div>
@@ -217,14 +232,14 @@
 					<div class="col">
 						<div class="form-group" style="text-align: center;">
 							<div class="profile_img"  >
-							<%-- <c:choose>
-							<c:when test="${dto2.img_path == null }">
-								<img src="../assets/img/team-8.jpg" class="profile_img" style="width: 250px; height: 250px; "/> 
-							</c:when>
-							<c:otherwise>
-							</c:otherwise>
-							</c:choose> --%>		
-							<img src="${dto2.img_path }${dto2.img_name}" id="m_image" class="profile_img" style="width: 250px; height: 250px; "/> 
+							<c:choose>
+								<c:when test="${dto2.img_path == null }">
+									<img src="../assets/img/team-8.jpg" class="profile_img" id="m_image" style="width: 250px; height: 250px; "/> 
+								</c:when>
+								<c:otherwise>
+									<img src="${dto2.img_path }${dto2.img_name}" id="m_image" class="profile_img" style="width: 250px; height: 250px; "/> 
+								</c:otherwise>
+							</c:choose>		
 							<label for="pfile" class="form-label"></label>
 							<input class="form-control" type="file" name="pfile" id="pfile" onchange="preview(this);" 
 											 style="margin-top: 10px" >
@@ -232,19 +247,6 @@
 						</div>
 					</div>
 				</div>
-				<script type="text/javascript">
-				function preview(input) {
-					  if (input.files && input.files[0]) {
-					    var reader = new FileReader();
-					    reader.onload = function(e) {
-					      document.getElementById('m_image').src = e.target.result;
-					    };
-					    reader.readAsDataURL(input.files[0]);
-					  } else {
-					    document.getElementById('m_image').src = "";
-					  }
-					}
-				</script>
               <div class="row">
                 <div class="col-md-4" style="margin-top: 20px">
                   <div class="form-group">
