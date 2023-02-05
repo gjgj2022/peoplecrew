@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.people.dao.MemberDAO;
 import com.people.dto.MemberDTO;
+import com.people.dto.ProFileDTO;
 import com.people.dto.StartEnd;
 
 @Service
@@ -72,4 +73,13 @@ public class MemberService {
 	public MemberDTO getOneTM(int uno) {
 		return dao.getOneTM(uno);
 	}
+
+	public int profileAdd(ProFileDTO pfile) {
+		return dao.profileAdd(pfile);
+	}
+	
+	public void profileUpdate(ProFileDTO pfile) {
+		dao.profileUpdate(pfile);
+	}
+	
 }

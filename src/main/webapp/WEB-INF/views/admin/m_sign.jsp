@@ -33,7 +33,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	
 <!--input value 체크 -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function Check(){
 		if(mname.value == ""){
 			mname.focus();
@@ -88,8 +88,8 @@
 			alert('권한을 선택해주세요');
 			return false
 		}
-	}
-</script>
+	} 
+</script>-->
 
 <!-- 폰번호 -하이픈 자동입력 -->
   <script type="text/javascript">
@@ -98,7 +98,7 @@
 	        .replace(/[^0-9]/g, '')
 	        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 	}
-  </script>
+  </script> 
 	
 </head>
 <body class="g-sidenav-show   bg-gray-100">
@@ -262,7 +262,7 @@
 		</nav>
 		<!-- End Navbar -->
 
-		<form action="sign" method="post" onsubmit="return Check()">
+		<form action="sign" method="post" onsubmit="return Check()" >
 			<div class="container-fluid py-4">
 				<div class="row justify-content-center">
 
@@ -277,7 +277,7 @@
 							</div>
 							<div class="card-body">
 								<p class="text-uppercase text-sm">사원정보</p>
-								<div class="row">
+								<div class="row" style="margin-top: 20px">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">이름</label>
@@ -286,17 +286,30 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
+											<label for="example-text-input" class="form-control-label">이메일</label>
+											<input class="form-control" name="memail" id="memail" type="email" placeholder="">
+										</div>
+									</div>
+									<div class="col-md-6" style="margin-top: 25px">
+										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">전화번호</label>
 											<input class="form-control" name="mphone" id="mphone" type="text" oninput="phone(this)" placeholder="숫자만 입력하세요">
 										</div>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-6" style="margin-top: 25px">
+										<div class="form-group">
+											<label for="example-text-input" class="form-control-label">비밀번호</label>
+											<input class="form-control" name="password" id="password" type="password">
+											<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+										</div>
+									</div>
+									<div class="col-md-4" style="margin-top: 25px">
 										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">생년</label>
 											<input class="form-control" id="mbirth1" name="mbirth1" type="text" placeholder="년(4자)">
 										</div>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-4" style="margin-top: 25px">
 										<div class="form-group">
 											<label for="example-text-input" class="form-select-label">월</label>
 											<select class="form-select" id="mbirth2" name="mbirth2" size="1">
@@ -316,20 +329,17 @@
 											</select>
 										</div>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-4" style="margin-top: 25px">
 										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">일</label>
 											<input class="form-control" id="mbirth3" name="mbirth3" type="text" placeholder="일">
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="example-text-input" class="form-control-label">이메일</label>
-											<input class="form-control" name="memail" id="memail" type="email" placeholder="">
-										</div>
-									</div>
 								</div>
+								
 								<hr class="horizontal dark">
+								
+								<div>
 								<div class="col-md-2">
 									<div class="form-group"
 										style="text-align: left;; margin-top: 28px; margin-bottom: 4px;">
@@ -356,9 +366,11 @@
 										</div>
 									</div>
 								</div>
+								
 								<hr class="horizontal dark">
+								
 								<div class="row">
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label for="example-text-input" class="form-select-label">직급</label>
 											<select class="form-select" id="mrank" name="mrank" size="1">
@@ -371,20 +383,24 @@
 											</select>
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">급여</label>
 											<input class="form-control" name="msal" id="msal" type="text">
 										</div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="form-group">
-											<label for="example-text-input" class="form-control-label">비밀번호</label>
-											<input class="form-control" name="password" id="password" type="password">
-											<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+											<label for="example-text-input" class="form-select-label">권한</label>
+											<select class="form-select" id="role" name="role" size="1">
+												<option value="">권한</option>
+												<option value="ROLE_USER">ROLE_USER</option>
+												<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+											</select>
 										</div>
 									</div>
-									<div class="col-md-4">
+									
+									<div class="col-md-6">
 										<div class="form-group">
 											<label for="example-text-input" class="form-select-label">부서명</label>
 											<select class="form-select" id="ono" name="ono" size="1">
@@ -407,20 +423,10 @@
 											</select>
 										</div>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">부서번호</label>
 											<input class="form-control" name="ophone" id="ophone" type="text" value="">
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<label for="example-text-input" class="form-select-label">권한</label>
-											<select class="form-select" id="role" name="role" size="1">
-												<option value="">권한</option>
-												<option value="ROLE_USER">ROLE_USER</option>
-												<option value="ROLE_ADMIN">ROLE_ADMIN</option>
-											</select>
 										</div>
 									</div>
 								</div>
@@ -429,12 +435,14 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			</div>
 		</form>
 
 		<!-- 푸터  -->
 		<%@ include file="../include/footer.jsp"%>
 
-		</div>
 	</main>
 	<!-- End main  -->
 

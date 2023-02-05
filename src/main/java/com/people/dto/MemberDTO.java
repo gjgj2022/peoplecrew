@@ -34,6 +34,10 @@ public class MemberDTO {
 	private int amsal; 	 	 // 월급 부서별 평균값
 	private int uno;	     // 상위 부서번호
 
+	private int img_no;	     // 이미지번호
+	private String img_name; // 이미지이름
+	private String img_path; // 이미지경로
+
 	private String keyword;	 // 검색 키워드
 
 }

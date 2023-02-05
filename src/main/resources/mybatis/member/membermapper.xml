@@ -7,10 +7,11 @@
 	
 	<!-- 전체조회 및 페이징 처리 -->
 	<select id="getAll" resultType="MemberDTO" parameterType="StartEnd">
-		SELECT distinct mno, mname, mdate, mphone, mrank, oname, msal, uno
-			FROM(SELECT (@R := @R+1) AS RN, mno, mname, mdate, mphone, mrank, oname, msal, uno
-				FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal, up.uno
+		SELECT distinct mno, mname, mdate, mphone, mrank, oname, msal, uno, img_name
+			FROM(SELECT (@R := @R+1) AS RN, mno, mname, mdate, mphone, mrank, oname, msal, uno , img_name
+				FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal, up.uno, mi.img_name
 						FROM member m 
+						LEFT OUTER JOIN member_img  mi on mi.mno = m.mno
 						LEFT OUTER JOIN organization o ON m.ono = o.ono
 						LEFT OUTER JOIN upper_organization up ON o.uno = up.uno
 						
@@ -75,6 +76,7 @@
 	<select id="getOne" resultType="MemberDTO" parameterType="int">
 		SELECT * FROM 
 		member  m
+		LEFT OUTER JOIN member_img  mi on mi.mno = m.mno
 		LEFT OUTER JOIN organization  o on o.ono = m.ono
 		LEFT OUTER JOIN upper_organization up ON o.uno = up.uno
 		WHERE m.mno = #{mno};
@@ -151,5 +153,18 @@
 		WHERE o.uno = ${uno}
 		AND m.mrank = '부장'
 	</select>
+	
+	<!-- 이미지관련  -->
+	<insert id="profileAdd" parameterType="ProFileDTO" useGeneratedKeys="true" keyProperty="img_no">
+		INSERT INTO member_img
+		values(null,#{img_name},#{img_path},#{img_size},#{mno})
+	</insert>
+	
+	<update id="profileUpdate" parameterType="ProFileDTO" >
+		UPDATE member_img
+		SET img_name = #{img_name}
+		WHERE mno = #{mno};
+	</update>
+	
 
 </mapper>

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.people.dto.MemberDTO;
+import com.people.dto.ProFileDTO;
 import com.people.dto.StartEnd;
 
 @Repository
@@ -27,4 +28,8 @@ public interface MemberDAO {
 	public void deleteOne(int mno); 	  // 삭제
 	MemberDTO getOneTL(int ono);
 	MemberDTO getOneTM(int uno);
+	
+	int profileAdd(ProFileDTO pfile);
+	public void profileUpdate(ProFileDTO pfile); // 업데이트
+	
 }

@@ -193,44 +193,96 @@
     </nav>
     <!-- End Navbar -->
       
-      <form action="modify" method="post">
+      <form action="modify" method="post" enctype="multipart/form-data">
       <div class="container-fluid py-4">
       <div class="row justify-content-center">
       
       <input type="hidden" name="mno" value="${dto2.mno }">
+      <input type="hidden" name="img_name" value="${dto2.img_name }">
        
         <div class="col-md-8">
           <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
                 <p class="mb-0">사원수정</p>
-                <button type="submit" class="btn btn-info btn-sm ms-auto">수정</button>
+                <button type="submit" class="btn btn-info btn-sm ms-auto" onclick="return confirm('수정 하시겠습니까?');">수정</button>
                 &nbsp;
-                <a href="admin2" class="btn btn-danger btn-sm">취소</a>
+                <a href="admin2" class="btn btn-danger btn-sm" onclick="return confirm('취소 하시겠습니까?');">취소</a>
               </div>
             </div>
             <div class="card-body">
               <p class="text-uppercase text-sm">사원정보</p>
+              <div>
+				<div style="float: left; width: 33%; margin-right: 20px"  >	
+					<div class="col">
+						<div class="form-group" style="text-align: center;">
+							<div class="profile_img"  >
+							<%-- <c:choose>
+							<c:when test="${dto2.img_path == null }">
+								<img src="../assets/img/team-8.jpg" class="profile_img" style="width: 250px; height: 250px; "/> 
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+							</c:choose> --%>		
+							<img src="${dto2.img_path }${dto2.img_name}" id="m_image" class="profile_img" style="width: 250px; height: 250px; "/> 
+							<label for="pfile" class="form-label"></label>
+							<input class="form-control" type="file" name="pfile" id="pfile" onchange="preview(this);" 
+											 style="margin-top: 10px" >
+							</div>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+				function preview(input) {
+					  if (input.files && input.files[0]) {
+					    var reader = new FileReader();
+					    reader.onload = function(e) {
+					      document.getElementById('m_image').src = e.target.result;
+					    };
+					    reader.readAsDataURL(input.files[0]);
+					  } else {
+					    document.getElementById('m_image').src = "";
+					  }
+					}
+				</script>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4" style="margin-top: 20px">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">이름</label>
                     <input class="form-control" name="mname" type="text" value="${dto2.mname }">
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4" style="margin-top: 20px">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">이메일</label>
+                    <input class="form-control" name="memail" type="email" value="${dto2.memail }">
+                  </div>
+                </div>
+                <div class="col-md-4" style="margin-top: 20px">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">ID</label>
+                    <input class="form-control" name="mid" type="text" value="${dto2.mid }">
+                  </div>
+                </div>
+                <div class="col-md-6" style="margin-top: 25px">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">전화번호</label>
                     <input class="form-control" name="mphone" id="mphone" type="text" oninput="phone(this)" value="${dto2.mphone }">
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-6" style="margin-top: 25px">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">비밀번호</label>
+                    <input class="form-control" name="password" id="password" type="text" value="${dto2.password }">
+                  </div>
+                </div>
+                <div class="col-md-4" style="margin-top: 20px">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">생년(4자)</label>
                     <input class="form-control" id="mbirth1" name="mbirth1" type="text" value="${fn:substring(dto2.mbirth,0,4)}">
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4" style="margin-top: 20px">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">월</label>
                     <select class="form-select" id="mbirth2" name="mbirth2" size="1">
@@ -250,25 +302,22 @@
 					</select>
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4" style="margin-top: 20px">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">일</label>
                     <input class="form-control" id="mbirth3" name="mbirth3" type="text" value="${fn:substring(dto2.mbirth,8,10)}">
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">이메일</label>
-                    <input class="form-control" name="memail" type="email" value="${dto2.memail }">
-                  </div>
-                </div>
               </div>
+              </div>
+                
               <hr class="horizontal dark">
-                <div class="col-md-2">
-                  <div class="form-group" style="text-align:left; ; margin-top: 28px; margin-bottom: 4px;">
-                  	<button type="button" class="btn btn-primary" id="btn">주소찾기</button>
-                  </div>
-                </div>
+                
+              <div class="col-md-2">
+                 <div class="form-group" style="text-align:left; ; margin-top: 28px; margin-bottom: 4px;">
+                 	<button type="button" class="btn btn-primary" id="btn">주소찾기</button>
+                 </div>
+              </div>
               <div class="row">
                 <div class="col-md-2">
                   <div class="form-group">
@@ -291,7 +340,7 @@
               </div>
              <hr class="horizontal dark">
              <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">직급</label>
                     <select class="form-select" id="mrank" name="mrank" size="1">
@@ -305,19 +354,7 @@
                     <%--<input class="form-control" name="mrank" type="text" value="${dto2.mrank }"> --%>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">ID</label>
-                    <input class="form-control" name="mid" type="text" value="${dto2.mid }">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">비밀번호</label>
-                    <input class="form-control" name="password" id="password" type="text" value="${dto2.password }">
-                  </div>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">부서명</label>
                     <select class="form-select" id="ono" name="ono" size="1">
@@ -340,13 +377,13 @@
 					</select>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">급여</label>
                     <input class="form-control" name="msal" id="msal" type="text" value="${dto2.msal }">
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-select-label">권한</label>
                       <select class="form-select" id="role" name="role" size="1">

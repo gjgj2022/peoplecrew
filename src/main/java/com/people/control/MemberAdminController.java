@@ -1,5 +1,6 @@
 package com.people.control;
 
+import java.lang.ProcessHandle.Info;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.people.dto.MemberDTO;
+import com.people.dto.ProFileDTO;
 import com.people.service.MemberService;
 import com.people.util.PageUtil;
 
@@ -48,8 +51,10 @@ public class MemberAdminController {
 		
 		dto2.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
 		dto2.setPassword(passwordEncoder.encode(password)); // 암호화한후 넘기기
+		
 		service.insertOne(dto2);
 		
+		log.info("완료 : ");
 		return "redirect:admin2";
 	}
 	
@@ -126,6 +131,7 @@ public class MemberAdminController {
 
 	@PostMapping("/modify")
 	public String modifyOk(@ModelAttribute("dto")MemberDTO dto2,
+						   @RequestParam("pfile")MultipartFile pfile,
 						   @RequestParam("mbirth1")String mbirth1,
 						   @RequestParam("mbirth2")String mbirth2,
 						   @RequestParam("mbirth3")String mbirth3,
@@ -135,7 +141,61 @@ public class MemberAdminController {
 		
 		dto2.setPassword(passwordEncoder.encode(password)); // 암호화한후 넘기기
 		dto2.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
-		service.updateOne(dto2);
+		
+		log.info("dto2 getImg_name : " + dto2.getImg_name());
+		
+		ProFileDTO pfile2 = new ProFileDTO();
+		if(pfile.isEmpty()) {
+			log.info("파일없음");
+			service.updateOne(dto2);
+			
+		} else if(dto2.getImg_name() != null) {
+			String fileName = pfile.getOriginalFilename();
+			log.info("파일이름 : " +fileName);
+
+			long fileSize= pfile.getSize();
+			int ImgSize = (int)fileSize;
+			log.info("파일 사이즈 : " + ImgSize);
+			
+			String fileUrl = "/img/"; // 파일 저장 경로
+			log.info("파일저장경로 : " +fileUrl);
+			
+			pfile2.setImg_name(fileName);
+			pfile2.setImg_path(fileUrl);
+			pfile2.setImg_size(ImgSize);
+			pfile2.setMno(dto2.getMno());
+			
+			service.profileUpdate(pfile2);
+			service.updateOne(dto2);
+			
+			log.info("dto2 mno : " + dto2.getImg_name());
+			log.info("dto2 mno : " + dto2.getMno());
+			
+		} else {
+			
+			String fileName = pfile.getOriginalFilename();
+			log.info("파일이름2 : " +fileName);
+
+			long fileSize= pfile.getSize();
+			int ImgSize = (int)fileSize;
+			log.info("파일 사이즈2 : " + ImgSize);
+			
+			String fileUrl = "/img/"; // 파일 저장 경로
+			log.info("파일저장경로2 : " +fileUrl);
+			
+			pfile2.setImg_name(fileName);
+			pfile2.setImg_path(fileUrl);
+			pfile2.setImg_size(ImgSize);
+			pfile2.setMno(dto2.getMno());
+			
+			service.profileAdd(pfile2);
+			service.updateOne(dto2);
+			
+			log.info("dto2 getImg_name : " + dto2.getImg_name());
+			log.info("dto2 mno : " + dto2.getMno());
+			
+		}
+		
 		return "redirect:admin2";
 	}
 	
