@@ -2,6 +2,7 @@ package com.people.control;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +18,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.people.dto.ApprovalDTO;
 import com.people.dto.AttendanceDTO;
 import com.people.dto.BoardDTO;
+import com.people.dto.DocumentDTO;
 import com.people.dto.MemberDTO;
+import com.people.service.ApprovalService;
 import com.people.service.AttendanceService;
 import com.people.service.BoardService;
+import com.people.service.DocumentService;
 import com.people.service.MemberService;
 import com.people.util.PageUtil;
 
@@ -39,6 +44,12 @@ public class DashBoardController {
 
 	@Autowired
 	AttendanceService atservice;
+	
+	@Autowired
+	DocumentService dservice;
+	
+	@Autowired
+	ApprovalService aservice;
 	
 	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yy-MM-dd");
 	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -74,6 +85,55 @@ public class DashBoardController {
 		
 		log.info("총연차 : " + dto.getMannual());
 		log.info("사용연차 : " + dto.getUsemannual());
+		
+		// 문서관련
+		// 개인문서함
+		String wait = "결재대기";
+		String ing = "진행중";
+		String success = "결재완료";
+		String reject = "반려";
+		
+		model.addAttribute("wait", dservice.getMyCount(wait, String.valueOf(dto.getMno())));
+		model.addAttribute("ing", dservice.getMyCount(ing, String.valueOf(dto.getMno())));
+		model.addAttribute("success", dservice.getMyCount(success, String.valueOf(dto.getMno())));
+		model.addAttribute("reject", dservice.getMyCount(reject, String.valueOf(dto.getMno())));
+		
+		// 결재처리함
+		List<ApprovalDTO> list6 = aservice.readOne(dto.getMno());
+		
+		ArrayList<DocumentDTO> listWait = new ArrayList<DocumentDTO>();
+		ArrayList<DocumentDTO> listIng = new ArrayList<DocumentDTO>();
+		ArrayList<DocumentDTO> listSuccess = new ArrayList<DocumentDTO>();
+		ArrayList<DocumentDTO> listNo = new ArrayList<DocumentDTO>();
+		
+		for(int i=0; i<list6.size(); i++) {
+			ApprovalDTO adto = list6.get(i);
+			
+			DocumentDTO ddtoWait = dservice.getWait(adto.getDono());
+			if(ddtoWait != null) {
+				listWait.add(ddtoWait);
+			}
+			DocumentDTO ddtoIng = dservice.getIng(adto.getDono());
+			if(ddtoIng != null) {
+				listIng.add(ddtoIng);
+			}
+			DocumentDTO ddtoSuccess = dservice.getSuccess(adto.getDono());
+			if(ddtoSuccess != null) {
+				listSuccess.add(ddtoSuccess);
+			}
+			DocumentDTO ddtoNo = dservice.getNo(adto.getDono());
+			if(ddtoNo != null) {
+				listNo.add(ddtoNo);
+			}
+		}
+		
+		model.addAttribute("AllWait", listWait.size());
+		model.addAttribute("AllIng", listIng.size());
+		model.addAttribute("AllSuccess", listSuccess.size());
+		model.addAttribute("AllReject", listNo.size());
+		
+		model.addAttribute("sum", listWait.size()+listIng.size()+listSuccess.size()+listNo.size());
+		
 		
 		
 		return "index";

@@ -22,6 +22,23 @@
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  
+  <!-- 개인,결재함 차트 style  -->
+  <style>
+	#chart-container {
+	  position: relative;
+	  height: 200px;
+	  margin: 0px;
+	  overflow: hidden;
+	}
+	#chart-container2 {
+	  position: relative;
+	  height: 200px;
+	  margin: 0px;
+	  overflow: hidden;
+	}
+</style>
+  
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -354,151 +371,157 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 	<div class="container-fluid py-4">
 	  <div class="row mt-1">
         <div class="col-3">
-          <div class="card ">
-            <div class="card-header pb-0 p-3">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-2">개인문서함</h6>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center ">
-                <tbody>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">기안문서</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">결재 진행중</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">반려문서</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div>
-                        </div>
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">결재완료</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <div class="card" id="table1">
+			<div class="card-header pb-0 p-3">
+				<div class="d-flex justify-content-between">
+					<h6 class="mb-2"><a href="/personalFile">개인문서함</a></h6>
+				</div>
+			</div>
+			<div class="table-responsive">
+				<table class="table align-items-center ">
+					<tbody>
+						<tr>
+							<td class="w-30">
+								<div class="d-flex px-2 py-1 align-items-center">
+									<div class="ms-4">
+										<h6 class="text-sm mb-0">결재대기</h6>
+									</div>
+								</div>
+							</td>
+							<td class="align-middle text-sm" style="width:50px;">
+								<div class="col text-center">
+									<h6 class="text-sm mb-0" style="width:50px;"><a href="/personalFile?apvP=결재대기">${wait }</a></h6>
+								</div>
+							</td>
+							<td class="border border-white" rowspan="4"><div id="chart-container"></div></td>
+						</tr>
+						<tr>
+							<td class="w-30">
+								<div class="d-flex px-2 py-1 align-items-center">
+									<div class="ms-4">
+										<h6 class="text-sm mb-0">진행중</h6>
+									</div>
+								</div>
+							</td>
+							<td class="align-middle text-sm" style="width:50px;">
+								<div class="col text-center">
+									<h6 class="text-sm mb-0" style="width:50px;"><a href="/personalFile?apvP=진행중">${ing }</a></h6>
+								</div>
+							</td>
+
+						</tr>
+						<tr>
+							<td class="w-30">
+								<div class="d-flex px-2 py-1 align-items-center">
+									<div class="ms-4">
+										<h6 class="text-sm mb-0">결재완료</h6>
+									</div>
+								</div>
+							</td>
+							<td class="align-middle text-sm" style="width:50px;">
+								<div class="col text-center">
+									<h6 class="text-sm mb-0" style="width:50px;"><a href="/personalFile?apvP=결재완료">${success }</a></h6>
+								</div>
+							</td>
+
+						</tr>
+						<tr>
+							<td class="w-30">
+								<div class="d-flex px-2 py-1 align-items-center">
+									<div class="ms-4">
+										<h6 class="text-sm mb-0">반려</h6>
+									</div>
+								</div>
+							</td>
+							<td class="align-middle text-sm" style="width:50px;">
+								<div class="col text-center">
+									<h6 class="text-sm mb-0" style="width:50px;"><a href="/personalFile?apvP=반려">${reject }</a></h6>
+								</div>
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
         </div>
-        <div class="col-3">
-          <div class="card h-100 ">
-            <div class="card-header pb-0 p-3">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-2">결재문서함</h6>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center ">
-                <tbody>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">결재대기</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">결재 진행중</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">반려문서</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div>
-                        </div>
-                        <div class="ms-4">
-                          <h6 class="text-sm mb-0">결재완료</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <h6 class="text-sm mb-0">0</h6>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        
+          <c:if test="${sum != 0 }">
+       		 <div class="col-3" id="table2">
+					<div class="card ">
+						<div class="card-header pb-0 p-3">
+							<div class="d-flex justify-content-between">
+								<h6 class="mb-2"><a href="/apvProgress">결재처리함</a></h6>
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table align-items-center ">
+								<tbody>
+									<tr>
+										<td class="w-30">
+											<div class="d-flex px-2 py-1 align-items-center">
+												<div class="ms-4">
+													<h6 class="text-sm mb-0">결재대기</h6>
+												</div>
+											</div>
+										</td>
+										<td class="align-middle text-sm" style="width:50px;">
+											<div class="col text-center">
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/apvProgress?apvP=결재대기">${AllWait }</a></h6>
+											</div>
+										</td>
+										<td class="border border-white" rowspan="4"><div id="chart-container2"></div></td>
+									</tr>
+									<tr>
+										<td class="w-30">
+											<div class="d-flex px-2 py-1 align-items-center">
+												<div class="ms-4">
+													<h6 class="text-sm mb-0">진행중</h6>
+												</div>
+											</div>
+										</td>
+										<td class="align-middle text-sm" style="width:50px;">
+											<div class="col text-center">
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/apvProgress?apvP=진행중">${AllIng }</a></h6>
+											</div>
+										</td>
+
+									</tr>
+									<tr>
+										<td class="w-30">
+											<div class="d-flex px-2 py-1 align-items-center">
+												<div class="ms-4">
+													<h6 class="text-sm mb-0">결재완료</h6>
+												</div>
+											</div>
+										</td>
+										<td class="align-middle text-sm" style="width:50px;">
+											<div class="col text-center">
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/apvProgress?apvP=결재완료">${AllSuccess }</a></h6>
+											</div>
+										</td>
+
+									</tr>
+									<tr>
+										<td class="w-30">
+											<div class="d-flex px-2 py-1 align-items-center">
+												<div class="ms-4">
+													<h6 class="text-sm mb-0">반려</h6>
+												</div>
+											</div>
+										</td>
+										<td class="align-middle text-sm" style="width:50px;">
+											<div class="col text-center">
+												<h6 class="text-sm mb-0" style="width:50px;"><a href="/apvProgress?apvP=반려">${AllReject }</a></h6>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</c:if>
         
         <!-- 근태 현황 -->
         <div class="col-3">
@@ -638,7 +661,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
     
   </main>
   
- <script type="text/javascript">
+  <script type="text/javascript">
 function times() {
 	var clock = document.getElementById("clock");
 	var now = new Date();
@@ -701,6 +724,111 @@ $(function(){
 	
 });
 </script>
+  
+  <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+  <script type="text/javascript"> //개인문서함
+    var dom = document.getElementById('chart-container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+      tooltip: {
+        trigger: 'item'
+      },
+
+      series: [
+        {
+          name: '개인문서함',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: true,
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: false,
+              fontSize: 40,
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: ${ing}, name: '진행중'},
+            { value: ${success}, name: '결재완료' },
+            { value: ${wait}, name: '결재대기' },
+            { value: ${reject}, name: '반려' }
+          ]
+        }
+      ]
+    };
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+    </script>
+    
+  <script type="text/javascript"> //결제처리함
+    var dom = document.getElementById('chart-container2');
+    var myChart2 = echarts.init(dom, null, {
+      renderer: 'canvas2',
+      useDirtyRect: false
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+      tooltip: {
+        trigger: 'item'
+      },
+
+      series: [
+        {
+          name: '결재처리함',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: true,
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: false,
+              fontSize: 40,
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: ${AllIng}, name: '진행중'},
+            { value: ${AllSuccess}, name: '결재완료' },
+            { value: ${AllWait}, name: '결재대기' },
+            { value: ${AllReject}, name: '반려' }
+          ]
+        }
+      ]
+    };
+
+    if (option && typeof option === 'object') {
+      myChart2.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart2.resize);
+    </script>
   
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
