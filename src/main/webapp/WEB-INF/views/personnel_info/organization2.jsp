@@ -399,21 +399,21 @@ The markup will be simple nested lists
 	<div class="tree">
 	
 		<ul>
-			<li><a href="#">PEOPLE CREW</a>
+			<li><a href="/search3?keyword=">PEOPLE CREW</a>
 			
 			<ul>
 			<li><a href="#">개발부문</a>
 						<ul>
-							<li><a href="#">개발팀</a>
+							<li><a href="/search3?keyword=개발">개발팀</a>
 								<ul>
 								<li>
-									<a href="#">개발 1팀</a>
+									<a href="/search3?keyword=개발1팀">개발 1팀</a>
 									<br />
-									<a href="#">개발 2팀</a>
+									<a href="/search3?keyword=개발2팀">개발 2팀</a>
 								</li>
 								</ul></li>
-							<li><a href="#">유지보수팀</a></li>
-							<li><a href="#">부설연구소</a></li>
+							<li><a href="/search3?keyword=유지보수팀">유지보수팀</a></li>
+							<li><a href="/search3?keyword=부설연구소">부설연구소</a></li>
 
 						</ul>
 						</li>
@@ -423,21 +423,21 @@ The markup will be simple nested lists
 
 	<li ><a href="#">생산부문</a>
 						<ul>
-							<li><a href="#">생산팀</a>
+							<li><a href="/search3?keyword=생산기획">생산팀</a>
 								<ul>
 								<li>
-									<a href="#">생산기획 1팀</a>
+									<a href="/search3?keyword=생산기획1팀">생산기획 1팀</a>
 									<br />
-									<a href="#">생산기획 2팀</a>
+									<a href="/search3?keyword=생산기획2팀">생산기획 2팀</a>
 								</li>
 								</ul></li>
-							<li><a href="#">상품관리부</a></li>
-							<li><a href="#">기술생산팀</a>
+							<li><a href="/search3?keyword=상품관리">상품관리부</a></li>
+							<li><a href="/search3?keyword=기술생산">기술생산팀</a>
 								<ul>
 								<li>
-									<a href="#">기술생산 1팀</a>
+									<a href="/search3?keyword=기술생산1팀">기술생산 1팀</a>
 									<br />
-									<a href="#" class="height_or">기술생산 2팀</a>
+									<a href="/search3?keyword=기술생산2팀" class="height_or">기술생산 2팀</a>
 								</li>
 								</ul></li>
 
@@ -451,26 +451,28 @@ The markup will be simple nested lists
 					<a href="#">관리부문</a>
 						<ul>
 
-							<li><a href="#">  총무부</a> <br /> 
-							<a href="#">경리부</a> <br />
-								<a href="#">구매자재부</a></li>
+							<li><a href="/search3?keyword=총무부">  총무부</a> <br /> 
+							<a href="/search3?keyword=경리부">경리부</a> <br />
+								<!-- <a href="#">구매자재부</a></li> -->
 
 						</ul></li>
 						
 
-					<li class="stair"><a href="#">기술부문</a>
+					<li class="stair"><a href="/search3?keyword=품질">기술부문</a>
 						<ul>
-							<li><a href="#">품질관리부</a></li>
+							<li><a href="/search3?keyword=품질관리부">품질관리부</a></li>
 						</ul></li>
 				
 
 					<li class="stair"> <a href="#">영업부문</a>
 						<ul>
-							<li><a href="#">해외영업부</a><br /> <a href="#">국내영업부</a><br />
-								<a href="#"  class="height_or">고객관리부</a></li>
+							<li><a href="/search3?keyword=해외영업부">해외영업부</a><br /> 
+								<a href="/search3?keyword=국내영업부">국내영업부</a><br />
+								<a href="/search3?keyword=고객관리부"  class="height_or">고객관리부</a>
+							</li>
 
-
-						</ul></li>
+						</ul>
+					</li>
 				
 				
 				</ul>

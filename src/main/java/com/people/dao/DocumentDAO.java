@@ -12,7 +12,7 @@ import com.people.dto.DocumentDTO;
 public interface DocumentDAO {
 	List<DocumentDTO> selectAll();
 	List<DocumentDTO> selectAllByMno(int mno);
-	DocumentDTO selectBydono(String dono);
+	DocumentDTO selectOne(String dono);
 	DocumentDTO selectC(String dono, String doprogress);
 	List<DocumentDTO> selectIng(int mno);
 	List<DocumentDTO> selectEnd(int mno);
@@ -31,4 +31,8 @@ public interface DocumentDAO {
 	void deleteOne(String dono);
 	
 	void updateFile(String doprogress, String dotitle, String docontents, String docontents2, String docontents3, String dono);
+
+	List<DocumentDTO> selectOld(int mno);
+	
+	DocumentDTO selectOneOld(String dono);
 }
