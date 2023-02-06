@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--
 =========================================================
 * Argon Dashboard 2 - v2.0.4
@@ -335,14 +334,7 @@ modi*/
 								
 									<tr>
 										<td rowspan="4" class="profile_img">
-										<c:choose>
-											<c:when test="${memori.img_path == null }">
-												<img src="../assets/img/team-8.jpg" class="profile_img" id="m_image" style="width: 350px; height: 350px; "/> 
-											</c:when>
-											<c:otherwise>
-												<img src="${memori.img_path }${memori.img_name}" id="m_image" class="profile_img" style="width: 350px; height: 350px; "/> 
-											</c:otherwise>
-										</c:choose>
+										<img src="../assets/img/team-8.jpg" class="profile_img"/>
 										</td>
 										
 										<th class="profile_table_name" colspan="1">${memori.mname} <span> ${memori.mrank }</span> </th>

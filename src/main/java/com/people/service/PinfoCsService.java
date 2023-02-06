@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.people.dao.PinfoCsDAO;
+import com.people.dto.BoardDTO;
 import com.people.dto.PinfoCsDTO;
 import com.people.dto.PinfoFileDTO;
-import com.people.dto.PinfoStartEnd;
+
+import com.people.dto.StartEnd;
 
 @Service
 public class PinfoCsService {
@@ -23,7 +25,7 @@ public class PinfoCsService {
 	}
 	
 	public List<PinfoCsDTO> selectAll(int startNo, int endNo) {
-		PinfoStartEnd se = new PinfoStartEnd(startNo,endNo); //페이징처리
+		StartEnd se = new StartEnd(startNo,endNo); //페이징처리
 		return dao.readAll(se);
 	}
 	
@@ -70,6 +72,15 @@ public class PinfoCsService {
 	public void removeRAll(int bono) {  
 		dao.removeReplyAll(bono);
 	}
+	
+	public void upRemove(int bono) {
+		dao.upRemove(bono);
+	}
+
+	public void upStatus(int bono) {
+		dao.upStatus(bono);
+		
+	};
 
 }
 

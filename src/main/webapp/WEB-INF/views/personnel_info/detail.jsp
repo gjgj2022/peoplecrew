@@ -199,19 +199,21 @@
     </nav>
     <!-- End Navbar -->
 
-<script>
 
-if("${files.oriname}"==""){
-	console.log("널");
-	//document.getElementById("filedownbtn").style.display="none";
-}
-
-</script>
 
 		<!-- detail page -->
 		<style>
 		.borderbottom-file{
 		border-bottom: 0px;
+		}
+		
+		.answerpart {
+		background-color:#ebf9ff ;
+		width: 90%;
+		margin-bottom: 100px;
+		}
+		.boardcont{
+		height: 150px;
 		}
 		</style>
 
@@ -231,6 +233,7 @@ if("${files.oriname}"==""){
 							<tr>
 								<th colspan="2">
 									<h5>${boarddto.botitle }</h5>
+									
 								</th>
 								<th colspan="2">
 								<p class="text-end fw-normal text-sm">
@@ -246,33 +249,70 @@ if("${files.oriname}"==""){
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4">${boarddto.bocontents }</td>
+								<td colspan="4" class="boardcont">${boarddto.bocontents }</td>
 							</tr>
 							<tr>
 								<td colspan="4"><a href="/personnel_info/cs"> <input type="button" value="목록" class="btn" /></a> 
-							
+								<c:if test="${boarddto.mno eq dto.mno ||ans.anstitle eq null}">
 								<a href="/personnel_info/modify?bono=${boarddto.bono }"> <input type="button" value="수정" class="btn" />
-								</a> <a href="/personnel_info/delete?bono=${boarddto.bono }"> <input type="button" value="삭제" class="btn" />
-								</a></td>
+								</a> 
+								</c:if>
+								<c:if test="${boarddto.mno eq dto.mno || dto.role eq 'ROLE_ADMIN'}">
+								<a href="/personnel_info/delete?bono=${boarddto.bono }"> <input type="button" value="삭제" class="btn" />
+								</a></c:if>
+								 <a href="/personnel_info/answer?bono=${boarddto.bono }"> 
+								 <c:if test="${dto.role eq 'ROLE_ADMIN' && ans.anstitle eq null }"><input type="button" value="답변하기" class="btn" /></c:if>
+								</a>
+								</td>
 							</tr>
 							
-							<tr>
-							<td>
-							
-							</td>
-								</tr>
 						</table>
 						<!-- detail page end  -->
 
-
-
-						<!--  댓글  -->
-						<div class="container">
+					<br /><br />
+					<c:if test="${ans.anstitle ne null }">
+		<div class="container answerpart">
+						<table class="table">
+						<tr>
+							<th colspan="4"><h5>${ans.anstitle }</h5></th>
+						</tr>
+							<tr>
+								
+								<td colspan="4" class="text-end">답변 작성일　${ans.ansdate }
+								</td>
+							
+						
+						</tr>
+						<tr >
+						<td colspan="4" class="">
+						${ans.anscontents }
+						<br />
+						<br />
+						<br />
+						<br />
+						감사합니다. 
+						
+						
+						
+						</td>
+						</tr>
+						<c:if test="${dto.role eq 'ROLE_ADMIN'}">
+						<tr>
+								<td colspan="4">
+							
+								<a href="/personnel_info/ansmodi?bono=${boarddto.bono }"> <input type="button" value="답변수정" class="btn btn-primary" />
+								</a> 
+								
+								<a href="/personnel_info/ansdelete?bono=${boarddto.bono }"> <input type="button" value="답변삭제" class="btn btn-light btn-end" />
+								</a>
+								 
+								</td>
+							</tr>
+						</c:if>
+						</table>
 						
 						</div>
-
-
-
+						</c:if>
 
 						<!-- 전체페이지 카드모양 div -->
 					</div>
@@ -377,6 +417,24 @@ if("${files.oriname}"==""){
 	<script src="../resources/assets/js/core/popper.min.js"></script>
 	<script src="../resources/assets/js/core/bootstrap.min.js"></script>
 	<script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
+	<script>
+		var win = navigator.platform.indexOf('Win') > -1;
+		if (win && document.querySelector('#sidenav-scrollbar')) {
+			var options = {
+				damping : '0.5'
+			}
+			Scrollbar.init(document.querySelector('#sidenav-scrollbar'),
+					options);
+		}
+	</script>
+	<!-- Github buttons -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+</body>
+
+</html>	<script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
 	<script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;

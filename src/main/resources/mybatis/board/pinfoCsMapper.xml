@@ -6,22 +6,25 @@
  
   <mapper namespace="com.people.dao.PinfoCsDAO">
 
-	<select id="readAll" parameterType="com.people.dto.PinfoStartEnd"
-		resultType="PinfoCsDTO">
-		select ROWNUM, bono, mno, mname, bocontents, botitle, bohits, recnt,
-		IF(DATE_FORMAT(bodate, '%Y%m%d') &lt; DATE_FORMAT(now(),'%Y%m%d'),
-		DATE_FORMAT(bodate, '%Y.%m.%d'),
-		DATE_FORMAT(bodate, '%H:%i')
-		) as bodate, bostatus  
+	
+	
+	<select id="readAll" parameterType="StartEnd"
+		resultType="BoardDTO">
+		select ROWNUM, bono, mno, mname, bocontents, botitle,
+		bohits, recnt,
+		IF(DATE_FORMAT(bodate, '%Y%m%d') &lt;
+			DATE_FORMAT(now(),'%Y%m%d'),
+			DATE_FORMAT(bodate, '%Y.%m.%d'),
+			DATE_FORMAT(bodate, '%H:%i')
+		) as bodate, bostatus
 		from (select @ROWNUM := @ROWNUM +1 AS ROWNUM, B.*
-		FROM (select b.bono bono, b.mno mno, m.mname mname, b.bocontents
-		bocontents,
-		b.botitle botitle, b.bohits bohits,
-		(select count(*) from reply where bono = b.bono) as recnt, b.bodate bodate, 
-		b.bostatus bostatus, b.botype botype 
-		from board as b inner join member as m on b.mno = m.mno where botype= 1
-		order by bodate desc) B, (SELECT @ROWNUM :=0 ) TMP) C
-		where ROWNUM &lt;= #{endNo} and ROWNUM &gt;= #{startNo}
+		FROM (select b.*, m.mname mname,
+		(select count(*) from reply where bono = b.bono) as recnt
+		from board as b inner join member as m on b.mno = m.mno 
+		where botype=1 or botype=2 order by bono desc) B, 
+		(SELECT @ROWNUM :=0 ) TMP) C
+		where ROWNUM &lt;=
+		#{endNo} and ROWNUM &gt;= #{startNo}
 
 	</select>
 
@@ -53,7 +56,7 @@
 		botitle=#{botitle},
 		bocontents=#{bocontents},
 		fno = #{fno},
-		bostatus = #{bostatus} 
+		bostatus =1
 		where bono = #{bono}
 	</update>
 	
@@ -67,8 +70,7 @@
 
 	<delete id="removeOne" parameterType="int">
 		delete from board
-		where bono
-		= #{bono}
+		where bono = #{bono}
 	</delete>
 
 	<update id="raiseBohits" parameterType="int">
@@ -87,7 +89,7 @@
 	</select>
 
 	<select id="getBoardTotal" resultType="int">
-		select count(*) from board where botype=1 and botype=2
+		select count(*) from board where botype=1 or botype=2
 	</select>
 
 	<select id="fileDetail" parameterType="int"
@@ -98,5 +100,17 @@
 	<delete id="removeFileByFno" parameterType="int">
 		delete from file where fno=#{fno}
 	</delete>
+	
+	<update id="upRemove" parameterType="int">
+	UPDATE board
+	SET bostatus = 1
+	WHERE bono=#{bono}
+	</update>
+	
+	<update id="upStatus" parameterType="int">
+	UPDATE board
+	SET bostatus = 2
+	WHERE bono=#{bono}
+	</update>
 
 </mapper>
