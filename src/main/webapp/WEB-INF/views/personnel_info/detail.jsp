@@ -199,28 +199,7 @@
     </nav>
     <!-- End Navbar -->
 
-<script>
-function deleteBoard(bono) {
-	if (confirm("게시글을 삭제하시겠습니까?") == true){  
-		
-		$.ajax({
-			url : '/personnel_info/delete/'+bono,
-			type : 'post',
-			data : {
-				'bono' : bono
-			},
-			success : function() {
-				window.location.href ="/personnel_info/cs";
-			},
-			error : function() {
-				alert("문의사항 삭제 실패");
-			},
-		});
-	}else{   //취소
-	      return;
-	  }
-}
-</script>
+
 
 		<!-- detail page -->
 		<style>
@@ -273,11 +252,13 @@ function deleteBoard(bono) {
 							</tr>
 							<tr>
 								<td colspan="4"><a href="/personnel_info/cs"> <input type="button" value="목록" class="btn" /></a> 
-							
+							<c:if test="${ans.anstitle eq null }">
 								<a href="/personnel_info/modify?bono=${boarddto.bono }"> <input type="button" value="수정" class="btn" />
 								</a> 
-								<c:if test="${ans.anstitle eq null }"><input type="button" class="btn" value="삭제" onclick="deleteBoard(${boarddto.bono})"/>
-								</c:if>
+								
+								
+								<a href="/personnel_info/delete?bono=${boarddto.bono }"> <input type="button" value="삭제" class="btn" />
+								</a></c:if>
 								 <a href="/personnel_info/answer?bono=${boarddto.bono }"> 
 								 <c:if test="${dto.role eq 'ROLE_ADMIN' && ans.anstitle eq null }"><input type="button" value="답변하기" class="btn" /></c:if>
 								</a>
@@ -435,6 +416,24 @@ function deleteBoard(bono) {
 	<script src="../resources/assets/js/core/popper.min.js"></script>
 	<script src="../resources/assets/js/core/bootstrap.min.js"></script>
 	<script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
+	<script>
+		var win = navigator.platform.indexOf('Win') > -1;
+		if (win && document.querySelector('#sidenav-scrollbar')) {
+			var options = {
+				damping : '0.5'
+			}
+			Scrollbar.init(document.querySelector('#sidenav-scrollbar'),
+					options);
+		}
+	</script>
+	<!-- Github buttons -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+</body>
+
+</html>	<script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
 	<script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
