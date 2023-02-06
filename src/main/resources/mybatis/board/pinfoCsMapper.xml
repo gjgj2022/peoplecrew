@@ -64,7 +64,7 @@
 		update board set
 		botitle=#{botitle},
 		bocontents=#{bocontents},
-		bostatus = #{bostatus} 
+		bostatus = 1 
 		where bono = #{bono}
 	</update>
 
