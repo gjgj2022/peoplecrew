@@ -111,9 +111,14 @@ public class AttendanceController {
 	public String listAdminOneOk(@ModelAttribute("dto")AttendanceDTO admindto,
 							  @RequestParam("mbirth1")String mbirth1,
 			                  @RequestParam("mbirth2")String mbirth2,
-			                  @RequestParam("mbirth3")String mbirth3) {
+			                  @RequestParam("mbirth3")String mbirth3,
+			                  @RequestParam("mannual")int mannual,
+			                  @RequestParam("usemannual")int usemannual) {
 		
 		admindto.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
+		admindto.setMannual(mannual);
+		admindto.setUsemannual(usemannual);
+		
 		attdservice.updateOne(admindto);
 		
 		return "redirect:/admin/page";

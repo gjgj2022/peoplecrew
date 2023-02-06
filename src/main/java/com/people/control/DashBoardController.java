@@ -51,7 +51,7 @@ public class DashBoardController {
 	@Autowired
 	ApprovalService aservice;
 	
-	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yy-MM-dd");
+	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
 	
@@ -177,17 +177,28 @@ public class DashBoardController {
 			return "admin/m_mngmn_user";
 		}
 		
+	@GetMapping("/attin")
+	public String inwork() {
+		return "index";
+		
+	}
+		
 	// 출근 추가
 	@PostMapping("/attin")
-	public String inwork (Model model,
+	public String inworkOk (Model model,
 						  @ModelAttribute("dto")AttendanceDTO workdto) {
+		String gtw = "정상";
+		String td = "지각";
+		String at = "결근";
+		String le = "조퇴";
+		String vt = "휴가";
+
 		
 		atservice.addOne(workdto);
-		
 		model.addAttribute("workdto", workdto);
 		
 		log.info("workdto {}" + workdto);
-		return "index";
+		return "redirect:";
 		
 	}
 	
