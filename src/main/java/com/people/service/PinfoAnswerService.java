@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.people.dao.PinfoAnswerDAO;
 import com.people.dto.PinfoAnswerDTO;
+import com.people.dto.PinfoCsAnsDTO;
 import com.people.dto.PinfoCsDTO;
 
 @Service
@@ -32,3 +33,4 @@ public class PinfoAnswerService {
 	};
 
 }
+

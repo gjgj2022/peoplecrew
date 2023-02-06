@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PinfoAnswerDTO {
+public class PinfoCsAnsDTO {
 	private int ansno;
 	private int bono;
 	private int mno;
@@ -22,4 +22,13 @@ public class PinfoAnswerDTO {
 	private String anscontents;
 	
 
+	private String mname;
+	private String botitle;
+	private String bocontents;
+	private String bodate;
+	private int bohits;
+	private int recnt;
+	private int fno;
+	private int bostatus;
+	
 }

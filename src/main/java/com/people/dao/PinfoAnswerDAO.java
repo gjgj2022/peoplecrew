@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.people.dto.PinfoAnswerDTO;
-
+import com.people.dto.PinfoCsAnsDTO;
 import com.people.dto.PinfoCsDTO;
 
 @Mapper
@@ -19,3 +19,4 @@ public interface PinfoAnswerDAO {
 	
 
 }
+
