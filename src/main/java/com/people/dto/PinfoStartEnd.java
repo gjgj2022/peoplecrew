@@ -5,9 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class PinfoStartEnd {
 	private int startNo;
 	private int endNo;
+
+
+	
+	
+	
 }
+
