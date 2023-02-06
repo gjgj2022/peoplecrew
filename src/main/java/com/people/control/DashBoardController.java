@@ -225,10 +225,24 @@ public class DashBoardController {
 	
 	// 퇴근업데이트
 	@GetMapping("/attout")
-	public String outworkOk(@ModelAttribute("dto")AttendanceDTO outwdto) {
-		atservice.updeteOne(outwdto);
+	public String outworkOk(Model model,
+							@ModelAttribute("dto")AttendanceDTO outwdto,
+							@RequestParam("mno")int mno,
+							@RequestParam(required=false, name="state")String state,
+							@RequestParam(required=false, name="start_time")String start_time,
+							@RequestParam(required=false, name="end_time")String end_time ) {
 		
+		outwdto.setMno(mno);
+		outwdto.setState(state);
+		
+		if(hour > 9) {
+			outwdto.setState("지각");
+		} 
+		
+		atservice.updeteOne(outwdto);
+		model.addAttribute("outwdto", outwdto);
 		log.info("outwdto {}", outwdto);
+		
 		return "redirect:";
 		
 	}
