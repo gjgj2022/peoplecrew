@@ -1,14 +1,18 @@
 package com.people.control;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -177,9 +181,10 @@ public class ApprovalController {
 		return "/approval/apvWrite";
 	}
 
+
 	@PostMapping("/apvWriteOk")
 	public String apvWriteOk(HttpServletRequest req, @ModelAttribute DocumentDTO ddto,
-			@ModelAttribute ApprovalDTO adto, Model model) {
+			@ModelAttribute ApprovalDTO adto, Model model, HttpServletResponse resp) throws IOException {
 		
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
@@ -199,25 +204,39 @@ public class ApprovalController {
 
 		String dono = ddto.getMno() + "-" + now;
 
-		// document 테이블데이터 생성
-		ddto.setDono(dono);
-		dservice.addOne(ddto);
+		String referer = req.getHeader("Referer");
+		
+		resp.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		
+		String redirect = "redirect:"+referer;
+		
+		// 1분내로 재시도시 dono 중복 예외처리
+		try {
+			// document 테이블데이터 생성
+			ddto.setDono(dono);
+			dservice.addOne(ddto);
+			
+			// approval 테이블데이터 생성
+			String apno = dono + "-0";
+			
+			adto.setApno(apno);
+			
+			// 결재사원(팀장)
+			MemberDTO mdto = mservice.getOneTL(dto.getOno());
+			
+			adto.setApmno(mdto.getMno());
+			adto.setDono(dono);
+			
+			aservice.addOne(adto);			
+		} catch (DataIntegrityViolationException e) {
+			return "/approval/apvWriteFail";
 
-		// approval 테이블데이터 생성
-		String apno = dono + "-0";
-		
-		adto.setApno(apno);
-		
-		// 결재사원(팀장)
-		MemberDTO mdto = mservice.getOneTL(dto.getOno());
-		
-		adto.setApmno(mdto.getMno());
-		adto.setDono(dono);
-
-		aservice.addOne(adto);
+		}
 
 		return "redirect:/personalFile";
 	}
+
 
 	@RequestMapping("/personalFile")
 	public String personalFile(HttpServletRequest req, Model model) {
