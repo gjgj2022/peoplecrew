@@ -61,8 +61,8 @@
   
     <select id="getAll2" resultType="PinfoMOImgDTO" >
   SELECT m.mno , m.mmessage, m.mname ,m.mphone, m.memail , m.mrank , o.oname ,a.state, mi.img_name, mi.img_path
- FROM member as m inner join organization as o on m.ono = o.ono inner join attendance as a on m.ono = a.ono
-   inner join member_img as mi on m.mno = mi.mno
+	FROM member as m left join organization as o on o.ono = m.ono left join attendance as a on  a.ono =m.ono 
+ left outer join member_img as mi on  mi.mno =m.mno
   </select>
   
    
