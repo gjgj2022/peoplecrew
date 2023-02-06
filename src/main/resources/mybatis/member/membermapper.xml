@@ -8,8 +8,8 @@
 	<!-- 전체조회 및 페이징 처리 -->
 	<select id="getAll" resultType="MemberDTO" parameterType="StartEnd">
 		SELECT distinct mno, mname, mdate, mphone, mrank, oname, msal, uno, img_name
-			FROM(SELECT (@R := @R+1) AS RN, mno, mname, mdate, mphone, mrank, oname, msal, uno , img_name
-				FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal, up.uno, mi.img_name
+			FROM(SELECT (@R := @R+1) AS RN, mno, mname, mdate, mphone, mrank, oname, msal, uno , img_name 
+				FROM(SELECT m.mno, m.mname, m.mdate, m.mphone, m.mrank, o.oname, m.msal, up.uno, mi.img_name 
 						FROM member m 
 						LEFT OUTER JOIN member_img  mi on mi.mno = m.mno
 						LEFT OUTER JOIN organization o ON m.ono = o.ono

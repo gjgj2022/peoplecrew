@@ -35,4 +35,8 @@ public class PinfoMemOriDTO {
 	private String oname;
 	private String ophone;
 	private int uno;
+	
+	private String img_name;  // 파일이름
+    private String img_path;  // 파일경로
+	
 }

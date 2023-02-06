@@ -15,11 +15,12 @@
   
 
  <select id="getMno" parameterType="int" resultType="PinfoMemOriDTO">
-  
-  SELECT  m.mno , m.mname , m.mrank , m.memail , m.mphone , m.mmessage , o.oname ,o.ono
-  FROM member as m inner join organization as o on m.ono = o.ono
+  SELECT  m.mno , m.mname , m.mrank , m.memail , m.mphone , m.mmessage , o.oname ,o.ono ,mi.img_name, mi.img_path
+  FROM member m LEFT OUTER JOIN organization  o on m.ono = o.ono
+  LEFT OUTER JOIN member_img  mi on mi.mno = m.mno
   WHERE m.mno = #{mno}
   </select>
+  
   
   <update id="modify_mypage" parameterType="PinfoMemberDTO" >
 		update member set
