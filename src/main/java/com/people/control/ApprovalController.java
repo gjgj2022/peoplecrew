@@ -1,14 +1,18 @@
 package com.people.control;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -117,16 +121,30 @@ public class ApprovalController {
 		model.addAttribute("mlist1", mlist1);
 		
 		// 내가 최근 받은 결재
-		List<DocumentDTO> list4 = dservice.readEnd(mno);
+		
+		// -----------------------------------------------------------------------
+
+		
+		int apmno = dto.getMno();
+		
+		List<ApprovalDTO> list10 = aservice.getAllByApmnoNot1(apmno);
+		
+		// 전체 불러오기
+		ArrayList<DocumentDTO> list12 = new ArrayList<DocumentDTO>();
 		ArrayList<MemberDTO> mlist2 = new ArrayList<MemberDTO>();
 		
-		for(int i=0; i<list4.size(); i++) {
-			DocumentDTO ddto = list4.get(i);
-			MemberDTO mdto = mservice.getOne(ddto.getMno());
+		for(int i=0; i<list10.size(); i++) {
+			ApprovalDTO dto10 = list10.get(i);
+			DocumentDTO dto11 = dservice.readOne(dto10.getDono());
+			if(dto11 != null) {
+			list12.add(dto11);
+			MemberDTO mdto = mservice.getOne(dto11.getMno());
 			mlist2.add(mdto);
+			}
 		}
-		model.addAttribute("endList", list4);
-		model.addAttribute("mlist2",mlist2);
+		
+		model.addAttribute("endList", list12);
+		model.addAttribute("mlist2", mlist2);
 
 		return "/approval/apvHome";
 	}
@@ -177,9 +195,10 @@ public class ApprovalController {
 		return "/approval/apvWrite";
 	}
 
+
 	@PostMapping("/apvWriteOk")
 	public String apvWriteOk(HttpServletRequest req, @ModelAttribute DocumentDTO ddto,
-			@ModelAttribute ApprovalDTO adto, Model model) {
+			@ModelAttribute ApprovalDTO adto, Model model, HttpServletResponse resp) throws IOException {
 		
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
@@ -199,25 +218,39 @@ public class ApprovalController {
 
 		String dono = ddto.getMno() + "-" + now;
 
-		// document 테이블데이터 생성
-		ddto.setDono(dono);
-		dservice.addOne(ddto);
+		String referer = req.getHeader("Referer");
+		
+		resp.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		
+		String redirect = "redirect:"+referer;
+		
+		// 1분내로 재시도시 dono 중복 예외처리
+		try {
+			// document 테이블데이터 생성
+			ddto.setDono(dono);
+			dservice.addOne(ddto);
+			
+			// approval 테이블데이터 생성
+			String apno = dono + "-0";
+			
+			adto.setApno(apno);
+			
+			// 결재사원(팀장)
+			MemberDTO mdto = mservice.getOneTL(dto.getOno());
+			
+			adto.setApmno(mdto.getMno());
+			adto.setDono(dono);
+			
+			aservice.addOne(adto);			
+		} catch (DataIntegrityViolationException e) {
+			return "/approval/apvWriteFail";
 
-		// approval 테이블데이터 생성
-		String apno = dono + "-0";
-		
-		adto.setApno(apno);
-		
-		// 결재사원(팀장)
-		MemberDTO mdto = mservice.getOneTL(dto.getOno());
-		
-		adto.setApmno(mdto.getMno());
-		adto.setDono(dono);
-
-		aservice.addOne(adto);
+		}
 
 		return "redirect:/personalFile";
 	}
+
 
 	@RequestMapping("/personalFile")
 	public String personalFile(HttpServletRequest req, Model model) {

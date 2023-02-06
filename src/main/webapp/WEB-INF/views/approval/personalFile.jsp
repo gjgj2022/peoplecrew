@@ -255,13 +255,9 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 				<div class="col-lg-7 mb-lg-0 mb-4" id="table5">
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
+							<h5 class="mb-2">개인문서함</h5>
 							<div class="d-flex justify-content-between">
-								<h5 class="mb-2">개인문서함</h5>
-							</div>
-						</div>
-						<div class="table-responsive">
-							<table class="table align-items-center ">
-								<tbody>
+								<table>
 									<%
 										String apvP = request.getParameter("apvP");
 									
@@ -292,6 +288,12 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 											<a href="/personalFile?apvP=반려"><input type="button" class="btn btn-<%=btn5 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="반려" /></a>
 										</td>
 									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="table-responsive" style="max-height:450px;overflow:auto;">
+							<table class="table align-items-center ">
+								<tbody>
 									<tr class="text-sm mb-0" style="text-align:center;">
 										<th style="width:20%;">문서번호</th>
 										<th style="width:10%;">분류</th>

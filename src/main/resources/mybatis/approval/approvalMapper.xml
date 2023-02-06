@@ -35,7 +35,7 @@
 	<select id="getAllByApmno" parameterType="int" resultType="ApprovalDTO">
 		SELECT * FROM approval
 		WHERE apmno = #{apmno}
-		ORDER BY SUBSTRING(apno FROM 5) DESC;
+		ORDER BY SUBSTRING(apno FROM 5) DESC
 	</select>
 	
 	<insert id="addOne" parameterType="ApprovalDTO">
@@ -54,4 +54,12 @@
 		DELETE FROM approval
 		WHERE dono = #{dono}
 	</delete>
+	
+	<!-- 결재홈 결재가필요한 문서 -->
+	<select id="getAllByApmnoNot1" parameterType="int" resultType="ApprovalDTO">
+		SELECT * FROM approval
+		WHERE apmno = #{apmno}
+		AND approgress not in (1,2)
+		ORDER BY SUBSTRING(apno FROM 5) DESC
+	</select>
 </mapper>

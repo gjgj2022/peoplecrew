@@ -20,4 +20,6 @@ public interface ApprovalDAO {
 	void updateOne(String approgress, String apno);
 	ApprovalDTO selectOneByDono(String dono,String apmno);
 	void deleteOne(String dono);
+	
+	List<ApprovalDTO> getAllByApmnoNot1(int apmno);
 }
