@@ -114,6 +114,6 @@
 	<!-- 출근 -->
       <select id="insertOne" parameterType="AttendanceDTO">
       	INSERT INTO attendance (work_day, mno, start_time, state, ono)
-		VALUES (current_date(), '108', curtime(),"정상",1001);
+		VALUES (current_date(), #{mno}, curtime(),"정상",#{ono});
 	</select>
 </mapper>

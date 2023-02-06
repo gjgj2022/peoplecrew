@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.junit.runners.Parameterized.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -177,28 +178,28 @@ public class DashBoardController {
 			return "admin/m_mngmn_user";
 		}
 		
-	@GetMapping("/attin")
-	public String inwork() {
-		return "index";
-		
-	}
-		
 	// 출근 추가
 	@PostMapping("/attin")
 	public String inworkOk (Model model,
-						  @ModelAttribute("dto")AttendanceDTO workdto) {
+						  @ModelAttribute("dto")AttendanceDTO workdto,
+						  @RequestParam("mno")int mno,
+						  @RequestParam("ono")int ono) {
+		
 		String gtw = "정상";
 		String td = "지각";
 		String at = "결근";
 		String le = "조퇴";
 		String vt = "휴가";
-		
-		log.info("dto : " + workdto.getMno());
-		
+
+		workdto.setMno(mno);
+		workdto.setOno(ono);
 		
 		atservice.addOne(workdto);
 		model.addAttribute("workdto", workdto);
 		
+		
+		
+		log.info("dto : " + workdto.getMno());
 		log.info("workdto {}" + workdto);
 		return "redirect:";
 		
