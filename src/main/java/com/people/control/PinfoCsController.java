@@ -188,15 +188,16 @@ public class PinfoCsController {
 		return "redirect:/personnel_info/detail?bono=" + dto.getBono(); // 이전페이지로
 	}
 	
-	@PostMapping("/delete/{bono}") // 삭제
-	@ResponseBody
-	public void deleteOk(@PathVariable int bono) {
+	
+	@GetMapping("/delete")
+	public String deleteOk(@RequestParam("bono")int bono) {
 		int fno = service.getOne(bono).getFno();
 		service.removeFileByFno(fno); // 파일 삭제
 		service.removeRAll(bono); // 댓글 삭제
 		answer.removeOne(bono);
 		service.remove(bono); // 글삭제
 		
+		return "redirect:/personnel_info/cs";
 	}
 
 	@RequestMapping("/filedown/{fno}") // 파일 다운로드

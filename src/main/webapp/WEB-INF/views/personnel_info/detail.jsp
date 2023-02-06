@@ -213,7 +213,7 @@
 		margin-bottom: 100px;
 		}
 		.boardcont{
-		height: 250px;
+		height: 150px;
 		}
 		</style>
 
@@ -233,6 +233,7 @@
 							<tr>
 								<th colspan="2">
 									<h5>${boarddto.botitle }</h5>
+									
 								</th>
 								<th colspan="2">
 								<p class="text-end fw-normal text-sm">
@@ -252,11 +253,11 @@
 							</tr>
 							<tr>
 								<td colspan="4"><a href="/personnel_info/cs"> <input type="button" value="목록" class="btn" /></a> 
-							<c:if test="${ans.anstitle eq null }">
+								<c:if test="${boarddto.mno eq dto.mno ||ans.anstitle eq null}">
 								<a href="/personnel_info/modify?bono=${boarddto.bono }"> <input type="button" value="수정" class="btn" />
 								</a> 
-								
-								
+								</c:if>
+								<c:if test="${boarddto.mno eq dto.mno || dto.role eq 'ROLE_ADMIN'}">
 								<a href="/personnel_info/delete?bono=${boarddto.bono }"> <input type="button" value="삭제" class="btn" />
 								</a></c:if>
 								 <a href="/personnel_info/answer?bono=${boarddto.bono }"> 
