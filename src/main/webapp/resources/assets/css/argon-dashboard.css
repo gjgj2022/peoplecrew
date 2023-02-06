@@ -23335,7 +23335,12 @@ hr.horizontal.gray-light {
 }
 
 .navbar-vertical.bg-white .navbar-nav>.nav-item .nav-link.active {
-  background-color: #f6f9fc;
+  background-color: #03a9f41c;
+  box-shadow: none;
+}
+
+.navbar-vertical.bg-white .navbar-nav>.nav-item .nav-link.active2 {
+  background-color: #ffe40061;
   box-shadow: none;
 }
 
@@ -23344,8 +23349,17 @@ hr.horizontal.gray-light {
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
   border-radius: 0.5rem;
 }
+.navbar-vertical .navbar-nav .nav-link.active2 {
+  font-weight: 600;
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+  border-radius: 0.5rem;
+}
 
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active {
+  color: #344767;
+  background-color: rgba(255, 255, 255, 0.13);
+}
+.navbar-vertical .navbar-nav>.nav-item .nav-link.active2 {
   color: #344767;
   background-color: rgba(255, 255, 255, 0.13);
 }
