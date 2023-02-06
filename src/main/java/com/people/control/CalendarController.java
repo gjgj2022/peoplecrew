@@ -42,12 +42,12 @@ public class CalendarController {
 	public List<CalendarDTO> calendarl(@RequestParam("mno")String mno) {
 		log.info("======> calendar 모든 데이터 가져오기");
 		List<CalendarDTO> list = cService.getList();//회사일정 가져오기
-		List<CalendarDTO> list2 =null;
+		List<CalendarDTO> mnoList =null;
 		
 		if(mno!="") {
 		int no = Integer.parseInt(mno);
-		list2 = cService.getByMno(no); //사원번호로 개인일정 가져오기
-		list.addAll(list2);}
+		mnoList = cService.getByMno(no); //사원번호로 개인일정 가져오기
+		list.addAll(mnoList);}
 		return list;
 	}
 	
@@ -55,25 +55,23 @@ public class CalendarController {
 	@ResponseBody
 	public List<CalendarDTO> schbyono(@RequestParam(value="arr") int[] unoarr, @RequestParam("mno")String mno,
 			@RequestParam("ono")int ono) {
-		List<CalendarDTO> list = new ArrayList<CalendarDTO>();
+		List<CalendarDTO> unoList = new ArrayList<CalendarDTO>();
 		List<CalendarDTO> joined = new ArrayList<CalendarDTO>(); //합칠거
-		List<CalendarDTO> list2 = null;
+		List<CalendarDTO> mnoList = null;
 		
-		List<CalendarDTO> list3 = cService.getOneByOno(ono);
-		joined.addAll(list3);
+		List<CalendarDTO> onoList = cService.getOneByOno(ono);  //내 부서로 찾기
+		joined.addAll(onoList);
 		
 		if(IntStream.of(unoarr).anyMatch(x -> x == 1)) {  //개인 선택시
 			if(mno!="") {
 				int no = Integer.parseInt(mno);
-				list2 = cService.getByMno(no); //사원번호로 개인일정 가져오기
-				joined.addAll(list2);
+				mnoList = cService.getByMno(no); //사원번호로 개인일정 가져오기
+				joined.addAll(mnoList); //개인일정+부서일정
 	        }
 		}
-		for(int i = 0;i<unoarr.length;i++) {
-		//System.out.println(onoarr[i]);
-		list =cService.getByUno(unoarr[i]);
-		//System.out.println(list);
-		joined.addAll(list);
+		for(int i = 0;i<unoarr.length;i++) {  //상위부서번호로 찾기
+			unoList =cService.getByUno(unoarr[i]);
+			joined.addAll(unoList);
 		}
 		return joined;
 	}
@@ -103,7 +101,7 @@ public class CalendarController {
 			ucalno=7;
 		}else if(dto.getUno()==1) {  //개인일정등록 선택했는데 테이블 없으면 개인일정테이블 추가
 			Integer no = cService.getOneUcalno(dto.getUpdatemno());
-			System.out.println("no : "+no);
+			//System.out.println("no : "+no);
 			if(no!=null) {  //Integer 라서 null 비교가능 
 				ucalno = (int)no; //Integer 라서 int 로 형변환
 			}else {
@@ -120,7 +118,7 @@ public class CalendarController {
 	
 	@GetMapping("/detail")
 	public String detail(@RequestParam("calno")int calno, Model model) {
-		model.addAttribute("caldto",cService.getOne(calno));
+		model.addAttribute("calDTO",cService.getOne(calno));
 		log.info("===========> calendar 데이터 하나 가져오기");
 		return "/calendar/detail";
 	}
@@ -158,7 +156,7 @@ public class CalendarController {
 			ucalno=7;
 		}else if(dto.getUno()==1) {  //개인일정등록 선택했는데 테이블 없으면 개인일정테이블 추가
 			Integer no = cService.getOneUcalno(dto.getUpdatemno());
-			System.out.println("no : "+no);
+			//System.out.println("no : "+no);
 			if(no!=null) {  //Integer 라서 null 비교가능 
 				ucalno = (int)no; //Integer 라서 int 로 형변환
 			}else {
