@@ -431,7 +431,7 @@ The markup will be simple nested lists
 									<a href="/search3?keyword=생산기획2팀">생산기획 2팀</a>
 								</li>
 								</ul></li>
-							<li><a href="/search3?keyword=상품관리부">상품관리부</a></li>
+							<li><a href="/search3?keyword=상품관리">상품관리부</a></li>
 							<li><a href="/search3?keyword=기술생산">기술생산팀</a>
 								<ul>
 								<li>
@@ -453,7 +453,7 @@ The markup will be simple nested lists
 
 							<li><a href="/search3?keyword=총무부">  총무부</a> <br /> 
 							<a href="/search3?keyword=경리부">경리부</a> <br />
-								<!-- <a href="">구매자재부</a></li> -->
+								<!-- <a href="#">구매자재부</a></li> -->
 
 						</ul></li>
 						
@@ -466,14 +466,14 @@ The markup will be simple nested lists
 
 					<li class="stair"> <a href="#">영업부문</a>
 						<ul>
-							<li>
-								<a href="/search3?keyword=해외영업부">해외영업부</a><br /> 
+							<li><a href="/search3?keyword=해외영업부">해외영업부</a><br /> 
 								<a href="/search3?keyword=국내영업부">국내영업부</a><br />
 								<a href="/search3?keyword=고객관리부"  class="height_or">고객관리부</a>
 							</li>
 
 						</ul>
 					</li>
+				
 				
 				</ul>
 				

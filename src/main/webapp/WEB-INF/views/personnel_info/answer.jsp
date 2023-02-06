@@ -20,6 +20,13 @@
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <style>
+  .answerpart th {
+  width: 10%;
+  }
+  
+  
+  </style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -198,150 +205,121 @@
       </div>
     </nav>
     <!-- End Navbar -->
-		<!-- writeForm -->
-		<!-- summernote CDN -->
 
+<script>
 
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+if("${files.oriname}"==""){
+	console.log("널");
+	//document.getElementById("filedownbtn").style.display="none";
+}
 
-		<script type="text/javascript">
-			// 써머노트 로드 함수
-			$(document).ready(function() {
-				$('#summernote').summernote({
-					placeholder : '내용을 입력하세요.',
-					lang : 'ko-KR',
-					height : 200,
-				});
-			});
-			$(function() {
-				$(".close").on("click", function() {
-					$(".modal").modal('hide');
-				});
-			});
-			$(function inputfilebtn(){
-				
-				
-				if("${files.oriname}"!=""){
-					document.getElementById("fileNewUpload").style.display="none";
-				}else{
-					document.getElementById("uploadedFilebtn").style.display="none";
-				}
-			})
-			function emptyFile(){
-				document.getElementById("uploadedFile").style.display="none";
-				document.getElementById("uploadedFilebtn").style.display="none";
-				document.getElementById("fileNewUpload").style.display="block";
-				//document.getElementById("fno").value=Number("${files.fno}");
-				//console.log("${files.fno}");
-				var a = '<input type="hidden" name="fno" id="fno" value=${files.fno}>';
-				$('.hidden-fno').append(a);
-			}
-			
-			//유효성 체크
-			function checkForm(x){
-				
-				var inputFile = $('#fileNewUpload').val();
-				var maxSize = 10 * 1024 * 1024;
-				var fileSize;
+</script>
 
-				if(inputFile != "" && inputFile != null) {
-					fileSize = document.getElementById("fileNewUpload").files[0].size;
-				    
-				    if(fileSize >= maxSize) {
-				    	alert("파일 크기는 10MB까지 가능합니다.");
-				    	$("#fileNewUpload").val("");
-				        return;
-				    }
-				}
-				
-				if(!$('[name=botitle]').val()){
-					alert("제목을 입력하세요.");
-					return;
-				}
-				
-				x.form.action = "/personnel_info/modify";
-		        x.form.method="post";
-		        x.form.submit();
-			};
-		</script>
-
-		<!-- summernote CSS 수정 -->
+		<!-- detail page -->
 		<style>
-		.note-btn, .btn-sm {
-			margin-bottom: 0.5rem;
-			-bs-btn-padding-x: 0.5rem;
-			-bs-btn-padding-y: 0.5rem;
-			padding: 0.3rem;
-			margin: 0.3rem;
+		.borderbottom-file{
+		border-bottom: 0px;
 		}
-		
 		</style>
+
 
 		<div class="container-fluid py-4">
 			<div class="row" style="margin: 0 5%;">
 				<div class="card mb-4">
 					<div class="card-header pb-0">
-						<h2 id="example">공지사항</h2>
+						<h4 id="example">문의사항</h4>
 					</div>
 					<div class="container">
-						<form name="frm" method="post" enctype="multipart/form-data">
 
-							<table id="register-table" class="table">
+						<table class="table">
+						<tr>
+							<th colspan="4"></th>
+						</tr>
+							<tr>
+								<th colspan="2">
+									<h5>${boarddto.botitle }</h5>
+								</th>
+								<th colspan="2">
+								<p class="text-end fw-normal text-sm">
+								<!--  <span class="text-bold"> </span> -->
+								작성자　${boarddto.mname }　|　작성일　${boarddto.bodate }　|　조회　${boarddto.bohits }</p></th>
 
+							<tr  class="borderbottom-file">
+								<td class="borderbottom-file" colspan="4">
+									<div class="form-group  float-end">
+										<!-- 첨부파일 다운로드 -->
+										<a href="/board/filedown/${files.fno}">${files.oriname}</a>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">${boarddto.bocontents }</td>
+							</tr>
+							<tr>
+								<td colspan="4"><a href="/personnel_info/cs"> <input type="button" value="목록" class="btn" /></a> 
+							
+					
+								 
+								</td>
+							</tr>
+							
+							<tr>
+							<td>
+							
+							</td>
+								</tr>
+						</table>
+						<!-- detail page end  -->
+<br /><br />
+					
+					<form action="" method="post">
+					<div class="container answerpart">
+						<table class="table">
+						<thead>
+						<tr>
+						<td colspan="2"><h5>답변하기</h5></td>
+						</tr>
+						</thead>
+							<tr>
+										<th class="th-title"><label for="exampleFormControlInput1">제목</label></th>
+										
+										<!-- 임시 작성자 -->
+										
+										
+										<td colspan="3">
+											<input type="text" class="form-control" name="anstitle" id="exampleFormControlInput1" placeholder="답변제목을 입력해주세요." />
+										</td>
+									</tr>
+
+									<tr>
+										<th><label for="exampleFormControlTextarea1">내용</label></th>
+										<td colspan="3">
+											<textarea class="form-control" id="anscontents" name="anscontents" placeholder="답변 내용을 입력해주세요." rows="8"></textarea>
+										</td>
+									</tr>
+						</tr>
+						<tr>
+								<td colspan="4">
+								<a href="/personnel_info/detail?bono=${boarddto.bono }"> <input type="button" value="취소" class="btn" /></a> 
+							
+								  <input type="submit" value="답변 등록하기" class="btn" onclick="checkForm(this)" />
 								
-								<input type="hidden" name="bono" value="${dto.bono }" />
-								<input type="hidden" name="mno" value="${dto.mno }"/>
-
-								<tr>
-									<th class="th-title">
-										<label for="exampleFormControlInput1">제목</label>
-									</th>
-									<td colspan="3">
-										<input type="text" class="form-control" name="botitle" id="exampleFormControlInput1" value="${dto.botitle}" />
-									</td>
-								</tr>
-
-								<tr>
-									<th>
-										<label for="exampleFormControlTextarea1">내용</label>
-									</th>
-									<td colspan="3">
-										<textarea class="form-control" id="summernote" name="bocontents">${dto.bocontents}</textarea>
-									</td>
-								</tr>
-								<tr>
-									<th class="th-title">
-									
-										<label for="formFileSm" class="form-label">첨부파일</label>
-									</th>
-									<td colspan="3">
-										<input class="form-control form-control-sm" name="file" id="fileNewUpload" type="file">
-										<a href="#" id="uploadedFile" class="uploadedFile">${files.oriname}</a> 
-										
-										
-										<input type="button" value="X" id="uploadedFilebtn" onclick="emptyFile()"/>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="4">
-										<a href="/cs/detail?bono=${dto.bono}">
-											<input type="button" value="취소" class="btn" />
-										</a>
-										<input type="button" value="수정" class="btn" onclick="checkForm(this)"/>
-									</td>
-								</tr>
-							<div class="hidden-fno"></div>
-							</table>
-
-
+								 
+								</td>
+							</tr>
+						</table>
+						</div>
 						</form>
+						<!-- 전체페이지 카드모양 div -->
 					</div>
+					
+							
 				</div>
 			</div>
 		</div>
+
+
+
 
 
 		<footer class="footer pt-3  ">
@@ -353,25 +331,15 @@
 							<script>
 								document.write(new Date().getFullYear())
 							</script>
-							, made with <i class="fa fa-heart"></i> by
-							<a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-							for a better web.
+							, made with <i class="fa fa-heart"></i> by <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a> for a better web.
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<ul class="nav nav-footer justify-content-center justify-content-lg-end">
-							<li class="nav-item">
-								<a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-							</li>
-							<li class="nav-item">
-								<a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-							</li>
-							<li class="nav-item">
-								<a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-							</li>
-							<li class="nav-item">
-								<a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-							</li>
+							<li class="nav-item"><a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a></li>
+							<li class="nav-item"><a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a></li>
+							<li class="nav-item"><a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a></li>
+							<li class="nav-item"><a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a></li>
 						</ul>
 					</div>
 				</div>
@@ -380,8 +348,7 @@
 		</footer>
 	</main>
 	<div class="fixed-plugin">
-		<a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-			<i class="fa fa-cog py-2"> </i>
+		<a class="fixed-plugin-button text-dark position-fixed px-3 py-2"> <i class="fa fa-cog py-2"> </i>
 		</a>
 		<div class="card shadow-lg">
 			<div class="card-header pb-0 pt-3 ">
@@ -404,12 +371,9 @@
 				</div>
 				<a href="javascript:void(0)" class="switch-trigger background-color">
 					<div class="badge-colors my-2 text-start">
-						<span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
-						<span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
-						<span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
-						<span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
-						<span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
-						<span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
+						<span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span> <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span> <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span> <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span> <span class="badge filter bg-gradient-warning" data-color="warning"
+							onclick="sidebarColor(this)"
+						></span> <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
 					</div>
 				</a>
 				<!-- Sidenav Type -->
@@ -436,27 +400,22 @@
 						<input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
 					</div>
 				</div>
-				<a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/argon-dashboard">Free Download</a>
-				<a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard">View documentation</a>
+				<a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/argon-dashboard">Free Download</a> <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard">View documentation</a>
 				<div class="w-100 text-center">
 					<a class="github-button" href="https://github.com/creativetimofficial/argon-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/argon-dashboard on GitHub">Star</a>
 					<h6 class="mt-3">Thank you for sharing!</h6>
-					<a href="https://twitter.com/intent/tweet?text=Check%20Argon%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fargon-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-						<i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
-					</a>
-					<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-						<i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
+					<a href="https://twitter.com/intent/tweet?text=Check%20Argon%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fargon-dashboard" class="btn btn-dark mb-0 me-2" target="_blank"> <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
+					</a> <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard" class="btn btn-dark mb-0 me-2" target="_blank"> <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!--   Core JS Files   -->
-  <script src="../resources/assets/js/core/popper.min.js"></script>
-  <script src="../resources/assets/js/core/bootstrap.min.js"></script>
-  <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
+	<script src="../resources/assets/js/core/popper.min.js"></script>
+	<script src="../resources/assets/js/core/bootstrap.min.js"></script>
+	<script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -471,6 +430,8 @@
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 	<script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+	
+	
 </body>
 
 </html>

@@ -44,6 +44,10 @@ public class ApprovalController {
 		
 		MemberDTO dto = (MemberDTO)session.getAttribute("dto");
 		
+		if(dto == null) {
+			return "/login/cLogin";
+		}
+		
 		System.out.println(dto.getMno());
 		
 		// 세션 회원번호 : 
@@ -137,6 +141,10 @@ public class ApprovalController {
 		HttpSession session = req.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
 
+		if(dto == null) {
+			return "/login/cLogin";
+		}
+		
 		MemberDTO mdto = mservice.getOne(dto.getMno());
 		
 		System.out.println(mdto);
@@ -177,6 +185,10 @@ public class ApprovalController {
 		HttpSession session = req.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
 		
+		if(dto == null) {
+			return "/login/cLogin";
+		}
+		
 		model.addAttribute("mno",dto.getMno());
 
 		Date d = new Date();
@@ -212,6 +224,10 @@ public class ApprovalController {
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
+		
+		if(dto == null) {
+			return "/login/cLogin";
+		}
 		
 		String apvP = req.getParameter("apvP");
 
@@ -332,6 +348,10 @@ public class ApprovalController {
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
+		
+		if(dto == null) {
+			return "/login/cLogin";
+		}
 		
 		System.out.println(dto.getMno());
 		
@@ -454,6 +474,11 @@ public class ApprovalController {
 		// 회원번호 불러오기
 		HttpSession session = req.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
+		
+		if(dto == null) {
+			return "/login/cLogin";
+		}
+		
 		int apmno = dto.getMno();
 		
 		List<ApprovalDTO> list10 = aservice.getAllByApmno(apmno);
@@ -482,9 +507,11 @@ public class ApprovalController {
 		for(int i=0; i<list10.size(); i++) {
 			ApprovalDTO dto10 = list10.get(i);
 			DocumentDTO dto11 = dservice.readOne(dto10.getDono());
+			if(dto11 != null) {
 			list12.add(dto11);
 			MemberDTO mdto = mservice.getOne(dto11.getMno());
 			mlist2.add(mdto);
+			}
 		}
 
 		model.addAttribute("list2", list12);
@@ -492,14 +519,54 @@ public class ApprovalController {
 		
 		return "/approval/apvProgress";
 	}
+	
+	@RequestMapping("/oldFile")
+	public String oldFile(HttpServletRequest req, Model model) {
+		// 회원번호 불러오기
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("dto");
+		
+		if(dto == null) {
+			return "/login/cLogin";
+		}		
 
-	@RequestMapping("formBox")
-	public String formBox() {
-		return "/approval/formBox";
+		// 전체 불러오기
+		List<DocumentDTO> list2 = dservice.readOld(dto.getMno());
+		ArrayList<MemberDTO> mlist2 = new ArrayList<MemberDTO>();
+		for(int i=0; i<list2.size(); i++) {
+			DocumentDTO ddto = list2.get(i);
+			MemberDTO mdto = mservice.getOne(ddto.getMno());
+			mlist2.add(mdto);
+		}
+		model.addAttribute("list2", list2);
+		model.addAttribute("mlist2", mlist2);
+
+		return "/approval/oldFile";
+	}
+	
+	@RequestMapping("/oldFileView")
+	public String oldFileView(@RequestParam("dono")String dono,Model model,
+									@ModelAttribute DocumentDTO ddto) {
+		
+		DocumentDTO dto2 = dservice.readOneOld(dono);
+		
+		model.addAttribute("form", dto2.getDotype());
+		
+		model.addAttribute("ddto", dto2);
+		
+		// 멤버불러오기
+		MemberDTO mdto = mservice.getOne(dto2.getMno());
+		
+		model.addAttribute("mdto", mdto);
+		
+		// 도장이미지 불러오기
+		FileDTO dto11 = fservice.selectOne(1001);
+		FileDTO dto12 = fservice.selectOne(1002);
+		
+		model.addAttribute("dto11", dto11);
+		model.addAttribute("dto12", dto12);
+		
+		return "/approval/oldFileView";
 	}
 
-	@RequestMapping("vacation")
-	public String vacation() {
-		return "/approval/form/vacation";
-	}
 }

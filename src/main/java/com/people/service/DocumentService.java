@@ -22,7 +22,7 @@ public class DocumentService {
 	}
 	
 	public DocumentDTO readOne(String dono){
-		return dao.selectBydono(dono);
+		return dao.selectOne(dono);
 	}
 	
 	public DocumentDTO readC(String dono, String doprogress) {
@@ -76,5 +76,13 @@ public class DocumentService {
 	
 	public void updateFile(String doprogress ,String dotitle, String docontents, String docontents2, String docontents3, String dono) {
 		dao.updateFile(doprogress ,dotitle, docontents, docontents2, docontents3, dono);
+	}
+	
+	public List<DocumentDTO> readOld(int mno){
+		return dao.selectOld(mno);
+	}
+	
+	public DocumentDTO readOneOld(String dono) {
+		return dao.selectOneOld(dono);
 	}
 }

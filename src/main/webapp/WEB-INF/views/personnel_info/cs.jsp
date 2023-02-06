@@ -80,12 +80,18 @@ service*/
 	
 	vertical-align: middle;
 	font-size: 13px;
+	
 	margin-top: 50px;
 }
 
-.table_btn{
-	
-	
+.pagenationdiv {
+	display: flex !important;
+	justify-content: center !important;
+	margin-top: 50px;
+}
+
+.tfoot {
+	border-bottom: white;
 }
 			</style>
 	
@@ -269,7 +275,7 @@ service*/
     </nav>
     <!-- End Navbar -->
 		<div class="container-fluid py-4">
-			<div class="row">
+			<div class="row"  style="margin: 0 3%">
 				<div class="col-12">
 					<div class="card mb-4">
 						<div class="card-header pb-0">
@@ -359,28 +365,34 @@ service*/
 												<!-- 페이징처리  -->
 
 												<div class="justify-content-center mb-3 pagenationdiv">
-													<nav aria-label="Page navigation example">
+													<nav aria-label="Page navigation example ">
 														<ul class="pagination">
-															${map.isPre }
 															<c:if test="${map.isPre }">
-															
 																<!-- 값이 있으면 보여주기 -->
-																<li class="page-item"><a class="page-link" href="list?cp=${map.startPage-10 }">Previous</a></li>
+																<li class="page-item"><c:choose>
+																		<c:when test="${map.stratPage-10 <= 0}">
+																			<a class="page-link" href="cs?cp=1"><b>&laquo;</b></a></li>
+																</c:when>
+																<c:otherwise>
+																	<a class="page-link" href="cs?cp=${map.startPage-10 }"><b>&laquo;</b></a>
+																	</li>
+																</c:otherwise>
+																</c:choose>
 															</c:if>
 
 															<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
 																<li class="page-item"><c:choose>
 																		<c:when test="${i==map.currentPage}">
-																			<a class="page-link" style="color: red" href="list?cp=${ i}">${ i}</a>
+																			<a class="page-link" style="color: red" href="cs?cp=${ i}">${ i}</a>
 																		</c:when>
 																		<c:otherwise>
-																			<a class="page-link" href="list?cp=${ i}">${ i}</a>
+																			<a class="page-link" href="cs?cp=${ i}">${ i}</a>
 																		</c:otherwise>
 																	</c:choose></li>
 															</c:forEach>
 
 															<c:if test="${map.isNext }">
-																<li class="page-item"><a class="page-link" href="list?cp=${map.endPage+1 }">Next</a></li>
+																<li class="page-item"><a class="page-link" href="cs?cp=${map.endPage+1 }"><b>&raquo;</b></a></li>
 															</c:if>
 														</ul>
 													</nav>
