@@ -349,7 +349,11 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                 <!-- </form> -->
 <script>
 	function startWork() {
-		alert("출근하셨습니다.");
+		if (confirm("출근 하시겠습니까?")){
+			alert("출근 하셨습니다.");
+		}else {
+			alert("취소 하셨습니다.");
+		}
 		
 	}
 </script>
