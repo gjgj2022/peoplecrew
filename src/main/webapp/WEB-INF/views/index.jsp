@@ -356,13 +356,24 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 		}
 		
 	}
+	function outWork() {
+		if (confirm("퇴근 하시겠습니까?")){
+			alert("퇴근 하셨습니다.");
+		}else {
+			alert("취소 하셨습니다.");
+		}
+		
+	}
 </script>
 			<form action="attin" method="POST">
 				<input type="hidden" name="mno" value="${dto.mno }">	
+				<input type="hidden" name="ono" value="${dto.ono }">	
+				<input type="hidden" name="state" value="${workdto.state }">	
                 <div class="card" align="center">
 					<div id="clockbtn" style="width: 100%; margin: 20px 0">
 						<button type="submit" class="btn btn-light waves-effect" id="inwork" onclick="startWork()" >출근하기</button>&nbsp;&nbsp;&nbsp;
-		           		<button type="button" class="btn btn-light waves-effect" id="out" name="outwork" >퇴근하기</button>
+		           		<!-- <button type="button" class="btn btn-light waves-effect" id="out" onclick="outWork()" >퇴근하기</button> -->
+		           		<a href="attout"  class="btn btn-light waves-effect" onclick="outWork()">퇴근하기</a>
 					</div>
 				</div>
 				<span id="liveclock"></span>

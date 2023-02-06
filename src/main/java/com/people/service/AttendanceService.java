@@ -68,5 +68,9 @@ public class AttendanceService {
 		return dao.getOneAtten4(mno);
 	}
 
+	public void updeteOne(AttendanceDTO outwdto) {
+		dao.outworkUOne(outwdto);
+	}
+
 	
 }
