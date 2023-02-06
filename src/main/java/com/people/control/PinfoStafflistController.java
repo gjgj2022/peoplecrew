@@ -29,13 +29,6 @@ public class PinfoStafflistController {
 	}
 	
 
-	@GetMapping("/stafflist11")
-	public String stafflist11(Model model) {
-		
-		
-		model.addAttribute("list",service.selectAll());
-		return "personnel_info/stafflist11";
-	}
 	
 	
 

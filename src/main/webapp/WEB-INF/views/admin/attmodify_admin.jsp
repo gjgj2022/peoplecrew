@@ -268,7 +268,7 @@
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">월</label>
-                    <input class="form-control" id="mbirth1" name="mbirth1" type="text" value="${fn:substring(admindto.mbirth,5,7)}" readonly>
+                    <input class="form-control" id="mbirth2" name="mbirth2" type="text" value="${fn:substring(admindto.mbirth,5,7)}" readonly>
                   </div>
                 </div>
                 <div class="col-md-2">
@@ -290,7 +290,7 @@
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">총 연차</label>
-                    <select class="form-select" id="mbirth2" name="mbirth2" size="1">
+                    <select class="form-select" id="mannual" name="mannual" size="1">
                     	<option value="${admindto.mannual }">${admindto.mannual }</option>
 						<option value=00>0</option>
 						<option value=01>1</option>
@@ -314,7 +314,7 @@
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="example-text-input" class="form-select-label">사용 연차</label>
-                    <select class="form-select" id="mbirth2" name="mbirth2" size="1">
+                    <select class="form-select" id="usemannual" name="usemannual" size="1">
                     	<option value="${admindto.usemannual }">${admindto.usemannual }</option>
 						<option value=00>0</option>
 						<option value=01>1</option>
@@ -333,12 +333,6 @@
 						<option value=14>14</option>
 						<option value=15>15</option>
 					</select>
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-select-label">잔여 연차</label>
-      				<input class="form-control" name="memail" type="email" value="${admindto.mannual - admindto.usemannual }" readonly>
                   </div>
                 </div>
               </div>

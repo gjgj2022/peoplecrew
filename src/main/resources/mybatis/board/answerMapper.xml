@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.people.dao.PinfoAnswerDAO">
+
+
+	<select id="getOneBono" parameterType="int" resultType="PinfoAnswerDTO">
+	SELECT ansdate, anscontents, anstitle, ansno,bono,mno
+	FROM answer
+	WHERE bono=#{bono}
+	</select>
+
+	<insert id="insertOne">
+	INSERT answer
+	VALUES(null, #{bono},#{mno},sysdate(),#{anscontents},#{anstitle})
+	</insert>
+
+	<delete id="removeOne" parameterType="int">
+		DELETE FROM answer
+		where bono = #{bono}
+	</delete>
+
+	
+
+	<update id="updateOne" parameterType="PinfoAnswerDTO">
+	UPDATE answer
+	SET anstitle = #{anstitle},
+	anscontents=#{anscontents}
+	WHERE ansno = #{ansno}
+	
+	</update>
+</mapper>

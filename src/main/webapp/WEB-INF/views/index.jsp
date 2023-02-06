@@ -319,7 +319,6 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
             </div>
           </div>
         </div>
-        
         <!-- 출퇴근  -->
       	<div class="col-lg-5">
           <div class="row">
@@ -328,17 +327,17 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
                 <div class="card-header pb-0 p-3"  style="float: left;">
                   <div class="row">
                     <div class="col-6 d-flex">
-                      <h6 class="mb-0">출/퇴근</h6>
+                      <h6 class="mb-0">근무상태</h6>
                     </div>
                   </div>
                   	<br />
-                  	<div class="nowclock" >
-                    	<p style="align-items: center">현재시간 : <span id="clock"></span></p>
+                  	<div class="nowclock" align="center" >
+                    	<p>현재시간 : <span id="clock"></span></p>
                   	</div>
                 </div>
                 
-                <form action="/wirte" method="POST">
-	                <div class="card-body p-3">
+                <!-- <form action="/wirte" method="POST"> -->
+<!-- 	                <div class="card-body p-3">
 	                  <div class="row">
 	                    <div class="col-md-6 mb-md-0 mb-4">
 	                    	<div class="work-btn" style="text-align: center">
@@ -347,23 +346,47 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 	                    	</div>
 	                    </div>
 	                  </div>
-	                </div>
-                </form>
-                <div class="col-md-6">
-                  <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                  		<p class="check_time" id="check_time">${check_time }</p>
-                  		<p>${dto.mno }</p>
-                  		<p>${dto.mname }</p>
-                  		<p>1</p>
-                  		<p>1</p>
-                  </div>
-                </div>
-                
+	                </div> -->
+                <!-- </form> -->
+<script>
+	function startWork() {
+		if (confirm("출근 하시겠습니까?")){
+			alert("출근 하셨습니다.");
+		}else {
+			alert("취소 하셨습니다.");
+		}
+		
+	}
+</script>
+			<form action="attin" method="POST">
+				<input type="hidden" name="mno" value="${dto.mno }">	
+                <div class="card" align="center">
+					<div id="clockbtn" style="width: 100%; margin: 20px 0">
+						<button type="submit" class="btn btn-light waves-effect" id="inwork" onclick="startWork()" >출근하기</button>&nbsp;&nbsp;&nbsp;
+		           		<button type="button" class="btn btn-light waves-effect" id="out" name="outwork" >퇴근하기</button>
+					</div>
+				</div>
+				<span id="liveclock"></span>
+                <div id="clockstatus" style="width: 100%">
+					<table class="table" style="width: 100%; text-align: center">
+						<tr>
+							<th colspan="2" width="100%" style="text-align: center" id="today_kor"></th>
+						</tr>
+						<tr>
+							<td width="30%">출근 : ${workdto.start_time }</td>
+							<td id="gtw" width="90%"></td>
+						</tr>
+						<tr>
+							<td>퇴근 : </td>
+							<td id="ofw"></td>
+						</tr>
+					</table>
+				</div>
+			</form>
               </div>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
       
@@ -664,13 +687,22 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 function times() {
 	var clock = document.getElementById("clock");
 	var now = new Date();
-
+	var weekday = new Array(7);
+	weekday[0] = "일요일";
+	weekday[1] = "월요일";
+	weekday[2] = "화요일";
+	weekday[3] = "수요일";
+	weekday[4] = "목요일";
+	weekday[5] = "금요일";
+	weekday[6] = "토요일";
+	var week = weekday[now.getDay()];
 	clock.innerHTML = now.getFullYear() + "년 " +
 					 (now.getMonth()+1) + "월 " +
 					  now.getDate() + "일 " +
 					  now.getHours() + "시 " +
 					  now.getMinutes() + "분 " +
-					  now.getSeconds() + "초";
+					  now.getSeconds() + "초 " + 
+					  week;
 
 	setTimeout("times()", 1000);
 	}
@@ -685,29 +717,11 @@ $(function(){
 	var hours= data.getHours();
 	var start_time = document.getElementById("start_time");
 	var end_time = document.getElementById("end_time");
-/* 		start_time.innerHTML = data.getFullYear() + "년 " +
-						 (data.getMonth()+1) + "월 " +
-						 data.getDate() + "일 " +
-						 data.getHours() + "시 " +
-						 data.getMinutes() + "분 " +
-						 data.getSeconds() + "초"; */
-						 
-/*     document.getElementById("in").onclick = function() {
-    document.getElementById("modal").style.display="block";
-    }
-    document.getElementById("modal_close_btn").onclick = function() {
-    document.getElementById("modal").style.display="none";
-    }
-    document.getElementById("out").onclick = function() {
-    document.getElementById("modal").style.display="block";
-    }
-    document.getElementById("modal_close_btn").onclick = function() {
-    document.getElementById("modal").style.display="none";
-    } */
-	$("#in").on("click", function(){
+
+/* 	$("#inwork").on("click", function(){
  		console.log("출근버튼클릭");
+ 		alert("출근하셨습니다.");
 		if(hours >= 5 & hours <= 9) {
-			$('#check_time').text("start_time");
 			console.log("출근");
 		} else if(hours > 9 ) {
 			console.log("지각");
@@ -719,7 +733,7 @@ $(function(){
 		if(hours >= 18) {
 			console.log("퇴근");
 		}
-	});
+	}); */
 	
 });
 </script>
@@ -838,6 +852,7 @@ $(function(){
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
   
   <!--   Core JS Files   -->
   <script src="../resources/assets/js/core/popper.min.js"></script>

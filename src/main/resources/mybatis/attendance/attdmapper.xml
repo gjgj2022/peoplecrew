@@ -29,9 +29,8 @@
 		]]>
 	</select>
 	
-	<select id="getattTotal" resultType="int">
-		SELECT COUNT(*)
-		FROM attendance
+	<select id="getattTotal" resultType="int" parameterType="int">
+		SELECT count(*) from attendance
 	</select>
 	
 	<select id="getAOne" resultType="AttendanceDTO" parameterType="AttdStartEnd">
@@ -61,7 +60,7 @@
 	
 	<!-- 근태관리(관리자) 수정 -->
   	<update id="updateOne" parameterType="AttendanceDTO">
-		UPDATE attendance A INNER JOIN member B
+		UPDATE attendance A LEFT JOIN member B
 		ON A.mno = B.mno
 		SET A.state = #{state}, B.mannual = #{mannual}, B.usemannual = #{usemannual}
 		WHERE A.mno = #{mno}
@@ -112,13 +111,9 @@
 		      ORDER BY work_day desc
 	</select>
 	
-	
-<!--     	<insert id="insertOne" parameterType="AttendanceDTO">
-		INSERT INTO attendance (work_day, start_time, state)
-			SELECT A.*, B.*, C.*
-			FROM attendance A INNER JOIN member B
-			ON A.mno = B.mno
-			INNER JOIN organization C
-			ON C.ono = B.ono
-	</insert>  -->
+	<!-- 출근 -->
+      <select id="insertOne" parameterType="AttendanceDTO">
+      	INSERT INTO attendance (work_day, mno, start_time, state, ono)
+		VALUES (current_date(), #{mno}, curtime(),"정상",#{ono});
+	</select>
 </mapper>

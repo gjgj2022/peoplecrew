@@ -54,7 +54,7 @@ public class PinfoMypageController {
 	public String modifyOk( @ModelAttribute("dto") PinfoMemberDTO dto,RedirectAttributes re) {
 		service.mypagemodify(dto);
 		re.addAttribute("mno",dto.getMno());
-		System.out.println("dkdkkdkdkdkdkd");
+		
 		log.info("수정 : {}",dto);
 		return "redirect:/personnel_info/mypage";
 		
