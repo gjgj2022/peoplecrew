@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.people.dto.PinfoMOImgDTO;
 import com.people.dto.PinfoMemOriAttDTO;
 import com.people.dto.PinfoMemOriDTO;
 import com.people.dto.PinfoMemberDTO;
@@ -26,6 +27,6 @@ public interface PinfoMemberDAO {
 	List<PinfoMemOriDTO> getOrg();
 	
 	
-	List<PinfoMemOriAttDTO> getAll2();
+	List<PinfoMOImgDTO> getAll2();
 	
 }
