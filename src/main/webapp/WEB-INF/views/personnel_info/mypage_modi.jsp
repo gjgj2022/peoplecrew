@@ -336,7 +336,14 @@ modi*/
 								<tbody>
 									<tr>
 										<td rowspan="4" class="profile_img">
-										<img src="../assets/img/team-8.jpg" class="profile_img"/>
+										<c:choose>
+											<c:when test="${memori.img_path == null }">
+												<img src="../assets/img/team-8.jpg" class="profile_img" id="m_image" style="width: 250px; height: 250px; "/> 
+											</c:when>
+											<c:otherwise>
+												<img src="${memori.img_path }${memori.img_name}" id="m_image" class="profile_img" style="width: 250px; height: 250px; "/> 
+											</c:otherwise>
+										</c:choose>		
 										</td>
 										<th class="profile_table_name" colspan="1">${memori.mname } <span> ${memori.mrank }</span> </th>
 										
