@@ -1694,7 +1694,8 @@ progress {
     width: 82%;
     margin-top: 2%;
     margin-left: 10%;
-    margin-right: 10%;    
+    margin-right: 10%;
+    max-height: 250px;    
   }
   #table4 {
     flex: 0 0 auto;

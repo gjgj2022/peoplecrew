@@ -259,14 +259,9 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 								<h5 class="mb-2">오래된문서함</h5>
 							</div>
 						</div>
-						<div class="table-responsive">
+						<div class="table-responsive" style="max-height:450px;overflow:auto;">
 							<table class="table align-items-center ">
 								<tbody>
-									<tr>
-										<td colspan="6">
-											<a href="/oldFile"><input type="button" class="btn btn-light btn-sm" style="--bs-btn-padding-x: .6rem;" value="전체문서"/></a>
-										</td>
-									</tr>
 									<tr class="text-sm mb-0" style="text-align:center;">
 										<th style="width:20%;">문서번호</th>
 										<th style="width:10%;">분류</th>
