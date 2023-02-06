@@ -253,7 +253,7 @@
 							</tr>
 							<tr>
 								<td colspan="4"><a href="/personnel_info/cs"> <input type="button" value="목록" class="btn" /></a> 
-								<c:if test="${boarddto.mno eq dto.mno ||ans.anstitle eq null}">
+								<c:if test="${boarddto.mno eq dto.mno &&  ans.anstitle eq null}">
 								<a href="/personnel_info/modify?bono=${boarddto.bono }"> <input type="button" value="수정" class="btn" />
 								</a> 
 								</c:if>
