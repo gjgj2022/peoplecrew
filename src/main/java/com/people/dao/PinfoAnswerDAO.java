@@ -11,7 +11,7 @@ import com.people.dto.PinfoCsDTO;
 @Repository
 public interface PinfoAnswerDAO {
 	
-	PinfoCsAnsDTO getOne(int bono);
+	PinfoAnswerDTO getOneBono(int bono);
 	void insertOne(PinfoAnswerDTO dto);
 	void removeOne(int ansno);
 	void updateOne(PinfoAnswerDTO dto);

@@ -16,8 +16,8 @@ public class PinfoAnswerService {
 	
 
 	
-	public PinfoCsAnsDTO getOne(int bono) {
-		return dao.getOne(bono);
+	public PinfoAnswerDTO getOneBono(int bono) {
+		return dao.getOneBono(bono);
 		
 	};
 	public void insertOne(PinfoAnswerDTO dto) {

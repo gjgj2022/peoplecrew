@@ -25,12 +25,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.people.dto.BoardDTO;
+import com.people.dto.PinfoAnswerDTO;
 import com.people.dto.PinfoCsDTO;
 import com.people.dto.PinfoFileDTO;
 import com.people.dto.PinfoMemOriDTO;
 import com.people.dto.PinfoMemberDTO;
-
+import com.people.service.PinfoAnswerService;
 import com.people.service.PinfoCsService;
 import com.people.service.PinfoMemberService;
 
@@ -45,6 +48,9 @@ public class PinfoCsController {
 
 	@Autowired
 	PinfoMemberService mServ;
+	
+	@Autowired
+	PinfoAnswerService answer;
 	
 	@GetMapping("/cs")
 	public String list(Model model, @RequestParam(name = "cp", defaultValue = "1") int currentPage) {
@@ -68,9 +74,11 @@ public class PinfoCsController {
 
 		service.raisehits(bono);
 		PinfoCsDTO dto = service.getOne(bono);
+		PinfoAnswerDTO ansdto = answer.getOneBono(bono);
 		int fno = dto.getFno();
 
 		model.addAttribute("boarddto", dto);
+		model.addAttribute("ans",ansdto);
 		int total = service.getTotal(bono);
 		model.addAttribute("total", total); 
 		model.addAttribute("files", service.fileDetailService(fno)); 
@@ -179,14 +187,16 @@ public class PinfoCsController {
 		}
 		return "redirect:/personnel_info/detail?bono=" + dto.getBono(); // 이전페이지로
 	}
-
-	@GetMapping("/delete") // 삭제
-	public String deleteOk(@RequestParam("bono") int bono) {
+	
+	@PostMapping("/delete/{bono}") // 삭제
+	@ResponseBody
+	public void deleteOk(@PathVariable int bono) {
 		int fno = service.getOne(bono).getFno();
 		service.removeFileByFno(fno); // 파일 삭제
 		service.removeRAll(bono); // 댓글 삭제
+		answer.removeOne(bono);
 		service.remove(bono); // 글삭제
-		return "redirect:/personnel_info/list";
+		
 	}
 
 	@RequestMapping("/filedown/{fno}") // 파일 다운로드
@@ -256,4 +266,75 @@ public class PinfoCsController {
 		}
 
 	}
+	
+	@GetMapping("/answer") 
+	public String answer(@RequestParam("bono") int bono, Model model) {
+		log.info("===========================> 답변 작성 페이지");
+		PinfoCsDTO dto = service.getOne(bono);
+		
+		model.addAttribute("boarddto", dto);
+			
+		return "/personnel_info/answer";
+	}
+
+	@PostMapping("/answer") //답변  등록
+	public String answerOk(@RequestParam("bono") int bono,HttpServletRequest request) {
+		log.info("===========================> 답변 등록하기");
+		
+		PinfoCsDTO dto = service.getOne(bono);
+		PinfoAnswerDTO ansdto = new PinfoAnswerDTO();
+		
+		ansdto.setAnstitle(request.getParameter("anstitle"));
+		ansdto.setAnscontents(request.getParameter("anscontents"));
+		int mno = dto.getMno();
+		ansdto.setMno(mno);
+		ansdto.setBono(bono);
+		
+		answer.insertOne(ansdto);
+		service.upStatus(bono);
+		
+		return "redirect:/personnel_info/detail?bono="+bono;
+	}
+	
+	@GetMapping("/ansmodi")
+	public String ansmodi(@RequestParam("bono") int bono, Model model) {
+		
+		log.info("==============> 답변 수정");
+		PinfoCsDTO dto = service.getOne(bono);
+		model.addAttribute("boarddto", dto);
+		
+		PinfoAnswerDTO ansdto = answer.getOneBono(bono);
+		
+		model.addAttribute("ans", ansdto);
+		return "/personnel_info/ansmodi";
+	}
+
+	@PostMapping("/ansmodi")
+	public String ansmodiOk( @ModelAttribute("ans") PinfoAnswerDTO ans,RedirectAttributes re, Model model) {
+	
+		int bono = ans.getBono();
+		PinfoCsDTO dto = service.getOne(bono);
+		model.addAttribute("boarddto", dto);
+		
+		
+		
+		answer.updateOne(ans);
+		re.addAttribute("bono",ans.getBono());
+		
+		log.info("수정 : {}",ans);
+		
+		return "redirect:/personnel_info/detail";
+	
+
+	}
+	
+	
+	@GetMapping("/ansdelete")
+	public String deleteAnsOk(@RequestParam("bono")int bono) {
+		service.upRemove(bono);
+		
+		answer.removeOne(bono); // 삭제
+		return "redirect:/personnel_info/cs";
+	}
+	
 }

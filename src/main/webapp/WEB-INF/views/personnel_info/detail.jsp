@@ -200,18 +200,41 @@
     <!-- End Navbar -->
 
 <script>
-
-if("${files.oriname}"==""){
-	console.log("널");
-	//document.getElementById("filedownbtn").style.display="none";
+function deleteBoard(bono) {
+	if (confirm("게시글을 삭제하시겠습니까?") == true){  
+		
+		$.ajax({
+			url : '/personnel_info/delete/'+bono,
+			type : 'post',
+			data : {
+				'bono' : bono
+			},
+			success : function() {
+				window.location.href ="/personnel_info/cs";
+			},
+			error : function() {
+				alert("문의사항 삭제 실패");
+			},
+		});
+	}else{   //취소
+	      return;
+	  }
 }
-
 </script>
 
 		<!-- detail page -->
 		<style>
 		.borderbottom-file{
 		border-bottom: 0px;
+		}
+		
+		.answerpart {
+		background-color:#ebf9ff ;
+		width: 90%;
+		margin-bottom: 100px;
+		}
+		.boardcont{
+		height: 250px;
 		}
 		</style>
 
@@ -246,33 +269,68 @@ if("${files.oriname}"==""){
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4">${boarddto.bocontents }</td>
+								<td colspan="4" class="boardcont">${boarddto.bocontents }</td>
 							</tr>
 							<tr>
 								<td colspan="4"><a href="/personnel_info/cs"> <input type="button" value="목록" class="btn" /></a> 
 							
 								<a href="/personnel_info/modify?bono=${boarddto.bono }"> <input type="button" value="수정" class="btn" />
-								</a> <a href="/personnel_info/delete?bono=${boarddto.bono }"> <input type="button" value="삭제" class="btn" />
-								</a></td>
+								</a> 
+								<c:if test="${ans.anstitle eq null }"><input type="button" class="btn" value="삭제" onclick="deleteBoard(${boarddto.bono})"/>
+								</c:if>
+								 <a href="/personnel_info/answer?bono=${boarddto.bono }"> 
+								 <c:if test="${dto.role eq 'ROLE_ADMIN' && ans.anstitle eq null }"><input type="button" value="답변하기" class="btn" /></c:if>
+								</a>
+								</td>
 							</tr>
 							
-							<tr>
-							<td>
-							
-							</td>
-								</tr>
 						</table>
 						<!-- detail page end  -->
 
-
-
-						<!--  댓글  -->
-						<div class="container">
+					<br /><br />
+					<c:if test="${ans.anstitle ne null }">
+		<div class="container answerpart">
+						<table class="table">
+						<tr>
+							<th colspan="4"><h5>${ans.anstitle }</h5></th>
+						</tr>
+							<tr>
+								
+								<td colspan="4" class="text-end">답변 작성일　${ans.ansdate }
+								</td>
+							
+						
+						</tr>
+						<tr >
+						<td colspan="4" class="">
+						${ans.anscontents }
+						<br />
+						<br />
+						<br />
+						<br />
+						감사합니다. 
+						
+						
+						
+						</td>
+						</tr>
+						<c:if test="${dto.role eq 'ROLE_ADMIN'}">
+						<tr>
+								<td colspan="4">
+							
+								<a href="/personnel_info/ansmodi?bono=${boarddto.bono }"> <input type="button" value="답변수정" class="btn btn-primary" />
+								</a> 
+								
+								<a href="/personnel_info/ansdelete?bono=${boarddto.bono }"> <input type="button" value="답변삭제" class="btn btn-light btn-end" />
+								</a>
+								 
+								</td>
+							</tr>
+						</c:if>
+						</table>
 						
 						</div>
-
-
-
+						</c:if>
 
 						<!-- 전체페이지 카드모양 div -->
 					</div>

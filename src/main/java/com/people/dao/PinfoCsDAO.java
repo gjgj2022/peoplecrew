@@ -28,7 +28,8 @@ public interface PinfoCsDAO {
 	void updateOne(PinfoCsDTO dto);
 	void removeOne(int bono);
 	void removeReplyAll(int bono);
-	void upRemove(PinfoCsDTO dto);
+	void upRemove(int bono);
+	void upStatus(int bono);
 	
 	
 	

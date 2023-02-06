@@ -71,8 +71,13 @@ public class PinfoCsService {
 		dao.removeReplyAll(bono);
 	}
 	
-	public void upRemove(PinfoCsDTO dto) {
-		dao.upRemove(dto);
+	public void upRemove(int bono) {
+		dao.upRemove(bono);
+	}
+
+	public void upStatus(int bono) {
+		dao.upStatus(bono);
+		
 	};
 
 }

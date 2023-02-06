@@ -53,7 +53,7 @@
 		botitle=#{botitle},
 		bocontents=#{bocontents},
 		fno = #{fno},
-		bostatus = #{bostatus} 
+		bostatus = 1 
 		where bono = #{bono}
 	</update>
 	
@@ -67,8 +67,7 @@
 
 	<delete id="removeOne" parameterType="int">
 		delete from board
-		where bono
-		= #{bono}
+		where bono = #{bono}
 	</delete>
 
 	<update id="raiseBohits" parameterType="int">
@@ -102,6 +101,12 @@
 	<update id="upRemove" parameterType="int">
 	UPDATE board
 	SET bostatus = 1
+	WHERE bono=#{bono}
+	</update>
+	
+	<update id="upStatus" parameterType="int">
+	UPDATE board
+	SET bostatus = 2
 	WHERE bono=#{bono}
 	</update>
 
