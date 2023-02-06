@@ -256,7 +256,7 @@
       </li><!-- End 게시판 Nav -->
       
       <li class="nav-item">
-        <a class="nav-link active2" data-bs-target="#f-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link" data-bs-target="#f-nav" data-bs-toggle="collapse" href="#">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
           </div>

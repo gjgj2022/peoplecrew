@@ -194,7 +194,7 @@
       </li><!-- End 게시판 Nav -->
       
       <li class="nav-item">
-        <a class="nav-link active2" data-bs-target="#f-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link" data-bs-target="#f-nav" data-bs-toggle="collapse" href="#">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
           </div>
@@ -202,19 +202,19 @@
         </a>
         <ul id="f-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/admin/sign" >
+            <a href="/admin/sign">
               <i class="bi bi-circle"></i>
               <span>사원정보등록</span>
             </a>
           </li>
           <li>
-            <a href="/admin/admin2">
+            <a href="/admin/admin2" >
               <i class="bi bi-circle"></i>
               <span>사원조회</span>
             </a>
           </li>
           <li>
-            <a href="/admin/admin3" class="active" >
+            <a href="/admin/admin3" class="nav-link active" >
               <i class="bi bi-circle"></i>
               <span>급여관리</span>
             </a>

@@ -737,6 +737,32 @@ progress {
   }
 }
 
+
+.navbar-nav .nav-link.collapsed {
+	    background: #ffffff;
+}
+
+.navbar-nav .nav-link {
+	color: #0242c3;
+	background: #03a9f447;
+	font-weight: 600;
+ 	border-radius: 0.5rem;
+		
+}
+
+.navbar-nav .nav-link:hover {
+	color: #4154f1;
+	background: #03a9f447;
+	font-weight: 600;
+	box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+ 	border-radius: 0.5rem;
+}
+
+li{
+	 list-style: none;
+}
+
+
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -22486,7 +22512,6 @@ hr.horizontal.gray-light {
   padding-left: 1rem;
   padding-right: 1rem;
   font-weight: 500;
-  color: #67748e;
 }
 
 .navbar-vertical .navbar-nav .nav-link>i {
@@ -23335,13 +23360,17 @@ hr.horizontal.gray-light {
 }
 
 .navbar-vertical.bg-white .navbar-nav>.nav-item .nav-link.active {
-  background-color: #03a9f41c;
+  color: #2c72ff;
   box-shadow: none;
 }
 
 .navbar-vertical.bg-white .navbar-nav>.nav-item .nav-link.active2 {
   background-color: #ffe40061;
   box-shadow: none;
+}
+
+.sidebar-nav .nav-content a.active i {
+    background-color: #4154f1;
 }
 
 .navbar-vertical .navbar-nav .nav-link.active {

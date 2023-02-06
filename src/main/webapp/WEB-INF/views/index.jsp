@@ -24,7 +24,6 @@
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
   
   <!-- 개인,결재함 차트 style  -->
-  
   <style>
 	#chart-container {
 	  position: relative;
@@ -39,7 +38,31 @@
 	  overflow: hidden;
 	}
 </style>
-  
+
+<!-- 
+<style type="text/css">
+	.navbar-nav .nav-link.collapsed {
+	    color: #010101;
+	    background: #ffffff;
+	}
+
+	.navbar-nav .nav-link {
+		color: #4154f1;
+		background: #03a9f447;
+		font-weight: 600;
+  		border-radius: 0.5rem;
+			
+	}
+
+	.navbar-nav .nav-link:hover {
+		color: #4154f1;
+		background: #03a9f447;
+		font-weight: 600;
+  		box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+  		border-radius: 0.5rem;
+	}
+</style>
+   -->
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
