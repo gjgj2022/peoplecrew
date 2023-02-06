@@ -446,7 +446,6 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 		</div>
         </div>
         
-          <c:if test="${sum != 0 }">
        		 <div class="col-3" id="table2">
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
@@ -521,7 +520,6 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 						</div>
 					</div>
 				</div>
-			</c:if>
         
         <!-- 근태 현황 -->
         <div class="col-3">

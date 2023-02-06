@@ -131,6 +131,9 @@ public class MemberAdminController {
 		MemberDTO dto2 = service.getOne(mno);
 		
 		model.addAttribute("dto2", dto2);
+		
+		log.info("조회시 리스트" + dto2);
+		
 		return "admin/m_modifyFrom";
 	}
 
@@ -151,6 +154,11 @@ public class MemberAdminController {
 		log.info("password : " + password);
 		
 		ProFileDTO pfile2 = new ProFileDTO();
+		
+		String imgname = dto2.getImg_name();
+		log.info("imgname : " + imgname);
+		
+		
 		if(pfile.isEmpty()) {
 			log.info("파일없음");
 			
@@ -161,35 +169,7 @@ public class MemberAdminController {
 				service.update_pw(dto2);
 			}
 			
-		} else if(dto2.getImg_name() != null) {
-			String fileName = pfile.getOriginalFilename();
-			log.info("파일이름 : " +fileName);
-
-			long fileSize= pfile.getSize();
-			int ImgSize = (int)fileSize;
-			log.info("파일 사이즈 : " + ImgSize);
-			
-			String fileUrl = "/img/"; // 파일 저장 경로
-			log.info("파일저장경로 : " +fileUrl);
-			
-			pfile2.setImg_name(fileName);
-			pfile2.setImg_path(fileUrl);
-			pfile2.setImg_size(ImgSize);
-			pfile2.setMno(dto2.getMno());
-			
-			if(password.isEmpty()) {
-				service.profileUpdate(pfile2);
-				service.updateOne(dto2);
-			}else {
-				service.profileUpdate(pfile2);
-				service.updateOne(dto2);
-				service.update_pw(dto2);
-			}
-			
-			log.info("dto2 mno : " + dto2.getImg_name());
-			log.info("dto2 mno : " + dto2.getMno());
-			
-		} else {
+		} else if(imgname.length() == 0) {
 			
 			String fileName = pfile.getOriginalFilename();
 			log.info("파일이름2 : " +fileName);
@@ -215,7 +195,37 @@ public class MemberAdminController {
 				service.update_pw(dto2);
 			}
 			
-			log.info("dto2 getImg_name : " + dto2.getImg_name());
+			log.info("dto2 getImg_name null : " + imgname);
+			log.info("dto2 mno : " + dto2.getMno());
+			
+			
+		} else if(imgname.length() != 0){
+		
+			String fileName = pfile.getOriginalFilename();
+			log.info("파일이름 : " +fileName);
+
+			long fileSize= pfile.getSize();
+			int ImgSize = (int)fileSize;
+			log.info("파일 사이즈 : " + ImgSize);
+			
+			String fileUrl = "/img/"; // 파일 저장 경로
+			log.info("파일저장경로 : " +fileUrl);
+			
+			pfile2.setImg_name(fileName);
+			pfile2.setImg_path(fileUrl);
+			pfile2.setImg_size(ImgSize);
+			pfile2.setMno(dto2.getMno());
+			
+			if(password.isEmpty()) {
+				service.profileUpdate(pfile2);
+				service.updateOne(dto2);
+			}else {
+				service.profileUpdate(pfile2);
+				service.updateOne(dto2);
+				service.update_pw(dto2);
+			}
+			
+			log.info("dto2 img_name O : " + imgname);
 			log.info("dto2 mno : " + dto2.getMno());
 			
 		}
