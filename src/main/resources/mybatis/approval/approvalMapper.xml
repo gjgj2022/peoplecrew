@@ -35,7 +35,7 @@
 	<select id="getAllByApmno" parameterType="int" resultType="ApprovalDTO">
 		SELECT * FROM approval
 		WHERE apmno = #{apmno}
-		ORDER BY apno DESC;
+		ORDER BY SUBSTRING(apno FROM 5) DESC;
 	</select>
 	
 	<insert id="addOne" parameterType="ApprovalDTO">

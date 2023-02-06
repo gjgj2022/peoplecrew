@@ -30,7 +30,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-	<div class="min-height-300 position-absolute w-100" style="background-color:#03A9F4;"></div>
+	<div class="min-height-300 bg-primary position-absolute w-100"></div>
 
 	<!-- 사이드바  -->
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
@@ -224,7 +224,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">PeopleCrew</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0"></h6>
+          <h6 class="font-weight-bolder text-white mb-0">오래된문서함</h6>
         </nav>
 
        <!-- 로그인헤더  -->
@@ -241,71 +241,84 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 
 
 
-<!-- ==========================================================내작업======================  -->
-	<div class="container bg-white p-2 rounded" style="min-width:1400px;">
-	<div class="border border-secondary border-opacity-25 border-2 rounded" style="margin-top:100px;width:1000px;align:center;min-height:1200px;margin-left:140px;margin-right:auto;">
-	<div style="height:200px;">
-		<table class="table table-borderless">
-			<tr class="align-bottom" style="height:100px;">
-				<th style="width:900px;font-size:25px;" colspan="6"></th>
-			</tr>
-			<tr style="height:50px;">
-				<td>
-				</td>
-				<c:if test="${ddto.doprogress eq '결재대기' ||ddto.doprogress eq '반려' }">
-				<form action="/personalFileModifyOk" method="post">
-					<td style="width:50px;"><input class="btn btn-success" type="submit" style="" value="확인" /></td>
-					<td style="width:50px;"><a href="/personalFile"><input class="btn btn-light" type="button" value="취소" /></a></td>
-				</c:if>
-					<input type="hidden" name="dono" value="${ddto.dono }" />
-				
-			</tr>
-			<tr>
-			<td colspan="4" style="text-align:center;"><h2>${ddto.dotype }</h2></td>
-			</tr>
-		</table>
-	</div>
-	<div style="width:1000px;">
-		
 
-	</div>
-	
-	<c:choose>
-		<c:when test="${form eq '연차신청서' }">
-			<jsp:include page="form/vacation.jsp" />
-		</c:when>
-		<c:when test="${form eq '업무보고서' }">
-			<jsp:include page="form/businessReport.jsp" />
-		</c:when>
-	</c:choose>
-	
-	<div>
-	<table class="table table-borderless align-middle" style="width:25%;text-align:center;margin-left:auto;margin-right:auto;margin-bottom:50px;">
-		<tr>
-			<td style="padding-top:50px;">상기 명 본인은 위와같은 사유로 제출합니다.</td>
-		</tr>
-		<tr>
-			<td style="padding-top:50px;">PeopleCrew <img src="./assets/img/logo-ct-dark.png" alt="" style="width:30px;"/></td>
-		</tr>
-	</table>
-	</div>	
-	
-	</div>
-	</div>
-	</form>
-<!-- ===================================================================================  -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+		<!-- ===============================================================내작업=========================================================== -->
+		<div class="container-fluid py-4" style="height:50%;">
+			<div class="row">
+				
+				
+				<div class="col-lg-7 mb-lg-0 mb-4" id="table5">
+					<div class="card ">
+						<div class="card-header pb-0 p-3">
+							<div class="d-flex justify-content-between">
+								<h5 class="mb-2">오래된문서함</h5>
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table align-items-center ">
+								<tbody>
+									<tr>
+										<td colspan="6">
+											<a href="/oldFile"><input type="button" class="btn btn-light btn-sm" style="--bs-btn-padding-x: .6rem;" value="전체문서"/></a>
+										</td>
+									</tr>
+									<tr class="text-sm mb-0" style="text-align:center;">
+										<th style="width:20%;">문서번호</th>
+										<th style="width:10%;">분류</th>
+										<th style="width:35%;">제목</th>
+										<th style="width:12%;">기안자</th>
+										<th style="width:11%;">기안일</th>
+										<th style="width:12%;">진행상태</th>
+									</tr>
+									<c:forEach var="list2" items="${list2 }" varStatus="status">
+										<tr class="text-sm mb-0" style="text-align:center;">
+											<td>${list2.dono }</td>
+											<td>${list2.dotype }</td>
+											<td><a href="/oldFileView?dono=${list2.dono }&dotype=${list2.dotype }">${list2.dotitle }</a></td>
+											<td>${mlist2[status.index].mname }</td>
+											<td>${list2.dodate }</td>
+											<td>${list2.doprogress }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+		<!-- ===============================================================내작업=========================================================== -->
+
+
+
+
+
+
+
+		<!-- 푸터  -->
+		<%@ include file="../include/footer.jsp"%>
+
+
+
 	</main>
 
 	<!--   Core JS Files   -->
@@ -314,6 +327,90 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 	<script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
 	<script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script src="./assets/js/plugins/chartjs.min.js"></script>
+	<script>
+		var ctx1 = document.getElementById("chart-line").getContext("2d");
+
+		var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+		gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+		gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+		gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+		new Chart(ctx1, {
+			type : "line",
+			data : {
+				labels : [ "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+						"Nov", "Dec" ],
+				datasets : [ {
+					label : "Mobile apps",
+					tension : 0.4,
+					borderWidth : 0,
+					pointRadius : 0,
+					borderColor : "#5e72e4",
+					backgroundColor : gradientStroke1,
+					borderWidth : 3,
+					fill : true,
+					data : [ 50, 40, 300, 220, 500, 250, 400, 230, 500 ],
+					maxBarThickness : 6
+
+				} ],
+			},
+			options : {
+				responsive : true,
+				maintainAspectRatio : false,
+				plugins : {
+					legend : {
+						display : false,
+					}
+				},
+				interaction : {
+					intersect : false,
+					mode : 'index',
+				},
+				scales : {
+					y : {
+						grid : {
+							drawBorder : false,
+							display : true,
+							drawOnChartArea : true,
+							drawTicks : false,
+							borderDash : [ 5, 5 ]
+						},
+						ticks : {
+							display : true,
+							padding : 10,
+							color : '#fbfbfb',
+							font : {
+								size : 11,
+								family : "Open Sans",
+								style : 'normal',
+								lineHeight : 2
+							},
+						}
+					},
+					x : {
+						grid : {
+							drawBorder : false,
+							display : false,
+							drawOnChartArea : false,
+							drawTicks : false,
+							borderDash : [ 5, 5 ]
+						},
+						ticks : {
+							display : true,
+							color : '#ccc',
+							padding : 20,
+							font : {
+								size : 11,
+								family : "Open Sans",
+								style : 'normal',
+								lineHeight : 2
+							},
+						}
+					},
+				},
+			},
+		});
+	</script>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {

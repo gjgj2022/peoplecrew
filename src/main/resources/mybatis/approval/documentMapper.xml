@@ -8,42 +8,48 @@
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 	</select>
 	
-	<select id="selectAllByMno" resultType="DocumentDTO">
+	<select id="selectAllByMno" resultType="DocumentDTO" parameterType="int">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE mno = #{mno}
-		ORDER BY dono DESC;
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
+		ORDER BY dono DESC
 	</select>
 	
-	<select id="selectBydono" resultType="DocumentDTO" parameterType="String">
+	<select id="selectOne" resultType="DocumentDTO" parameterType="String">
 		SELECT * FROM document
 		WHERE dono = #{dono}
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
 	</select>
 	
 	<select id="selectC" resultType="DocumentDTO" parameterType="String">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE dono = #{dono}
 		AND doprogress = #{doprogress}
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
 	</select>
 	
 	<select id="selectIng" resultType="DocumentDTO" parameterType="int">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE doprogress in ('결재대기','진행중','반려')
 		AND mno = #{mno}
-		ORDER BY dono DESC;
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
+		ORDER BY dono DESC
 	</select>
 	
 	<select id="selectEnd" resultType="DocumentDTO" parameterType="int">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE doprogress in ('결재완료')
 		AND mno = #{mno}
-		ORDER BY dono DESC;
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
+		ORDER BY dono DESC
 	</select>
 	
 	<select id="selectByDoprogress" resultType="DocumentDTO" parameterType="String">
 		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
 		WHERE doprogress = #{apvP}
 		AND mno = #{mno}
-		ORDER BY dono DESC;
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
+		ORDER BY dono DESC
 	</select>
 	
 	<select id="getAllCount" parameterType="String" resultType="int">
@@ -54,27 +60,32 @@
 		SELECT COUNT(doprogress) FROM document
 		WHERE doprogress = #{apvP}
 		AND mno = #{mno}
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
 	</select>
 	
 	<select id="getWait" parameterType="String" resultType="DocumentDTO">
 		SELECT * FROM document
 		WHERE doprogress = "결재대기"
 		AND dono = #{dono}
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
 	</select>
 	<select id="getIng" parameterType="String" resultType="DocumentDTO">
 		SELECT * FROM document
 		WHERE doprogress = "진행중"
 		AND dono = #{dono}
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
 	</select>
 	<select id="getSuccess" parameterType="String" resultType="DocumentDTO">
 		SELECT * FROM document
 		WHERE doprogress = "결재완료"
 		AND dono = #{dono}
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
 	</select>
 	<select id="getNo" parameterType="String" resultType="DocumentDTO">
 		SELECT * FROM document
 		WHERE doprogress = "반려"
 		AND dono = #{dono}
+		AND dodate >= (CURDATE() - INTERVAL 90 DAY)
 	</select>
 	
 	<insert id="addOne" parameterType="DocumentDTO">
@@ -102,4 +113,19 @@
 		DELETE FROM document
 		WHERE dono = #{dono}
 	</delete>
+	
+	<!-- 오래된문서 불러오기 -->
+	<select id="selectOld" resultType="DocumentDTO" parameterType="int">
+		SELECT dono,mno,dotitle,docontents,dodate,dotype,doprogress,fno FROM document
+		WHERE mno = #{mno}
+		AND SUBDATE(NOW(), INTERVAL 90 DAY) > dodate
+		ORDER BY dono DESC
+	</select>
+	
+	<!-- 오래된문서 1개 불러오기 -->
+	<select id="selectOneOld" resultType="DocumentDTO" parameterType="String">
+		SELECT * FROM document
+		WHERE dono = #{dono}
+		AND SUBDATE(NOW(), INTERVAL 90 DAY) > dodate
+	</select>
 </mapper>

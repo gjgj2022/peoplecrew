@@ -152,7 +152,8 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 						<li><a href="/apvProgress"> <i class="bi bi-circle"></i>
 								<span>결재처리함</span>
 						</a></li>
-						<li><a href="/formBox"> <i class="bi bi-circle"></i> <span>서식보관함</span>
+						<li><a href="/oldFile"> <i class="bi bi-circle"></i>
+								<span>오래된문서함</span>
 						</a></li>
 		</ul></li>
         
