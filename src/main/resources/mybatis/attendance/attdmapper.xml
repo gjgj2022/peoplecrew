@@ -24,7 +24,7 @@
 		      JOIN organization C
 		      ON C.ono = A.ono
 		      GROUP BY mno
-		      ORDER BY start_time desc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
+		      ORDER BY mno asc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
 		WHERE RN >= #{startNo};
 		]]>
 	</select>
