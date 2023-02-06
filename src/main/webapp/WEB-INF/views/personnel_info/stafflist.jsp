@@ -453,7 +453,7 @@ function clearFilter2()
                       </td>
                       <td class="align-middle text-center text-sm">
                      <c:choose>
-                     <c:when test="${dto.state == '출근' }"><span class="badge badge-sm bg-gradient-success">${dto.state}</span></c:when>
+                     <c:when test="${dto.state == '정상'||dto.state == '출근' }"><span class="badge badge-sm bg-gradient-success">${dto.state}</span></c:when>
                      	<c:otherwise> <span class="badge badge-sm bg-gradient-secondary">${dto.state}</span></c:otherwise>
                      </c:choose>
                        
