@@ -1,5 +1,6 @@
 package com.people.control;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -55,6 +56,9 @@ public class DashBoardController {
 	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
+	int hour = now.getHour(); // 시
+	int minute = now.getMinute(); // 분
+	int second = now.getSecond(); // 초
 	
 	
 	@GetMapping("/")
@@ -178,32 +182,71 @@ public class DashBoardController {
 			return "admin/m_mngmn_user";
 		}
 		
+		
 	// 출근 추가
 	@PostMapping("/attin")
 	public String inworkOk (Model model,
 						  @ModelAttribute("dto")AttendanceDTO workdto,
 						  @RequestParam("mno")int mno,
-						  @RequestParam("ono")int ono) {
+						  @RequestParam("ono")int ono,
+						  @RequestParam(required=false, name="state")String state,
+						  @RequestParam(required=false, name="start_time")String start_time,
+						  @RequestParam(required=false, name="end_time")String end_time ) {
+		
 		
 		String gtw = "정상";
 		String td = "지각";
 		String at = "결근";
 		String le = "조퇴";
 		String vt = "휴가";
-
+		
 		workdto.setMno(mno);
 		workdto.setOno(ono);
+		workdto.setState(state);
+		
+		if(hour <= 9 && hour >= 7) {
+			workdto.setState("정상");
+		} else if(hour > 9) {
+			workdto.setState("지각");
+		} /*
+			 * else if(hour >= 18) { workdto.setState("정상"); }
+			 */
 		
 		atservice.addOne(workdto);
 		model.addAttribute("workdto", workdto);
 		
-		
-		
 		log.info("dto : " + workdto.getMno());
+		log.info("dto : " + workdto.getOno());
+		log.info("dto : " + workdto.getState());
 		log.info("workdto {}" + workdto);
 		return "redirect:";
 		
 	}
+	
+	// 퇴근업데이트
+	@GetMapping("/attout")
+	public String outworkOk(Model model,
+							@ModelAttribute("dto")AttendanceDTO outwdto,
+							@RequestParam("mno")int mno,
+							@RequestParam(required=false, name="state")String state,
+							@RequestParam(required=false, name="start_time")String start_time,
+							@RequestParam(required=false, name="end_time")String end_time ) {
+		
+		outwdto.setMno(mno);
+		outwdto.setState(state);
+		
+		if(hour > 9) {
+			outwdto.setState("지각");
+		} 
+		
+		atservice.updeteOne(outwdto);
+		model.addAttribute("outwdto", outwdto);
+		log.info("outwdto {}", outwdto);
+		
+		return "redirect:";
+		
+	}
+	
 	
 
 }

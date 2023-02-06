@@ -426,7 +426,16 @@ function clearFilter2()
                         <div class="d-flex px-2 py-1">
                        
                           <div>
-                            <img src="../assets/img/team-8.jpg" class="avatar avatar-sm me-3" alt="user1">
+                        	  <c:choose>
+							<c:when test="${dto.img_path == null }">
+												<img src="../assets/img/team-8.jpg" class="avatar avatar-sm me-3" id="m_image" /> 
+											</c:when>
+											<c:otherwise>
+											 <img src="${dto.img_path }${dto.img_name}" class="avatar avatar-sm me-3" alt="user1"> 
+											</c:otherwise>
+										</c:choose>			
+                          
+                            
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm stafflist_name">${dto.mname }</h6>
@@ -443,7 +452,11 @@ function clearFilter2()
                        
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success">${dto.state}</span>
+                     <c:choose>
+                     <c:when test="${dto.state == '정상'||dto.state == '출근' }"><span class="badge badge-sm bg-gradient-success">${dto.state}</span></c:when>
+                     	<c:otherwise> <span class="badge badge-sm bg-gradient-secondary">${dto.state}</span></c:otherwise>
+                     </c:choose>
+                       
                       </td>
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold">${dto.mphone }</span>

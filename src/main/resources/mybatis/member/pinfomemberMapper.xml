@@ -59,18 +59,18 @@
    WHERE m.ono = #{ono}
   </select>
   
-    <!-- <select id="getAll2" resultType="PinfoMemOriAttDTO" >
-  SELECT m.mno , m.mmessage, m.mname ,m.mphone, m.memail , m.mrank , o.oname , a.status
- FROM member as m inner join organization as o on m.ono = o.ono inner join attendance as a on m.mno = a.mno
-  
+    <select id="getAll2" resultType="PinfoMOImgDTO" >
+  SELECT m.mno , m.mmessage, m.mname ,m.mphone, m.memail , m.mrank , o.oname ,a.state, mi.img_name, mi.img_path
+	FROM member as m left join organization as o on o.ono = m.ono left join attendance as a on  a.ono =m.ono 
+ left outer join member_img as mi on  mi.mno =m.mno
   </select>
   
-   --> 
- <select id="getAll2" resultType="PinfoMemOriAttDTO" >
+   
+   <!--<select id="getAll2" resultType="PinfoMemOriAttDTO" >
   SELECT m.mno , m.mmessage, m.mname ,m.mphone, m.memail , m.mrank , o.oname ,a.state
  FROM member as m inner join organization as o on m.ono = o.ono inner join attendance as a on m.ono = a.ono
-  
-  </select>
+ 
+  </select>--> 
  
    
   </mapper>

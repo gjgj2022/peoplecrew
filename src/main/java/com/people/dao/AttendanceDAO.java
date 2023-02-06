@@ -23,5 +23,6 @@ public interface AttendanceDAO {
 	List<AttendanceDTO> getOneAtten2(int mno);
 	List<AttendanceDTO> getOneAtten3(int mno);
 	List<AttendanceDTO> getOneAtten4(int mno);
+	void outworkUOne(AttendanceDTO outwdto); // 퇴근버튼 업데이트
 	
 }

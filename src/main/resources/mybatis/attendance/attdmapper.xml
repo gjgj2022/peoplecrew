@@ -24,7 +24,7 @@
 		      JOIN organization C
 		      ON C.ono = A.ono
 		      GROUP BY mno
-		      ORDER BY A.mno desc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
+		      ORDER BY start_time desc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
 		WHERE RN >= #{startNo};
 		]]>
 	</select>
@@ -113,7 +113,14 @@
 	
 	<!-- 출근 -->
       <select id="insertOne" parameterType="AttendanceDTO">
-      	INSERT INTO attendance (work_day, mno, start_time, state, ono)
-		VALUES (current_date(), #{mno}, curtime(),"정상",#{ono});
+      	INSERT IGNORE INTO attendance (work_day, mno, start_time, state, ono)
+		VALUES (current_date(), #{mno}, curtime(), #{state}, #{ono})
+	</select>
+	
+	<!-- 퇴근 -->
+	<select id="outworkUOne" parameterType="AttendanceDTO">
+		UPDATE attendance
+		SET end_time = curtime()
+		WHERE mno = #{mno}
 	</select>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.people.dao.PinfoMemberDAO;
 import com.people.dao.PinfoOrganizationDAO;
 import com.people.dto.PinfoCsDTO;
+import com.people.dto.PinfoMOImgDTO;
 import com.people.dto.PinfoMemOriAttDTO;
 import com.people.dto.PinfoMemOriDTO;
 import com.people.dto.PinfoMemberDTO;
@@ -55,7 +56,7 @@ public class PinfoMemberService {
 		
 		return dao.getOrg();
 	}
-	public List<PinfoMemOriAttDTO> selectAll2(){
+	public List<PinfoMOImgDTO> selectAll2(){
 	
 		return dao.getAll2();
 	}

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.people.dto.PinfoMemOriAttDTO;
+import com.people.dto.PinfoMemOriDTO;
 import com.people.service.PinfoMemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,8 @@ public class PinfoStafflistController {
 	
 	@GetMapping("/stafflist")
 	public String stafflist(Model model) {
+		
+		
 		
 		model.addAttribute("team",service.getAllori());
 		model.addAttribute("memori",service.selectAll2());
