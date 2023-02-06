@@ -192,7 +192,9 @@ public class DashBoardController {
 		String at = "결근";
 		String le = "조퇴";
 		String vt = "휴가";
-
+		
+		log.info("dto : " + workdto.getMno());
+		
 		
 		atservice.addOne(workdto);
 		model.addAttribute("workdto", workdto);

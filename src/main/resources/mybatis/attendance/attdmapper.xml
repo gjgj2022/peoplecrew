@@ -113,12 +113,7 @@
 	
 	<!-- 출근 -->
       <select id="insertOne" parameterType="AttendanceDTO">
-      	INSERT IGNORE INTO attendance (work_day, mno, ono, start_time, state)
-		SELECT current_date(), B.mno, C.ono, curtime(), A.state  
-		      FROM attendance A LEFT JOIN member B
-		      ON A.mno  = B.mno
-		      LEFT JOIN organization C
-		      ON C.ono = A.ono
-		      WHERE A.mno = #{mno}
+      	INSERT INTO attendance (work_day, mno, start_time, state, ono)
+		VALUES (current_date(), '108', curtime(),"정상",1001);
 	</select>
 </mapper>
