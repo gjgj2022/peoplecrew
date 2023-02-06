@@ -121,16 +121,30 @@ public class ApprovalController {
 		model.addAttribute("mlist1", mlist1);
 		
 		// 내가 최근 받은 결재
-		List<DocumentDTO> list4 = dservice.readEnd(mno);
+		
+		// -----------------------------------------------------------------------
+
+		
+		int apmno = dto.getMno();
+		
+		List<ApprovalDTO> list10 = aservice.getAllByApmnoNot1(apmno);
+		
+		// 전체 불러오기
+		ArrayList<DocumentDTO> list12 = new ArrayList<DocumentDTO>();
 		ArrayList<MemberDTO> mlist2 = new ArrayList<MemberDTO>();
 		
-		for(int i=0; i<list4.size(); i++) {
-			DocumentDTO ddto = list4.get(i);
-			MemberDTO mdto = mservice.getOne(ddto.getMno());
+		for(int i=0; i<list10.size(); i++) {
+			ApprovalDTO dto10 = list10.get(i);
+			DocumentDTO dto11 = dservice.readOne(dto10.getDono());
+			if(dto11 != null) {
+			list12.add(dto11);
+			MemberDTO mdto = mservice.getOne(dto11.getMno());
 			mlist2.add(mdto);
+			}
 		}
-		model.addAttribute("endList", list4);
-		model.addAttribute("mlist2",mlist2);
+		
+		model.addAttribute("endList", list12);
+		model.addAttribute("mlist2", mlist2);
 
 		return "/approval/apvHome";
 	}

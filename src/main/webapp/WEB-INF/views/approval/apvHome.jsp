@@ -453,7 +453,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
 							<div class="d-flex justify-content-between">
-								<h6 class="mb-2">내가 최근 올린 결재</h6>
+								<h6 class="mb-2"><a href="/personalFile">내가 최근 올린 결재</a></h6>
 							</div>
 						</div>
 						<div class="table-responsive" style="min-height:200px;max-height:200px;overflow:auto;">
@@ -488,7 +488,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
 							<div class="d-flex justify-content-between">
-								<h6 class="mb-2">내가 최근 받은 결재</h6>
+								<h6 class="mb-2"><a href="/apvProgress">결재가 필요한 문서</a></h6>
 							</div>
 						</div>
 						<div class="table-responsive" style="min-height:200px;max-height:200px;overflow:auto;">
@@ -506,7 +506,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 									<tr class="text-sm mb-0">
 										<td>${list2.dono }</td>
 										<td>${list2.dotype }</td>
-										<td><a href="/personalFileView?dono=${list2.dono }&dotype=${list2.dotype }">${list2.dotitle }</a></td>
+										<td><a href="/apvProgressView?dono=${list2.dono }&dotype=${list2.dotype }">${list2.dotitle }</a></td>
 										<td>${mlist2[status.index].mname }</td>
 										<td>${list2.dodate }</td>
 										<td>${list2.doprogress }</td>

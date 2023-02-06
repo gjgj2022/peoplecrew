@@ -52,4 +52,8 @@ public class ApprovalService {
 	public void deleteOne(String dono) {
 		dao.deleteOne(dono);
 	}
+	
+	public List<ApprovalDTO> getAllByApmnoNot1(int apmno){
+		return dao.getAllByApmnoNot1(apmno);
+	}
 }
