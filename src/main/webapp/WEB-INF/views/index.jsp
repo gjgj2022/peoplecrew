@@ -24,6 +24,7 @@
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
   
   <!-- 개인,결재함 차트 style  -->
+  
   <style>
 	#chart-container {
 	  position: relative;
