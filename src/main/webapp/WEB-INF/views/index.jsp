@@ -18,6 +18,9 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  
+  
   <!-- 개인,결재함 차트 style  -->
   <style>
 	#chart-container {
@@ -250,6 +253,8 @@
   
    
   <main class="main-content position-relative border-radius-lg ">
+ 
+  
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
@@ -262,7 +267,7 @@
         </nav>
        
        <!-- 로그인헤더  -->
-		<%@ include file="include/header.jsp" %>
+       <%@ include file="include/header.jsp" %>
 		       
       </div>
     </nav>
