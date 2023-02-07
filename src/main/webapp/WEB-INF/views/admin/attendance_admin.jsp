@@ -7,23 +7,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-<link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
 <title>attendance admin</title>
 
-<!--Fonts and icons     -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-<!-- Nucleo Icons -->
-<link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
-<link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-<!-- Font Awesome Icons -->
-<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-<link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-<!-- CSS Files -->
-<link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
-</head>
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
 
+</head>
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
@@ -352,77 +350,6 @@
       </div>
     <%@ include file="../include/footer.jsp" %>
   </main>
-
-  <!--   Core JS Files   -->
-  <script src="../resources/assets/js/core/popper.min.js"></script>
-  <script src="../resources/assets/js/core/bootstrap.min.js"></script>
-  <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
   
-  <!-- 막대차트 -->
-  <script>
-  chart = new Chart(document.getElementById('myChart1').getContext('2d'), {
-	    type: 'line',
-	    data: {
-	        labels: [" ","지각", "조퇴", "결근", "연차"],
-	        datasets: [{
-	                label: '개발팀',
-	                data: [0, 0, 110, 120,100],
-	                backgroundColor: 'green',
-	            },
-	            {
-	                label: '인사팀',
-	                data: [0, 0, 20, 10, 120],
-	                backgroundColor: 'pink',
-	            },
-	            {
-	                label: '운영팀',
-	                data: [0,0, 20, 10, 130],
-	                backgroundColor: 'yellow',
-	            },
-	            {
-	                label: '회계팀',
-	                data: [0, 0, 20, 10, 140],
-	                backgroundColor: 'blue',
-	            },
-	        ]
-	    },
-	    options: {
-	        plugins: {
-	            title: {
-	                display: true,
-	                text: 'Example',
-	                font: {
-	                    size: 14
-	                }
-	            },
-	        },
-	        responsive: true,
-	        maintainAspectRatio: true,
-	        scales: {
-	            x: {
-	                stacked: true,
-	            },
-	            y: {
-	                stacked: true
-	            }
-	        }
-	    }
-	});
-	</script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../resources/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 </html>

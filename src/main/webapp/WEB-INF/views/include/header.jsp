@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
     pageEncoding="UTF-8" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -9,6 +7,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="./assets/img/favicon.png">
+
+<!-- daum address  -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
 <!-- 시간 -->
 <script type="text/javascript">
 
@@ -50,6 +59,7 @@
 
 </script>
 <title></title>
+
 </head>
 <body>
 		
@@ -90,6 +100,32 @@
         </div>
 		
 		</sec:authorize>
+		
+  <!--   Core JS Files   -->
+  <script src="../resources/assets/js/core/popper.min.js"></script>
+  <script src="../resources/assets/js/core/bootstrap.min.js"></script>
+  <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
+  
+  <!-- chart js 파일 -->
+  <script src="../resources/chart/jquery.min.js"></script>
+  <script src="../resources/chart/Chart.min.js"></script>
+  
+   <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  
+   <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../resources/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 		
 </body>
 </html>
