@@ -332,7 +332,7 @@
 								    	<c:choose>
 								  			<c:when test="${empty mno}">
 											    <li class="page-item"><a class="page-link" href="page?mno=${dto.mno }&cp=${map.currentPage+5 }">다음</a></li>
-								  			</c:when>
+								 			</c:when>
 								  		</c:choose>
 								    </c:when>
 							    </c:choose>
@@ -345,7 +345,7 @@
               </div>
             </div>
           </div>
-        </div>
+      	</div>
       </div>
       </div>
     <%@ include file="../include/footer.jsp" %>
