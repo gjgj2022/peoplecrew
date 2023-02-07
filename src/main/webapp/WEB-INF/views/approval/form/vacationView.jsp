@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link id="pagestyle" href="./resources/assets/css/argon-dashboardApv.css?v=2.0.4"
+<link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4"
 	rel="stylesheet" />
 <script type="text/javascript">
 	function resize(obj) {
@@ -19,6 +19,18 @@ textarea {
     overflow-y: hidden;
     resize: none;
 }
+
+.bg-secondary {
+  background-color: #F0F1F2 !important;
+ }
+ 
+ .border{
+   border: 1px solid #dee2e6 !important;
+ }
+ 
+  .btn-success{
+ 	--bs-btn-bg: #198754;
+ }
 </style>
 </head>
 <body>
