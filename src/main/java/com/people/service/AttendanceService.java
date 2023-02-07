@@ -72,5 +72,8 @@ public class AttendanceService {
 		dao.outworkUOne(outwdto);
 	}
 
+	public AttendanceDTO timediff(int mno) {
+		return dao.timediff(mno);
+	}
 	
 }

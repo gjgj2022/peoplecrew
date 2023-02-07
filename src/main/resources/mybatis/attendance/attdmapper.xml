@@ -132,4 +132,13 @@
 		SET end_time = curtime()
 		WHERE mno = #{mno}
 	</select>
+	
+	<!-- 근무시간합계 -->
+	<select id="timediff" resultType="AttendanceDTO" parameterType="int">
+		SELECT  TIME_FORMAT(SEC_TO_TIME(sum(TIME_TO_SEC(timediff(end_time,start_time)))),'%H시 %i분')AS timediff
+		FROM attendance 
+		WHERE mno = #{mno}
+	</select>
+	
+	
 </mapper>

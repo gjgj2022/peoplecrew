@@ -17,6 +17,8 @@ public class AttendanceDTO {
 	private String end_time; // 퇴근 시간
 	private String state; // 상태정보
 	
+	private String timediff; // 총근무시간
+	
 	//member(사원)
 	private int mno; // 사원번호
 	private String mid; // 아이디

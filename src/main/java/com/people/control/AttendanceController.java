@@ -61,11 +61,17 @@ public class AttendanceController {
 		List<AttendanceDTO> chdb = attdservice.getChdb();
 		List<AttendanceDTO> chdb2 = attdservice.chdb2();
 		
+		AttendanceDTO attDto = attdservice.timediff(mno);
+		if(attDto != null) {
+			model.addAttribute("attDto", attDto);
+		}
+		
 		model.addAttribute("chdb", chdb);
 		model.addAttribute("chdb2", chdb2);
 		
-		log.info("attdto {} :", list3);
+		log.info("list3 {} :", list3);
 		log.info("map {} :", map);
+		log.info("attDto :" + attDto.getTimediff());
 		
 		return "/attendance/attendance";
 	}
