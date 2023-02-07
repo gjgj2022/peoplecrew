@@ -35,10 +35,6 @@ public class AttendanceController {
 	@Autowired
 	MemberService memberService;
 	
-	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yy-MM-dd");
-	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
-	LocalDateTime now = LocalDateTime.now();
-	
 	//직원용 조회 & 페이징
 	@GetMapping("/attendance")
 	public String list(Model model,
@@ -61,17 +57,20 @@ public class AttendanceController {
 		List<AttendanceDTO> chdb = attdservice.getChdb();
 		List<AttendanceDTO> chdb2 = attdservice.chdb2();
 		
-		AttendanceDTO attDto = attdservice.timediff(mno);
-		if(attDto != null) {
+		if(attdservice.timediff(mno) != null) {
+			AttendanceDTO attDto = new AttendanceDTO();
 			model.addAttribute("attDto", attDto);
+			
+			log.info("attDto :" + attDto.getTimediff());
 		}
+		
 		
 		model.addAttribute("chdb", chdb);
 		model.addAttribute("chdb2", chdb2);
 		
 		log.info("list3 {} :", list3);
 		log.info("map {} :", map);
-		log.info("attDto :" + attDto.getTimediff());
+		log.info("attDto : null ");
 		
 		return "/attendance/attendance";
 	}
