@@ -434,7 +434,6 @@
                 <div class="card" align="center">
 					<div id="clockbtn" style="width: 100%; margin: 20px 0">
 						<button type="submit" class="btn btn-light waves-effect" id="inwork" onclick="startWork()" >출근하기</button>&nbsp;&nbsp;&nbsp;
-		           		<!-- <button type="button" class="btn btn-light waves-effect" id="out" onclick="outWork()" >퇴근하기</button> -->
 		           		<a href="attout?mno=${dto.mno}"  class="btn btn-light waves-effect" onclick="outWork()">퇴근하기</a>
 					</div>
 				</div>
@@ -445,11 +444,11 @@
 							<th colspan="2" width="100%" style="text-align: center" id="today_kor"></th>
 						</tr>
 						<tr>
-							<td width="30%">출근 : </td>
+							<td width="30%">출근 :</td>
 							<td id="gtw" width="90%"></td>
 						</tr>
 						<tr>
-							<td>퇴근 : </td>
+							<td>퇴근 :</td>
 							<td id="ofw"></td>
 						</tr>
 					</table>
