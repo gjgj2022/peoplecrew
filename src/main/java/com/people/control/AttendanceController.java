@@ -35,10 +35,6 @@ public class AttendanceController {
 	@Autowired
 	MemberService memberService;
 	
-	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yy-MM-dd");
-	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
-	LocalDateTime now = LocalDateTime.now();
-	
 	//직원용 조회 & 페이징
 	@GetMapping("/attendance")
 	public String list(Model model,
