@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -451,16 +451,16 @@
     }; */
   // 도넛형 차트
   var ctx2 = document.getElementById("myChart2");
-  
+    
   var myDoughnutChart = new Chart(ctx2, {
       type: 'doughnut',
       data: {
           datasets: [{
-              backgroundColor: ['red','yellow','blue'],
-              data: [10, 20, 30]
+              backgroundColor: ['#5E72E4','#2DCE89',],
+              data: [${fn:substring(attDto.timediff,0,2)}, ${fn:substring(attDto.timediff,4,6)}]
           }],       
           // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-          labels: ['야근','근무시간','총근무시간'] 
+          labels: ['시간','분'] 
       },
       options: {
     	  responsive: false

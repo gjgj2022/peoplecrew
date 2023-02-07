@@ -309,7 +309,7 @@
 						<li class="breadcrumb-item text-sm text-white active"
 							aria-current="page">PeopleCrew</li>
 					</ol>
-					<h6 class="font-weight-bolder text-white mb-0">사원조회</h6>
+					<h6 class="font-weight-bolder text-white mb-0">인사관리 - 관리자</h6>
 				</nav>
 
 				<!-- 로그인 헤더  -->
