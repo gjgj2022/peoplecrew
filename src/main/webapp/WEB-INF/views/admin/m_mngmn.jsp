@@ -8,18 +8,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>PeopleCrew</title>
-  <!-- CSS Files -->
-  <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  
   <!-- Nucleo Icons -->
-  <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-  
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -314,7 +310,7 @@
                         </a>
                       </td>
                       <td class="ps-2">
-                        <a href="delete?mno=${dto.mno }" class="btn btn-danger m-2" data-toggle="tooltip" 
+                        <a href="delete?mno=${dto.mno }" class="btn bg-gradient-danger m-2" data-toggle="tooltip" 
                         		onclick="return confirm('삭제 하시겠습니까?');" data-original-title="delete user" style="margin-bottom: 0; ">
                           삭제
                         </a>
@@ -383,7 +379,7 @@
      </div>
   </main>
    <!-- End main  -->  
-   
+  
 </body>
 
 </html>

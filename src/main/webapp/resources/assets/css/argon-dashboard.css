@@ -10605,6 +10605,7 @@ fieldset:disabled .btn {
   --bs-text-opacity: 1;
 }
 
+/* 헤더라인 뒷배경  */
 .bg-primary {
   background-color: #03A9F4 !important;
 }

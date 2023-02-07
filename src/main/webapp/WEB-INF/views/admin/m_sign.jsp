@@ -6,21 +6,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>PeopleCrew</title>
 
-<!-- CSS Files -->
-<link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
-<!--     Fonts and icons     -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 <!-- Nucleo Icons -->
-<link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
 <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
 <!-- Font Awesome Icons -->
-<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-
+<!-- CSS Files -->
+<link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 	
 <!--input value 체크 -->
 <script type="text/javascript">
@@ -334,7 +329,7 @@
 								<div class="d-flex align-items-center">
 									<p class="mb-0">사원등록</p>
 									<button type="submit" class="btn btn-info btn-sm ms-auto">등록</button>
-									&nbsp; <a href="admin2" class="btn btn-danger btn-sm">취소</a>
+									&nbsp; <a href="admin2" class="btn bg-gradient-danger btn-sm">취소</a>
 								</div>
 							</div>
 							<div class="card-body">
@@ -405,7 +400,7 @@
 								<div class="col-md-2">
 									<div class="form-group"
 										style="text-align: left;; margin-top: 28px; margin-bottom: 4px;">
-										<button type="button" class="btn btn-primary" id="btn">주소찾기</button>
+										<button type="button" class="btn bg-gradient-info" id="btn">주소찾기</button>
 									</div>
 								</div>
 								<div class="row">
@@ -594,6 +589,7 @@
 		});
 	</script>
 
+	
 </body>
 
 </html>

@@ -116,24 +116,4 @@ public class LoginController {
 	}
 	
 	
-	
-	
-//	@GetMapping("/")
-//	public String main(Principal principal, HttpSession session) {
-//		if (principal != null) {
-//			System.out.println("타입정보 : " + principal.getClass());
-//			System.out.println("ID정보 : " + principal.getName());
-//			
-//			String no = principal.getName();
-//			int mno = Integer.parseInt(no);
-//			
-//			MemberDTO dto = service.getOne(mno);
-//			
-//			session.setMaxInactiveInterval(5);
-//			session.setAttribute("dto", dto);
-//		}
-//		return "index";
-//	}
-	
-	
 }

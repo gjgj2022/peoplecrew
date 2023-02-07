@@ -7,58 +7,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>PeopleCrew</title>
+
 <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+<!-- Fonts and icons     -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
 
 <!-- daum address  -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-
-<!-- 시간 -->
-<script type="text/javascript">
-
-    document.addEventListener("DOMContentLoaded", function() {
-
-        // 시간을 딜레이 없이 나타내기위한 선 실행
-        realTimer();
-
-        // 이후 0.5초에 한번씩 시간을 갱신한다.
-        setInterval(realTimer, 500);
-
-    });
-
-
-    // 시간을 출력
-    function realTimer() {
-
-		const nowDate = new Date();
-		const year = nowDate.getFullYear();
-		const month= nowDate.getMonth() + 1;
-		const date = nowDate.getDate();
-		const hour = nowDate.getHours();
-		const min = nowDate.getMinutes();
-		const sec = nowDate.getSeconds();
-
-		document.getElementById("nowTimes").innerHTML = 
-                  year + "-" + addzero(month) + "-" + addzero(date) + "&nbsp;" + hour + ":" + addzero(min) + ":" + addzero(sec);
-
-	}
-
-
-    // 1자리수의 숫자인 경우 앞에 0을 붙여준다.
-	function addzero(num) {
-
-		if(num < 10) { num = "0" + num; }
- 		return num;
-
-	}
-
-</script>
-<title></title>
 
 </head>
 <body>
@@ -101,18 +63,47 @@
 		
 		</sec:authorize>
 		
+<!-- 시간 -->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        // 시간을 딜레이 없이 나타내기위한 선 실행
+        realTimer();
+        // 이후 0.5초에 한번씩 시간을 갱신한다.
+        setInterval(realTimer, 500);
+
+    });
+
+
+    // 시간을 출력
+    function realTimer() {
+		const nowDate = new Date();
+		const year = nowDate.getFullYear();
+		const month= nowDate.getMonth() + 1;
+		const date = nowDate.getDate();
+		const hour = nowDate.getHours();
+		const min = nowDate.getMinutes();
+		const sec = nowDate.getSeconds();
+
+		document.getElementById("nowTimes").innerHTML = 
+                  year + "-" + addzero(month) + "-" + addzero(date) + "&nbsp;" + hour + ":" + addzero(min) + ":" + addzero(sec);
+
+	}
+    // 1자리수의 숫자인 경우 앞에 0을 붙여준다.
+	function addzero(num) {
+		if(num < 10) { num = "0" + num; }
+ 		return num;
+
+	}
+
+</script>
+ 
   <!--   Core JS Files   -->
   <script src="../resources/assets/js/core/popper.min.js"></script>
   <script src="../resources/assets/js/core/bootstrap.min.js"></script>
   <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
-  
-  <!-- chart js 파일 -->
-  <script src="../resources/chart/jquery.min.js"></script>
-  <script src="../resources/chart/Chart.min.js"></script>
-  
-   <script>
+  <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
       var options = {
@@ -121,11 +112,10 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  
-   <!-- Github buttons -->
+  <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../resources/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
-		
+
 </body>
 </html>
