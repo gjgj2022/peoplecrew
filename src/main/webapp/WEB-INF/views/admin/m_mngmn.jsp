@@ -310,7 +310,7 @@
                         </a>
                       </td>
                       <td class="ps-2">
-                        <a href="delete?mno=${dto.mno }" class="btn btn-danger m-2" data-toggle="tooltip" 
+                        <a href="delete?mno=${dto.mno }" class="btn bg-gradient-danger m-2" data-toggle="tooltip" 
                         		onclick="return confirm('삭제 하시겠습니까?');" data-original-title="delete user" style="margin-bottom: 0; ">
                           삭제
                         </a>

@@ -403,7 +403,7 @@
                         <a 	data-mno="${dto.mno }" data-msal="${dto.msal }" data-mname="${dto.mname }" 
                         	data-oname="${dto.oname }" data-mrank="${dto.mrank}" data-mdate="${dto.mdate}"
                         	data-bs-target="#msal" data-bs-toggle="modal"
-                        	class="btn btn-success" style="margin-bottom: 0;"> 보기
+                        	class="btn bg-gradient-success" style="margin-bottom: 0;"> 보기
                     	</a>
                       </td>
                     </tr>

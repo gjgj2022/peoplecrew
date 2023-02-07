@@ -380,7 +380,7 @@
                 
               <div class="col-md-2">
                  <div class="form-group" style="text-align:left; ; margin-top: 28px; margin-bottom: 4px;">
-                 	<button type="button" class="btn btn-primary" id="btn">주소찾기</button>
+                 	<button type="button" class="btn bg-gradient-info" id="btn">주소찾기</button>
                  </div>
               </div>
               <div class="row">

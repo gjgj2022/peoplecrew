@@ -256,7 +256,7 @@
                 <p class="mb-0"><strong>근태수정</strong></p>
                 <button type="submit" class="btn btn-info btn-sm ms-auto">수정</button>
                 &nbsp;
-                <a href="admin/page" class="btn btn-danger btn-sm">취소</a>
+                <a href="admin/page" class="btn bg-gradient-danger btn-sm">취소</a>
               </div>
             </div>
             <div class="card-body">

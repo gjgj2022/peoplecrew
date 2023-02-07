@@ -329,7 +329,7 @@
 								<div class="d-flex align-items-center">
 									<p class="mb-0">사원등록</p>
 									<button type="submit" class="btn btn-info btn-sm ms-auto">등록</button>
-									&nbsp; <a href="admin2" class="btn btn-danger btn-sm">취소</a>
+									&nbsp; <a href="admin2" class="btn bg-gradient-danger btn-sm">취소</a>
 								</div>
 							</div>
 							<div class="card-body">
@@ -400,7 +400,7 @@
 								<div class="col-md-2">
 									<div class="form-group"
 										style="text-align: left;; margin-top: 28px; margin-bottom: 4px;">
-										<button type="button" class="btn btn-primary" id="btn">주소찾기</button>
+										<button type="button" class="btn bg-gradient-info" id="btn">주소찾기</button>
 									</div>
 								</div>
 								<div class="row">
