@@ -53,20 +53,13 @@ public class DashBoardController {
 	@Autowired
 	ApprovalService aservice;
 	
-	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
-	LocalDateTime now = LocalDateTime.now();
-	int hour = now.getHour(); // 시
-	int minute = now.getMinute(); // 분
-	int second = now.getSecond(); // 초
+
 	
 	
 	@GetMapping("/")
-	public String test1(
-						Model model,Authentication authentication) {
+	public String dashBoard(Model model,Authentication authentication) {
 
 		MemberDTO dto = service.getIdOne(authentication.getName()); // 세션아이디로 사원번호 가져오기
-		
 		
 		// 공지사항
 		List<BoardDTO> list = bservice.selectAll();
@@ -193,6 +186,12 @@ public class DashBoardController {
 						  @RequestParam(required=false, name="start_time")String start_time,
 						  @RequestParam(required=false, name="end_time")String end_time ) {
 		
+		DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		int hour = now.getHour(); // 시
+		int minute = now.getMinute(); // 분
+		int second = now.getSecond(); // 초
 		
 		String gtw = "정상";
 		String td = "지각";
@@ -231,6 +230,13 @@ public class DashBoardController {
 							@RequestParam(required=false, name="state")String state,
 							@RequestParam(required=false, name="start_time")String start_time,
 							@RequestParam(required=false, name="end_time")String end_time ) {
+		
+		DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		int hour = now.getHour(); // 시
+		int minute = now.getMinute(); // 분
+		int second = now.getSecond(); // 초
 		
 		outwdto.setMno(mno);
 		outwdto.setState(state);

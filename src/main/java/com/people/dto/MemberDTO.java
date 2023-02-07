@@ -30,8 +30,8 @@ public class MemberDTO {
 	private int ono; 	 	 // 부서번호 
 	private String oname; 	 // 부서명
 	private String ophone; 	 // 부서번호
-	private int mmsal; 	 	 // 월급 부서별 최대값
-	private int amsal; 	 	 // 월급 부서별 평균값
+	private int mmsal; 	 	 // 월급 최대값
+	private int amsal; 	 	 // 월급 평균값
 	private int uno;	     // 상위 부서번호
 
 	private int img_no;	     // 이미지번호

@@ -1,9 +1,5 @@
 package com.people.control;
 
-import java.io.UnsupportedEncodingException;
-import java.lang.ProcessHandle.Info;
-import java.net.URLDecoder;
-import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -37,13 +33,13 @@ public class MemberAdminController {
 	
 	// 사원등록 관련
 	@GetMapping("/sign")
-	public String admin1() {
+	public String adminSing() {
 		log.info("관리자 admin");
 		return "admin/m_sign";
 	}
 	
 	@PostMapping("/sign")
-	public String adminOk(@ModelAttribute("dto")MemberDTO dto2,
+	public String adminOk(@ModelAttribute("dto")MemberDTO dtoSign,
 						  @RequestParam("mbirth1")String mbirth1,
 						  @RequestParam("mbirth2")String mbirth2,
 						  @RequestParam("mbirth3")String mbirth3,
@@ -52,10 +48,10 @@ public class MemberAdminController {
 		// 비밀번호를 암호화하는데 사용할수있는 메서드를 제공하는 클래스
 		passwordEncoder = new BCryptPasswordEncoder();
 		
-		dto2.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
-		dto2.setPassword(passwordEncoder.encode(password)); // 암호화한후 넘기기
+		dtoSign.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
+		dtoSign.setPassword(passwordEncoder.encode(password)); // 암호화한후 넘기기
 		
-		service.insertOne(dto2);
+		service.insertOne(dtoSign);
 		
 		log.info("완료 : ");
 		return "redirect:admin2";
@@ -64,7 +60,7 @@ public class MemberAdminController {
 	
 	// 조회 (수정,삭제) 관련
 	@GetMapping("/admin2/**")
-	public String admin2(Model model,
+	public String adminMngmn(Model model,
 						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
 		
 		// 총페이지수
@@ -119,7 +115,7 @@ public class MemberAdminController {
 		
 		log.info("map 2 : " + map);
 		log.info("list 2 : " + list);
-		log.info("search2 : " + keyword);
+		log.info("search 2 : " + keyword);
 		
 		return "admin/m_mngmn";
 	}
@@ -128,17 +124,17 @@ public class MemberAdminController {
 	@GetMapping("/modify")
 	public String modifyForm(@RequestParam("mno")int mno, Model model) {
 		
-		MemberDTO dto2 = service.getOne(mno);
+		MemberDTO dtoModify = service.getOne(mno);
 		
-		model.addAttribute("dto2", dto2);
+		model.addAttribute("dto2", dtoModify);
 		
-		log.info("조회시 리스트" + dto2);
+		log.info("조회시 리스트" + dtoModify);
 		
 		return "admin/m_modifyFrom";
 	}
 
 	@PostMapping("/modify")
-	public String modifyOk(@ModelAttribute("dto")MemberDTO dto2,
+	public String modifyOk(@ModelAttribute("dto")MemberDTO dtoModify,
 						   @RequestParam("pfile")MultipartFile pfile,
 						   @RequestParam("mbirth1")String mbirth1,
 						   @RequestParam("mbirth2")String mbirth2,
@@ -147,15 +143,15 @@ public class MemberAdminController {
 		
 		passwordEncoder = new BCryptPasswordEncoder();
 		
-		dto2.setPassword(passwordEncoder.encode(password)); // 암호화한후 넘기기
-		dto2.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
+		dtoModify.setPassword(passwordEncoder.encode(password)); // 암호화한후 넘기기
+		dtoModify.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
 		
-		log.info("dto2 getImg_name : " + dto2.getImg_name());
+		log.info("dto2 getImg_name : " + dtoModify.getImg_name());
 		log.info("password : " + password);
 		
 		ProFileDTO pfile2 = new ProFileDTO();
 		
-		String imgname = dto2.getImg_name();
+		String imgname = dtoModify.getImg_name();
 		log.info("imgname : " + imgname);
 		
 		
@@ -163,10 +159,10 @@ public class MemberAdminController {
 			log.info("파일없음");
 			
 			if(password.isEmpty()) {
-				service.updateOne(dto2);
+				service.updateOne(dtoModify);
 			}else {
-				service.updateOne(dto2);
-				service.update_pw(dto2);
+				service.updateOne(dtoModify);
+				service.update_pw(dtoModify);
 			}
 			
 		} else if(imgname.length() == 0) {
@@ -184,19 +180,19 @@ public class MemberAdminController {
 			pfile2.setImg_name(fileName);
 			pfile2.setImg_path(fileUrl);
 			pfile2.setImg_size(ImgSize);
-			pfile2.setMno(dto2.getMno());
+			pfile2.setMno(dtoModify.getMno());
 			
 			if(password.isEmpty()) {
 				service.profileAdd(pfile2);
-				service.updateOne(dto2);
+				service.updateOne(dtoModify);
 			}else {
 				service.profileAdd(pfile2);
-				service.updateOne(dto2);
-				service.update_pw(dto2);
+				service.updateOne(dtoModify);
+				service.update_pw(dtoModify);
 			}
 			
 			log.info("dto2 getImg_name null : " + imgname);
-			log.info("dto2 mno : " + dto2.getMno());
+			log.info("dto2 mno : " + dtoModify.getMno());
 			
 			
 		} else if(imgname.length() != 0){
@@ -214,19 +210,19 @@ public class MemberAdminController {
 			pfile2.setImg_name(fileName);
 			pfile2.setImg_path(fileUrl);
 			pfile2.setImg_size(ImgSize);
-			pfile2.setMno(dto2.getMno());
+			pfile2.setMno(dtoModify.getMno());
 			
 			if(password.isEmpty()) {
 				service.profileUpdate(pfile2);
-				service.updateOne(dto2);
+				service.updateOne(dtoModify);
 			}else {
 				service.profileUpdate(pfile2);
-				service.updateOne(dto2);
-				service.update_pw(dto2);
+				service.updateOne(dtoModify);
+				service.update_pw(dtoModify);
 			}
 			
 			log.info("dto2 img_name O : " + imgname);
-			log.info("dto2 mno : " + dto2.getMno());
+			log.info("dto2 mno : " + dtoModify.getMno());
 			
 		}
 		
@@ -243,7 +239,7 @@ public class MemberAdminController {
 	
 	// 급여 관련
 	@GetMapping("/admin3/**")
-	public String admin3(Model model,
+	public String adminSal(Model model,
 						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
 		
 		// 총페이지수
@@ -261,8 +257,8 @@ public class MemberAdminController {
 		model.addAttribute("list", list);
 		model.addAttribute("map", map);
 		
-		List<MemberDTO> avg = service.getAvg();
-		List<MemberDTO> avg2 = service.getAvg2();
+		List<MemberDTO> avg = service.getAvg();   // avg  : 부서
+		List<MemberDTO> avg2 = service.getAvg2(); // avg2 : 직급
 		
 		model.addAttribute("avg", avg);
 		model.addAttribute("avg2", avg2);
@@ -275,7 +271,7 @@ public class MemberAdminController {
 	
 	// 조회 (검색 페이징 급여)
 	@GetMapping("/search2")
-	public String search2(Model model,
+	public String searchSal(Model model,
 						@RequestParam("keyword")String keyword,
 						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
 		
@@ -303,8 +299,8 @@ public class MemberAdminController {
 		List<MemberDTO> avg = service.getAvg();
 		List<MemberDTO> avg2 = service.getAvg2();
 		
-		model.addAttribute("avg", avg);
-		model.addAttribute("avg2", avg2);
+		model.addAttribute("avg", avg);  	// avg  : 부서
+		model.addAttribute("avg2", avg2);	// avg2 : 직급
 		model.addAttribute("keyword", keyword);
 		
 		log.info("map 2 : " + map);

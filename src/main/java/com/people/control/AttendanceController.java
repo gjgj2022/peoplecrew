@@ -109,11 +109,11 @@ public class AttendanceController {
 	@PostMapping()
 	@RequestMapping(value="/attmodify_admin", method = {RequestMethod.POST})
 	public String listAdminOneOk(@ModelAttribute("dto")AttendanceDTO admindto,
-							  @RequestParam("mbirth1")String mbirth1,
-			                  @RequestParam("mbirth2")String mbirth2,
-			                  @RequestParam("mbirth3")String mbirth3,
-			                  @RequestParam("mannual")int mannual,
-			                  @RequestParam("usemannual")int usemannual) {
+							  	 @RequestParam("mbirth1")String mbirth1,
+							  	 @RequestParam("mbirth2")String mbirth2,
+							  	 @RequestParam("mbirth3")String mbirth3,
+							  	 @RequestParam("mannual")int mannual,
+							  	 @RequestParam("usemannual")int usemannual) {
 		
 		admindto.setMbirth(mbirth1+"-"+mbirth2+"-"+mbirth3);
 		admindto.setMannual(mannual);

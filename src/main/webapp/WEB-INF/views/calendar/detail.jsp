@@ -39,26 +39,26 @@
 	<div class="detailbody">
 
 		<div class="card-header text-center pt-4 pb-3">
-			<c:if test="${not empty caldto.uname }">
-				<span class="badge rounded-pill bg-light text-dark">${caldto.uname}</span>
-				<span class="badge rounded-pill bg-light text-dark">${caldto.oname}</span>
+			<c:if test="${not empty calDTO.uname }">
+				<span class="badge rounded-pill bg-light text-dark">${calDTO.uname}</span>
+				<span class="badge rounded-pill bg-light text-dark">${calDTO.oname}</span>
 			</c:if>
 			<h1 class="font-weight-bold mt-2">
-				<small>${caldto.caltitle }</small>
+				<small>${calDTO.caltitle }</small>
 			</h1>
 		</div>
 
 
 		<div class="container">
 			<div class="card-body text-lg-left pt-0">
-				<c:if test="${caldto.uno ne 1 }">
+				<c:if test="${calDTO.uno ne 1 }">
 					<div class="d-flex justify-content-lg-start  p-2">
 						<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
 							<i class="fas fa-check opacity-10" aria-hidden="true"></i>
 						</div>
 
 						<div>
-							<span class="ps-3">담당자 : ${caldto.mname }</span>
+							<span class="ps-3">담당자 : ${calDTO.mname }</span>
 						</div>
 
 					</div>
@@ -68,7 +68,7 @@
 						<i class="fas fa-check opacity-10" aria-hidden="true"></i>
 					</div>
 					<div>
-						<span class="ps-3">장소 : ${caldto.calloc}</span>
+						<span class="ps-3">장소 : ${calDTO.calloc}</span>
 					</div>
 				</div>
 
@@ -77,7 +77,7 @@
 						<i class="fas fa-check opacity-10" aria-hidden="true"></i>
 					</div>
 					<div>
-						<span class="ps-3">시작 : ${caldto.calstart }</span>
+						<span class="ps-3">시작 : ${calDTO.calstart }</span>
 					</div>
 				</div>
 
@@ -86,7 +86,7 @@
 						<i class="fas fa-check opacity-10" aria-hidden="true"></i>
 					</div>
 					<div>
-						<span class="ps-3">종료 : ${caldto.calend }</span>
+						<span class="ps-3">종료 : ${calDTO.calend }</span>
 					</div>
 				</div>
 
@@ -95,7 +95,7 @@
 						<i class="fas fa-check opacity-10" aria-hidden="true"></i>
 					</div>
 					<div>
-						<span class="ps-3">내용 : ${caldto.calcontents }</span>
+						<span class="ps-3">내용 : ${calDTO.calcontents }</span>
 					</div>
 				</div>
 
@@ -105,12 +105,12 @@
 
 		<div class="modal-footer justify-content-center detailfooter">
 			<button class="btn" onclick="window.close()">확인</button>
-			<c:if test="${(caldto.uno eq dto.uno && dto.mrank ne '사원') ||dto.mno eq caldto.mno|| dto.role eq 'ROLE_ADMIN'}">
-				<a href="/calendar/modify?calno=${caldto.calno}"><input type="button" class="btn" value="수정" /></a>
+			<c:if test="${(calDTO.uno eq dto.uno && dto.mrank ne '사원') ||dto.mno eq calDTO.mno|| dto.role eq 'ROLE_ADMIN'}">
+				<a href="/calendar/modify?calno=${calDTO.calno}"><input type="button" class="btn" value="수정" /></a>
 				<input type="button" class="btn" value="삭제" onclick="deleteCal()" />
 			</c:if>
-			<c:if test="${not empty caldto.updatemname }">
-				<span class="ps-3">마지막 수정 : ${caldto.updatemname }, ${caldto.updatedate }</span>
+			<c:if test="${not empty calDTO.updatemname }">
+				<span class="ps-3">마지막 수정 : ${calDTO.updatemname }, ${calDTO.updatedate }</span>
 			</c:if>
 		</div>
 	</div>
@@ -122,7 +122,7 @@
 <script>
 	//삭제 
 	
-	var calno = '${caldto.calno}';
+	var calno = '${calDTO.calno}';
 	function deleteCal() {
 		if (confirm("일정을 삭제하시겠습니까?") == true){  
 		$.ajax({
