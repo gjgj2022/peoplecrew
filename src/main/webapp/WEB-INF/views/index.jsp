@@ -186,7 +186,7 @@
 			</a>
           </li>
         </ul>
-      </li><!-- End 근태관리 Nav -->
+      </li><!-- End 전자결재 Nav -->
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#e-nav" data-bs-toggle="collapse" href="#">
