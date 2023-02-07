@@ -456,7 +456,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 								<h6 class="mb-2"><a href="/personalFile">내가 최근 올린 결재</a></h6>
 							</div>
 						</div>
-						<div class="table-responsive" style="min-height:200px;max-height:200px;overflow:auto;">
+						<div class="table-responsive" style="min-height:205px;max-height:205px;overflow:auto;">
 							<table class="table align-items-center " style="text-align:center;">
 								<tbody style="text-align:center;">
 									<tr class="text-sm mb-0">
@@ -491,7 +491,7 @@ class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-it
 								<h6 class="mb-2"><a href="/apvProgress">결재가 필요한 문서</a></h6>
 							</div>
 						</div>
-						<div class="table-responsive" style="min-height:200px;max-height:200px;overflow:auto;">
+						<div class="table-responsive" style="min-height:205px;max-height:205px;overflow:auto;">
 							<table class="table align-items-center " >
 								<tbody style="text-align:center;">
 									<tr class="text-sm mb-0">
