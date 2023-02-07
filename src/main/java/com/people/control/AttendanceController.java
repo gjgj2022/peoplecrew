@@ -58,7 +58,7 @@ public class AttendanceController {
 		List<AttendanceDTO> chdb2 = attdservice.chdb2();
 		
 		if(attdservice.timediff(mno) != null) {
-			AttendanceDTO attDto = new AttendanceDTO();
+			AttendanceDTO attDto = attdservice.timediff(mno);
 			model.addAttribute("attDto", attDto);
 			
 			log.info("attDto :" + attDto.getTimediff());
