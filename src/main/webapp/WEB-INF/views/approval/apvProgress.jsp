@@ -300,9 +300,12 @@
 										String btn3 = "light";
 										String btn4 = "light";
 										String btn5 = "light";
+										String btn10 = "danger";
 									
 										if(apvP == null||apvP.equals("전체문서")){
 											btn1 = "primary";
+										}else if(apvP.equals("결재필요")){
+											btn10 = "primary";
 										}else if(apvP.equals("결재대기")){
 											btn2 = "primary";
 										}else if(apvP.equals("진행중")){
@@ -317,6 +320,7 @@
 									<tr>
 										<td colspan="6">
 											<a href="/apvProgress?apvP=전체문서"><input type="button" class="btn btn-<%=btn1 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="전체문서"/></a>
+											<a href="/apvProgress?apvP=결재필요"><input type="button" class="btn btn-<%=btn10 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="결재필요"/></a>
 											<a href="/apvProgress?apvP=결재대기"><input type="button" class="btn btn-<%=btn2 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="결재대기" /></a>
 											<a href="/apvProgress?apvP=진행중"><input type="button" class="btn btn-<%=btn3 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="진행중" /></a>
 											<a href="/apvProgress?apvP=결재완료"><input type="button" class="btn btn-<%=btn4 %> btn-sm" style="--bs-btn-padding-x: .6rem;" value="결재완료" /></a>
@@ -338,6 +342,7 @@
 										<th style="width:11%;">기안일</th>
 										<th style="width:12%;">진행상태</th>
 									</tr>
+									
 									<%
 										if(apvP == null||apvP.equals("전체문서")){
 									
@@ -353,7 +358,21 @@
 										</tr>
 									</c:forEach>
 									<%
-										}else if(!apvP.equals("전체문서")){
+										}else if(apvP.equals("결재필요")){
+									
+									%>
+									<c:forEach var="dList" items="${documentList }" varStatus="status">
+										<tr class="text-sm mb-0" style="text-align:center;">
+											<td>${dList.dono }</td>
+											<td>${dList.dotype }</td>
+											<td><a href="/apvProgressView?dono=${dList.dono }&dotype=${dList.dotype }&mno=${dList.mno}">${dList.dotitle }</a></td>
+											<td>${memberList[status.index].mname }</td>
+											<td>${dList.dodate }</td>
+											<td>${dList.doprogress }</td>
+										</tr>
+									</c:forEach>
+									<%
+										}else if(!apvP.equals("전체문서")&&!apvP.equals("결재필요")){
 									%>
 									<c:forEach var="list1" items="${list1 }" varStatus="status">
 										<tr class="text-sm mb-0" style="text-align:center;">
