@@ -186,8 +186,6 @@ public class DashBoardController {
 						  @RequestParam(required=false, name="start_time")String start_time,
 						  @RequestParam(required=false, name="end_time")String end_time ) {
 		
-		DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		int hour = now.getHour(); // 시
 		int minute = now.getMinute(); // 분
