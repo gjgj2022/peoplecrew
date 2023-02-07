@@ -117,8 +117,13 @@
 	
 	<!-- 출근 -->
       <select id="insertOne" parameterType="AttendanceDTO">
-      	INSERT IGNORE INTO attendance (work_day, mno, start_time, state, ono)
-		VALUES (current_date(), #{mno}, curtime(), #{state}, #{ono})
+		INSERT INTO attendance (work_day, mno, start_time, state, ono)
+		SELECT (current_date(), #{mno}, curtime(), #{state}, #{ono} FROM DUAL
+		WHERE NOT EXISTS 
+		(SELECT * FROM attendance
+		WHERE work_day = current_date() AND mno = #{mno} AND start_time = curtime() AND state = #{state});
+<!--       	INSERT INTO attendance (work_day, mno, start_time, state, ono)
+		VALUES (current_date(), #{mno}, curtime(), #{state}, #{ono}) -->
 	</select>
 	
 	<!-- 퇴근 -->
