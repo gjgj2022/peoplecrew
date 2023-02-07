@@ -302,7 +302,7 @@
 	</div>
 	<div style="width:1000px;margin-left:auto;margin-right:auto;">
 		<table class="table table-bordered align-middle" style="margin-left:4%;width:61%;float:left;">
-			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1" style="text-align:center;">
+			<tr class="p-2 text-dark bg-opacity-10 w-25 border border-1" style="text-align:center;background-color:#F0F1F2;">
 				<th>이름</th>
 				<th>직책</th>
 				<th>부서</th>
@@ -320,7 +320,7 @@
 		</table>
 
 		<table class="table table-bordered align-middle" style="width:25%;float:right;text-align:center;margin-right:50px;margin-bottom:50px;">
-			<tr class="bg-secondary p-2 text-dark bg-opacity-10 w-25 border border-1">
+			<tr class="p-2 text-dark bg-opacity-10 w-25 border border-1" style="background-color:#F0F1F2;">
 				<th style="width:100px;">팀장</th>
 				<th style="width:100px;">부장</th>
 			</tr>

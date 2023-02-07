@@ -120,11 +120,7 @@ public class ApprovalController {
 		model.addAttribute("ingList", list3);
 		model.addAttribute("mlist1", mlist1);
 		
-		// 내가 최근 받은 결재
-		
-		// -----------------------------------------------------------------------
-
-		
+		// 나의 결재가 필요한 문서		
 		int apmno = dto.getMno();
 		
 		List<ApprovalDTO> list10 = aservice.getAllByApmnoNot1(apmno);
@@ -549,6 +545,29 @@ public class ApprovalController {
 
 		model.addAttribute("list2", list12);
 		model.addAttribute("mlist2", mlist2);
+		
+		
+		// 나의 결재가 필요한 문서		
+		int appApmno = dto.getMno();
+		
+		List<ApprovalDTO> appList = aservice.getAllByApmnoNot1(appApmno);
+		
+		// 전체 불러오기
+		ArrayList<DocumentDTO> documentList = new ArrayList<DocumentDTO>();
+		ArrayList<MemberDTO> memberList = new ArrayList<MemberDTO>();
+		
+		for(int i=0; i<appList.size(); i++) {
+			ApprovalDTO appDto = appList.get(i);
+			DocumentDTO documentDto = dservice.readOne(appDto.getDono());
+			if(documentDto != null) {
+			documentList.add(documentDto);
+			MemberDTO memberDto = mservice.getOne(documentDto.getMno());
+			memberList.add(memberDto);
+			}
+		}
+		
+		model.addAttribute("documentList", documentList);
+		model.addAttribute("memberList", memberList);
 		
 		return "/approval/apvProgress";
 	}
