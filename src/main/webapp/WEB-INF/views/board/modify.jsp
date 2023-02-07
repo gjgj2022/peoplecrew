@@ -7,8 +7,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <title>
     PeopleCrew
   </title>
@@ -400,12 +398,6 @@
 			</div>
 		</div>
 
-	<!--   Core JS Files   -->
-	<script src="../assets/js/core/popper.min.js"></script>
-	<script src="../assets/js/core/bootstrap.min.js"></script>
-	<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-	<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-	<script src="../resources/assets/js/plugins/chartjs.min.js"></script>
 	<%@ include file="../include/footer.jsp" %>
 	</main>
 	
