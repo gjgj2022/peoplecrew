@@ -9,21 +9,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <title>
-    PeopleCrew
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <title>PeopleCrew</title>
+  
   <!-- Nucleo Icons -->
-  <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
-  <!-- CSS only -->
   
   <!-- 개인,결재함 차트 style  -->
   <style>
@@ -41,30 +34,6 @@
 	}
 </style>
 
-<!-- 
-<style type="text/css">
-	.navbar-nav .nav-link.collapsed {
-	    color: #010101;
-	    background: #ffffff;
-	}
-
-	.navbar-nav .nav-link {
-		color: #4154f1;
-		background: #03a9f447;
-		font-weight: 600;
-  		border-radius: 0.5rem;
-			
-	}
-
-	.navbar-nav .nav-link:hover {
-		color: #4154f1;
-		background: #03a9f447;
-		font-weight: 600;
-  		box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
-  		border-radius: 0.5rem;
-	}
-</style>
-   -->
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -914,37 +883,7 @@ $(function(){
     window.addEventListener('resize', myChart2.resize);
     </script>
   
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-
   
-  <!--   Core JS Files   -->
-  <script src="../resources/assets/js/core/popper.min.js"></script>
-  <script src="../resources/assets/js/core/bootstrap.min.js"></script>
-  <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../resources/assets/js/plugins/chartjs.min.js"></script>
-  
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../resources/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 
 </html>

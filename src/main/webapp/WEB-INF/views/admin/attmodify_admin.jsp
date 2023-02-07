@@ -9,16 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>attendance admin</title>
 
-  <!-- CSS Files -->
-  <link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+<!-- Nucleo Icons -->
+<link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+<!-- Font Awesome Icons -->
+<link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+<!-- CSS Files -->
+<link id="pagestyle" href="../resources/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 
 </head>
 <body class="g-sidenav-show   bg-gray-100">
@@ -413,56 +409,5 @@
 	<%@ include file="../include/footer.jsp" %>
   </main>
   
-  <!-- 막대차트 -->
-  <script>
-  chart = new Chart(document.getElementById('myChart1').getContext('2d'), {
-	    type: 'line',
-	    data: {
-	        labels: [" ","지각", "조퇴", "결근", "연차"],
-	        datasets: [{
-	                label: '개발팀',
-	                data: [0, 0, 110, 120,100],
-	                backgroundColor: 'green',
-	            },
-	            {
-	                label: '인사팀',
-	                data: [0, 0, 20, 10, 120],
-	                backgroundColor: 'pink',
-	            },
-	            {
-	                label: '운영팀',
-	                data: [0,0, 20, 10, 130],
-	                backgroundColor: 'yellow',
-	            },
-	            {
-	                label: '회계팀',
-	                data: [0, 0, 20, 10, 140],
-	                backgroundColor: 'blue',
-	            },
-	        ]
-	    },
-	    options: {
-	        plugins: {
-	            title: {
-	                display: true,
-	                text: 'Example',
-	                font: {
-	                    size: 14
-	                }
-	            },
-	        },
-	        responsive: true,
-	        maintainAspectRatio: true,
-	        scales: {
-	            x: {
-	                stacked: true,
-	            },
-	            y: {
-	                stacked: true
-	            }
-	        }
-	    }
-	});
-	</script>
 </body>
 </html>
