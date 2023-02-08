@@ -363,7 +363,6 @@
                   	<br />
                 </div>
 
-			<form action="attin" method="POST">
 				<input type="hidden" name="mno" value="${dto.mno }">	
 				<input type="hidden" name="ono" value="${dto.ono }">	
 				<input type="hidden" name="mno" value="${workdto.mno }">	
@@ -374,8 +373,8 @@
 				<input type="hidden" name="state" value="${outwdto.state }">	
                 <div class="card" align="center">
 					<div id="clockbtn" style="width: 100%; margin: 20px 0">
-						<button type="submit" class="btn btn-light waves-effect" id="inwork" onclick="startWork()" >출근하기</button>&nbsp;&nbsp;&nbsp;
-		           		<a href="attout?mno=${dto.mno}"  class="btn btn-light waves-effect" onclick="outWork()">퇴근하기</a>
+						<a href="attin?mno=${dto.mno}" class="btn btn-light waves-effect" id="inwork" onclick="return startWork()">출근하기</a>&nbsp;&nbsp;&nbsp;
+		           		<a href="attout?mno=${dto.mno}"  class="btn btn-light waves-effect" onclick="return outWork()">퇴근하기</a>
 					</div>
 				</div>
 				<span id="liveclock"></span>
@@ -396,7 +395,6 @@
 						</tr>
 					</table>
 				</div>
-			</form>
               </div>
             </div>
           </div>
@@ -702,16 +700,19 @@
 <script>
 	function startWork() {
 		
-		var startTime = '<c:out value="${endDto.start_time }"/>';
+		var endDto = '<c:out value="${endDto }"/>';
 		
 		if (confirm("출근 하시겠습니까?")){
-			if(startTime == null){
+			if(endDto == ""){
 				alert("출근 하셨습니다.");
 			}else {
 				alert("이미출근 하셨습니다.");
+				return false;
 			}
+			
 		}else {
 			alert("취소 하셨습니다.");
+			return false;
 		}
 		
 	}
@@ -721,16 +722,22 @@
 <script>
 	function outWork() {
 		
+		var startTime = '<c:out value="${endDto.start_time }"/>';
 		var endTime = '<c:out value="${endDto.end_time }"/>';
 		
 		if (confirm("퇴근 하시겠습니까?")){
-			if(endTime == null){
+			if(endTime == "" && startTime == ""){
+				alert("출근후 눌러주세요.");
+				return false
+			}else if(endTime == "") {
 				alert("퇴근 하셨습니다.");
 			}else {
 				alert("이미퇴근 하셨습니다.");
+				return false
 			}
 		}else {
 			alert("취소 하셨습니다.");
+			return false
 		}
 		
 	}

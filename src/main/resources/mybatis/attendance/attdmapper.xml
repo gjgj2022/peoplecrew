@@ -149,8 +149,8 @@
  	<select id="outGetOne" resultType="AttendanceDTO" parameterType="int">
 		SELECT 
 		B.mname, B.mphone, B.mbirth, B.memail, 
-		B.mannual, B.usemannual,
-		B.mrank, B.mid, B.password,
+		B.mannual, B.usemannual, B.ono,
+		B.mrank, B.mid, B.password, 
 		A.start_time, A.end_time, A.state
 		FROM attendance A
 		LEFT OUTER JOIN member B

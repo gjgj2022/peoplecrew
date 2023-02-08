@@ -63,6 +63,8 @@ public class DashBoardController {
 		AttendanceDTO endDto = atservice.outGetOne(dto.getMno());
 		model.addAttribute("endDto", endDto);
 		
+		log.info("endDto :" + endDto);
+
 		// 공지사항
 		List<BoardDTO> list = bservice.selectAll();
 		model.addAttribute("blist",list); // 공지사항 리스트
@@ -179,14 +181,15 @@ public class DashBoardController {
 		
 		
 	// 출근 추가
-	@PostMapping("/attin")
+	@GetMapping("/attin")
 	public String inworkOk (Model model,
 						  @ModelAttribute("dto")AttendanceDTO workdto,
-						  @RequestParam("mno")int mno,
-						  @RequestParam("ono")int ono,
+						  Authentication authentication,
 						  @RequestParam(required=false, name="state")String state,
 						  @RequestParam(required=false, name="start_time")String start_time,
 						  @RequestParam(required=false, name="end_time")String end_time) {
+		
+		MemberDTO memDto = service.getIdOne(authentication.getName()); // 세션아이디로 사원번호 가져오기
 		
 		LocalDateTime now = LocalDateTime.now();
 		int hour = now.getHour(); // 시
@@ -199,9 +202,9 @@ public class DashBoardController {
 		String le = "조퇴";
 		String vt = "휴가";
 		
-		workdto.setMno(mno);
+		workdto.setMno(memDto.getMno());
 		workdto.setStart_time(start_time);
-		workdto.setOno(ono);
+		workdto.setOno(memDto.getOno());
 		workdto.setState(state);
 		
 		if(hour <= 9 && hour >= 7) {
@@ -238,7 +241,7 @@ public class DashBoardController {
 		int hour = now.getHour(); // 시
 		
 		AttendanceDTO endDto = atservice.outGetOne(mno);
-		log.info("퇴근시간!!!!  : " + endDto.getEnd_time());
+		log.info("퇴근시간  : " + endDto.getEnd_time() +"출근시간 : " + endDto.getStart_time());
 		
 		outwdto.setMno(mno);
 		outwdto.setEnd_time(end_time);
