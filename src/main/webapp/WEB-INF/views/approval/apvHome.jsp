@@ -83,25 +83,25 @@
         </a>
         <ul id="a-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="personnel_info/mypage?mno=${dto.mno }">
+            <a href="/personnel_info/mypage?mno=${dto.mno }">
               <i class="bi bi-circle"></i>
               <span>마이페이지</span>
             </a>
           </li>
           <li>
-            <a href="personnel_info/cs">
+            <a href="/personnel_info/cs">
               <i class="bi bi-circle"></i>
               <span>문의사항</span>
             </a>
           </li>
           <li>
-            <a href="personnel_info/stafflist">
+            <a href="/personnel_info/stafflist">
               <i class="bi bi-circle"></i>
               <span>직원 현황</span>
             </a>
           </li>
           <li>
-             <a href="personnel_info/organization2">
+             <a href="/personnel_info/organization2">
               <i class="bi bi-circle"></i>
               <span>조직도</span>
             </a>
