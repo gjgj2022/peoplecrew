@@ -12,9 +12,9 @@ import com.people.dto.AttdStartEnd;
 @Mapper
 public interface AttendanceDAO {
 	List<AttendanceDTO> getAll();
-	List<AttendanceDTO> readAll(AttdStartEnd se);
+	List<AttendanceDTO> readAll(AttdStartEnd se); // 관리자조회
 	AttendanceDTO admingetOne(int mno);
-	List<AttendanceDTO> getAOne(AttdStartEnd se);
+	List<AttendanceDTO> getAOne(AttdStartEnd se); // 직원조회
 	int getattTotal();
 	void insertOne(AttendanceDTO dto);
 	void updateOne(AttendanceDTO dto);

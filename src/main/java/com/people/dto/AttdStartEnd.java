@@ -11,4 +11,11 @@ public class AttdStartEnd {
 	private int startNo;
 	private int endNo;
 	private int mno;
+	
+	public AttdStartEnd(int startNo, int endNo) {
+		super();
+		this.startNo = startNo;
+		this.endNo = endNo;
+	}
+	
 }

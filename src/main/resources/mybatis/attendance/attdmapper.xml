@@ -16,21 +16,21 @@
 	
 	<select id="readAll" parameterType="AttdStartEnd" resultType="AttendanceDTO">
 	<![CDATA[
-		SELECT work_day, mno, mname, oname, memail, start_time, end_time, state
+		SELECT distinct work_day, mno, mname, oname, memail, start_time, end_time, state
 		FROM(SELECT (@R := @R+1) AS RN, work_day, mno, mname, oname, memail, start_time, end_time, state
 		   FROM(SELECT A.work_day, B.mno,B.mname,C.oname, B.memail, A.start_time, A.end_time, A.state  
-		      FROM attendance A JOIN member B
-		      ON A.mno  = B.mno
-		      JOIN organization C
-		      ON C.ono = A.ono
-		      GROUP BY mno
-		      ORDER BY mno asc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
-		WHERE RN >= #{startNo};
+		      FROM attendance A 
+		      LEFT JOIN member B ON A.mno  = B.mno
+		      LEFT JOIN organization C ON B.ono = C.ono
+		      GROUP BY A.mno
+		      ORDER BY mno asc) A, 
+		      (SELECT @R:=0) AS X LIMIT #{endNo})B
+			WHERE RN >= #{startNo};
 		]]>
 	</select>
 	
-	<select id="getattTotal" resultType="int" parameterType="int">
-		SELECT count(*) from attendance
+	<select id="getattTotal" resultType="int" parameterType="String">
+		SELECT count(*) FROM attendance
 	</select>
 	
 	<select id="getAOne" resultType="AttendanceDTO" parameterType="AttdStartEnd">
@@ -38,13 +38,13 @@
 		SELECT work_day, mno, mname, oname, memail, start_time, end_time, state
 		FROM(SELECT (@R := @R+1) AS RN, work_day, mno, mname, oname, memail, start_time, end_time, state
 		   FROM(SELECT A.work_day, B.mno,B.mname,C.oname, B.memail, A.start_time, A.end_time, A.state  
-		      FROM attendance A JOIN member B
-		      ON A.mno  = B.mno
-		      JOIN organization C
-		      ON C.ono = A.ono
-		      WHERE A.mno = #{mno}
-		      ORDER BY work_day desc)A, (SELECT @R:=0) AS X LIMIT #{endNo})B
-		WHERE RN >= #{startNo};
+		      FROM attendance A
+		      	LEFT JOIN member B ON A.mno  = B.mno
+		      	LEFT JOIN organization C ON C.ono = B.ono
+		      	WHERE A.mno = #{mno}
+		      ORDER BY A.work_day desc) A,
+		      (SELECT @R:=0) AS X LIMIT #{endNo})B
+		WHERE RN >= #{startNo}
 		]]>
 	</select>
 	
@@ -64,9 +64,11 @@
 	
 	<!-- 근태관리(관리자) 수정 -->
   	<update id="updateOne" parameterType="AttendanceDTO">
-		UPDATE attendance A LEFT JOIN member B
+		UPDATE attendance A JOIN member B
 		ON A.mno = B.mno
-		SET A.state = #{state}, B.mannual = #{mannual}, B.usemannual = #{usemannual}
+		SET A.state = #{state},
+			B.mannual = #{mannual},
+			B.usemannual = #{usemannual}
 		WHERE A.mno = #{mno}
 	</update>
 	
@@ -129,9 +131,8 @@
 	
 	<!-- 퇴근 -->
 	<select id="outworkUOne" parameterType="AttendanceDTO">
-		UPDATE attendance
-		SET end_time = curtime()
-		WHERE mno = #{mno}
+		UPDATE attendance SET end_time = now()
+		WHERE work_day = current_date() AND mno = ${mno}
 	</select>
 	
 	<!-- 근무시간합계 -->

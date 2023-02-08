@@ -15,19 +15,16 @@ public class AttendanceService {
 	@Autowired
 	private AttendanceDAO dao;
 	
-	public List<AttendanceDTO> selectAll() {
-		return dao.getAll();
-	}
-	
+	//관리자 조회
 	public List<AttendanceDTO> selectAll(int startNo, int endNo) {
-		AttdStartEnd se = new AttdStartEnd(startNo, endNo, 1);
+		AttdStartEnd se = new AttdStartEnd(startNo, endNo);
 		return dao.readAll(se);
 	}
 
 	public int getattTotal() {
 		return dao.getattTotal();
 	}
-	
+    //직원 조회	
 	public List<AttendanceDTO> attdOne(int startNo, int endNo, int mno) {
 		AttdStartEnd se = new AttdStartEnd(startNo, endNo, mno);
 		return dao.getAOne(se);
@@ -50,8 +47,8 @@ public class AttendanceService {
 		return dao.admingetOne(mno);
 	}
 
-	public void updateOne(AttendanceDTO dto) {
-		dao.updateOne(dto);
+	public void updateOne(AttendanceDTO admindto) {
+		dao.updateOne(admindto);
 	}
 	
 	// 대시보드 근태 정상
@@ -68,7 +65,7 @@ public class AttendanceService {
 		return dao.getOneAtten4(mno);
 	}
 
-	public void updeteOne(AttendanceDTO outwdto) {
+	public void dupdeteOne(AttendanceDTO outwdto) {
 		dao.outworkUOne(outwdto);
 	}
 

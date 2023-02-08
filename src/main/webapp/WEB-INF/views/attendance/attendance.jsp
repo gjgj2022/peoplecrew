@@ -301,7 +301,6 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">출근시간</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">퇴근시간</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">상태정보</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">상태정보</th>
                     </tr>
                   </thead>
                   <tbody>
