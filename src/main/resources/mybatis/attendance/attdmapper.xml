@@ -16,14 +16,13 @@
 	
 	<select id="readAll" parameterType="AttdStartEnd" resultType="AttendanceDTO">
 	<![CDATA[
-		SELECT distinct work_day, mno, mname, oname, memail, start_time, end_time, state
+		SELECT work_day, mno, mname, oname, memail, start_time, end_time, state
 		FROM(SELECT (@R := @R+1) AS RN, work_day, mno, mname, oname, memail, start_time, end_time, state
 		   FROM(SELECT A.work_day, B.mno,B.mname,C.oname, B.memail, A.start_time, A.end_time, A.state  
 		      FROM attendance A 
 		      LEFT JOIN member B ON A.mno  = B.mno
 		      LEFT JOIN organization C ON B.ono = C.ono
-		      GROUP BY A.mno
-		      ORDER BY mno asc) A, 
+		      ORDER BY A.work_day asc) A, 
 		      (SELECT @R:=0) AS X LIMIT #{endNo})B
 			WHERE RN >= #{startNo};
 		]]>
