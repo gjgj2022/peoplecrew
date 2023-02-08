@@ -35,10 +35,6 @@ public class AttendanceController {
 	@Autowired
 	MemberService memberService;
 	
-	DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yy-MM-dd");
-	DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
-	LocalDateTime now = LocalDateTime.now();
-	
 	//직원용 조회 & 페이징
 	@GetMapping("/attendance")
 	public String list(Model model,
@@ -48,9 +44,8 @@ public class AttendanceController {
 		int totalNumber = attdservice.getattTotal();
 		//페이지당 게시물 수
 		int recordPerPage = 10;
-		//                     총페이지 수,     한페이지당 수,   현재페이지
+		//                     							총페이지 수,     한페이지당 수,   현재페이지
 		Map<String, Object> map = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
-		
 		int startNo = (int)map.get("startNo");
 		int endNo = (int)map.get("endNo");
 		
@@ -61,11 +56,20 @@ public class AttendanceController {
 		List<AttendanceDTO> chdb = attdservice.getChdb();
 		List<AttendanceDTO> chdb2 = attdservice.chdb2();
 		
+		if(attdservice.timediff(mno) != null) {
+			AttendanceDTO attDto = attdservice.timediff(mno);
+			model.addAttribute("attDto", attDto);
+			
+			log.info("attDto :" + attDto.getTimediff());
+		}
+		
+		
 		model.addAttribute("chdb", chdb);
 		model.addAttribute("chdb2", chdb2);
 		
-		log.info("attdto {} :", list3);
+		log.info("list3 {} :", list3);
 		log.info("map {} :", map);
+		log.info("attDto : null ");
 		
 		return "/attendance/attendance";
 	}
@@ -74,11 +78,12 @@ public class AttendanceController {
 	@GetMapping("/admin/page")
 	public String listAdmin(Model model,
 							@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
+		
 		int totalNumber = attdservice.getattTotal();
 		//페이지당 게시물 수
 		int recordPerPage = 10;
-		//                     총페이지 수,     한페이지당 수,   현재페이지
-		Map<String, Object> map2 = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
+		//                     							총페이지 수,     한페이지당 수,   현재페이지
+		Map<String, Object> map2 = com.people.util.PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
 		
 		int startNo = (int)map2.get("startNo");
 		int endNo = (int)map2.get("endNo");
@@ -99,13 +104,14 @@ public class AttendanceController {
 							   @RequestParam("mno")int mno) {
 		
 		AttendanceDTO admindto = attdservice.userOne(mno);
-		
 		model.addAttribute("admindto", admindto);
 		
 		log.info("admindto {} ", admindto);
+		
 		return "/admin/attmodify_admin";
 		
 	}
+	
 	@PostMapping()
 	@RequestMapping(value="/attmodify_admin", method = {RequestMethod.POST})
 	public String listAdminOneOk(@ModelAttribute("dto")AttendanceDTO admindto,
@@ -121,8 +127,9 @@ public class AttendanceController {
 		
 		attdservice.updateOne(admindto);
 		
-		return "redirect:/admin/page";
+		log.info("admindto2 {}", admindto);
 		
+		return "redirect:/admin/page";
 	}
 	
 	// 휴가관리

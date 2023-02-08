@@ -184,10 +184,8 @@ public class DashBoardController {
 						  @RequestParam("ono")int ono,
 						  @RequestParam(required=false, name="state")String state,
 						  @RequestParam(required=false, name="start_time")String start_time,
-						  @RequestParam(required=false, name="end_time")String end_time ) {
+						  @RequestParam(required=false, name="end_time")String end_time) {
 		
-		DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		int hour = now.getHour(); // 시
 		int minute = now.getMinute(); // 분
@@ -200,6 +198,7 @@ public class DashBoardController {
 		String vt = "휴가";
 		
 		workdto.setMno(mno);
+		workdto.setStart_time(start_time);
 		workdto.setOno(ono);
 		workdto.setState(state);
 		
@@ -214,9 +213,9 @@ public class DashBoardController {
 		atservice.addOne(workdto);
 		model.addAttribute("workdto", workdto);
 		
-		log.info("dto : " + workdto.getMno());
-		log.info("dto : " + workdto.getOno());
-		log.info("dto : " + workdto.getState());
+		log.info("wdto : " + workdto.getMno());
+		log.info("wdto : " + workdto.getOno());
+		log.info("wdto : " + workdto.getState());
 		log.info("workdto {}" + workdto);
 		return "redirect:";
 		
@@ -229,23 +228,21 @@ public class DashBoardController {
 							@RequestParam("mno")int mno,
 							@RequestParam(required=false, name="state")String state,
 							@RequestParam(required=false, name="start_time")String start_time,
-							@RequestParam(required=false, name="end_time")String end_time ) {
+							@RequestParam(required=false, name="end_time")String end_time) {
 		
-		DateTimeFormatter dayf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		DateTimeFormatter timef = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		int hour = now.getHour(); // 시
-		int minute = now.getMinute(); // 분
-		int second = now.getSecond(); // 초
 		
 		outwdto.setMno(mno);
 		outwdto.setState(state);
 		
-		if(hour > 9) {
-			outwdto.setState("지각");
-		} 
+		if(end_time == null) {
+			atservice.dupdeteOne(outwdto);
+		}else {
+			return "redirect:";
+		}
 		
-		atservice.updeteOne(outwdto);
+		model.addAttribute("start_time", start_time);
 		model.addAttribute("outwdto", outwdto);
 		log.info("outwdto {}", outwdto);
 		

@@ -85,7 +85,7 @@
 		const sec = nowDate.getSeconds();
 
 		document.getElementById("nowTimes").innerHTML = 
-                  year + "-" + addzero(month) + "-" + addzero(date) + "&nbsp;" + hour + ":" + addzero(min) + ":" + addzero(sec);
+                  year + "년 " + addzero(month) + "월 " + addzero(date) + "일 " + "&nbsp;" + hour + ":" + addzero(min) + ":" + addzero(sec);
 
 	}
     // 1자리수의 숫자인 경우 앞에 0을 붙여준다.

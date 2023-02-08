@@ -365,19 +365,6 @@
                     	<p>현재시간 : <span id="clock"></span></p>
                   	</div>
                 </div>
-                
-                <!-- <form action="/wirte" method="POST"> -->
-<!-- 	                <div class="card-body p-3">
-	                  <div class="row">
-	                    <div class="col-md-6 mb-md-0 mb-4">
-	                    	<div class="work-btn" style="text-align: center">
-		                   		<button type="submit" class="btn btn-light waves-effect" id="in" name="in">출근하기</button>
-				           		<button type="button" class="btn btn-light waves-effect" id="out" name="out">퇴근하기</button>
-	                    	</div>
-	                    </div>
-	                  </div>
-	                </div> -->
-                <!-- </form> -->
 <script>
 	function startWork() {
 		if (confirm("출근 하시겠습니까?")){
@@ -418,11 +405,13 @@
 							<th colspan="2" width="100%" style="text-align: center" id="today_kor"></th>
 						</tr>
 						<tr>
-							<td width="30%">출근 :</td>
+							<td width="30%">
+							<p>출근 : ${workdto.start_time }</p></td>
+							
 							<td id="gtw" width="90%"></td>
 						</tr>
 						<tr>
-							<td>퇴근 :</td>
+							<td>퇴근 : ${outwdto.end_time }</td>
 							<td id="ofw"></td>
 						</tr>
 					</table>
