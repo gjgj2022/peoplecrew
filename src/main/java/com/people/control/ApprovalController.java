@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,9 @@ import com.people.service.DocumentService;
 import com.people.service.FileService;
 import com.people.service.MemberService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class ApprovalController {
 
@@ -52,7 +56,7 @@ public class ApprovalController {
 			return "/login/cLogin";
 		}
 		
-		System.out.println(dto.getMno());
+		log.info(String.valueOf(dto.getMno()));
 		
 		// 세션 회원번호 : 
 		int mno = dto.getMno();
@@ -161,8 +165,6 @@ public class ApprovalController {
 		
 		MemberDTO mdto = mservice.getOne(dto.getMno());
 		
-		System.out.println(mdto);
-		
 		model.addAttribute("mdto", mdto);
 
 		
@@ -214,12 +216,6 @@ public class ApprovalController {
 
 		String dono = ddto.getMno() + "-" + now;
 
-		String referer = req.getHeader("Referer");
-		
-		resp.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = resp.getWriter();
-		
-		String redirect = "redirect:"+referer;
 		
 		// 1분내로 재시도시 dono 중복 예외처리
 		try {
@@ -382,10 +378,6 @@ public class ApprovalController {
 			return "/login/cLogin";
 		}
 		
-		System.out.println(dto.getMno());
-		
-		System.out.println(ddto.getDono());
-		
 		DocumentDTO dto2 = dservice.readOne(ddto.getDono());
 		
 		model.addAttribute("form", dotype);
@@ -395,10 +387,6 @@ public class ApprovalController {
 		String apmno = String.valueOf(dto.getMno());
 		
 		ApprovalDTO adto = aservice.selectOneByDono(ddto.getDono(), apmno);
-		
-		System.out.println(adto);
-		
-		System.out.println(adto.getApprogress());
 		
 		model.addAttribute("adto", adto);
 		
@@ -451,9 +439,6 @@ public class ApprovalController {
 	@PostMapping("/apvProgressOk2")
 	public String apvProgressOk2(@ModelAttribute ApprovalDTO adto,
 			 					 @ModelAttribute DocumentDTO ddto) {
-		
-		System.out.println(ddto.getDono());
-		System.out.println(ddto.getMno());
 		
 		dservice.updateOne("결재완료", ddto.getDono());
 		
