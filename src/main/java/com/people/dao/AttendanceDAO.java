@@ -26,4 +26,5 @@ public interface AttendanceDAO {
 	void outworkUOne(AttendanceDTO outwdto); // 퇴근버튼 업데이트
 	
 	AttendanceDTO timediff(int mno);
+	AttendanceDTO outGetOne(int mno);
 }

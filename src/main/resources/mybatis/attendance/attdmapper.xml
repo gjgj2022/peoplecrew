@@ -62,6 +62,7 @@
 		GROUP BY A.mno;
 	</select>
 	
+	
 	<!-- 근태관리(관리자) 수정 -->
   	<update id="updateOne" parameterType="AttendanceDTO">
 		UPDATE attendance A LEFT JOIN member B
@@ -134,6 +135,22 @@
 		UPDATE attendance SET end_time = now()
 		WHERE work_day = current_date() AND mno = ${mno}
 	</select>
+	
+	<!-- 퇴근조회용 -->
+ 	<select id="outGetOne" resultType="AttendanceDTO" parameterType="int">
+		SELECT 
+		B.mname, B.mphone, B.mbirth, B.memail, 
+		B.mannual, B.usemannual,
+		B.mrank, B.mid, B.password,
+		A.start_time, A.end_time, A.state
+		FROM attendance A
+		LEFT OUTER JOIN member B
+		on A.mno = B.mno
+		WHERE work_day = current_date()
+		AND A.mno = #{mno}
+		GROUP BY A.mno;
+	</select>
+	
 	
 	<!-- 근무시간합계 -->
 	<select id="timediff" resultType="AttendanceDTO" parameterType="int">

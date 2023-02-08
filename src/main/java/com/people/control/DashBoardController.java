@@ -1,16 +1,14 @@
 package com.people.control;
 
-import java.sql.Date;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
-import org.junit.runners.Parameterized.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -60,6 +58,10 @@ public class DashBoardController {
 	public String dashBoard(Model model,Authentication authentication) {
 
 		MemberDTO dto = service.getIdOne(authentication.getName()); // 세션아이디로 사원번호 가져오기
+		
+		//근무상태 출퇴근 시간
+		AttendanceDTO endDto = atservice.outGetOne(dto.getMno());
+		model.addAttribute("endDto", endDto);
 		
 		// 공지사항
 		List<BoardDTO> list = bservice.selectAll();
@@ -228,25 +230,29 @@ public class DashBoardController {
 							@RequestParam("mno")int mno,
 							@RequestParam(required=false, name="state")String state,
 							@RequestParam(required=false, name="start_time")String start_time,
-							@RequestParam(required=false, name="end_time")String end_time) {
+							@RequestParam(required=false, name="end_time")String end_time) throws IOException {
+		
 		
 		LocalDateTime now = LocalDateTime.now();
+		
 		int hour = now.getHour(); // 시
+		
+		AttendanceDTO endDto = atservice.outGetOne(mno);
+		log.info("퇴근시간!!!!  : " + endDto.getEnd_time());
 		
 		outwdto.setMno(mno);
 		outwdto.setEnd_time(end_time);
 		outwdto.setState(state);
 		
-		if(outwdto.getEnd_time() == null) {
+		if(endDto.getEnd_time() == null) {
 			atservice.dupdeteOne(outwdto);
-		}else {
-			
+		} else {
+			log.info("이미퇴근함");
 		}
 		
 		model.addAttribute("end_time", end_time);
 		model.addAttribute("outwdto", outwdto);
 		log.info("outwdto {}", outwdto);
-		log.info("퇴근시간!!!! {}", outwdto.getEnd_time());
 		
 		return "redirect:";
 		

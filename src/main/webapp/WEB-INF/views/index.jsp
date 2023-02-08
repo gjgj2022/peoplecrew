@@ -361,28 +361,8 @@
                     </div>
                   </div>
                   	<br />
-                  	<div class="nowclock" align="center" >
-                    	<p>현재시간 : <span id="clock"></span></p>
-                  	</div>
                 </div>
-<script>
-	function startWork() {
-		if (confirm("출근 하시겠습니까?")){
-			alert("출근 하셨습니다.");
-		}else {
-			alert("취소 하셨습니다.");
-		}
-		
-	}
-	function outWork() {
-		if (confirm("퇴근 하시겠습니까?")){
-			alert("퇴근 하셨습니다.");
-		}else {
-			alert("취소 하셨습니다.");
-		}
-		
-	}
-</script>
+
 			<form action="attin" method="POST">
 				<input type="hidden" name="mno" value="${dto.mno }">	
 				<input type="hidden" name="ono" value="${dto.ono }">	
@@ -406,12 +386,12 @@
 						</tr>
 						<tr>
 							<td width="30%">
-							<p>출근 : ${workdto.start_time }</p></td>
+							<p>출근 : ${endDto.start_time }</p></td>
 							
 							<td id="gtw" width="90%"></td>
 						</tr>
 						<tr>
-							<td>퇴근 : ${outwdto.end_time }</td>
+							<td>퇴근 : ${endDto.end_time }</td>
 							<td id="ofw"></td>
 						</tr>
 					</table>
@@ -716,60 +696,44 @@
      </div>
     
   </main>
-  
-  <script type="text/javascript">
-function times() {
-	var clock = document.getElementById("clock");
-	var now = new Date();
-	var weekday = new Array(7);
-	weekday[0] = "일요일";
-	weekday[1] = "월요일";
-	weekday[2] = "화요일";
-	weekday[3] = "수요일";
-	weekday[4] = "목요일";
-	weekday[5] = "금요일";
-	weekday[6] = "토요일";
-	var week = weekday[now.getDay()];
-	clock.innerHTML = now.getFullYear() + "년 " +
-					 (now.getMonth()+1) + "월 " +
-					  now.getDate() + "일 " +
-					  now.getHours() + "시 " +
-					  now.getMinutes() + "분 " +
-					  now.getSeconds() + "초 " + 
-					  week;
 
-	setTimeout("times()", 1000);
-	}
 
-	window.onload = function() {
-	times();
-	};
-
-// 출퇴근
-$(function(){
-	var date = new Date();
-	var hours= data.getHours();
-	var start_time = document.getElementById("start_time");
-	var end_time = document.getElementById("end_time");
-
-/* 	$("#inwork").on("click", function(){
- 		console.log("출근버튼클릭");
- 		alert("출근하셨습니다.");
-		if(hours >= 5 & hours <= 9) {
-			console.log("출근");
-		} else if(hours > 9 ) {
-			console.log("지각");
-		}  
-	});
-	
-	$("#out").on("click", function(){
-		console.log("퇴근버튼클릭");
-		if(hours >= 18) {
-			console.log("퇴근");
+<!-- 출근 유효성검사  -->
+<script>
+	function startWork() {
+		
+		var startTime = '<c:out value="${endDto.start_time }"/>';
+		
+		if (confirm("출근 하시겠습니까?")){
+			if(startTime == null){
+				alert("출근 하셨습니다.");
+			}else {
+				alert("이미출근 하셨습니다.");
+			}
+		}else {
+			alert("취소 하셨습니다.");
 		}
-	}); */
-	
-});
+		
+	}
+</script>
+
+<!-- 퇴근 유효성검사  -->
+<script>
+	function outWork() {
+		
+		var endTime = '<c:out value="${endDto.end_time }"/>';
+		
+		if (confirm("퇴근 하시겠습니까?")){
+			if(endTime == null){
+				alert("퇴근 하셨습니다.");
+			}else {
+				alert("이미퇴근 하셨습니다.");
+			}
+		}else {
+			alert("취소 하셨습니다.");
+		}
+		
+	}
 </script>
   
   <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
@@ -877,7 +841,38 @@ $(function(){
     window.addEventListener('resize', myChart2.resize);
     </script>
   
-  
+  	<!--   
+  <script type="text/javascript">
+function times() {
+	var clock = document.getElementById("clock");
+	var now = new Date();
+	var weekday = new Array(7);
+	weekday[0] = "일요일";
+	weekday[1] = "월요일";
+	weekday[2] = "화요일";
+	weekday[3] = "수요일";
+	weekday[4] = "목요일";
+	weekday[5] = "금요일";
+	weekday[6] = "토요일";
+	var week = weekday[now.getDay()];
+	clock.innerHTML = now.getFullYear() + "년 " +
+					 (now.getMonth()+1) + "월 " +
+					  now.getDate() + "일 " +
+					  now.getHours() + "시 " +
+					  now.getMinutes() + "분 " +
+					  now.getSeconds() + "초 " + 
+					  week;
+
+	setTimeout("times()", 1000);
+	}
+
+	window.onload = function() {
+	times();
+	};
+	
+});
+</script>
+ -->
 </body>
 
 </html>
