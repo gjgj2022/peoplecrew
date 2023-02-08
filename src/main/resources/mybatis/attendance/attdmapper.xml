@@ -28,8 +28,18 @@
 		]]>
 	</select>
 	
-	<select id="getattTotal" resultType="int" parameterType="String">
+	<!-- 근태관리자 전체 조회  카운트 -->
+	<select id="getattTotal" resultType="int">
 		SELECT count(*) FROM attendance
+	</select>
+	
+	<!-- 근태 사원한명 조회 카운트  -->
+	<select id="attOneCnt" resultType="int" parameterType="int">
+		SELECT count(*)
+	    FROM attendance A
+	    LEFT JOIN member B ON A.mno  = B.mno
+	    LEFT JOIN organization C ON C.ono = B.ono
+	    WHERE A.mno = #{mno}
 	</select>
 	
 	<select id="getAOne" resultType="AttendanceDTO" parameterType="AttdStartEnd">

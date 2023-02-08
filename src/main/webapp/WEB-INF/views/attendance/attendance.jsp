@@ -336,29 +336,38 @@
 								<ul class="pagination justify-content-center">
 								<!-- 이전버튼 -->
 							  	<c:choose>
-								  	<c:when test="${map.isPre }">
+								  	<c:when test="${maplist.isPre }">
 								  		<c:choose>
-								  			<c:when test="${empty mno}">
-								  			 	<li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${map.currentPage-5 }">이전</a></li>
+								  			<c:when test="${empty dto.mno}">
+								  			 	<li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${maplist.currentPage-5 }">이전</a></li>
 								  			</c:when>
+								  			<c:otherwise>
+								  			 	<li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${maplist.currentPage-5 }">이전</a></li>
+								  			</c:otherwise>
 								  		</c:choose>
 								  	</c:when>
 							 	</c:choose>
 								  	<!-- 페이지번호 -->
-								  	<c:forEach var="i" begin="${map.startPage }" end="${map.endPage }">
+								  	<c:forEach var="i" begin="${maplist.startPage }" end="${maplist.endPage }">
 								  		<c:choose>
-								  			<c:when test="${empty mno}">
+								  			<c:when test="${empty dto.mno}">
 											    <li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${i}">${i }</a></li>
 								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${i}">${i }</a></li>
+								  			</c:otherwise>
 								  		</c:choose> 
 								  	</c:forEach>
 								  	<!-- 다음버튼 -->
 								<c:choose>
-								    <c:when test="${map.isNext }">
+								    <c:when test="${maplist.isNext }">
 								    	<c:choose>
-								  			<c:when test="${empty mno}">
-											    <li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${map.currentPage+5 }">다음</a></li>
+								  			<c:when test="${empty dto.mno}">
+											    <li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${maplist.currentPage+5 }">다음</a></li>
 								  			</c:when>
+								  			<c:otherwise>
+											    <li class="page-item"><a class="page-link" href="attendance?mno=${dto.mno }&cp=${maplist.currentPage+5 }">다음</a></li>
+								  			</c:otherwise>
 								  		</c:choose>
 								    </c:when>
 							    </c:choose>

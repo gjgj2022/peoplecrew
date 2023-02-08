@@ -41,17 +41,17 @@ public class AttendanceController {
 						@RequestParam("mno") int mno,
 						@RequestParam(name = "cp", defaultValue = "1")int currentPage) {
 		
-		int totalNumber = attdservice.getattTotal();
+		int totalNumber = attdservice.attOneCnt(mno);
 		//페이지당 게시물 수
 		int recordPerPage = 10;
 		//                     							총페이지 수,     한페이지당 수,   현재페이지
-		Map<String, Object> map = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
-		int startNo = (int)map.get("startNo");
-		int endNo = (int)map.get("endNo");
+		Map<String, Object> maplist = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
+		int startNo = (int)maplist.get("startNo");
+		int endNo = (int)maplist.get("endNo");
 		
 		List<AttendanceDTO> list3 = attdservice.attdOne(startNo, endNo, mno);
 		model.addAttribute("list3", list3);
-		model.addAttribute("map", map);
+		model.addAttribute("maplist", maplist);
 		
 		List<AttendanceDTO> chdb = attdservice.getChdb();
 		List<AttendanceDTO> chdb2 = attdservice.chdb2();
@@ -68,7 +68,7 @@ public class AttendanceController {
 		model.addAttribute("chdb2", chdb2);
 		
 		log.info("list3 {} :", list3);
-		log.info("map {} :", map);
+		log.info("maplist {} :", maplist);
 		log.info("attDto : null ");
 		
 		return "/attendance/attendance";

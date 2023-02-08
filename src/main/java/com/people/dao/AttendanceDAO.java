@@ -16,6 +16,7 @@ public interface AttendanceDAO {
 	AttendanceDTO admingetOne(int mno);
 	List<AttendanceDTO> getAOne(AttdStartEnd se); // 직원조회
 	int getattTotal();
+	int attOneCnt(int mno);
 	void insertOne(AttendanceDTO dto);
 	void updateOne(AttendanceDTO dto);
 	

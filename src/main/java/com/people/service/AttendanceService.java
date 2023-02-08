@@ -24,6 +24,11 @@ public class AttendanceService {
 	public int getattTotal() {
 		return dao.getattTotal();
 	}
+	
+	public int attOneCnt(int mno) {
+		return dao.attOneCnt(mno);
+	}
+	
     //직원 조회	
 	public List<AttendanceDTO> attdOne(int startNo, int endNo, int mno) {
 		AttdStartEnd se = new AttdStartEnd(startNo, endNo, mno);
