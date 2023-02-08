@@ -234,17 +234,19 @@ public class DashBoardController {
 		int hour = now.getHour(); // 시
 		
 		outwdto.setMno(mno);
+		outwdto.setEnd_time(end_time);
 		outwdto.setState(state);
 		
-		if(end_time == null) {
+		if(outwdto.getEnd_time() == null) {
 			atservice.dupdeteOne(outwdto);
 		}else {
-			return "redirect:";
+			
 		}
 		
-		model.addAttribute("start_time", start_time);
+		model.addAttribute("end_time", end_time);
 		model.addAttribute("outwdto", outwdto);
 		log.info("outwdto {}", outwdto);
+		log.info("퇴근시간!!!! {}", outwdto.getEnd_time());
 		
 		return "redirect:";
 		

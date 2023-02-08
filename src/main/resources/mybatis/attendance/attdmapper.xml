@@ -64,12 +64,12 @@
 	
 	<!-- 근태관리(관리자) 수정 -->
   	<update id="updateOne" parameterType="AttendanceDTO">
-		UPDATE attendance A JOIN member B
+		UPDATE attendance A LEFT JOIN member B
 		ON A.mno = B.mno
 		SET A.state = #{state},
 			B.mannual = #{mannual},
 			B.usemannual = #{usemannual}
-		WHERE A.mno = #{mno}
+		WHERE B.mname = #{mname}
 	</update>
 	
 	<!-- 대시보드 근태 정상 -->
