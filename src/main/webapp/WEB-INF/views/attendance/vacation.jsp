@@ -54,7 +54,7 @@
 </head>
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand " href="/" style="margin-right: 0; text-align: center;">
@@ -62,12 +62,12 @@
       </a>
     </div>
     <hr class="horizontal dark mt-0">
-   
-   <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
   <!-- 좌측 사이드바 -->
     <ul class="navbar-nav" data-widget="treeview" role="menu" data-accordion="false">
 
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#a-nav" data-bs-toggle="collapse" href="#">
          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
@@ -78,22 +78,22 @@
         </a>
         <ul id="a-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/personnel_info/mypage?mno=${dto.mno }">
+            <a href="personnel_info/mypage?mno=${dto.mno }">
               <span>마이페이지</span>
             </a>
           </li>
           <li>
-            <a href="/personnel_info/cs">
+            <a href="personnel_info/cs">
               <span>문의사항</span>
             </a>
           </li>
           <li>
-            <a href="/personnel_info/stafflist">
+            <a href="personnel_info/stafflist">
               <span>직원 현황</span>
             </a>
           </li>
           <li>
-             <a href="/personnel_info/organization2">
+             <a href="personnel_info/organization2">
               <span>조직도</span>
             </a>
           </li>
@@ -177,11 +177,13 @@
           </li>
           <li>
              <a href="/apvProgress">
+             <i class="bi bi-circle"></i> 
              <span>결재처리함</span>
 			</a>
           </li>
           <li>
              <a href="/oldFile">
+             <i class="bi bi-circle"></i> 
              <span>오래된문서함</span>
 			</a>
           </li>
@@ -201,6 +203,7 @@
         <ul id="e-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/board/list">
+              <i class="bi bi-circle"></i>
               <span>공지사항</span>
             </a>
           </li>
@@ -216,24 +219,28 @@
           </div>
          <span>인사관리</span>
         </a>
-        <ul id="f-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="f-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
             <a href="/admin/sign" >
+              <i class="bi bi-circle"></i>
               <span>사원정보등록</span>
             </a>
           </li>
           <li>
             <a href="/admin/admin2" >
+              <i class="bi bi-circle"></i>
               <span>사원조회</span>
             </a>
           </li>
           <li>
             <a href="/admin/admin3" >
+              <i class="bi bi-circle"></i>
               <span>급여관리</span>
             </a>
           </li>
           <li>
             <a href="/admin/page" >
+              <i class="bi bi-circle"></i>
               <span>근태관리</span>
             </a>
           </li>
@@ -242,6 +249,7 @@
       
     </ul>
   	</aside><!-- End Sidebar-->
+  	
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
