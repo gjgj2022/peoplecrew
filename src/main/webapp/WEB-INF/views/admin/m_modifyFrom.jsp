@@ -70,25 +70,21 @@
         <ul id="a-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/personnel_info/mypage?mno=${dto.mno }">
-              <i class="bi bi-circle"></i>
               <span>마이페이지</span>
             </a>
           </li>
           <li>
             <a href="/personnel_info/cs">
-              <i class="bi bi-circle"></i>
               <span>문의사항</span>
             </a>
           </li>
           <li>
             <a href="/personnel_info/stafflist">
-              <i class="bi bi-circle"></i>
               <span>직원 현황</span>
             </a>
           </li>
           <li>
              <a href="/personnel_info/organization2">
-              <i class="bi bi-circle"></i>
               <span>조직도</span>
             </a>
           </li>
@@ -109,13 +105,11 @@
         <ul id="b-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/calendar/list">
-              <i class="bi bi-circle"></i>
               <span>캘린더</span>
             </a>
           </li>
           <li>
             <a href="/calendar/mycalendar">
-              <i class="bi bi-circle"></i>
               <span>나의 업무</span>
             </a>
           </li>
@@ -135,13 +129,11 @@
         <ul id="c-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/attendance?mno=${dto.mno }">
-              <i class="bi bi-circle"></i>
               <span>근태관리</span>
             </a>
           </li>
           <li>
              <a href="/vacation">
-              <i class="bi bi-circle"></i>
               <span>휴가관리</span>
             </a>
           </li>
@@ -161,31 +153,26 @@
         <ul id="d-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/apvHome"> 
-            <i class="bi bi-circle"></i> 
             <span>전자결재홈</span>
             </a>
           </li>
           <li>
              <a href="/apvWrite?form=연차신청서"> 
-             <i class="bi bi-circle"></i> 
              <span>기안작성</span>
 			</a>
           </li>
           <li>
              <a href="/personalFile?apvP=전체문서">
-             <i class="bi bi-circle"></i> 
              <span>개인문서함</span>
 			</a>
           </li>
           <li>
              <a href="/apvProgress">
-             <i class="bi bi-circle"></i> 
              <span>결재처리함</span>
 			</a>
           </li>
           <li>
              <a href="/oldFile">
-             <i class="bi bi-circle"></i> 
              <span>오래된문서함</span>
 			</a>
           </li>
@@ -205,7 +192,6 @@
         <ul id="e-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/board/list">
-              <i class="bi bi-circle"></i>
               <span>공지사항</span>
             </a>
           </li>
@@ -224,25 +210,21 @@
         <ul id="f-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
             <a href="/admin/sign" >
-              <i class="bi bi-circle"></i>
               <span>사원정보등록</span>
             </a>
           </li>
           <li>
             <a href="/admin/admin2" class="nav-link active">
-              <i class="bi bi-circle"></i>
               <span>사원조회</span>
             </a>
           </li>
           <li>
             <a href="/admin/admin3" >
-              <i class="bi bi-circle"></i>
               <span>급여관리</span>
             </a>
           </li>
           <li>
             <a href="/admin/page" >
-              <i class="bi bi-circle"></i>
               <span>근태관리</span>
             </a>
           </li>
