@@ -397,7 +397,7 @@
 					</div>
 				</div>
 
-			<c:if test="${sum != 0 }">
+			
 				<div class="col-lg-7 mb-lg-0 mb-4" id="table2">
 					<div class="card ">
 						<div class="card-header pb-0 p-3">
@@ -486,7 +486,6 @@
 						</div>
 					</div>
 				</div>
-			</c:if>
 				
 				<div class="col-lg-7 mb-lg-0 mb-4" id="table3">
 					<div class="card ">
