@@ -22,7 +22,7 @@
 		      FROM attendance A 
 		      LEFT JOIN member B ON A.mno  = B.mno
 		      LEFT JOIN organization C ON B.ono = C.ono
-		      ORDER BY A.work_day asc) A, 
+		      ORDER BY A.work_day desc) A, 
 		      (SELECT @R:=0) AS X LIMIT #{endNo})B
 			WHERE RN >= #{startNo};
 		]]>
