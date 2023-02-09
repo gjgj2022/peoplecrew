@@ -245,7 +245,7 @@
        <div class="card w-65" style="margin-right: 10px;">
          <div class="card-header border-0">
            <div class="d-flex justify-content-between">
-             <h3 class="card-title">부서별 최고 급여 / 평균 급여</h3>
+             <h3 class="card-title">부서별 최고 / 평균 급여</h3>
            </div>
          </div>
          <div class="card-body">
@@ -270,7 +270,7 @@
        <div class="card w-35">
          <div class="card-header border-0">
            <div class="d-flex justify-content-between">
-             <h3 class="card-title">직급별 평균 급여</h3>
+             <h3 class="card-title">직급별 최고 / 평균 급여</h3>
            </div>
          </div>
          <div class="card-body">
