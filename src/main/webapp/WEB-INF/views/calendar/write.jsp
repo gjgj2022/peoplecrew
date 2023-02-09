@@ -159,7 +159,7 @@ width: 8rem;
 <script>
 $(function(){
 	$("#ono").hide();
-	$("#uno").val(1);
+	$("#uno").val(0);
 	$("#ono").val(0);
 })
 	function radiocheck(checked) {
