@@ -1,19 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--
-=========================================================
-* Argon Dashboard 2 - v2.0.4
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -300,6 +287,7 @@ modi*/
         </ul>
       </li><!-- End 게시판 Nav -->
       
+      <sec:authorize access="hasRole('ROLE_ADMIN')">
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#f-nav" data-bs-toggle="collapse" href="#">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -336,6 +324,7 @@ modi*/
           </li>
         </ul>
       </li><!-- End 인사관리자 Nav -->
+      </sec:authorize>
       
     </ul>
   	</aside><!-- End Sidebar-->

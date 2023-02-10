@@ -187,6 +187,7 @@
         </ul>
       </li><!-- End 게시판 Nav -->
       
+      <sec:authorize access="hasRole('ROLE_ADMIN')">
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#f-nav" data-bs-toggle="collapse" href="#">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -219,6 +220,7 @@
           </li>
         </ul>
       </li><!-- End 인사관리자 Nav -->
+      </sec:authorize>
       
     </ul>
   	</aside><!-- End Sidebar-->
