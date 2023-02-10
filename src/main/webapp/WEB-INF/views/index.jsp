@@ -374,17 +374,17 @@
 							<th colspan="2" width="100%"  id="today_kor"></th>
 						</tr>
 						<tr>
-							<td width="50%">
-								<p>출근</p>
+							<td width="50%" style="text-align: right">
+								<p>출근 : </p>
 							</td>
-							<td id="gtw" width="50%">
+							<td id="gtw" style="text-align: left">
 								<p>${endDto.start_time }</p>
 							</td>
 						</tr>
 						<tr>
-							<td width="50%">
-							<p>퇴근</p></td>
-							<td id="ofw" width="50%">
+							<td width="50%" style="text-align: right">
+							<p>퇴근 : </p></td>
+							<td id="ofw" style="text-align: left">
 								<p>${endDto.end_time }</p>
 							</td>
 						</tr>
