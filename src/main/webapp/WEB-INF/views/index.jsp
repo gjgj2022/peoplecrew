@@ -332,7 +332,7 @@
           </div>
         </div>
         <!-- 출퇴근  -->
-      	<div class="col-lg-5">
+      	<div class="col-lg-5-1">
           <div class="row">
             <div class="col-md-12 mb-lg-0 mb-4">
               <div class="card h-100">
@@ -355,25 +355,30 @@
 				<input type="hidden" name="state" value="${outwdto.state }">	
                 <div class="card" align="center">
 					<div id="clockbtn" style="width: 100%; margin: 20px 0">
-						<a href="attin?mno=${dto.mno}" class="btn btn-light waves-effect" id="inwork" onclick="return startWork()">출근하기</a>&nbsp;&nbsp;&nbsp;
-		           		<a href="attout?mno=${dto.mno}"  class="btn btn-light waves-effect" onclick="return outWork()">퇴근하기</a>
+						<a href="attin?mno=${dto.mno}" class="btn btn-outline-primary" id="inwork" onclick="return startWork()">출근하기</a>&nbsp;&nbsp;&nbsp;
+		           		<a href="attout?mno=${dto.mno}"  class="btn btn-outline-danger" onclick="return outWork()">퇴근하기</a>
 					</div>
 				</div>
 				<span id="liveclock"></span>
-                <div id="clockstatus" style="width: 100%">
-					<table class="table" style="width: 100%; text-align: center">
+                <div id="clockstatus" style="width: 100%; text-align: center" >
+					<table class="table" style="width: 100%;">
 						<tr>
-							<th colspan="2" width="100%" style="text-align: center" id="today_kor"></th>
+							<th colspan="2" width="100%"  id="today_kor"></th>
 						</tr>
 						<tr>
-							<td width="30%">
-							<p>출근 : ${endDto.start_time }</p></td>
-							
-							<td id="gtw" width="90%"></td>
+							<td width="50%">
+								<p>출근시간</p>
+							</td>
+							<td id="gtw" width="50%">
+								<p>${endDto.start_time } ${endDto.state }</p>
+							</td>
 						</tr>
 						<tr>
-							<td>퇴근 : ${endDto.end_time }</td>
-							<td id="ofw"></td>
+							<td width="50%">
+							<p>퇴근시간</p></td>
+							<td id="ofw" width="50%">
+								<p>${endDto.end_time } ${endDto.state }</p>
+							</td>
 						</tr>
 					</table>
 				</div>

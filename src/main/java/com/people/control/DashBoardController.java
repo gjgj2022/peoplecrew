@@ -207,6 +207,10 @@ public class DashBoardController {
 		workdto.setOno(memDto.getOno());
 		workdto.setState(state);
 		
+		if(state == null) {
+			workdto.setState("관리자 문의");
+		}
+		
 		if(hour <= 9 && hour >= 7) {
 			workdto.setState("정상");
 		} else if(hour > 9) {

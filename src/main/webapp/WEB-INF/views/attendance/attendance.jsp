@@ -231,10 +231,10 @@
     <!-- 차트 -->
     <div class="container-fluid py-4">
     <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
+<%--         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Sales overview</h6>
+              <h6 class="text-capitalize">요일별 근태현황</h6>
             </div>
             <div class="card-body p-3">
               <div class="chart" align="center" >
@@ -242,7 +242,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --%>
         <!-- 도넛 -->
         <div class="col-lg-5">
           <div class="card card-carousel overflow-hidden h-100 p-0">
@@ -370,38 +370,37 @@
   
 <!-- 막대차트 -->
 <script>
-  chart = new Chart(document.getElementById('myChart1').getContext('2d'), {
+  /* chart = new Chart(document.getElementById('myChart1').getContext('2d'), {
 	    type: 'bar',
 	    data: {
 	        labels: ["월", "화", "수", "목", "금", "토", "일"],
-	        datasets: [{
+	        datasets: [
+	        	{
 	                label: '근무시간',
-	                data: [100, 110, 120],
+	                data: [${Ctime[0].aCtime}, ${Ctime[1].aCtime},
+	                	   ${Ctime[2].aCtime}, ${Ctime[3].aCtime},
+	                	   ${Ctime[4].aCtime}, ${Ctime[5].aCtime},
+	                	   ${Ctime[6].aCtime}],
 	                backgroundColor: 'green',
 	            },
 	            {
-	                label: '연장근무',
-	                data: [30, 20, 10],
-	                backgroundColor: 'pink',
-	            },
-	            {
 	                label: '지각',
-	                data: [30, 20, 10],
+	                data: [],
 	                backgroundColor: 'yellow',
 	            },
 	            {
 	                label: '조퇴',
-	                data: [30, 20, 10],
+	                data: [],
 	                backgroundColor: 'blue',
 	            },
 	            {
 	                label: '결근',
-	                data: [30, 20, 10],
+	                data: [],
 	                backgroundColor: 'red',
 	            },
 	            {
 	                label: '휴가',
-	                data: [30, 20, 10],
+	                data: [],
 	                backgroundColor: 'black',
 	            },
 	        ]
@@ -427,19 +426,12 @@
 	            }
 	        }
 	    }
-	});
+	}); */
 </script>
+
  <!-- 도넛차트 -->
 <script>
-/*   data = {
-        datasets: [{
-            backgroundColor: ['red','yellow','blue'],
-            data: [10, 20, 30]
-        }],       
-        // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-        labels: ['red','yellow','blue'] 
-    }; */
-  // 도넛형 차트
+
   var ctx2 = document.getElementById("myChart2");
     
   var myDoughnutChart = new Chart(ctx2, {

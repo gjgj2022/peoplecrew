@@ -28,4 +28,5 @@ public interface AttendanceDAO {
 	
 	AttendanceDTO timediff(int mno);
 	AttendanceDTO outGetOne(int mno);
+	List<AttendanceDTO> getCtime(); // 근무시간 차트
 }

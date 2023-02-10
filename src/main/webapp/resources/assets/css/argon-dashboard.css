@@ -1695,6 +1695,10 @@ li{
 
   .col-lg-5 {
     flex: 0 0 auto;
+    width: 100%;
+  }
+  .col-lg-5-1 {
+    flex: 0 0 auto;
     width: 41.666667%;
   }
 

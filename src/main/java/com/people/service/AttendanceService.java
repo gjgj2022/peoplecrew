@@ -35,9 +35,9 @@ public class AttendanceService {
 		return dao.getAOne(se);
 	}
 	
-	//차트
-	public List<AttendanceDTO> getChdb() {
-		return dao.getAll();
+	//근무시간 차트
+	public List<AttendanceDTO> getCtime() {
+		return dao.getCtime();
 	}
 	
 	public List<AttendanceDTO> chdb2() {

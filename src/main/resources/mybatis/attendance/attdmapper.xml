@@ -135,8 +135,6 @@
 		WHERE NOT EXISTS 
 		(SELECT * FROM attendance
 		WHERE work_day = current_date() AND mno = #{mno});
-<!--        	INSERT INTO attendance (work_day, mno, start_time, state, ono)
-		VALUES (current_date(), #{mno}, curtime(), #{state}, #{ono}) -->
 	</select>
 	
 	<!-- 퇴근 -->
@@ -168,5 +166,11 @@
 		WHERE mno = #{mno}
 	</select>
 	
+	<!-- 차트 근무시간 -->
+	<select id="getCtime" resultType="AttendanceDTO">
+		SELECT timediff(end_time, start_time) as aCtime
+		FROM attendance
+		WHERE mno = #{mno} AND work_day = current_date();
+	</select>
 	
 </mapper>

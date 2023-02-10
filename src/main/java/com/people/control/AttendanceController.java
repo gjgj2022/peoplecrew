@@ -53,7 +53,7 @@ public class AttendanceController {
 		model.addAttribute("list3", list3);
 		model.addAttribute("maplist", maplist);
 		
-		List<AttendanceDTO> chdb = attdservice.getChdb();
+		List<AttendanceDTO> Ctime = attdservice.getCtime(); // 근무시간
 		List<AttendanceDTO> chdb2 = attdservice.chdb2();
 		
 		if(attdservice.timediff(mno) != null) {
@@ -64,7 +64,7 @@ public class AttendanceController {
 		}
 		
 		
-		model.addAttribute("chdb", chdb);
+		model.addAttribute("getCtime", Ctime);
 		model.addAttribute("chdb2", chdb2);
 		
 		log.info("list3 {} :", list3);
