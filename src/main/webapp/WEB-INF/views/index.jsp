@@ -375,7 +375,7 @@
 						</tr>
 						<tr>
 							<td width="50%">
-								<p>출근시간</p>
+								<p>출근</p>
 							</td>
 							<td id="gtw" width="50%">
 								<p>${endDto.start_time }</p>
@@ -383,7 +383,7 @@
 						</tr>
 						<tr>
 							<td width="50%">
-							<p>퇴근시간</p></td>
+							<p>퇴근</p></td>
 							<td id="ofw" width="50%">
 								<p>${endDto.end_time }</p>
 							</td>
