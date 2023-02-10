@@ -250,8 +250,8 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">수정</th>
                     </tr>
                   </thead>
-                  <c:forEach var="dto" items="${list2 }">
                   <tbody>
+                  <c:forEach var="dto" items="${list2 }">
                     <tr align="center">
                       <td>
                         <p class="text-xs font-weight-bold mb-0">${dto.work_day }</p>
