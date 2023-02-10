@@ -341,6 +341,14 @@
                     <div class="col-6 d-flex">
                       <h6 class="mb-0">근무상태</h6>
                     </div>
+                    <div class="col-6 text-end">
+                    <c:choose>
+                       <c:when test="${endDto.state == '정상'||endDto.state == '지각' }"><span class="badge badge-sm bg-gradient-success">${endDto.state}</span></c:when>
+                        <c:otherwise> <span class="badge badge-sm bg-gradient-secondary">${endDto.state}</span></c:otherwise>
+                     </c:choose>
+                   </div>
+                     <br />
+           
                   </div>
                   	<br />
                 </div>
@@ -370,14 +378,14 @@
 								<p>출근시간</p>
 							</td>
 							<td id="gtw" width="50%">
-								<p>${endDto.start_time } ${endDto.state }</p>
+								<p>${endDto.start_time }</p>
 							</td>
 						</tr>
 						<tr>
 							<td width="50%">
 							<p>퇴근시간</p></td>
 							<td id="ofw" width="50%">
-								<p>${endDto.end_time } ${endDto.state }</p>
+								<p>${endDto.end_time }</p>
 							</td>
 						</tr>
 					</table>
