@@ -178,11 +178,13 @@ public class CalendarController {
 		
 		if(dto!=null) {
 			int uno = mService.getOne(dto.getMno()).getUno();
+			log.info("uno : "+uno);
 			List<CalendarDTO> unolist = cService.getByUno(uno); //내부서일정
 			//List<CalendarDTO> unolist = cService.getOneByOno(dto.getOno()); //내부서일정
 			List<CalendarDTO> olist = cService.getByUno(0); //회사 일반 일정 
 			List<CalendarDTO> mylist = cService.getByMno(dto.getMno());//내 개인일정
 			unolist.addAll(olist); //회사일정
+			dto.setUno(uno);
 			List<CalendarDTO> myall = cService.getEndList(dto);  //완료일정
 			
 			for (CalendarDTO date : mylist) {
